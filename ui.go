@@ -17,3 +17,7 @@ type IView interface {
 func (v *FBaseView) show() {
 	v.ui.ShowOnRootView(v.vID)
 }
+
+var (
+	idMap = make(map[string]IView)
+)

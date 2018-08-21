@@ -7,6 +7,16 @@ type FTextView struct {
 func (v *FTextView) getVID() string {
 	return v.vID
 }
+func (v *FTextView) id(s string) *FTextView {
+	idMap[s] = v
+	return v
+}
+func getTextViewById(id string) *FTextView {
+	if v, ok := idMap[id].(*FTextView); ok {
+		return v
+	}
+	return nil
+}
 func textview(a *Activity) *FTextView {
 	v := &FTextView{}
 	v.vID = newToken()

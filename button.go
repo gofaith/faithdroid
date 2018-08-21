@@ -7,6 +7,7 @@ type FButton struct {
 func (v *FButton) getVID() string {
 	return v.vID
 }
+
 func button(a *Activity) *FButton {
 	v := &FButton{}
 	v.vID = newToken()
@@ -19,6 +20,16 @@ func (v *FButton) size(w, h int) *FButton {
 	i := []int{w, h}
 	v.ui.ViewSetAttr(v.vID, "Size", jsonArray(i))
 	return v
+}
+func (v *FButton) id(s string) *FButton {
+	idMap[s] = v
+	return v
+}
+func getButtonById(id string) *FButton {
+	if v, ok := idMap[id].(*FButton); ok {
+		return v
+	}
+	return nil
 }
 func (v *FButton) text(s string) *FButton {
 	v.ui.ViewSetAttr(v.vID, "Text", s)
