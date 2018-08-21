@@ -17,6 +17,15 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
     }
     @Override
     public String getAttr(String attr) {
+        if(attr==null)
+            return "";
+        switch (attr) {
+            case "Orientation":
+                if (v.getOrientation()==LinearLayout.HORIZONTAL)
+                    return "HORIZONTAL";
+                else
+                    return "VERTICAL";
+        }
         return "";
     }
 

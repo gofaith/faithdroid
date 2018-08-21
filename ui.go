@@ -13,3 +13,7 @@ type FBaseView struct {
 type IView interface {
 	getVID() string
 }
+
+func (v *FBaseView) show() {
+	v.ui.ShowOnRootView(v.vID)
+}

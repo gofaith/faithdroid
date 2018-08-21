@@ -19,7 +19,7 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
         switch (attr) {
             case "Text":
                 return v.getText().toString();
-            case "IsEnabled":
+            case "Enabled":
                 return String.valueOf(v.isEnabled());
         }
         return "";

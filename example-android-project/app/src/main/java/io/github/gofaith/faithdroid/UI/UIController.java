@@ -24,38 +24,37 @@ public class UIController implements UIInterface {
     @Override
     public void newView(String vName, String vID) {
         FView v = null;
-        v.className =vName;
-        v.vID=vID;
         switch (vName) {
             case "LinearLayout":
                 FLinearLayout fLinearLayout = new FLinearLayout(this);
+                v=fLinearLayout;
                 viewmap.put(vID, fLinearLayout);
                 break;
             case "TextView":
                 FTextView textView = new FTextView(this);
+                v=textView;
                 viewmap.put(vID , textView);
                 break;
             case "Button":
                 FButton button = new FButton(this);
+                v=button;
                 viewmap.put(vID, button);
                 break;
-            default:
-                Space space = new Space(activity);
-                v.view=space;
-                break;
         }
+        v.className =vName;
+        v.vID=vID;
         viewmap.put(vID, v);
     }
     @Override
     public String viewGetAttr(String vID, String attr) {
         FView v = viewmap.get(vID);
-        return ((AttrGettable) v.view).getAttr(attr);
+        return ((AttrGettable) v).getAttr(attr);
     }
 
     @Override
     public void viewSetAttr(String vID, String attr, String value) {
         FView v = viewmap.get(vID);
-        ((AttrSettable)(v.view)).setAttr(attr,value);
+        ((AttrSettable)(v)).setAttr(attr,value);
     }
 
     @Override
