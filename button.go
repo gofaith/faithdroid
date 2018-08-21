@@ -41,3 +41,12 @@ func (v *FButton) isEnabled() bool {
 	}
 	return false
 }
+
+func (v *FButton) onClick(f func()) *FButton {
+	fnID := newToken()
+	eventHandlersMap[fnID] = func(string) {
+		f()
+	}
+	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
+	return v
+}

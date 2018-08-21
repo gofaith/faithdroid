@@ -6,6 +6,8 @@ import android.widget.Space;
 
 import java.util.HashMap;
 
+import faithdroid.Activity;
+import faithdroid.MainActivity;
 import faithdroid.UIInterface;
 import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
@@ -14,6 +16,7 @@ import io.github.gofaith.faithdroid.FViews.FView;
 
 public class UIController implements UIInterface {
     public AppCompatActivity activity;
+    public Activity factivity;
     public HashMap<String, FView> viewmap = new HashMap<>();
     public FrameLayout rootView;
     public UIController(AppCompatActivity a, FrameLayout main_ctn) {
