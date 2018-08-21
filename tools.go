@@ -1,6 +1,7 @@
 package faithdroid
 
 import (
+	"github.com/StevenZack/tools/encodingToolkit"
 	"github.com/StevenZack/tools/strToolkit"
 )
 
@@ -37,4 +38,7 @@ func multiViews(ps ...interface{}) ([]IView, bool) {
 }
 func newToken() string {
 	return strToolkit.NewToken()
+}
+func jsonArray(i interface{}) string {
+	return encodingToolkit.JsonArray(i)
 }

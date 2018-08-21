@@ -15,6 +15,11 @@ func textview(a *Activity) *FTextView {
 	a.ui.NewView(v.className, v.vID)
 	return v
 }
+func (v *FTextView) size(w, h int) *FTextView {
+	i := []int{w, h}
+	v.ui.ViewSetAttr(v.vID, "Size", jsonArray(i))
+	return v
+}
 func (v *FTextView) text(s string) *FTextView {
 	v.ui.ViewSetAttr(v.vID, "Text", s)
 	return v

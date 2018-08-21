@@ -27,6 +27,9 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
     @Override
     public void setAttr(String attr, String value) {
         switch (attr) {
+            case "Size":
+                parseSize(parrentController.activity, v, value);
+                break;
             case "Text":
                 if (value!=null)
                     v.setText(value);

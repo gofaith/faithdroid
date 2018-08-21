@@ -16,6 +16,11 @@ func linearlayout(a *Activity) *FLinearLayout {
 	a.ui.NewView(v.className, v.vID)
 	return v
 }
+func (v *FLinearLayout) size(w, h int) *FLinearLayout {
+	i := []int{w, h}
+	v.ui.ViewSetAttr(v.vID, "Size", jsonArray(i))
+	return v
+}
 
 func (v *FLinearLayout) append(vs ...IView) *FLinearLayout {
 	for _, i := range vs {

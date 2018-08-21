@@ -35,6 +35,9 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
             return;
         }
         switch (attr) {
+            case "Size":
+                parseSize(parrentController.activity, v, value);
+                break;
             case "Orientation":
                 if (value.equals("HORIZONTAL")) {
                     v.setOrientation(LinearLayout.HORIZONTAL);

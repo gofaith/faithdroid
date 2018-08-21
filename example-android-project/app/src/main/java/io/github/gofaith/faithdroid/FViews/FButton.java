@@ -30,6 +30,9 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
         if (value==null)
             return;
         switch (attr) {
+            case "Size":
+                parseSize(parrentController.activity,v,value);
+                break;
             case "Text":
                 v.setText(value);
                 break;

@@ -15,6 +15,11 @@ func button(a *Activity) *FButton {
 	v.ui.NewView(v.className, v.vID)
 	return v
 }
+func (v *FButton) size(w, h int) *FButton {
+	i := []int{w, h}
+	v.ui.ViewSetAttr(v.vID, "Size", jsonArray(i))
+	return v
+}
 func (v *FButton) text(s string) *FButton {
 	v.ui.ViewSetAttr(v.vID, "Text", s)
 	return v
