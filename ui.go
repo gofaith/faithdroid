@@ -6,6 +6,10 @@ type UIInterface interface {
 	ViewGetAttr(vID string, attr string) string
 	ShowOnRootView(vID string)
 }
-type BaseView struct {
+type FBaseView struct {
 	vID, className string
+	ui             UIInterface
+}
+type IView interface {
+	getVID() string
 }
