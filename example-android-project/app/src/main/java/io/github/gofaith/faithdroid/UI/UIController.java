@@ -59,7 +59,7 @@ public class UIController implements UIInterface {
     }
 
     @Override
-    public void runOnUIThread(String s) {
+    public void runOnUIThread(final String s) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

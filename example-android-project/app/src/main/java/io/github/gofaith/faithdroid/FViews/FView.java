@@ -7,13 +7,9 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
-import java.io.IOException;
 
 import io.github.gofaith.faithdroid.UI.UIController;
 
