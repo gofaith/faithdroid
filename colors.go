@@ -60,6 +60,7 @@ type ColorsCollection struct {
 	BlueGreyLight   string
 	BlueGreyDark    string
 	Black, White    string
+	Transparent     string
 }
 
 var colors = ColorsCollection{
@@ -121,4 +122,5 @@ var colors = ColorsCollection{
 	BlueGreyLight:   "#90a4ae",
 	BlueGreyDark:    "#37474f",
 	Black:           "#000000", White: "#ffffff",
+	Transparent: "#00000000",
 }
