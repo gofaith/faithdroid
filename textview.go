@@ -7,7 +7,7 @@ type FTextView struct {
 func (v *FTextView) getVID() string {
 	return v.vID
 }
-func (v *FTextView) id(s string) *FTextView {
+func (v *FTextView) setId(s string) *FTextView {
 	idMap[s] = v
 	return v
 }

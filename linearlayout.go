@@ -8,7 +8,7 @@ type FLinearLayout struct {
 func (v *FLinearLayout) getVID() string {
 	return v.vID
 }
-func (v *FLinearLayout) id(s string) *FLinearLayout {
+func (v *FLinearLayout) setId(s string) *FLinearLayout {
 	idMap[s] = v
 	return v
 }

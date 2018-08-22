@@ -21,7 +21,7 @@ func (v *FButton) size(w, h int) *FButton {
 	v.ui.ViewSetAttr(v.vID, "Size", jsonArray(i))
 	return v
 }
-func (v *FButton) id(s string) *FButton {
+func (v *FButton) setId(s string) *FButton {
 	idMap[s] = v
 	return v
 }
