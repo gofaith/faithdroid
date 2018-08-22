@@ -65,3 +65,8 @@ func (v *FLinearLayout) backgroundColor(s string) *FLinearLayout {
 	v.FBaseView.backgroundColor(s)
 	return v
 }
+
+func (v *FLinearLayout) cachedBackground(s string) *FLinearLayout {
+	v.FBaseView.cachedBackground(s)
+	return v
+}

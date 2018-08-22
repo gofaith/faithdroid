@@ -6,8 +6,10 @@ import (
 	"github.com/StevenZack/tools/netToolkit"
 	"github.com/StevenZack/tools/strToolkit"
 	"os"
+	"strings"
 )
 
+/*
 func twoInt(ps ...interface{}) (int, int, bool) {
 	if len(ps) != 2 {
 		return -1, -1, false
@@ -39,6 +41,7 @@ func multiViews(ps ...interface{}) ([]IView, bool) {
 	}
 	return ws, true
 }
+*/
 func newToken() string {
 	return strToolkit.NewToken()
 }
@@ -55,12 +58,40 @@ func getrpath(s string) string {
 	}
 	return s + sp
 }
-func cacheNetFile(url, cacheDir string, callback func(string)) {
-	f := getrpath(cacheDir) + newToken()
+func downloadNetFile(url, downloadDir string, callback func(string)) {
+	f := getrpath(downloadDir) + newToken()
 	e := netToolkit.DownloadFile(url, f)
 	if e != nil {
 		fmt.Println(e)
 		return
 	}
 	callback(f)
+}
+func cacheNetFile(url, cacheDir string, callback func(string)) {
+	f := getrpath(cacheDir) + url2cachePath(url)
+	if _, e := os.Stat(f); e != nil {
+		e = netToolkit.DownloadFile(url, f)
+		if e != nil {
+			fmt.Println(e)
+			return
+		}
+	}
+	callback(f)
+}
+func url2cachePath(url string) string {
+	rUrl := getRealUrl(url)
+	s := strings.Replace(rUrl, "://", "/", -1)
+	if strToolkit.EndsWith(s, "/") {
+		return s[:len(s)-1]
+	}
+	return s
+}
+func getRealUrl(url string) string {
+	for i := 0; i < len(url); i++ {
+		item := url[i : i+1]
+		if item == "?" || item == "#" {
+			return url[:i]
+		}
+	}
+	return url
 }

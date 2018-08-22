@@ -21,7 +21,20 @@ func (v *FBaseView) show() {
 }
 func (v *FBaseView) background(s string) {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
-		go cacheNetFile(s, "/data/data/"+v.ui.GetPkg()+"/cacheDir/tmp/", func(f string) {
+		go downloadNetFile(s, "/data/data/"+v.ui.GetPkg()+"/tmp/", func(f string) {
+			fnID := newToken()
+			eventHandlersMap[fnID] = func(string) {
+				v.ui.ViewSetAttr(v.vID, "Background", "file://"+f)
+			}
+			v.ui.RunOnUIThread(fnID)
+		})
+		return
+	}
+	v.ui.ViewSetAttr(v.vID, "Background", s)
+}
+func (v *FBaseView) cachedBackground(s string) {
+	if len(s) > len("https://") && s[:len("http")] == "http" {
+		go cacheNetFile(s, "/data/data/"+v.ui.GetPkg()+"/cacheDir/", func(f string) {
 			fnID := newToken()
 			eventHandlersMap[fnID] = func(string) {
 				v.ui.ViewSetAttr(v.vID, "Background", "file://"+f)

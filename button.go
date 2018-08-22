@@ -69,3 +69,7 @@ func (v *FButton) backgroundColor(s string) *FButton {
 	v.FBaseView.backgroundColor(s)
 	return v
 }
+func (v *FButton) cachedBackground(s string) *FButton {
+	v.FBaseView.cachedBackground(s)
+	return v
+}
