@@ -37,3 +37,12 @@ func (v *FTextView) text(s string) *FTextView {
 func (v *FTextView) getText() string {
 	return v.ui.ViewGetAttr(v.vID, "Text")
 }
+
+func (v *FTextView) background(s string) *FTextView {
+	v.FBaseView.background(s)
+	return v
+}
+func (v *FTextView) backgroundColor(s string) *FTextView {
+	v.FBaseView.backgroundColor(s)
+	return v
+}

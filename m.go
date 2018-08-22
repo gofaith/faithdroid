@@ -6,9 +6,6 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	linearlayout(a).deferShow().append(
-		button(a).text("one").size(-1, -1).onClick(func() {
-			getButtonById("s").text("changed")
-		}),
-		button(a).text("two").id("s").size(-2, -2))
+	linearlayout(a).deferShow().size(-2, -2).background("assets://a1.jpg").append(
+		button(a).size(-2, -1).text("ahskjdg").backgroundColor("#0088ff"))
 }

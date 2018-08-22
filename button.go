@@ -61,3 +61,11 @@ func (v *FButton) onClick(f func()) *FButton {
 	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
 	return v
 }
+func (v *FButton) background(s string) *FButton {
+	v.FBaseView.background(s)
+	return v
+}
+func (v *FButton) backgroundColor(s string) *FButton {
+	v.FBaseView.backgroundColor(s)
+	return v
+}

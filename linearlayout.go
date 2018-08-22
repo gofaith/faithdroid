@@ -56,3 +56,12 @@ func (v *FLinearLayout) horizontal() *FLinearLayout {
 func (v *FLinearLayout) isVertical() bool {
 	return v.ui.ViewGetAttr(v.vID, "Orientation") == "VERTICAL"
 }
+
+func (v *FLinearLayout) background(s string) *FLinearLayout {
+	v.FBaseView.background(s)
+	return v
+}
+func (v *FLinearLayout) backgroundColor(s string) *FLinearLayout {
+	v.FBaseView.backgroundColor(s)
+	return v
+}

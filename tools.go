@@ -1,8 +1,11 @@
 package faithdroid
 
 import (
+	"fmt"
 	"github.com/StevenZack/tools/encodingToolkit"
+	"github.com/StevenZack/tools/netToolkit"
 	"github.com/StevenZack/tools/strToolkit"
+	"os"
 )
 
 func twoInt(ps ...interface{}) (int, int, bool) {
@@ -41,4 +44,23 @@ func newToken() string {
 }
 func jsonArray(i interface{}) string {
 	return encodingToolkit.JsonArray(i)
+}
+func getrpath(s string) string {
+	if len(s) < 1 {
+		return ""
+	}
+	sp := string(os.PathSeparator)
+	if s[len(s)-1:] == sp {
+		return s
+	}
+	return s + sp
+}
+func cacheNetFile(url, cacheDir string, callback func(string)) {
+	f := getrpath(cacheDir) + newToken()
+	e := netToolkit.DownloadFile(url, f)
+	if e != nil {
+		fmt.Println(e)
+		return
+	}
+	callback(f)
 }

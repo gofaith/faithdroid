@@ -1,5 +1,6 @@
 package io.github.gofaith.faithdroid.FViews;
 
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -33,13 +34,11 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
         if (value==null)
             return;
         switch (attr) {
+            case "BackgroundColor":
+                setBackgroundColor(v,value);
+                break;
             case "Background":
-//                final int sdk = android.os.Build.VERSION.SDK_INT;
-//                if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-//                    v.setBackgroundDrawable(ContextCompat.getDrawable(parrentController.activity, R.drawable.ic_launcher_background) );
-//                } else {
-//                    layout.setBackground(ContextCompat.getDrawable(context, R.drawable.ready));
-//                }
+                setBackground(v,value);
                 break;
             case "Size":
                 parseSize(parrentController.activity,v,value);

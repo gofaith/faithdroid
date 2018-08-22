@@ -27,6 +27,12 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
     @Override
     public void setAttr(String attr, String value) {
         switch (attr) {
+            case "BackgroundColor":
+                setBackgroundColor(v,value);
+                break;
+            case "Background":
+                setBackground(v,value);
+                break;
             case "Size":
                 parseSize(parrentController.activity, v, value);
                 break;

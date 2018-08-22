@@ -35,6 +35,12 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
             return;
         }
         switch (attr) {
+            case "BackgroundColor":
+                setBackgroundColor(v,value);
+                break;
+            case "Background":
+                setBackground(v,value);
+                break;
             case "Size":
                 parseSize(parrentController.activity, v, value);
                 break;
