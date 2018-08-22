@@ -70,3 +70,11 @@ func (v *FLinearLayout) cachedBackground(s string) *FLinearLayout {
 	v.FBaseView.cachedBackground(s)
 	return v
 }
+func (v *FLinearLayout) onClick(f func()) *FLinearLayout {
+	fnID := newToken()
+	eventHandlersMap[fnID] = func(string) {
+		f()
+	}
+	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
+	return v
+}

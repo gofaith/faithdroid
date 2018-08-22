@@ -1,8 +1,10 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
 import io.github.gofaith.faithdroid.UI.UIController;
@@ -25,7 +27,7 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         switch (attr) {
             case "BackgroundColor":
                 setBackgroundColor(v,value);
@@ -39,6 +41,14 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
             case "Text":
                 if (value!=null)
                     v.setText(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
         }
     }
