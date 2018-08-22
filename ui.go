@@ -21,7 +21,7 @@ func (v *FBaseView) show() {
 }
 func (v *FBaseView) background(s string) {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
-		go cacheNetFile(s, "/data/data/"+v.ui.GetPkg()+"/cacheDir/", func(f string) {
+		go cacheNetFile(s, "/data/data/"+v.ui.GetPkg()+"/cacheDir/tmp/", func(f string) {
 			fnID := newToken()
 			eventHandlersMap[fnID] = func(string) {
 				v.ui.ViewSetAttr(v.vID, "Background", "file://"+f)
