@@ -57,6 +57,9 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
             case "LayoutGravity":
                 setLayoutGravity(value);
                 break;
+            case "Elevation":
+                setElevation(value);
+                break;
                 // ----------------------------------------------------------
             case "Text":
                 if (value!=null)

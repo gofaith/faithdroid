@@ -59,6 +59,9 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
             case "LayoutGravity":
                 setLayoutGravity(value);
                 break;
+            case "Elevation":
+                setElevation(value);
+                break;
                 // -------------------------------------------------------------------
             case "Text":
                 v.setText(value);

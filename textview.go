@@ -36,7 +36,7 @@ func (v *FTextView) background(s string) *FTextView {
 	v.FBaseView.background(s)
 	return v
 }
-func (v *FTextView) backgroundColor(s string) *FTextView {
+func (v *FTextView) backgroundColor(s int) *FTextView {
 	v.FBaseView.backgroundColor(s)
 	return v
 }
@@ -117,7 +117,12 @@ func (v *FTextView) marginAll(dp int) *FTextView {
 	return v
 }
 func (v *FTextView) layoutGravity(gravity int) *FTextView {
-	v.ui.ViewSetAttr(v.vID, "LayoutGravity", sPrintf("%v", gravity))
+	v.FBaseView.layoutGravity(gravity)
+	return v
+}
+
+func (v *FTextView) elevation(dp float32) *FTextView {
+	v.FBaseView.elevation(dp)
 	return v
 }
 
@@ -133,7 +138,7 @@ func (v *FTextView) textColor(s string) *FTextView {
 }
 
 func (v *FTextView) textSize(dpsize int) *FTextView {
-	v.ui.ViewSetAttr(v.vID, "TextSize", sPrintf("%v", dpsize))
+	v.ui.ViewSetAttr(v.vID, "TextSize", sPrintf(dpsize))
 	return v
 }
 func (v *FTextView) getText() string {

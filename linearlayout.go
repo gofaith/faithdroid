@@ -36,7 +36,7 @@ func (v *FLinearLayout) background(s string) *FLinearLayout {
 	v.FBaseView.background(s)
 	return v
 }
-func (v *FLinearLayout) backgroundColor(s string) *FLinearLayout {
+func (v *FLinearLayout) backgroundColor(s int) *FLinearLayout {
 	v.FBaseView.backgroundColor(s)
 	return v
 }
@@ -118,7 +118,12 @@ func (v *FLinearLayout) marginAll(dp int) *FLinearLayout {
 }
 
 func (v *FLinearLayout) layoutGravity(gravity int) *FLinearLayout {
-	v.ui.ViewSetAttr(v.vID, "LayoutGravity", sPrintf("%v", gravity))
+	v.FBaseView.layoutGravity(gravity)
+	return v
+}
+
+func (v *FLinearLayout) elevation(dp float32) *FLinearLayout {
+	v.FBaseView.elevation(dp)
 	return v
 }
 

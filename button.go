@@ -36,7 +36,7 @@ func (v *FButton) background(s string) *FButton {
 	v.FBaseView.background(s)
 	return v
 }
-func (v *FButton) backgroundColor(s string) *FButton {
+func (v *FButton) backgroundColor(s int) *FButton {
 	v.FBaseView.backgroundColor(s)
 	return v
 }
@@ -109,7 +109,11 @@ func (v *FButton) marginAll(dp int) *FButton {
 }
 
 func (v *FButton) layoutGravity(gravity int) *FButton {
-	v.ui.ViewSetAttr(v.vID, "LayoutGravity", sPrintf("%v", gravity))
+	v.FBaseView.layoutGravity(gravity)
+	return v
+}
+func (v *FButton) elevation(dp float32) *FButton {
+	v.FBaseView.elevation(dp)
 	return v
 }
 
@@ -123,7 +127,7 @@ func (v *FButton) textColor(s string) *FButton {
 	return v
 }
 func (v *FButton) textSize(dpsize int) *FButton {
-	v.ui.ViewSetAttr(v.vID, "TextSize", sPrintf("%v", dpsize))
+	v.ui.ViewSetAttr(v.vID, "TextSize", sPrintf(dpsize))
 	return v
 }
 func (v *FButton) getText() string {

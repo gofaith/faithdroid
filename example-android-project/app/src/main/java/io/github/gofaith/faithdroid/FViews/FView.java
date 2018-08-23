@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -16,7 +17,7 @@ import org.json.JSONTokener;
 import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FView {
-    public String className,vID;
+    public String className,vID,TAG="FView";
     public View view;
     protected UIController parrentController;
     protected void parseSize(AppCompatActivity activity, View v, String value) {
@@ -142,6 +143,17 @@ public class FView {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(view.getLayoutParams());
             lp.gravity = Integer.parseInt(value);
             view.setLayoutParams(lp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void setElevation(String value) {
+        try {
+            Log.d(TAG, "setElevation: "+value);
+            float f = Float.parseFloat(value);
+            Log.d(TAG, "setElevation: "+f);
+            ViewCompat.setElevation(view,f);
         } catch (Exception e) {
             e.printStackTrace();
         }

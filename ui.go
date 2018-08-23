@@ -49,8 +49,8 @@ func (v *FBaseView) cachedBackground(s string) {
 	}
 	v.ui.ViewSetAttr(v.vID, "Background", s)
 }
-func (v *FBaseView) backgroundColor(s string) {
-	v.ui.ViewSetAttr(v.vID, "BackgroundColor", s)
+func (v *FBaseView) backgroundColor(s int) {
+	v.ui.ViewSetAttr(v.vID, "BackgroundColor", "#"+xPrintf(s))
 }
 func (v *FBaseView) visible() {
 	v.ui.ViewSetAttr(v.vID, "Visibility", "VISIBLE")
@@ -66,4 +66,10 @@ func (v *FBaseView) padding(left, top, right, bottom int) {
 }
 func (v *FBaseView) margin(left, top, right, bottom int) {
 	v.ui.ViewSetAttr(v.vID, "Margin", jsonArray([]int{left, top, right, bottom}))
+}
+func (v *FBaseView) layoutGravity(gravity int) {
+	v.ui.ViewSetAttr(v.vID, "LayoutGravity", sPrintf(gravity))
+}
+func (v *FBaseView) elevation(dp float32) {
+	v.ui.ViewSetAttr(v.vID, "Elevation", sPrintf(dp))
 }
