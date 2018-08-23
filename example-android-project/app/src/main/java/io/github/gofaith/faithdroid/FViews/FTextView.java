@@ -1,5 +1,6 @@
 package io.github.gofaith.faithdroid.FViews;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -48,6 +49,13 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
             case "Text":
                 if (value!=null)
                     v.setText(value);
+                break;
+            case "TextColor":
+                try {
+                    v.setTextColor(Color.parseColor(value));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "OnClick":
                 v.setOnClickListener(new View.OnClickListener() {

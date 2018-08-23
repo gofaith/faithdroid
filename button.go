@@ -63,6 +63,10 @@ func (v *FButton) text(s string) *FButton {
 	v.ui.ViewSetAttr(v.vID, "Text", s)
 	return v
 }
+func (v *FButton) textColor(s string) *FButton {
+	v.ui.ViewSetAttr(v.vID, "TextColor", s)
+	return v
+}
 func (v *FButton) getText() string {
 	return v.ui.ViewGetAttr(v.vID, "Text")
 }

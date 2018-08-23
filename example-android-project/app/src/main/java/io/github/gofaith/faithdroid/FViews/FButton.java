@@ -53,6 +53,13 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
             case "Text":
                 v.setText(value);
                 break;
+            case "TextColor":
+                try {
+                    v.setTextColor(Color.parseColor(value));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
             case "Enabled":
                 if (value.equals("true")) {
                     v.setEnabled(true);

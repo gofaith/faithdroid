@@ -72,6 +72,11 @@ func (v *FTextView) text(s string) *FTextView {
 	v.ui.ViewSetAttr(v.vID, "Text", s)
 	return v
 }
+
+func (v *FTextView) textColor(s string) *FTextView {
+	v.ui.ViewSetAttr(v.vID, "TextColor", s)
+	return v
+}
 func (v *FTextView) getText() string {
 	return v.ui.ViewGetAttr(v.vID, "Text")
 }
