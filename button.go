@@ -1,9 +1,5 @@
 package faithdroid
 
-import (
-	"fmt"
-)
-
 type FButton struct {
 	FBaseView
 }
@@ -112,6 +108,11 @@ func (v *FButton) marginAll(dp int) *FButton {
 	return v
 }
 
+func (v *FButton) layoutGravity(gravity int) *FButton {
+	v.ui.ViewSetAttr(v.vID, "LayoutGravity", sPrintf("%v", gravity))
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FButton) text(s string) *FButton {
 	v.ui.ViewSetAttr(v.vID, "Text", s)
@@ -122,7 +123,7 @@ func (v *FButton) textColor(s string) *FButton {
 	return v
 }
 func (v *FButton) textSize(dpsize int) *FButton {
-	v.ui.ViewSetAttr(v.vID, "TextSize", fmt.Sprintf("%v", dpsize))
+	v.ui.ViewSetAttr(v.vID, "TextSize", sPrintf("%v", dpsize))
 	return v
 }
 func (v *FButton) getText() string {

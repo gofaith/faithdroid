@@ -117,6 +117,11 @@ func (v *FLinearLayout) marginAll(dp int) *FLinearLayout {
 	return v
 }
 
+func (v *FLinearLayout) layoutGravity(gravity int) *FLinearLayout {
+	v.ui.ViewSetAttr(v.vID, "LayoutGravity", sPrintf("%v", gravity))
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FLinearLayout) append(vs ...IView) *FLinearLayout {
 	for _, i := range vs {

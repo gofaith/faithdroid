@@ -63,7 +63,7 @@ type ColorsCollection struct {
 	Transparent     string
 }
 
-var colors = ColorsCollection{
+var Colors = ColorsCollection{
 	Red:             "#f44336",
 	RedLight:        "#e57373",
 	RedDark:         "#d32f2f",

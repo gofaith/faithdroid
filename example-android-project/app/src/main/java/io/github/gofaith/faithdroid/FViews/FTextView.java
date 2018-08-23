@@ -54,6 +54,9 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
             case "Margin":
                 setMargin(value);
                 break;
+            case "LayoutGravity":
+                setLayoutGravity(value);
+                break;
                 // ----------------------------------------------------------
             case "Text":
                 if (value!=null)

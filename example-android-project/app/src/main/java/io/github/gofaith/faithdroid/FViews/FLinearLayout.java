@@ -58,6 +58,9 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
             case "Margin":
                 setMargin(value);
                 break;
+            case "LayoutGravity":
+                setLayoutGravity(value);
+                break;
                 // ----------------------------------------------------------------------------
             case "Orientation":
                 if (value.equals("HORIZONTAL")) {

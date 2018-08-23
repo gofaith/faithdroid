@@ -7,6 +7,8 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
@@ -130,6 +132,16 @@ public class FView {
             ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(view.getLayoutParams());
             params.setMargins(array.getInt(0),array.getInt(1),array.getInt(2),array.getInt(3));
             view.setLayoutParams(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void setLayoutGravity(String value) {
+        try {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(view.getLayoutParams());
+            lp.gravity = Integer.parseInt(value);
+            view.setLayoutParams(lp);
         } catch (Exception e) {
             e.printStackTrace();
         }

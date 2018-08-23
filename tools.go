@@ -95,3 +95,6 @@ func getRealUrl(url string) string {
 	}
 	return url
 }
+func sPrintf(format string, a ...interface{}) string {
+	return fmt.Sprintf(format, a...)
+}

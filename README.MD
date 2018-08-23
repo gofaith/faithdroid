@@ -2,7 +2,7 @@
 
 - [x]visibility
 - [x]padding
-- margin
+- [x]margin
 - gravity
 - elevation
 
