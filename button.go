@@ -31,6 +31,34 @@ func getButtonById(id string) *FButton {
 	}
 	return nil
 }
+
+func (v *FButton) background(s string) *FButton {
+	v.FBaseView.background(s)
+	return v
+}
+func (v *FButton) backgroundColor(s string) *FButton {
+	v.FBaseView.backgroundColor(s)
+	return v
+}
+func (v *FButton) cachedBackground(s string) *FButton {
+	v.FBaseView.cachedBackground(s)
+	return v
+}
+
+func (v *FButton) visible() *FButton {
+	v.FBaseView.visible()
+	return v
+}
+func (v *FButton) invisible() *FButton {
+	v.FBaseView.invisible()
+	return v
+}
+func (v *FButton) gone() *FButton {
+	v.FBaseView.gone()
+	return v
+}
+
+// --------------------------------------------------------
 func (v *FButton) text(s string) *FButton {
 	v.ui.ViewSetAttr(v.vID, "Text", s)
 	return v
@@ -59,17 +87,5 @@ func (v *FButton) onClick(f func()) *FButton {
 		f()
 	}
 	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
-	return v
-}
-func (v *FButton) background(s string) *FButton {
-	v.FBaseView.background(s)
-	return v
-}
-func (v *FButton) backgroundColor(s string) *FButton {
-	v.FBaseView.backgroundColor(s)
-	return v
-}
-func (v *FButton) cachedBackground(s string) *FButton {
-	v.FBaseView.cachedBackground(s)
 	return v
 }

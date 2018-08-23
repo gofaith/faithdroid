@@ -32,6 +32,42 @@ func (v *FLinearLayout) size(w, h int) *FLinearLayout {
 	return v
 }
 
+func (v *FLinearLayout) background(s string) *FLinearLayout {
+	v.FBaseView.background(s)
+	return v
+}
+func (v *FLinearLayout) backgroundColor(s string) *FLinearLayout {
+	v.FBaseView.backgroundColor(s)
+	return v
+}
+
+func (v *FLinearLayout) cachedBackground(s string) *FLinearLayout {
+	v.FBaseView.cachedBackground(s)
+	return v
+}
+func (v *FLinearLayout) onClick(f func()) *FLinearLayout {
+	fnID := newToken()
+	eventHandlersMap[fnID] = func(string) {
+		f()
+	}
+	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
+	return v
+}
+
+func (v *FLinearLayout) visible() *FLinearLayout {
+	v.FBaseView.visible()
+	return v
+}
+func (v *FLinearLayout) invisible() *FLinearLayout {
+	v.FBaseView.invisible()
+	return v
+}
+func (v *FLinearLayout) gone() *FLinearLayout {
+	v.FBaseView.gone()
+	return v
+}
+
+// --------------------------------------------------------
 func (v *FLinearLayout) append(vs ...IView) *FLinearLayout {
 	for _, i := range vs {
 		v.ui.ViewSetAttr(v.vID, "AddView", i.getVID())
@@ -55,26 +91,4 @@ func (v *FLinearLayout) horizontal() *FLinearLayout {
 }
 func (v *FLinearLayout) isVertical() bool {
 	return v.ui.ViewGetAttr(v.vID, "Orientation") == "VERTICAL"
-}
-
-func (v *FLinearLayout) background(s string) *FLinearLayout {
-	v.FBaseView.background(s)
-	return v
-}
-func (v *FLinearLayout) backgroundColor(s string) *FLinearLayout {
-	v.FBaseView.backgroundColor(s)
-	return v
-}
-
-func (v *FLinearLayout) cachedBackground(s string) *FLinearLayout {
-	v.FBaseView.cachedBackground(s)
-	return v
-}
-func (v *FLinearLayout) onClick(f func()) *FLinearLayout {
-	fnID := newToken()
-	eventHandlersMap[fnID] = func(string) {
-		f()
-	}
-	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
-	return v
 }

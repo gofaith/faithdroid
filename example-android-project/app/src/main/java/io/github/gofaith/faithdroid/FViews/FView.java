@@ -16,8 +16,8 @@ import io.github.gofaith.faithdroid.UI.UIController;
 public class FView {
     public String className,vID;
     public View view;
-    public UIController parrentController;
-    public void parseSize(AppCompatActivity activity, View v, String value) {
+    protected UIController parrentController;
+    protected void parseSize(AppCompatActivity activity, View v, String value) {
         long width,height;
         try {
             JSONArray array=(JSONArray)(new JSONTokener(value).nextValue());
@@ -47,34 +47,34 @@ public class FView {
         }
         v.setLayoutParams(p);
     }
-    public static float dp2pixel(AppCompatActivity activity, float dps) {
+    private static float dp2pixel(AppCompatActivity activity, float dps) {
         float pxs = dps *activity.getResources().getDisplayMetrics().density;
         return pxs;
     }
-    public static float pixel2dp(AppCompatActivity activity,float pxs) {
+    private static float pixel2dp(AppCompatActivity activity,float pxs) {
         float dps = pxs/activity.getResources().getDisplayMetrics().density;
         return dps;
     }
 
-    public  void setBackgroundColor(View v, String value) {
+    protected   void setBackgroundColor( String value) {
         if (value==null)
             return;
         try {
-            v.setBackgroundColor(Color.parseColor(value));
+            view.setBackgroundColor(Color.parseColor(value));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public  void setBackground(View v, String value) {
+    protected   void setBackground(String value) {
         if (value==null)
             return;
         if (value.startsWith("file://")) {
             String path=value.substring("file://".length());
             Drawable draw=Drawable.createFromPath(path);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                v.setBackground(draw);
+                view.setBackground(draw);
             }else {
-                v.setBackgroundDrawable(draw);
+                view.setBackgroundDrawable(draw);
             }
         } else if (value.startsWith("assets://")) {
 //            Drawable d = Drawable.createFromStream(getAssets().open("Cloths/btn_no.png"), null);
@@ -82,14 +82,33 @@ public class FView {
             try {
                 Drawable drawable = Drawable.createFromStream(parrentController.activity.getAssets().open(path), null);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    v.setBackground(drawable);
+                    view.setBackground(drawable);
                 }else {
-                    v.setBackgroundDrawable(drawable);
+                    view.setBackgroundDrawable(drawable);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 return;
             }
         }
+    }
+
+    protected void setVisibility(String value) {
+        int vsb=View.VISIBLE;
+        if (value.equals("INVISIBLE")){
+            vsb=View.INVISIBLE;
+        } else if (value.equals("GONE")) {
+            vsb=View.GONE;
+        }
+        view.setVisibility(vsb);
+    }
+    protected String getVisibility(){
+        int vsb=view.getVisibility();
+        if (vsb== View.VISIBLE) {
+            return "VISIBLE";
+        } else if (vsb == View.GONE) {
+            return "GONE";
+        }
+        return "INVISIBLE";
     }
 }

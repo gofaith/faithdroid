@@ -21,6 +21,9 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
     @Override
     public String getAttr(String attr) {
         switch (attr) {
+            case "Visibility":
+                return getVisibility();
+            // ------------------------------------------
             case "Text":
                 return v.getText().toString();
             case "Enabled":
@@ -35,14 +38,18 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
             return;
         switch (attr) {
             case "BackgroundColor":
-                setBackgroundColor(v,value);
+                setBackgroundColor(value);
                 break;
             case "Background":
-                setBackground(v,value);
+                setBackground(value);
                 break;
             case "Size":
                 parseSize(parrentController.activity,v,value);
                 break;
+            case "Visibility":
+                setVisibility(value);
+                break;
+                // -------------------------------------------------------------------
             case "Text":
                 v.setText(value);
                 break;

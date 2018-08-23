@@ -20,6 +20,9 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
     @Override
     public String getAttr(String attr) {
         switch (attr) {
+            case "Visibility":
+                return getVisibility();
+                //--------------------------------------------
             case "Text":
                 return v.getText().toString();
         }
@@ -30,14 +33,18 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
     public void setAttr(String attr, final String value) {
         switch (attr) {
             case "BackgroundColor":
-                setBackgroundColor(v,value);
+                setBackgroundColor(value);
                 break;
             case "Background":
-                setBackground(v,value);
+                setBackground(value);
                 break;
             case "Size":
                 parseSize(parrentController.activity, v, value);
                 break;
+            case "Visibility":
+                setVisibility(value);
+                break;
+                // ----------------------------------------------------------
             case "Text":
                 if (value!=null)
                     v.setText(value);

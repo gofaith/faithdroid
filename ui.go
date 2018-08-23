@@ -48,6 +48,15 @@ func (v *FBaseView) cachedBackground(s string) {
 func (v *FBaseView) backgroundColor(s string) {
 	v.ui.ViewSetAttr(v.vID, "BackgroundColor", s)
 }
+func (v *FBaseView) visible() {
+	v.ui.ViewSetAttr(v.vID, "Visibility", "VISIBLE")
+}
+func (v *FBaseView) invisible() {
+	v.ui.ViewSetAttr(v.vID, "Visibility", "INVISIBLE")
+}
+func (v *FBaseView) gone() {
+	v.ui.ViewSetAttr(v.vID, "Visibility", "GONE")
+}
 
 var (
 	idMap = make(map[string]IView)

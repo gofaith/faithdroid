@@ -22,6 +22,9 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
         if(attr==null)
             return "";
         switch (attr) {
+            case "Visibility":
+                return getVisibility();
+                // --------------------------------------------------
             case "Orientation":
                 if (v.getOrientation()==LinearLayout.HORIZONTAL)
                     return "HORIZONTAL";
@@ -38,14 +41,18 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
         }
         switch (attr) {
             case "BackgroundColor":
-                setBackgroundColor(v,value);
+                setBackgroundColor(value);
                 break;
             case "Background":
-                setBackground(v,value);
+                setBackground(value);
                 break;
             case "Size":
                 parseSize(parrentController.activity, v, value);
                 break;
+            case "Visibility":
+                setVisibility(value);
+                break;
+                // ----------------------------------------------------------------------------
             case "Orientation":
                 if (value.equals("HORIZONTAL")) {
                     v.setOrientation(LinearLayout.HORIZONTAL);
