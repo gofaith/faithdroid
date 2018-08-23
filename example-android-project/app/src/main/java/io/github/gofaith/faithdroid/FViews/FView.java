@@ -123,4 +123,15 @@ public class FView {
             e.printStackTrace();
         }
     }
+
+    void setMargin(String value) {
+        try {
+            JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
+            ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(view.getLayoutParams());
+            params.setMargins(array.getInt(0),array.getInt(1),array.getInt(2),array.getInt(3));
+            view.setLayoutParams(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

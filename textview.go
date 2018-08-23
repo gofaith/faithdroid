@@ -75,24 +75,49 @@ func (v *FTextView) padding(left, top, right, bottom int) *FTextView {
 	v.FBaseView.padding(left, top, right, bottom)
 	return v
 }
-func (v *FTextView) paddingLeft(left int) *FTextView {
-	v.FBaseView.padding(left, 0, 0, 0)
+func (v *FTextView) paddingLeft(dp int) *FTextView {
+	v.FBaseView.padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FTextView) paddingTop(top int) *FTextView {
-	v.FBaseView.padding(0, top, 0, 0)
+func (v *FTextView) paddingTop(dp int) *FTextView {
+	v.FBaseView.padding(0, dp, 0, 0)
 	return v
 }
-func (v *FTextView) paddingRight(right int) *FTextView {
-	v.FBaseView.padding(0, 0, right, 0)
+func (v *FTextView) paddingRight(dp int) *FTextView {
+	v.FBaseView.padding(0, 0, dp, 0)
 	return v
 }
-func (v *FTextView) paddingBottom(bottom int) *FTextView {
-	v.FBaseView.padding(0, 0, 0, bottom)
+func (v *FTextView) paddingBottom(dp int) *FTextView {
+	v.FBaseView.padding(0, 0, 0, dp)
 	return v
 }
 func (v *FTextView) paddingAll(all int) *FTextView {
 	v.FBaseView.padding(all, all, all, all)
+	return v
+}
+
+func (v *FTextView) margin(left, top, right, bottom int) *FTextView {
+	v.FBaseView.margin(left, top, right, bottom)
+	return v
+}
+func (v *FTextView) marginLeft(dp int) *FTextView {
+	v.FBaseView.margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FTextView) marginTop(dp int) *FTextView {
+	v.FBaseView.margin(0, dp, 0, 0)
+	return v
+}
+func (v *FTextView) marginRight(dp int) *FTextView {
+	v.FBaseView.margin(0, 0, dp, 0)
+	return v
+}
+func (v *FTextView) marginBottom(dp int) *FTextView {
+	v.FBaseView.margin(0, 0, 0, dp)
+	return v
+}
+func (v *FTextView) marginAll(dp int) *FTextView {
+	v.FBaseView.margin(dp, dp, dp, dp)
 	return v
 }
 

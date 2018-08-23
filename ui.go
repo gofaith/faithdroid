@@ -16,6 +16,10 @@ type IView interface {
 	getVID() string
 }
 
+var (
+	idMap = make(map[string]IView)
+)
+
 func (v *FBaseView) show() {
 	v.ui.ShowOnRootView(v.vID)
 }
@@ -60,7 +64,6 @@ func (v *FBaseView) gone() {
 func (v *FBaseView) padding(left, top, right, bottom int) {
 	v.ui.ViewSetAttr(v.vID, "Padding", jsonArray([]int{left, top, right, bottom}))
 }
-
-var (
-	idMap = make(map[string]IView)
-)
+func (v *FBaseView) margin(left, top, right, bottom int) {
+	v.ui.ViewSetAttr(v.vID, "Margin", jsonArray([]int{left, top, right, bottom}))
+}

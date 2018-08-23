@@ -1,7 +1,7 @@
 # todo
 
 - [x]visibility
-- padding
+- [x]padding
 - margin
 - gravity
 - elevation

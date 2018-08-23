@@ -51,6 +51,9 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
             case "Padding":
                 setPadding(value);
                 break;
+            case "Margin":
+                setMargin(value);
+                break;
                 // ----------------------------------------------------------
             case "Text":
                 if (value!=null)

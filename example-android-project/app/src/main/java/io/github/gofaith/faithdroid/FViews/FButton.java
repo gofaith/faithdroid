@@ -52,6 +52,9 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
             case "Padding":
                 setPadding(value);
                 break;
+            case "Margin":
+                setMargin(value);
+                break;
                 // -------------------------------------------------------------------
             case "Text":
                 v.setText(value);

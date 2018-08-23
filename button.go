@@ -66,24 +66,49 @@ func (v *FButton) padding(left, top, right, bottom int) *FButton {
 	v.FBaseView.padding(left, top, right, bottom)
 	return v
 }
-func (v *FButton) paddingLeft(left int) *FButton {
-	v.FBaseView.padding(left, 0, 0, 0)
+func (v *FButton) paddingLeft(dp int) *FButton {
+	v.FBaseView.padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FButton) paddingTop(top int) *FButton {
-	v.FBaseView.padding(0, top, 0, 0)
+func (v *FButton) paddingTop(dp int) *FButton {
+	v.FBaseView.padding(0, dp, 0, 0)
 	return v
 }
-func (v *FButton) paddingRight(right int) *FButton {
-	v.FBaseView.padding(0, 0, right, 0)
+func (v *FButton) paddingRight(dp int) *FButton {
+	v.FBaseView.padding(0, 0, dp, 0)
 	return v
 }
-func (v *FButton) paddingBottom(bottom int) *FButton {
-	v.FBaseView.padding(0, 0, 0, bottom)
+func (v *FButton) paddingBottom(dp int) *FButton {
+	v.FBaseView.padding(0, 0, 0, dp)
 	return v
 }
-func (v *FButton) paddingAll(all int) *FButton {
-	v.FBaseView.padding(all, all, all, all)
+func (v *FButton) paddingAll(dp int) *FButton {
+	v.FBaseView.padding(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FButton) margin(left, top, right, bottom int) *FButton {
+	v.FBaseView.margin(left, top, right, bottom)
+	return v
+}
+func (v *FButton) marginLeft(dp int) *FButton {
+	v.FBaseView.margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FButton) marginTop(dp int) *FButton {
+	v.FBaseView.margin(0, dp, 0, 0)
+	return v
+}
+func (v *FButton) marginRight(dp int) *FButton {
+	v.FBaseView.margin(0, 0, dp, 0)
+	return v
+}
+func (v *FButton) marginBottom(dp int) *FButton {
+	v.FBaseView.margin(0, 0, 0, dp)
+	return v
+}
+func (v *FButton) marginAll(dp int) *FButton {
+	v.FBaseView.margin(dp, dp, dp, dp)
 	return v
 }
 

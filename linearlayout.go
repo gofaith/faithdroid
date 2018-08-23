@@ -71,24 +71,49 @@ func (v *FLinearLayout) padding(left, top, right, bottom int) *FLinearLayout {
 	v.FBaseView.padding(left, top, right, bottom)
 	return v
 }
-func (v *FLinearLayout) paddingLeft(left int) *FLinearLayout {
-	v.FBaseView.padding(left, 0, 0, 0)
+func (v *FLinearLayout) paddingLeft(dp int) *FLinearLayout {
+	v.FBaseView.padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FLinearLayout) paddingTop(top int) *FLinearLayout {
-	v.FBaseView.padding(0, top, 0, 0)
+func (v *FLinearLayout) paddingTop(dp int) *FLinearLayout {
+	v.FBaseView.padding(0, dp, 0, 0)
 	return v
 }
-func (v *FLinearLayout) paddingRight(right int) *FLinearLayout {
-	v.FBaseView.padding(0, 0, right, 0)
+func (v *FLinearLayout) paddingRight(dp int) *FLinearLayout {
+	v.FBaseView.padding(0, 0, dp, 0)
 	return v
 }
-func (v *FLinearLayout) paddingBottom(bottom int) *FLinearLayout {
-	v.FBaseView.padding(0, 0, 0, bottom)
+func (v *FLinearLayout) paddingBottom(dp int) *FLinearLayout {
+	v.FBaseView.padding(0, 0, 0, dp)
 	return v
 }
 func (v *FLinearLayout) paddingAll(all int) *FLinearLayout {
 	v.FBaseView.padding(all, all, all, all)
+	return v
+}
+
+func (v *FLinearLayout) margin(left, top, right, bottom int) *FLinearLayout {
+	v.FBaseView.margin(left, top, right, bottom)
+	return v
+}
+func (v *FLinearLayout) marginLeft(dp int) *FLinearLayout {
+	v.FBaseView.margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FLinearLayout) marginTop(dp int) *FLinearLayout {
+	v.FBaseView.margin(0, dp, 0, 0)
+	return v
+}
+func (v *FLinearLayout) marginRight(dp int) *FLinearLayout {
+	v.FBaseView.margin(0, 0, dp, 0)
+	return v
+}
+func (v *FLinearLayout) marginBottom(dp int) *FLinearLayout {
+	v.FBaseView.margin(0, 0, 0, dp)
+	return v
+}
+func (v *FLinearLayout) marginAll(dp int) *FLinearLayout {
+	v.FBaseView.margin(dp, dp, dp, dp)
 	return v
 }
 
