@@ -71,6 +71,31 @@ func (v *FTextView) gone() *FTextView {
 	return v
 }
 
+func (v *FTextView) padding(left, top, right, bottom int) *FTextView {
+	v.FBaseView.padding(left, top, right, bottom)
+	return v
+}
+func (v *FTextView) paddingLeft(left int) *FTextView {
+	v.FBaseView.padding(left, 0, 0, 0)
+	return v
+}
+func (v *FTextView) paddingTop(top int) *FTextView {
+	v.FBaseView.padding(0, top, 0, 0)
+	return v
+}
+func (v *FTextView) paddingRight(right int) *FTextView {
+	v.FBaseView.padding(0, 0, right, 0)
+	return v
+}
+func (v *FTextView) paddingBottom(bottom int) *FTextView {
+	v.FBaseView.padding(0, 0, 0, bottom)
+	return v
+}
+func (v *FTextView) paddingAll(all int) *FTextView {
+	v.FBaseView.padding(all, all, all, all)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FTextView) text(s string) *FTextView {
 	v.ui.ViewSetAttr(v.vID, "Text", s)

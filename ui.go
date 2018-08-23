@@ -57,6 +57,9 @@ func (v *FBaseView) invisible() {
 func (v *FBaseView) gone() {
 	v.ui.ViewSetAttr(v.vID, "Visibility", "GONE")
 }
+func (v *FBaseView) padding(left, top, right, bottom int) {
+	v.ui.ViewSetAttr(v.vID, "Padding", jsonArray([]int{left, top, right, bottom}))
+}
 
 var (
 	idMap = make(map[string]IView)

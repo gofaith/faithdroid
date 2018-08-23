@@ -62,6 +62,31 @@ func (v *FButton) gone() *FButton {
 	return v
 }
 
+func (v *FButton) padding(left, top, right, bottom int) *FButton {
+	v.FBaseView.padding(left, top, right, bottom)
+	return v
+}
+func (v *FButton) paddingLeft(left int) *FButton {
+	v.FBaseView.padding(left, 0, 0, 0)
+	return v
+}
+func (v *FButton) paddingTop(top int) *FButton {
+	v.FBaseView.padding(0, top, 0, 0)
+	return v
+}
+func (v *FButton) paddingRight(right int) *FButton {
+	v.FBaseView.padding(0, 0, right, 0)
+	return v
+}
+func (v *FButton) paddingBottom(bottom int) *FButton {
+	v.FBaseView.padding(0, 0, 0, bottom)
+	return v
+}
+func (v *FButton) paddingAll(all int) *FButton {
+	v.FBaseView.padding(all, all, all, all)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FButton) text(s string) *FButton {
 	v.ui.ViewSetAttr(v.vID, "Text", s)

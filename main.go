@@ -6,10 +6,7 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	linearlayout(a).deferShow().size(-2, -2).vertical().append(
-		textview(a).text("asdkjh").setId("txt"),
-		button(a).setId("bt").text("aksgdg").onClick(func() {
-			getTextViewById("txt").textColor(colors.TealDark).textSize(100)
-			getButtonById("bt").textColor(colors.White)
-		}))
+	linearlayout(a).deferShow().size(-2, -2).vertical().paddingAll(100).append(
+		button(a).text("asd"),
+		button(a).text("two"))
 }

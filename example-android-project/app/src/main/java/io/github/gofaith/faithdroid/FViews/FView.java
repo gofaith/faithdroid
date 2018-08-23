@@ -56,7 +56,7 @@ public class FView {
         return dps;
     }
 
-    protected   void setBackgroundColor( String value) {
+    void setBackgroundColor(String value) {
         if (value==null)
             return;
         try {
@@ -65,7 +65,7 @@ public class FView {
             e.printStackTrace();
         }
     }
-    protected   void setBackground(String value) {
+    void setBackground(String value) {
         if (value==null)
             return;
         if (value.startsWith("file://")) {
@@ -88,12 +88,11 @@ public class FView {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                return;
             }
         }
     }
 
-    protected void setVisibility(String value) {
+     void setVisibility(String value) {
         int vsb=View.VISIBLE;
         if (value.equals("INVISIBLE")){
             vsb=View.INVISIBLE;
@@ -102,7 +101,7 @@ public class FView {
         }
         view.setVisibility(vsb);
     }
-    protected String getVisibility(){
+     String getVisibility(){
         int vsb=view.getVisibility();
         if (vsb== View.VISIBLE) {
             return "VISIBLE";
@@ -110,5 +109,18 @@ public class FView {
             return "GONE";
         }
         return "INVISIBLE";
+    }
+
+     void setPadding(String value) {
+        try {
+            JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
+            int left= (int) dp2pixel(parrentController.activity,array.getLong(0));
+            int top= (int) dp2pixel(parrentController.activity,array.getLong(1));
+            int right= (int) dp2pixel(parrentController.activity,array.getLong(2));
+            int bottom= (int) dp2pixel(parrentController.activity,array.getLong(3));
+            view.setPadding(left,top,right,bottom);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

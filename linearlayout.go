@@ -67,6 +67,31 @@ func (v *FLinearLayout) gone() *FLinearLayout {
 	return v
 }
 
+func (v *FLinearLayout) padding(left, top, right, bottom int) *FLinearLayout {
+	v.FBaseView.padding(left, top, right, bottom)
+	return v
+}
+func (v *FLinearLayout) paddingLeft(left int) *FLinearLayout {
+	v.FBaseView.padding(left, 0, 0, 0)
+	return v
+}
+func (v *FLinearLayout) paddingTop(top int) *FLinearLayout {
+	v.FBaseView.padding(0, top, 0, 0)
+	return v
+}
+func (v *FLinearLayout) paddingRight(right int) *FLinearLayout {
+	v.FBaseView.padding(0, 0, right, 0)
+	return v
+}
+func (v *FLinearLayout) paddingBottom(bottom int) *FLinearLayout {
+	v.FBaseView.padding(0, 0, 0, bottom)
+	return v
+}
+func (v *FLinearLayout) paddingAll(all int) *FLinearLayout {
+	v.FBaseView.padding(all, all, all, all)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FLinearLayout) append(vs ...IView) *FLinearLayout {
 	for _, i := range vs {

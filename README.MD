@@ -1,6 +1,6 @@
 # todo
 
-- visibility
+- [x]visibility
 - padding
 - margin
 - gravity
