@@ -47,11 +47,11 @@ public class FView {
         }
         v.setLayoutParams(p);
     }
-    private static float dp2pixel(AppCompatActivity activity, float dps) {
+    public static float dp2pixel(AppCompatActivity activity, float dps) {
         float pxs = dps *activity.getResources().getDisplayMetrics().density;
         return pxs;
     }
-    private static float pixel2dp(AppCompatActivity activity,float pxs) {
+    public static float pixel2dp(AppCompatActivity activity,float pxs) {
         float dps = pxs/activity.getResources().getDisplayMetrics().density;
         return dps;
     }

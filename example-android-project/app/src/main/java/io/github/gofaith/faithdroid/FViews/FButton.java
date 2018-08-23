@@ -60,6 +60,14 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
                     e.printStackTrace();
                 }
                 break;
+            case "TextSize":
+                try {
+                    v.setTextSize(dp2pixel(parrentController.activity,Float.valueOf(value)));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return;
+                }
+                break;
             case "Enabled":
                 if (value.equals("true")) {
                     v.setEnabled(true);

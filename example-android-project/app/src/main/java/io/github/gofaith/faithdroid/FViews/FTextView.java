@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONTokener;
+
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
@@ -55,6 +58,14 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
                     v.setTextColor(Color.parseColor(value));
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+                break;
+            case "TextSize":
+                try {
+                    v.setTextSize(dp2pixel(parrentController.activity,Float.valueOf(value)));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return;
                 }
                 break;
             case "OnClick":

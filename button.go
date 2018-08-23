@@ -1,5 +1,9 @@
 package faithdroid
 
+import (
+	"fmt"
+)
+
 type FButton struct {
 	FBaseView
 }
@@ -65,6 +69,10 @@ func (v *FButton) text(s string) *FButton {
 }
 func (v *FButton) textColor(s string) *FButton {
 	v.ui.ViewSetAttr(v.vID, "TextColor", s)
+	return v
+}
+func (v *FButton) textSize(dpsize int) *FButton {
+	v.ui.ViewSetAttr(v.vID, "TextSize", fmt.Sprintf("%v", dpsize))
 	return v
 }
 func (v *FButton) getText() string {

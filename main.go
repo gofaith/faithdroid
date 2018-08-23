@@ -9,7 +9,7 @@ func (m *MainActivity) OnCreate() {
 	linearlayout(a).deferShow().size(-2, -2).vertical().append(
 		textview(a).text("asdkjh").setId("txt"),
 		button(a).setId("bt").text("aksgdg").onClick(func() {
-			getTextViewById("txt").textColor(colors.TealDark)
+			getTextViewById("txt").textColor(colors.TealDark).textSize(100)
 			getButtonById("bt").textColor(colors.White)
 		}))
 }
