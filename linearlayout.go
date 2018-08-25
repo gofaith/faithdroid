@@ -3,32 +3,33 @@ package faithdroid
 type FLinearLayout struct {
 	FBaseView
 	showAfter bool
+	Children  []IView
 }
 
 func (v *FLinearLayout) getVID() string {
-	return v.vID
+	return v.VID
 }
 func (v *FLinearLayout) setId(s string) *FLinearLayout {
-	idMap[s] = v
+	GlobalVars.idMap[s] = v
 	return v
 }
 func getLinearLayoutById(id string) *FLinearLayout {
-	if v, ok := idMap[id].(*FLinearLayout); ok {
+	if v, ok := GlobalVars.idMap[id].(*FLinearLayout); ok {
 		return v
 	}
 	return nil
 }
 func linearlayout(a *Activity) *FLinearLayout {
 	v := &FLinearLayout{}
-	v.vID = newToken()
-	v.className = "LinearLayout"
-	v.ui = a.ui
-	a.ui.NewView(v.className, v.vID)
+	v.VID = newToken()
+	v.ClassName = "LinearLayout"
+	v.UI = a.UI
+	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
 	return v
 }
 func (v *FLinearLayout) size(w, h int) *FLinearLayout {
 	i := []int{w, h}
-	v.ui.ViewSetAttr(v.vID, "Size", jsonArray(i))
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
 	return v
 }
 
@@ -47,10 +48,11 @@ func (v *FLinearLayout) cachedBackground(s string) *FLinearLayout {
 }
 func (v *FLinearLayout) onClick(f func()) *FLinearLayout {
 	fnID := newToken()
-	eventHandlersMap[fnID] = func(string) {
+	GlobalVars.eventHandlersMap[fnID] = func(string) string {
 		f()
+		return ""
 	}
-	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
 
@@ -126,11 +128,16 @@ func (v *FLinearLayout) elevation(dp float32) *FLinearLayout {
 	v.FBaseView.elevation(dp)
 	return v
 }
+func (v *FLinearLayout) assign(fb **FLinearLayout) *FLinearLayout {
+	*fb = v
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FLinearLayout) append(vs ...IView) *FLinearLayout {
+	v.Children = vs
 	for _, i := range vs {
-		v.ui.ViewSetAttr(v.vID, "AddView", i.getVID())
+		GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "AddView", i.getVID())
 	}
 	if v.showAfter {
 		v.show()
@@ -142,13 +149,13 @@ func (v *FLinearLayout) deferShow() *FLinearLayout {
 	return v
 }
 func (v *FLinearLayout) vertical() *FLinearLayout {
-	v.ui.ViewSetAttr(v.vID, "Orientation", "VERTICAL")
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Orientation", "VERTICAL")
 	return v
 }
 func (v *FLinearLayout) horizontal() *FLinearLayout {
-	v.ui.ViewSetAttr(v.vID, "Orientation", "HORIZONTAL")
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Orientation", "HORIZONTAL")
 	return v
 }
 func (v *FLinearLayout) isVertical() bool {
-	return v.ui.ViewGetAttr(v.vID, "Orientation") == "VERTICAL"
+	return GlobalVars.uis[v.UI].ViewGetAttr(v.VID, "Orientation") == "VERTICAL"
 }

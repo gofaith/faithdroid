@@ -4,8 +4,8 @@
 - [x]padding
 - [x]margin
 - [x]gravity
-- elevation
-
+- [x]elevation
+- layoutweight
 
 - Space
 - EditText

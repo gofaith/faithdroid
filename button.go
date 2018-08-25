@@ -5,28 +5,28 @@ type FButton struct {
 }
 
 func (v *FButton) getVID() string {
-	return v.vID
+	return v.VID
 }
 
 func button(a *Activity) *FButton {
 	v := &FButton{}
-	v.vID = newToken()
-	v.className = "Button"
-	v.ui = a.ui
-	v.ui.NewView(v.className, v.vID)
+	v.VID = newToken()
+	v.ClassName = "Button"
+	v.UI = a.UI
+	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
 	return v
 }
 func (v *FButton) size(w, h int) *FButton {
 	i := []int{w, h}
-	v.ui.ViewSetAttr(v.vID, "Size", jsonArray(i))
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
 	return v
 }
 func (v *FButton) setId(s string) *FButton {
-	idMap[s] = v
+	GlobalVars.idMap[s] = v
 	return v
 }
 func getButtonById(id string) *FButton {
-	if v, ok := idMap[id].(*FButton); ok {
+	if v, ok := GlobalVars.idMap[id].(*FButton); ok {
 		return v
 	}
 	return nil
@@ -117,32 +117,37 @@ func (v *FButton) elevation(dp float32) *FButton {
 	return v
 }
 
+func (v *FButton) assign(fb **FButton) *FButton {
+	*fb = v
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FButton) text(s string) *FButton {
-	v.ui.ViewSetAttr(v.vID, "Text", s)
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Text", s)
 	return v
 }
 func (v *FButton) textColor(s string) *FButton {
-	v.ui.ViewSetAttr(v.vID, "TextColor", s)
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TextColor", s)
 	return v
 }
 func (v *FButton) textSize(dpsize int) *FButton {
-	v.ui.ViewSetAttr(v.vID, "TextSize", sPrintf(dpsize))
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TextSize", sPrintf(dpsize))
 	return v
 }
 func (v *FButton) getText() string {
-	return v.ui.ViewGetAttr(v.vID, "Text")
+	return GlobalVars.uis[v.UI].ViewGetAttr(v.VID, "Text")
 }
 func (v *FButton) enabled(b bool) *FButton {
 	if b {
-		v.ui.ViewSetAttr(v.vID, "Enabled", "true")
+		GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Enabled", "true")
 	} else {
-		v.ui.ViewSetAttr(v.vID, "Enabled", "false")
+		GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Enabled", "false")
 	}
 	return v
 }
 func (v *FButton) isEnabled() bool {
-	if v.ui.ViewGetAttr(v.vID, "Enabled") == "true" {
+	if GlobalVars.uis[v.UI].ViewGetAttr(v.VID, "Enabled") == "true" {
 		return true
 	}
 	return false
@@ -150,9 +155,10 @@ func (v *FButton) isEnabled() bool {
 
 func (v *FButton) onClick(f func()) *FButton {
 	fnID := newToken()
-	eventHandlersMap[fnID] = func(string) {
+	GlobalVars.eventHandlersMap[fnID] = func(string) string {
 		f()
+		return ""
 	}
-	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }

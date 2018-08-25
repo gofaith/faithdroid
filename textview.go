@@ -6,21 +6,21 @@ type FTextView struct {
 
 func textview(a *Activity) *FTextView {
 	v := &FTextView{}
-	v.vID = newToken()
-	v.className = "TextView"
-	v.ui = a.ui
-	a.ui.NewView(v.className, v.vID)
+	v.VID = newToken()
+	v.ClassName = "TextView"
+	v.UI = a.UI
+	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
 	return v
 }
 func (v *FTextView) getVID() string {
-	return v.vID
+	return v.VID
 }
 func (v *FTextView) setId(s string) *FTextView {
-	idMap[s] = v
+	GlobalVars.idMap[s] = v
 	return v
 }
 func getTextViewById(id string) *FTextView {
-	if v, ok := idMap[id].(*FTextView); ok {
+	if v, ok := GlobalVars.idMap[id].(*FTextView); ok {
 		return v
 	}
 	return nil
@@ -28,7 +28,7 @@ func getTextViewById(id string) *FTextView {
 
 func (v *FTextView) size(w, h int) *FTextView {
 	i := []int{w, h}
-	v.ui.ViewSetAttr(v.vID, "Size", jsonArray(i))
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
 	return v
 }
 
@@ -47,10 +47,11 @@ func (v *FTextView) cachedBackground(s string) *FTextView {
 }
 func (v *FTextView) onClick(f func()) *FTextView {
 	fnID := newToken()
-	eventHandlersMap[fnID] = func(string) {
+	GlobalVars.eventHandlersMap[fnID] = func(string) string {
 		f()
+		return ""
 	}
-	v.ui.ViewSetAttr(v.vID, "OnClick", fnID)
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
 
@@ -125,22 +126,26 @@ func (v *FTextView) elevation(dp float32) *FTextView {
 	v.FBaseView.elevation(dp)
 	return v
 }
+func (v *FTextView) assign(fb **FTextView) *FTextView {
+	*fb = v
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FTextView) text(s string) *FTextView {
-	v.ui.ViewSetAttr(v.vID, "Text", s)
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Text", s)
 	return v
 }
 
 func (v *FTextView) textColor(s string) *FTextView {
-	v.ui.ViewSetAttr(v.vID, "TextColor", s)
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TextColor", s)
 	return v
 }
 
 func (v *FTextView) textSize(dpsize int) *FTextView {
-	v.ui.ViewSetAttr(v.vID, "TextSize", sPrintf(dpsize))
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TextSize", sPrintf(dpsize))
 	return v
 }
 func (v *FTextView) getText() string {
-	return v.ui.ViewGetAttr(v.vID, "Text")
+	return GlobalVars.uis[v.UI].ViewGetAttr(v.VID, "Text")
 }

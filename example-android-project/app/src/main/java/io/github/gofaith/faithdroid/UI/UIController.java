@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
 import android.widget.Space;
 
@@ -11,14 +13,13 @@ import java.util.HashMap;
 
 import faithdroid.Activity;
 import faithdroid.Faithdroid;
-import faithdroid.MainActivity;
-import faithdroid.UIInterface;
 import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
+import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FView;
 
-public class UIController implements UIInterface {
+public class UIController implements faithdroid.UIController{
     public AppCompatActivity activity;
     public Activity factivity;
     public HashMap<String, FView> viewmap = new HashMap<>();
@@ -40,17 +41,20 @@ public class UIController implements UIInterface {
             case "LinearLayout":
                 FLinearLayout fLinearLayout = new FLinearLayout(this);
                 v=fLinearLayout;
-                viewmap.put(vID, fLinearLayout);
                 break;
             case "TextView":
                 FTextView textView = new FTextView(this);
                 v=textView;
-                viewmap.put(vID , textView);
                 break;
             case "Button":
                 FButton button = new FButton(this);
                 v=button;
-                viewmap.put(vID, button);
+                break;
+            case "VListView":
+                LinearLayoutManager llm = new LinearLayoutManager(activity);
+                llm.setOrientation(LinearLayoutManager.VERTICAL);
+                FListView listView = new FListView(this, llm);
+                v=listView;
                 break;
         }
         v.className =vName;

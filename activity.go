@@ -1,11 +1,13 @@
 package faithdroid
 
 type Activity struct {
-	ui UIInterface
+	UI string
 }
 
-func (a *Activity) SetUIInterface(u UIInterface) {
-	a.ui = u
+func (a *Activity) SetUIInterface(u UIController) {
+	uId := newToken()
+	GlobalVars.uis[uId] = u
+	a.UI = uId
 }
 func (a *Activity) OnCreate() {
 
