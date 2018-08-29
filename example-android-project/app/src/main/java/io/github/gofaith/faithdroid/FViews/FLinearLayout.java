@@ -64,6 +64,9 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
             case "Elevation":
                 setElevation(value);
                 break;
+            case "LayoutWeight":
+                setLayoutWeight(value);
+                break;
                 // ----------------------------------------------------------------------------
             case "Orientation":
                 if (value.equals("HORIZONTAL")) {

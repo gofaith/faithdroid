@@ -1,13 +1,12 @@
 package faithdroid
 
 import (
+	"encoding/json"
 	"fmt"
-	"os"
-	"strings"
-
-	"github.com/StevenZack/tools/encodingToolkit"
 	"github.com/StevenZack/tools/netToolkit"
 	"github.com/StevenZack/tools/strToolkit"
+	"os"
+	"strings"
 )
 
 /*
@@ -47,13 +46,24 @@ func newToken() string {
 	return strToolkit.NewToken()
 }
 func jsonArray(i interface{}) string {
-	return encodingToolkit.JsonArray(i)
+	b, e := json.Marshal(i)
+	if e != nil {
+		return "[]"
+	}
+	return string(b)
 }
 func jsonObject(i interface{}) string {
-	return encodingToolkit.JsonObj(i)
+	b, e := json.Marshal(i)
+	if e != nil {
+		return "{}"
+	}
+	return string(b)
 }
 func unJson(str string, v interface{}) {
-	encodingToolkit.UnJson(str, v)
+	e := json.Unmarshal([]byte(str), v)
+	if e != nil {
+		fmt.Println("unJson() err:", e)
+	}
 }
 func getrpath(s string) string {
 	if len(s) < 1 {

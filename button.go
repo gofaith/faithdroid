@@ -121,6 +121,10 @@ func (v *FButton) assign(fb **FButton) *FButton {
 	*fb = v
 	return v
 }
+func (v *FButton) layoutWeight(f int) *FButton {
+	v.FBaseView.layoutWeight(f)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FButton) text(s string) *FButton {

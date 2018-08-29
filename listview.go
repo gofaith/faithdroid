@@ -49,6 +49,34 @@ func vlistview(a *Activity, getView func() string, bindData func(string, int), g
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
+func hlistview(a *Activity, getView func() string, bindData func(string, int), getCount func() int) *FListView {
+	v := &FListView{}
+	v.VID = newToken()
+	v.ClassName = "HListView"
+	v.UI = a.UI
+	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
+	fnId1 := newToken()
+	GlobalVars.eventHandlersMap[fnId1] = func(string) string {
+		return getView()
+	}
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
+
+	fnId2 := newToken()
+	GlobalVars.eventHandlersMap[fnId2] = func(str string) string {
+		obd := TypeOnBindData{}
+		unJson(str, &obd)
+		bindData(obd.Str, obd.Position)
+		return ""
+	}
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
+
+	fnId3 := newToken()
+	GlobalVars.eventHandlersMap[fnId3] = func(str string) string {
+		return sPrintf(getCount())
+	}
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
+	return v
+}
 func (v *FListView) size(w, h int) *FListView {
 	i := []int{w, h}
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
@@ -152,6 +180,11 @@ func (v *FListView) elevation(dp float32) *FListView {
 }
 func (v *FListView) assign(fb **FListView) *FListView {
 	*fb = v
+	return v
+}
+
+func (v *FListView) layoutWeight(f int) *FListView {
+	v.FBaseView.layoutWeight(f)
 	return v
 }
 

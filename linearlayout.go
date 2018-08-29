@@ -133,6 +133,11 @@ func (v *FLinearLayout) assign(fb **FLinearLayout) *FLinearLayout {
 	return v
 }
 
+func (v *FLinearLayout) layoutWeight(f int) *FLinearLayout {
+	v.FBaseView.layoutWeight(f)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FLinearLayout) append(vs ...IView) *FLinearLayout {
 	v.Children = vs

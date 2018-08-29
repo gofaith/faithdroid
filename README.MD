@@ -5,7 +5,11 @@
 - [x]margin
 - [x]gravity
 - [x]elevation
-- layoutweight
+- [x]layoutweight
+
+- [x]HListView
+
+- startActivity
 
 - Space
 - EditText

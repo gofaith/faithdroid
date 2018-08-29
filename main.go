@@ -3,10 +3,33 @@ package faithdroid
 type MainActivity struct {
 	Activity
 }
+type M struct {
+	VID string
+	Bt  *FButton
+	Tv  *FTextView
+}
+
+var strs = []string{
+	"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+}
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	linearlayout(a).size(-2, -2).append(button(a).size(-2, -1).text("s string"), button(a).size(-1, -1).text("two")).show()
+	hlistview(a, func() string {
+		mh := M{}
+		l := linearlayout(a).vertical().append(
+			button(a).assign(&mh.Bt),
+			textview(a).assign(&mh.Tv))
+		mh.VID = l.getVID()
+		return jsonObject(mh)
+	}, func(str string, pos int) {
+		mh := M{}
+		unJson(str, &mh)
+		mh.Bt.text(":" + strs[pos])
+		mh.Tv.text(strs[pos])
+	}, func() int {
+		return len(strs)
+	}).show()
 }
 
 /* ListView example

@@ -66,6 +66,9 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
             case "Elevation":
                 setElevation(value);
                 break;
+            case "LayoutWeight":
+                setLayoutWeight(value);
+                break;
                 // --------------------------------------------
             case "OnGetView":
                 fnOnGetView=value;

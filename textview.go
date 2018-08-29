@@ -130,6 +130,10 @@ func (v *FTextView) assign(fb **FTextView) *FTextView {
 	*fb = v
 	return v
 }
+func (v *FTextView) layoutWeight(f int) *FTextView {
+	v.FBaseView.layoutWeight(f)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FTextView) text(s string) *FTextView {

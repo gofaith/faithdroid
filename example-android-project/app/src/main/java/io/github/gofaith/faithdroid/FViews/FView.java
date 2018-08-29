@@ -158,4 +158,14 @@ public class FView {
             e.printStackTrace();
         }
     }
+
+    void setLayoutWeight(String value) {
+        try {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(view.getLayoutParams());
+            lp.weight = Float.parseFloat(value);
+            view.setLayoutParams(lp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

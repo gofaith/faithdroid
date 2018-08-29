@@ -56,6 +56,12 @@ public class UIController implements faithdroid.UIController{
                 FListView listView = new FListView(this, llm);
                 v=listView;
                 break;
+            case "HListView":
+                LinearLayoutManager hllm = new LinearLayoutManager(activity);
+                hllm.setOrientation(LinearLayoutManager.HORIZONTAL);
+                FListView hlistView = new FListView(this, hllm);
+                v=hlistView;
+                break;
         }
         v.className =vName;
         v.vID=vID;
