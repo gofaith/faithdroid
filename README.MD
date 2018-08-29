@@ -8,8 +8,12 @@
 - [x]layoutweight
 
 - [x]HListView
-
+- listview simplify
 - startActivity
+- popupMenu
+- alertDialog
+- fab
+- toolbar
 
 - Space
 - EditText

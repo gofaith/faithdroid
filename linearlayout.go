@@ -6,9 +6,6 @@ type FLinearLayout struct {
 	Children  []IView
 }
 
-func (v *FLinearLayout) getVID() string {
-	return v.VID
-}
 func (v *FLinearLayout) setId(s string) *FLinearLayout {
 	GlobalVars.idMap[s] = v
 	return v

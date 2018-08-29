@@ -4,10 +4,6 @@ type FButton struct {
 	FBaseView
 }
 
-func (v *FButton) getVID() string {
-	return v.VID
-}
-
 func button(a *Activity) *FButton {
 	v := &FButton{}
 	v.VID = newToken()

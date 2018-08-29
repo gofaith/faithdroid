@@ -8,9 +8,6 @@ type TypeOnBindData struct {
 	Position int
 }
 
-func (v *FListView) getVID() string {
-	return v.VID
-}
 func (v *FListView) setId(s string) *FListView {
 	GlobalVars.idMap[s] = v
 	return v

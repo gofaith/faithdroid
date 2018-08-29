@@ -16,6 +16,9 @@ type IView interface {
 	getVID() string
 }
 
+func (v FBaseView) getVID() string {
+	return v.VID
+}
 func (v *FBaseView) show() {
 	GlobalVars.uis[v.UI].ShowOnRootView(v.VID)
 }

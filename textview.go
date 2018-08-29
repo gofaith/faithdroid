@@ -12,9 +12,6 @@ func textview(a *Activity) *FTextView {
 	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
 	return v
 }
-func (v *FTextView) getVID() string {
-	return v.VID
-}
 func (v *FTextView) setId(s string) *FTextView {
 	GlobalVars.idMap[s] = v
 	return v
