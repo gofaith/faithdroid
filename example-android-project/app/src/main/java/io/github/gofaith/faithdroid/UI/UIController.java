@@ -1,13 +1,12 @@
 package io.github.gofaith.faithdroid.UI;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
-import android.widget.Space;
+
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.HashMap;
 
@@ -18,6 +17,10 @@ import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FView;
+import io.github.gofaith.faithdroid.SingleInstanceActivity;
+import io.github.gofaith.faithdroid.SingleTaskActivity;
+import io.github.gofaith.faithdroid.SingleTopActivity;
+import io.github.gofaith.faithdroid.StandardActivity;
 
 public class UIController implements faithdroid.UIController{
     public AppCompatActivity activity;
@@ -38,6 +41,9 @@ public class UIController implements faithdroid.UIController{
     public void newView(String vName, String vID) {
         FView v = null;
         switch (vName) {
+            case "Activity":
+                newActivity(vID);
+                return;
             case "LinearLayout":
                 FLinearLayout fLinearLayout = new FLinearLayout(this);
                 v=fLinearLayout;
@@ -68,6 +74,31 @@ public class UIController implements faithdroid.UIController{
         viewmap.put(vID, v);
     }
 
+    private void newActivity(String activityConfig) {
+        try {
+            JSONObject object = (JSONObject) (new JSONTokener(activityConfig).nextValue());
+            String launchMode = object.getString("LaunchMode");
+            String genViewFnId = object.getString("FnId");
+            if (launchMode == null || genViewFnId == null) {
+                return;
+            }
+            Intent intent = new Intent();
+            intent.putExtra("FnId", genViewFnId);
+            if (launchMode.equals("SingleInstance")) {
+                intent.setClass(activity, SingleInstanceActivity.class);
+            } else if (launchMode.equals("SingleTask")) {
+                intent.setClass(activity, SingleTaskActivity.class);
+            } else if (launchMode.equals("SingleTop")) {
+                intent.setClass(activity, SingleTopActivity.class);
+            } else {
+                intent.setClass(activity, StandardActivity.class);
+            }
+            activity.startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void runOnUIThread(final String s) {
         activity.runOnUiThread(new Runnable() {
@@ -86,6 +117,10 @@ public class UIController implements faithdroid.UIController{
 
     @Override
     public void viewSetAttr(String vID, String attr, String value) {
+        if (vID.equals("Activity")) {
+            activitySet(attr, value);
+            return;
+        }
         FView v = viewmap.get(vID);
         ((AttrSettable)(v)).setAttr(attr,value);
     }
@@ -96,6 +131,11 @@ public class UIController implements faithdroid.UIController{
         rootView.addView(v.view);
     }
 
-    public void setFViewBackground(FView v, String value) {
+    private void activitySet(String attr, String value) {
+        switch (attr) {
+            case "Finish":
+                activity.finish();
+                break;
+        }
     }
 }
