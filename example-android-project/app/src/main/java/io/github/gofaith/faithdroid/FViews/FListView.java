@@ -69,7 +69,7 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
-                // --------------------------------------------
+            // --------------------------------------------
             case "OnGetView":
                 fnOnGetView=value;
                 break;
@@ -77,7 +77,10 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
                 fnOnBindData=value;
                 break;
             case "OnGetCount":
-                    fnOnGetCount = value;
+                fnOnGetCount = value;
+                break;
+            case "NotifyDataSetChanged":
+                v.getAdapter().notifyDataSetChanged();
                 break;
         }
         return ;

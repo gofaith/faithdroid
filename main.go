@@ -10,19 +10,25 @@ var strs = []string{
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	vlistview(a,
-		func(lv *FListView) IView {
-			return linearlayout(a).append(
-				button(a).setItemId(lv, "bt"),
-				textview(a).setItemId(lv, "txt"))
-		},
-		func(vh *ViewHolder, pos int) {
-			vh.getButtonByItemId("bt").text(strs[pos])
-			vh.getTextViewByItemId("txt").text(strs[pos])
-		},
-		func() int {
-			return len(strs)
-		}).show()
+	linearlayout(a).deferShow().append(
+		button(a).text("change").onClick(func() {
+			strs = strs[:3]
+			getListViewByItemId("lv").notifyDataSetChanged()
+		}),
+		vlistview(a,
+			func(lv *FListView) IView {
+				return linearlayout(a).append(
+					button(a).setItemId(lv, "bt"),
+					textview(a).setItemId(lv, "txt"))
+			},
+			func(vh *ViewHolder, pos int) {
+				vh.getButtonByItemId("bt").text(strs[pos])
+				vh.getTextViewByItemId("txt").text(strs[pos])
+			},
+			func() int {
+				return len(strs)
+			}).setId("lv"),
+	)
 }
 
 /* ListView example

@@ -220,3 +220,7 @@ func (v *FListView) layoutWeight(f int) *FListView {
 }
 
 // --------------------------------------------------------------------
+func (v *FListView) notifyDataSetChanged() *FListView {
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")
+	return v
+}
