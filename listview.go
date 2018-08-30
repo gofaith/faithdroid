@@ -2,39 +2,68 @@ package faithdroid
 
 type FListView struct {
 	FBaseView
+	Vh ViewHolder
 }
-type TypeOnBindData struct {
+type TypeOnBindDataArgsBundle struct {
 	Str      string
 	Position int
 }
 
+// ViewHolder
+type ViewHolder struct {
+	VID   string
+	Vlist map[string]string
+}
+
+func (vh *ViewHolder) getListViewById(id string) *FListView {
+	if v, ok := vh.Vlist[id]; ok {
+		if bt, ok := GlobalVars.viewMap[v].(*FListView); ok {
+			return bt
+		}
+	}
+	return nil
+}
+
+// -----------------------------------
 func (v *FListView) setId(s string) *FListView {
 	GlobalVars.idMap[s] = v
 	return v
 }
-func getListViewById(id string) *FListView {
+func (v *FListView) setItemId(parent *FListView, id string) *FListView {
+	if parent.Vh.Vlist == nil {
+		parent.Vh.Vlist = make(map[string]string)
+	}
+	parent.Vh.Vlist[id] = v.getVID()
+	return v
+}
+func getListViewByItemId(id string) *FListView {
 	if v, ok := GlobalVars.idMap[id].(*FListView); ok {
 		return v
 	}
 	return nil
 }
-func vlistview(a *Activity, getView func() string, bindData func(string, int), getCount func() int) *FListView {
+func vlistview(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
 	v.VID = newToken()
 	v.ClassName = "VListView"
 	v.UI = a.UI
+	v.Vh.Vlist = make(map[string]string)
 	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.viewMap[v.VID] = v
 	fnId1 := newToken()
 	GlobalVars.eventHandlersMap[fnId1] = func(string) string {
-		return getView()
+		v.Vh.VID = getView(v).getVID()
+		return jsonObject(v.Vh)
 	}
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
 
 	fnId2 := newToken()
 	GlobalVars.eventHandlersMap[fnId2] = func(str string) string {
-		obd := TypeOnBindData{}
+		obd := TypeOnBindDataArgsBundle{}
 		unJson(str, &obd)
-		bindData(obd.Str, obd.Position)
+		vh := ViewHolder{}
+		unJson(obd.Str, &vh)
+		bindData(&vh, obd.Position)
 		return ""
 	}
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
@@ -46,23 +75,28 @@ func vlistview(a *Activity, getView func() string, bindData func(string, int), g
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
-func hlistview(a *Activity, getView func() string, bindData func(string, int), getCount func() int) *FListView {
+func hlistview(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
 	v.VID = newToken()
 	v.ClassName = "HListView"
 	v.UI = a.UI
+	v.Vh.Vlist = make(map[string]string)
 	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.viewMap[v.VID] = v
 	fnId1 := newToken()
 	GlobalVars.eventHandlersMap[fnId1] = func(string) string {
-		return getView()
+		v.Vh.VID = getView(v).getVID()
+		return jsonObject(v.Vh)
 	}
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
 
 	fnId2 := newToken()
 	GlobalVars.eventHandlersMap[fnId2] = func(str string) string {
-		obd := TypeOnBindData{}
+		obd := TypeOnBindDataArgsBundle{}
 		unJson(str, &obd)
-		bindData(obd.Str, obd.Position)
+		vh := ViewHolder{}
+		unJson(obd.Str, &vh)
+		bindData(&vh, obd.Position)
 		return ""
 	}
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)

@@ -10,8 +10,18 @@ func button(a *Activity) *FButton {
 	v.ClassName = "Button"
 	v.UI = a.UI
 	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.viewMap[v.VID] = v
 	return v
 }
+func (vh *ViewHolder) getButtonByItemId(id string) *FButton {
+	if v, ok := vh.Vlist[id]; ok {
+		if bt, ok := GlobalVars.viewMap[v].(*FButton); ok {
+			return bt
+		}
+	}
+	return nil
+}
+
 func (v *FButton) size(w, h int) *FButton {
 	i := []int{w, h}
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
@@ -19,6 +29,14 @@ func (v *FButton) size(w, h int) *FButton {
 }
 func (v *FButton) setId(s string) *FButton {
 	GlobalVars.idMap[s] = v
+	return v
+}
+
+func (v *FButton) setItemId(parent *FListView, id string) *FButton {
+	if parent.Vh.Vlist == nil {
+		parent.Vh.Vlist = make(map[string]string)
+	}
+	parent.Vh.Vlist[id] = v.getVID()
 	return v
 }
 func getButtonById(id string) *FButton {

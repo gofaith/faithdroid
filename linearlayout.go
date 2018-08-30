@@ -6,8 +6,24 @@ type FLinearLayout struct {
 	Children  []IView
 }
 
+func (vh *ViewHolder) getLinearLayoutByItemId(id string) *FLinearLayout {
+	if v, ok := vh.Vlist[id]; ok {
+		if bt, ok := GlobalVars.viewMap[v].(*FLinearLayout); ok {
+			return bt
+		}
+	}
+	return nil
+}
 func (v *FLinearLayout) setId(s string) *FLinearLayout {
 	GlobalVars.idMap[s] = v
+	return v
+}
+
+func (v *FLinearLayout) setItemId(parent *FListView, id string) *FLinearLayout {
+	if parent.Vh.Vlist == nil {
+		parent.Vh.Vlist = make(map[string]string)
+	}
+	parent.Vh.Vlist[id] = v.getVID()
 	return v
 }
 func getLinearLayoutById(id string) *FLinearLayout {
@@ -22,6 +38,7 @@ func linearlayout(a *Activity) *FLinearLayout {
 	v.ClassName = "LinearLayout"
 	v.UI = a.UI
 	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.viewMap[v.VID] = v
 	return v
 }
 func (v *FLinearLayout) size(w, h int) *FLinearLayout {

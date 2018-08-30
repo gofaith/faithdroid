@@ -10,12 +10,30 @@ func textview(a *Activity) *FTextView {
 	v.ClassName = "TextView"
 	v.UI = a.UI
 	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.viewMap[v.VID] = v
 	return v
+}
+func (vh *ViewHolder) getTextViewByItemId(id string) *FTextView {
+	if v, ok := vh.Vlist[id]; ok {
+		if bt, ok := GlobalVars.viewMap[v].(*FTextView); ok {
+			return bt
+		}
+	}
+	return nil
 }
 func (v *FTextView) setId(s string) *FTextView {
 	GlobalVars.idMap[s] = v
 	return v
 }
+
+func (v *FTextView) setItemId(parent *FListView, id string) *FTextView {
+	if parent.Vh.Vlist == nil {
+		parent.Vh.Vlist = make(map[string]string)
+	}
+	parent.Vh.Vlist[id] = v.getVID()
+	return v
+}
+
 func getTextViewById(id string) *FTextView {
 	if v, ok := GlobalVars.idMap[id].(*FTextView); ok {
 		return v
