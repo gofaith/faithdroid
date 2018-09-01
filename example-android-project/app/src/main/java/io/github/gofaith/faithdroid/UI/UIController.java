@@ -16,6 +16,7 @@ import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FTextView;
+import io.github.gofaith.faithdroid.FViews.FToolbar;
 import io.github.gofaith.faithdroid.FViews.FView;
 import io.github.gofaith.faithdroid.SingleInstanceActivity;
 import io.github.gofaith.faithdroid.SingleTaskActivity;
@@ -67,6 +68,10 @@ public class UIController implements faithdroid.UIController{
                 hllm.setOrientation(LinearLayoutManager.HORIZONTAL);
                 FListView hlistView = new FListView(this, hllm);
                 v=hlistView;
+                break;
+            case "Toolbar":
+                FToolbar fToolbar = new FToolbar(this);
+                v=fToolbar;
                 break;
         }
         v.className =vName;

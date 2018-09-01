@@ -33,6 +33,9 @@ func (a *Activity) startActivity(createView func(*Activity), conf ActivityConfig
 		createView(&Activity{UI: uId})
 		return ""
 	}
+	if conf.LaunchMode == "" {
+		conf.LaunchMode = "Standard"
+	}
 	conf.FnId = fnId
 	GlobalVars.uis[a.UI].NewView("Activity", jsonObject(conf))
 }

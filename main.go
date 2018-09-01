@@ -4,18 +4,11 @@ type MainActivity struct {
 	Activity
 }
 
-var strs = []string{
-	"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
-}
-
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	linearlayout(a).deferShow().append(
-		button(a).text("standard").onClick(func() {
-			a.startActivity(func(a1 *Activity) {
-				textview(a1).text("standard").show()
-			}, ActivityConfig{LaunchMode: "Standard"})
-		}))
+	linearlayout(a).size(-2, -2).deferShow().append(
+		toolbar(a).size(-2, -1),
+		button(a).size(-1, -1).text("click"))
 }
 
 /* ListView example
