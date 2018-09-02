@@ -3,12 +3,14 @@ package io.github.gofaith.faithdroid.UI;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import faithdroid.Activity;
 import faithdroid.Faithdroid;
@@ -24,14 +26,14 @@ import io.github.gofaith.faithdroid.SingleTopActivity;
 import io.github.gofaith.faithdroid.StandardActivity;
 
 public class UIController implements faithdroid.UIController{
-    public final OtherMethods otherMethods;
     public AppCompatActivity activity;
     public HashMap<String, FView> viewmap = new HashMap<>();
     public FrameLayout rootView;
-    public UIController(AppCompatActivity a, FrameLayout main_ctn,OtherMethods otherMethods) {
+    public String optionMenus;
+    public Map<MenuItem, String> menuItemsOnClickMap = new HashMap<>();
+    public UIController(AppCompatActivity a, FrameLayout main_ctn) {
         this.activity=a;
         this.rootView =main_ctn;
-        this.otherMethods=otherMethods;
     }
 
     @Override
@@ -143,8 +145,5 @@ public class UIController implements faithdroid.UIController{
                 activity.finish();
                 break;
         }
-    }
-    public interface OtherMethods{
-        void setOptionMenu(String string);
     }
 }

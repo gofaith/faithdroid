@@ -6,7 +6,11 @@ type FToolbar struct {
 }
 type FMenuItem struct {
 	MyTitle   string
-	MySubMenu []*FMenuItem
+	MyOnClick string
+}
+type FSubMenu struct {
+	MyTitle   string
+	MySubMenu []interface{}
 }
 
 func menuItem(title string) *FMenuItem {
@@ -14,8 +18,19 @@ func menuItem(title string) *FMenuItem {
 	mi.MyTitle = title
 	return mi
 }
-func (m *FMenuItem) subMenu(mis ...*FMenuItem) *FMenuItem {
-	m.MySubMenu = mis
+func (m *FMenuItem) onClick(f func()) *FMenuItem {
+	fnId := newToken()
+	m.MyOnClick = fnId
+	GlobalVars.eventHandlersMap[fnId] = func(string) string {
+		f()
+		return ""
+	}
+	return m
+}
+func subMenu(title string, menuItems ...interface{}) *FSubMenu {
+	m := &FSubMenu{}
+	m.MyTitle = title
+	m.MySubMenu = menuItems
 	return m
 }
 func (v *FToolbar) menu(mis ...*FMenuItem) *FToolbar {
@@ -23,6 +38,8 @@ func (v *FToolbar) menu(mis ...*FMenuItem) *FToolbar {
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Menu", jsonArray(v.MyMenu))
 	return v
 }
+
+// --------------------------------------------------------------------------------
 func toolbar(a *Activity) *FToolbar {
 	v := &FToolbar{}
 	v.VID = newToken()

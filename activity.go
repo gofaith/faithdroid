@@ -27,13 +27,16 @@ type ActivityConfig struct {
 	FnId       string
 }
 
-func (a *Activity) startActivity(createView func(*Activity), conf ActivityConfig) {
+func (a *Activity) startActivity(createView func(*Activity), conf *ActivityConfig) {
 	fnId := newToken()
 	GlobalVars.eventHandlersMap[fnId] = func(uId string) string {
-		createView(&Activity{UI: uId})
+		if createView != nil {
+			createView(&Activity{UI: uId})
+		}
 		return ""
 	}
-	if conf.LaunchMode == "" {
+	if conf == nil {
+		conf = &ActivityConfig{}
 		conf.LaunchMode = "Standard"
 	}
 	conf.FnId = fnId

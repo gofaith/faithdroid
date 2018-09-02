@@ -67,7 +67,7 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 parrentController.activity.getSupportActionBar().setSubtitle(value);
                 break;
             case "Menu":
-                parrentController.otherMethods.setOptionMenu(value);
+                parrentController.optionMenus=value;
                 break;
         }
     }

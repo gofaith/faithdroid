@@ -8,11 +8,9 @@ func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	linearlayout(a).size(-2, -2).deferShow().append(
 		toolbar(a).size(-2, -1).menu(
-			menuItem("title"),
-			menuItem("asd").subMenu(
-				menuItem("asd-1"),
-				menuItem("asd-2").subMenu(
-					menuItem("asd-2-1")))),
+			menuItem("title").onClick(func() {
+				a.startActivity(nil, nil)
+			})),
 		button(a).size(-1, -1).text("click"))
 }
 

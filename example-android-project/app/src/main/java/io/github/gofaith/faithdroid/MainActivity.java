@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
 import io.github.gofaith.faithdroid.UI.UIController;
 
@@ -20,8 +21,8 @@ import static io.github.gofaith.faithdroid.UI.Toolkit.parseMenu;
 public class MainActivity extends AppCompatActivity {
     private FrameLayout rootview;
     private faithdroid.MainActivity a;
-    private String optionMenuStr;
     private String TAG=this.getClass().getName();
+    private UIController uiController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         rootview = findViewById(R.id.main_ctn);
         a=new faithdroid.MainActivity();
-        a.setUIInterface(new UIController(this, rootview, new UIController.OtherMethods() {
-            @Override
-            public void setOptionMenu(String string) {
-                optionMenuStr=string;
-            }
-        }));
+        uiController=new UIController(this, rootview);
+        a.setUIInterface(uiController);
         a.onCreate();
     }
     @Override
@@ -63,16 +60,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (optionMenuStr == null || optionMenuStr == "" || optionMenuStr == "[]") {
+        if (uiController.optionMenus== null || uiController.optionMenus == "" || uiController.optionMenus == "[]") {
             return false;
         }
         try {
-            Log.d(TAG, "onCreateOptionsMenu: "+optionMenuStr);
-            JSONArray array = (JSONArray) (new JSONTokener(optionMenuStr).nextValue());
-            parseMenu(menu,array);
+            Log.d(TAG, "onCreateOptionsMenu: "+uiController.optionMenus);
+            JSONArray array = (JSONArray) (new JSONTokener(uiController.optionMenus).nextValue());
+            parseMenu(uiController,menu,array);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (uiController.menuItemsOnClickMap.containsKey(item)) {
+            Faithdroid.triggerEventHandler(uiController.menuItemsOnClickMap.get(item), "");
+            return true;
         }
         return false;
     }
