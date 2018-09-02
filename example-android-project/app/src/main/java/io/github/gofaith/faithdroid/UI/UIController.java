@@ -24,13 +24,14 @@ import io.github.gofaith.faithdroid.SingleTopActivity;
 import io.github.gofaith.faithdroid.StandardActivity;
 
 public class UIController implements faithdroid.UIController{
+    public final OtherMethods otherMethods;
     public AppCompatActivity activity;
-    public Activity factivity;
     public HashMap<String, FView> viewmap = new HashMap<>();
     public FrameLayout rootView;
-    public UIController(AppCompatActivity a, FrameLayout main_ctn) {
+    public UIController(AppCompatActivity a, FrameLayout main_ctn,OtherMethods otherMethods) {
         this.activity=a;
         this.rootView =main_ctn;
+        this.otherMethods=otherMethods;
     }
 
     @Override
@@ -142,5 +143,8 @@ public class UIController implements faithdroid.UIController{
                 activity.finish();
                 break;
         }
+    }
+    public interface OtherMethods{
+        void setOptionMenu(String string);
     }
 }

@@ -2,8 +2,27 @@ package faithdroid
 
 type FToolbar struct {
 	FBaseView
+	MyMenu []*FMenuItem
+}
+type FMenuItem struct {
+	MyTitle   string
+	MySubMenu []*FMenuItem
 }
 
+func menuItem(title string) *FMenuItem {
+	mi := &FMenuItem{}
+	mi.MyTitle = title
+	return mi
+}
+func (m *FMenuItem) subMenu(mis ...*FMenuItem) *FMenuItem {
+	m.MySubMenu = mis
+	return m
+}
+func (v *FToolbar) menu(mis ...*FMenuItem) *FToolbar {
+	v.MyMenu = mis
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Menu", jsonArray(v.MyMenu))
+	return v
+}
 func toolbar(a *Activity) *FToolbar {
 	v := &FToolbar{}
 	v.VID = newToken()

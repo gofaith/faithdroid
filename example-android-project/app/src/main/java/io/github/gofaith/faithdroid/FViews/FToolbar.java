@@ -10,7 +10,6 @@ import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FToolbar extends FView implements AttrSettable,AttrGettable {
     private Toolbar v;
-
     public FToolbar(UIController controller) {
         parrentController=controller;
         v = (Toolbar) parrentController.activity.getLayoutInflater().inflate(R.layout.my_toolbar, parrentController.rootView, false);
@@ -66,6 +65,9 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 break;
             case "SubTitle":
                 parrentController.activity.getSupportActionBar().setSubtitle(value);
+                break;
+            case "Menu":
+                parrentController.otherMethods.setOptionMenu(value);
                 break;
         }
     }

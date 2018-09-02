@@ -2,16 +2,22 @@ package io.github.gofaith.faithdroid;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.FrameLayout;
+
+import org.json.JSONArray;
+import org.json.JSONTokener;
 
 import faithdroid.Activity;
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.UIController;
 
+import static io.github.gofaith.faithdroid.UI.Toolkit.parseMenu;
+
 public class StandardActivity extends AppCompatActivity {
     private FrameLayout ctn;
     private Activity a;
-    private String fnId;
+    private String fnId,optionMenuStr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +25,12 @@ public class StandardActivity extends AppCompatActivity {
         fnId = getIntent().getStringExtra("FnId");
         ctn = findViewById(R.id.standard_ctn);
         a=new Activity();
-        String uId=a.setUIInterface(new UIController(this,ctn));
+        String uId=a.setUIInterface(new UIController(this, ctn, new UIController.OtherMethods() {
+            @Override
+            public void setOptionMenu(String string) {
+                optionMenuStr=string;
+            }
+        }));
         a.onCreate();
         Faithdroid.triggerEventHandler(fnId, uId);
     }
@@ -46,5 +57,20 @@ public class StandardActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         a.onDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (optionMenuStr == null || optionMenuStr == "" || optionMenuStr == "[]") {
+            return false;
+        }
+        try {
+            JSONArray array = (JSONArray) (new JSONTokener(optionMenuStr).nextValue());
+            parseMenu(menu,array);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
