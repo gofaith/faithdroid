@@ -1,6 +1,5 @@
 package io.github.gofaith.faithdroid.FViews;
 
-import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
 
 import io.github.gofaith.faithdroid.R;
@@ -11,10 +10,11 @@ import io.github.gofaith.faithdroid.UI.UIController;
 public class FToolbar extends FView implements AttrSettable,AttrGettable {
     private Toolbar v;
     public FToolbar(UIController controller) {
-        parrentController=controller;
-        v = (Toolbar) parrentController.activity.getLayoutInflater().inflate(R.layout.my_toolbar, parrentController.rootView, false);
+        parentController =controller;
+        v = (Toolbar) parentController.activity.getLayoutInflater().inflate(R.layout.my_toolbar, parentController.rootView, false);
         view=v;
-        parrentController.activity.setSupportActionBar(v);
+        setElevation("4");
+        parentController.activity.setSupportActionBar(v);
     }
     @Override
     public String getAttr(String attr) {
@@ -39,7 +39,7 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(parrentController.activity,v,value);
+                parseSize(parentController.activity,v,value);
                 break;
             case "Visibility":
                 setVisibility(value);
@@ -61,13 +61,13 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 break;
             // -------------------------------------------------------------------
             case "Title":
-                parrentController.activity.getSupportActionBar().setTitle(value);
+                parentController.activity.getSupportActionBar().setTitle(value);
                 break;
             case "SubTitle":
-                parrentController.activity.getSupportActionBar().setSubtitle(value);
+                parentController.activity.getSupportActionBar().setSubtitle(value);
                 break;
             case "Menu":
-                parrentController.optionMenus=value;
+                parentController.optionMenus=value;
                 break;
         }
     }

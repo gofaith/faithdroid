@@ -17,9 +17,11 @@ import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
+import io.github.gofaith.faithdroid.FViews.FTabLayout;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
 import io.github.gofaith.faithdroid.FViews.FView;
+import io.github.gofaith.faithdroid.FViews.FViewPager;
 import io.github.gofaith.faithdroid.SingleInstanceActivity;
 import io.github.gofaith.faithdroid.SingleTaskActivity;
 import io.github.gofaith.faithdroid.SingleTopActivity;
@@ -75,6 +77,14 @@ public class UIController implements faithdroid.UIController{
             case "Toolbar":
                 FToolbar fToolbar = new FToolbar(this);
                 v=fToolbar;
+                break;
+            case "TabLayout":
+                FTabLayout fTabLayout = new FTabLayout(this);
+                v=fTabLayout;
+                break;
+            case "ViewPager":
+                FViewPager fViewPager = new FViewPager(this);
+                v=fViewPager;
                 break;
         }
         v.className =vName;

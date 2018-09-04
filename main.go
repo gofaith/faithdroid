@@ -12,7 +12,18 @@ func (m *MainActivity) OnCreate() {
 				a.startActivity(nil, nil)
 			}),
 			menuItem("search").icon("assets://search.png")),
-		button(a).size(-1, -1).text("click"))
+		tablayout(a).size(-2, -1).tabs(
+			tab("text"),
+			tab("two")),
+		viewpager(a).size(-2, -2).marginAll(20).pages(
+			page(func() IView {
+				return linearlayout(a).append(
+					textview(a).text("one"))
+			}, nil),
+			page(func() IView {
+				return linearlayout(a).append(
+					textview(a).text("two"))
+			}, nil)))
 }
 
 /* ListView example

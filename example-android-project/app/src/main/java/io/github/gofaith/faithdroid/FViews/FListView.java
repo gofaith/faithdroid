@@ -16,8 +16,8 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
     private MyAdapter adapter;
     public String fnOnGetView,fnOnBindData,fnOnGetCount;
     public FListView(UIController uiController, RecyclerView.LayoutManager lm) {
-        parrentController=uiController;
-        v = new RecyclerView(parrentController.activity);
+        parentController =uiController;
+        v = new RecyclerView(parentController.activity);
         view=v;
         v.setLayoutManager(lm);
         adapter=new MyAdapter(this);
@@ -49,7 +49,7 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(parrentController.activity, v, value);
+                parseSize(parentController.activity, v, value);
                 break;
             case "Visibility":
                 setVisibility(value);
@@ -108,7 +108,7 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
 
             try {
                 JSONObject object = (JSONObject) (new JSONTokener(viewGot).nextValue());
-                FView v = parentListView.parrentController.viewmap.get(object.getString("VID"));
+                FView v = parentListView.parentController.viewmap.get(object.getString("VID"));
                 return new ViewHolder(v,viewGot);
             } catch (Exception e) {
                 e.printStackTrace();

@@ -1,12 +1,8 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-
-import org.json.JSONArray;
-import org.json.JSONTokener;
 
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
@@ -17,8 +13,8 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
     private TextView v;
 
     public FTextView(UIController c) {
-        parrentController=c;
-        v = new TextView(parrentController.activity);
+        parentController =c;
+        v = new TextView(parentController.activity);
         view=v;
     }
     @Override
@@ -43,7 +39,7 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(parrentController.activity, v, value);
+                parseSize(parentController.activity, v, value);
                 break;
             case "Visibility":
                 setVisibility(value);
@@ -77,7 +73,7 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
                 break;
             case "TextSize":
                 try {
-                    v.setTextSize(dp2pixel(parrentController.activity,Float.valueOf(value)));
+                    v.setTextSize(dp2pixel(parentController.activity,Float.valueOf(value)));
                 } catch (Exception e) {
                     e.printStackTrace();
                     return;

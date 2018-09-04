@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -20,7 +19,7 @@ import io.github.gofaith.faithdroid.UI.UIController;
 public class FView {
     public String className,vID,TAG="FView";
     public View view;
-    protected UIController parrentController;
+    protected UIController parentController;
     protected void parseSize(AppCompatActivity activity, View v, String value) {
         long width,height;
         try {
@@ -72,7 +71,7 @@ public class FView {
     void setBackground(String value) {
         if (value==null)
             return;
-        Drawable draw = Toolkit.file2Drawable(parrentController.activity,value);
+        Drawable draw = Toolkit.file2Drawable(parentController.activity,value);
         if (draw == null) {
             return;
         }
@@ -105,10 +104,10 @@ public class FView {
      void setPadding(String value) {
         try {
             JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
-            int left= (int) dp2pixel(parrentController.activity,array.getLong(0));
-            int top= (int) dp2pixel(parrentController.activity,array.getLong(1));
-            int right= (int) dp2pixel(parrentController.activity,array.getLong(2));
-            int bottom= (int) dp2pixel(parrentController.activity,array.getLong(3));
+            int left= (int) dp2pixel(parentController.activity,array.getLong(0));
+            int top= (int) dp2pixel(parentController.activity,array.getLong(1));
+            int right= (int) dp2pixel(parentController.activity,array.getLong(2));
+            int bottom= (int) dp2pixel(parentController.activity,array.getLong(3));
             view.setPadding(left,top,right,bottom);
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,9 +137,7 @@ public class FView {
 
     void setElevation(String value) {
         try {
-            Log.d(TAG, "setElevation: "+value);
             float f = Float.parseFloat(value);
-            Log.d(TAG, "setElevation: "+f);
             ViewCompat.setElevation(view,f);
         } catch (Exception e) {
             e.printStackTrace();

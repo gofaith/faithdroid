@@ -1,9 +1,6 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,8 +12,8 @@ import io.github.gofaith.faithdroid.UI.UIController;
 public class FButton extends FView implements AttrSettable,AttrGettable {
     private Button v;
     public FButton(UIController c){
-        parrentController=c;
-        v = new Button(parrentController.activity);
+        parentController =c;
+        v = new Button(parentController.activity);
         view=v;
     }
     @Override
@@ -45,7 +42,7 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(parrentController.activity,v,value);
+                parseSize(parentController.activity,v,value);
                 break;
             case "Visibility":
                 setVisibility(value);
@@ -78,7 +75,7 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
                 break;
             case "TextSize":
                 try {
-                    v.setTextSize(dp2pixel(parrentController.activity,Float.valueOf(value)));
+                    v.setTextSize(dp2pixel(parentController.activity,Float.valueOf(value)));
                 } catch (Exception e) {
                     e.printStackTrace();
                     return;

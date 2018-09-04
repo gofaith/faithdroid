@@ -1,6 +1,5 @@
 package io.github.gofaith.faithdroid.FViews;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -12,8 +11,8 @@ import io.github.gofaith.faithdroid.UI.UIController;
 public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
     private LinearLayout v;
     public FLinearLayout(UIController c){
-        parrentController=c;
-        v = new LinearLayout(parrentController.activity);
+        parentController =c;
+        v = new LinearLayout(parentController.activity);
         view=v;
         v.setOrientation(LinearLayout.VERTICAL);
     }
@@ -47,7 +46,7 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(parrentController.activity, v, value);
+                parseSize(parentController.activity, v, value);
                 break;
             case "Visibility":
                 setVisibility(value);
@@ -77,7 +76,7 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
                 break;
             case "AddView":
                 final String childVid=value;
-                v.addView(parrentController.viewmap.get(childVid).view);
+                v.addView(parentController.viewmap.get(childVid).view);
                 break;
             case "OnClick":
                 v.setOnClickListener(new View.OnClickListener() {
