@@ -14,7 +14,7 @@ type FSubMenu struct {
 	MySubMenu []interface{}
 }
 
-func menuItem(title string) *FMenuItem {
+func MenuItem(title string) *FMenuItem {
 	mi := &FMenuItem{}
 	mi.MyTitle = title
 	return mi
@@ -32,7 +32,7 @@ func (m *FMenuItem) icon(s string) *FMenuItem {
 	m.MyIcon = s
 	return m
 }
-func subMenu(title string, menuItems ...interface{}) *FSubMenu {
+func SubMenu(title string, menuItems ...interface{}) *FSubMenu {
 	m := &FSubMenu{}
 	m.MyTitle = title
 	m.MySubMenu = menuItems
@@ -45,7 +45,7 @@ func (v *FToolbar) menu(mis ...*FMenuItem) *FToolbar {
 }
 
 // --------------------------------------------------------------------------------
-func toolbar(a *Activity) *FToolbar {
+func Toolbar(a *Activity) *FToolbar {
 	v := &FToolbar{}
 	v.VID = newToken()
 	v.ClassName = "Toolbar"

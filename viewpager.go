@@ -30,7 +30,7 @@ func getViewPagerById(id string) *FViewPager {
 	}
 	return nil
 }
-func viewpager(a *Activity) *FViewPager {
+func ViewPager(a *Activity) *FViewPager {
 	v := &FViewPager{}
 	v.VID = newToken()
 	v.ClassName = "ViewPager"

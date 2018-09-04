@@ -31,7 +31,7 @@ func getTabLayoutById(id string) *FTabLayout {
 	}
 	return nil
 }
-func tablayout(a *Activity) *FTabLayout {
+func TabLayout(a *Activity) *FTabLayout {
 	v := &FTabLayout{}
 	v.VID = newToken()
 	v.ClassName = "TabLayout"

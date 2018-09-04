@@ -42,7 +42,7 @@ func getListViewByItemId(id string) *FListView {
 	}
 	return nil
 }
-func vlistview(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
+func VListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
 	v.VID = newToken()
 	v.ClassName = "VListView"
@@ -75,7 +75,7 @@ func vlistview(a *Activity, getView func(lv *FListView) IView, bindData func(vh 
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
-func hlistview(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
+func HListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
 	v.VID = newToken()
 	v.ClassName = "HListView"

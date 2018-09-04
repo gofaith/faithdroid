@@ -4,7 +4,7 @@ type FTextView struct {
 	FBaseView
 }
 
-func textview(a *Activity) *FTextView {
+func TextView(a *Activity) *FTextView {
 	v := &FTextView{}
 	v.VID = newToken()
 	v.ClassName = "TextView"

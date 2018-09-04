@@ -6,24 +6,8 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	linearlayout(a).size(-2, -2).deferShow().append(
-		toolbar(a).size(-2, -1).menu(
-			menuItem("title").onClick(func() {
-				a.startActivity(nil, nil)
-			}),
-			menuItem("search").icon("assets://search.png")),
-		tablayout(a).size(-2, -1).setId("tabs").tabs(
-			tab("text"),
-			tab("two")),
-		viewpager(a).size(-2, -2).marginAll(20).pages(
-			page(func() IView {
-				return linearlayout(a).append(
-					textview(a).text("one"))
-			}, nil),
-			page(func() IView {
-				return linearlayout(a).append(
-					textview(a).text("two"))
-			}, nil)).bindTabLayoutById("tabs"))
+	LinearLayout(a).size(-2, -2).vertical().append(
+		Button(a).text("ok"))
 }
 
 /* ListView example

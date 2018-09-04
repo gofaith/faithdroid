@@ -32,7 +32,7 @@ func getLinearLayoutById(id string) *FLinearLayout {
 	}
 	return nil
 }
-func linearlayout(a *Activity) *FLinearLayout {
+func LinearLayout(a *Activity) *FLinearLayout {
 	v := &FLinearLayout{}
 	v.VID = newToken()
 	v.ClassName = "LinearLayout"

@@ -4,7 +4,7 @@ type FButton struct {
 	FBaseView
 }
 
-func button(a *Activity) *FButton {
+func Button(a *Activity) *FButton {
 	v := &FButton{}
 	v.VID = newToken()
 	v.ClassName = "Button"
