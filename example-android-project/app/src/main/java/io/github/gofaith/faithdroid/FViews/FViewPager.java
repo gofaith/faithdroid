@@ -89,7 +89,6 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
                         JSONObject object = array.getJSONObject(i);
                         FPage fPage=new FPage();
                         fPage.vid = object.getString("VID");
-                        fPage.onSelected = object.getString("OnSelected");
                         pages.add(fPage);
                     }
                     adapter = new FaithCollectionPagerAdapter(parentController.activity.getSupportFragmentManager(), this);
@@ -150,9 +149,6 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
             int i=args.getInt(ARG_OBJECT);
             FPage p = fviewPager.pages.get(i);
             View rootView=fviewPager.parentController.viewmap.get(Faithdroid.triggerEventHandler(p.vid,"")).view;
-//            if (p.onSelected!=null&&!p.onSelected.equals("")) {
-//                Faithdroid.triggerEventHandler(p.onSelected, "");
-//            }
             return rootView;
         }
     }

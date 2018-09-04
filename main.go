@@ -6,8 +6,8 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	LinearLayout(a).size(-2, -2).vertical().append(
-		Button(a).text("ok"))
+	LinearLayout(a).deferShow().append(
+		Button(a).text("s"))
 }
 
 /* ListView example

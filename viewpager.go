@@ -152,22 +152,14 @@ func (v *FViewPager) layoutWeight(f int) *FViewPager {
 
 // --------------------------------------------------------
 type FPage struct {
-	VID, OnSelected string
+	VID string
 }
 
-func page(createView func() IView, onSelected func()) *FPage {
+func Page(createView func() IView) *FPage {
 	p := &FPage{}
 	p.VID = newToken()
 	GlobalVars.eventHandlersMap[p.VID] = func(string) string {
 		return createView().getVID()
-	}
-	if onSelected == nil {
-		return p
-	}
-	p.OnSelected = newToken()
-	GlobalVars.eventHandlersMap[p.OnSelected] = func(string) string {
-		onSelected()
-		return ""
 	}
 	return p
 }
