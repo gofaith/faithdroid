@@ -179,3 +179,9 @@ func (v *FViewPager) pages(ps ...*FPage) *FViewPager {
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Pages", jsonArray(ps))
 	return v
 }
+func (v *FViewPager) bindTabLayoutById(id string) *FViewPager {
+	if iview, ok := GlobalVars.idMap[id]; ok {
+		GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TabLayout", iview.getVID())
+	}
+	return v
+}

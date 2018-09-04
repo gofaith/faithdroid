@@ -15,7 +15,7 @@ import io.github.gofaith.faithdroid.UI.Toolkit;
 import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FTabLayout extends FView implements AttrSettable, AttrGettable {
-    private TabLayout v;
+    public TabLayout v;
 
     public FTabLayout(UIController controller) {
         parentController =controller;

@@ -1,6 +1,7 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -96,6 +97,12 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
+            case "TabLayout":
+                FView o = parentController.viewmap.get(value);
+                if (o==null)break;
+                FTabLayout fTabLayout=(FTabLayout)o;
+                fTabLayout.v.setupWithViewPager(v);
                 break;
         }
     }

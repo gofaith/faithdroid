@@ -12,7 +12,7 @@ func (m *MainActivity) OnCreate() {
 				a.startActivity(nil, nil)
 			}),
 			menuItem("search").icon("assets://search.png")),
-		tablayout(a).size(-2, -1).tabs(
+		tablayout(a).size(-2, -1).setId("tabs").tabs(
 			tab("text"),
 			tab("two")),
 		viewpager(a).size(-2, -2).marginAll(20).pages(
@@ -23,7 +23,7 @@ func (m *MainActivity) OnCreate() {
 			page(func() IView {
 				return linearlayout(a).append(
 					textview(a).text("two"))
-			}, nil)))
+			}, nil)).bindTabLayoutById("tabs"))
 }
 
 /* ListView example
