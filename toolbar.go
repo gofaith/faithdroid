@@ -6,6 +6,7 @@ type FToolbar struct {
 }
 type FMenuItem struct {
 	MyTitle   string
+	MyIcon    string
 	MyOnClick string
 }
 type FSubMenu struct {
@@ -25,6 +26,10 @@ func (m *FMenuItem) onClick(f func()) *FMenuItem {
 		f()
 		return ""
 	}
+	return m
+}
+func (m *FMenuItem) icon(s string) *FMenuItem {
+	m.MyIcon = s
 	return m
 }
 func subMenu(title string, menuItems ...interface{}) *FSubMenu {

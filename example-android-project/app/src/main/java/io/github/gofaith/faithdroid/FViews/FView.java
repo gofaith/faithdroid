@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONTokener;
 
 
+import io.github.gofaith.faithdroid.UI.Toolkit;
 import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FView {
@@ -71,27 +72,14 @@ public class FView {
     void setBackground(String value) {
         if (value==null)
             return;
-        if (value.startsWith("file://")) {
-            String path=value.substring("file://".length());
-            Drawable draw=Drawable.createFromPath(path);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                view.setBackground(draw);
-            }else {
-                view.setBackgroundDrawable(draw);
-            }
-        } else if (value.startsWith("assets://")) {
-//            Drawable d = Drawable.createFromStream(getAssets().open("Cloths/btn_no.png"), null);
-            String path = value.substring("assets://".length());
-            try {
-                Drawable drawable = Drawable.createFromStream(parrentController.activity.getAssets().open(path), null);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    view.setBackground(drawable);
-                }else {
-                    view.setBackgroundDrawable(drawable);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Drawable draw = Toolkit.file2Drawable(parrentController.activity,value);
+        if (draw == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            view.setBackground(draw);
+        }else {
+            view.setBackgroundDrawable(draw);
         }
     }
 

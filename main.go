@@ -10,7 +10,8 @@ func (m *MainActivity) OnCreate() {
 		toolbar(a).size(-2, -1).menu(
 			menuItem("title").onClick(func() {
 				a.startActivity(nil, nil)
-			})),
+			}),
+			menuItem("search").icon("assets://search.png")),
 		button(a).size(-1, -1).text("click"))
 }
 
