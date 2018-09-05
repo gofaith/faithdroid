@@ -51,6 +51,9 @@ public class FPopupMenu extends FView implements AttrSettable, AttrGettable {
             case "Show":
                 v.show();
                 break;
+            case "Dismiss":
+                v.dismiss();
+                break;
         }
     }
 }

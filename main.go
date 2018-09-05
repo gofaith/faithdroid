@@ -7,23 +7,13 @@ type MainActivity struct {
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	LinearLayout(a).deferShow().append(
-		Toolbar(a).size(-2, -1).title("hello").menus(
-			MenuItem("search").showAsAction(),
-			SubMenu("sub",
-				MenuItem("sub1"),
-				MenuItem("sub2"))),
-		Button(a).setId("bt").text("popup").onClick(func() {
-			bt := getButtonById("bt")
-			bt.popupMenu(
-				MenuItem("title").onClick(func() {
-					showToast(a, "toast")
-				}),
-				SubMenu("sub",
-					MenuItem("change txt").onClick(func() {
-						showSnackbarWithAction(a, "s", "act", func() {
-							showToast(a, "jump")
-						})
-					}))).show()
+		Button(a).text("alertDialog").onClick(func() {
+			AlertDialog(a).title("s").view(
+				TextView(a).text("are you OK?")).positiveButton("confirm", func(ad *FAlertDialog) {
+				showToast(a, "ok")
+			}).negativeButton("cancel", func(ad *FAlertDialog) {
+				showToast(a, "cancelled")
+			}).show()
 		}))
 }
 

@@ -20,6 +20,11 @@ func (base *FBaseView) showPopupMenu(menuItems ...interface{}) {
 func (v *FPopupMenu) getVID() string {
 	return v.VID
 }
-func (v *FPopupMenu) show() {
+func (v *FPopupMenu) show() *FPopupMenu {
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Show", "")
+	return v
+}
+func (v *FPopupMenu) dismiss() *FPopupMenu {
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Dismiss", "")
+	return v
 }

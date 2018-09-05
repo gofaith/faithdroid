@@ -17,6 +17,7 @@ import java.util.Map;
 
 import faithdroid.Activity;
 import faithdroid.Faithdroid;
+import io.github.gofaith.faithdroid.FViews.FAlertDialog;
 import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
@@ -105,6 +106,10 @@ public class UIController implements faithdroid.UIController{
             case "Snackbar":
                 FSnackbar fSnackbar = new FSnackbar(this, rootView);
                 v=fSnackbar;
+                break;
+            case "AlertDialog":
+                FAlertDialog fAlertDialog = new FAlertDialog(this);
+                v=fAlertDialog;
                 break;
         }
         v.className =vName;
