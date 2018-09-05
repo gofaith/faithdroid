@@ -2,46 +2,7 @@ package faithdroid
 
 type FToolbar struct {
 	FBaseView
-	MyMenu []*FMenuItem
-}
-type FMenuItem struct {
-	MyTitle   string
-	MyIcon    string
-	MyOnClick string
-}
-type FSubMenu struct {
-	MyTitle   string
-	MySubMenu []interface{}
-}
-
-func MenuItem(title string) *FMenuItem {
-	mi := &FMenuItem{}
-	mi.MyTitle = title
-	return mi
-}
-func (m *FMenuItem) onClick(f func()) *FMenuItem {
-	fnId := newToken()
-	m.MyOnClick = fnId
-	GlobalVars.eventHandlersMap[fnId] = func(string) string {
-		f()
-		return ""
-	}
-	return m
-}
-func (m *FMenuItem) icon(s string) *FMenuItem {
-	m.MyIcon = s
-	return m
-}
-func SubMenu(title string, menuItems ...interface{}) *FSubMenu {
-	m := &FSubMenu{}
-	m.MyTitle = title
-	m.MySubMenu = menuItems
-	return m
-}
-func (v *FToolbar) menu(mis ...*FMenuItem) *FToolbar {
-	v.MyMenu = mis
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Menu", jsonArray(v.MyMenu))
-	return v
+	MyMenu []interface{}
 }
 
 // --------------------------------------------------------------------------------
@@ -179,5 +140,10 @@ func (v *FToolbar) title(s string) *FToolbar {
 }
 func (v *FToolbar) subtitle(s string) *FToolbar {
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "SubTitle", s)
+	return v
+}
+func (v *FToolbar) menus(mis ...interface{}) *FToolbar {
+	v.MyMenu = mis
+	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Menu", jsonArray(v.MyMenu))
 	return v
 }

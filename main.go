@@ -7,7 +7,19 @@ type MainActivity struct {
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	LinearLayout(a).deferShow().append(
-		Button(a).text("s"))
+		Toolbar(a).size(-2, -1).title("hello").menus(
+			SubMenu("sub",
+				MenuItem("sub1"),
+				MenuItem("sub2"))),
+		Button(a).setId("bt").text("popup").onClick(func() {
+			bt := getButtonById("bt")
+			bt.popupMenu(
+				MenuItem("title"),
+				SubMenu("sub",
+					MenuItem("change txt").onClick(func() {
+						bt.text("changed")
+					}))).show()
+		}))
 }
 
 /* ListView example

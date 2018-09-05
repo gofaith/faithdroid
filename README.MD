@@ -8,8 +8,8 @@
 - [x]layoutweight
 
 - [x]HListView
-- listview simplify
-- startActivity
+- [x]listview simplify
+- [x]startActivity
 - popupMenu
 - alertDialog
 - fab
@@ -41,3 +41,4 @@
 
 - rippleEffect
 - animation
+- radius of Button

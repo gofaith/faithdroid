@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -17,6 +18,7 @@ import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
+import io.github.gofaith.faithdroid.FViews.FPopupMenu;
 import io.github.gofaith.faithdroid.FViews.FTabLayout;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
@@ -86,6 +88,17 @@ public class UIController implements faithdroid.UIController{
                 FViewPager fViewPager = new FViewPager(this);
                 v=fViewPager;
                 break;
+            case "PopupMenu":
+                try {
+                    JSONArray array = (JSONArray) (new JSONTokener(vID).nextValue());
+                    FPopupMenu popupMenu = new FPopupMenu(this, viewmap.get(array.getString(1)));
+                    popupMenu.className = "PopupMenu";
+                    popupMenu.vID = array.getString(0);
+                    viewmap.put(popupMenu.vID, popupMenu);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return;
         }
         v.className =vName;
         v.vID=vID;
