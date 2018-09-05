@@ -204,16 +204,15 @@ func (v *FListView) layoutGravity(gravity int) *FListView {
 	v.FBaseView.layoutGravity(gravity)
 	return v
 }
-
 func (v *FListView) elevation(dp float32) *FListView {
 	v.FBaseView.elevation(dp)
 	return v
 }
+
 func (v *FListView) assign(fb **FListView) *FListView {
 	*fb = v
 	return v
 }
-
 func (v *FListView) layoutWeight(f int) *FListView {
 	v.FBaseView.layoutWeight(f)
 	return v

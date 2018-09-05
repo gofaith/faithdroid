@@ -6,15 +6,13 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	LinearLayout(a).deferShow().append(
-		Button(a).text("alertDialog").onClick(func() {
-			AlertDialog(a).title("s").view(
-				TextView(a).text("are you OK?")).positiveButton("confirm", func(ad *FAlertDialog) {
-				showToast(a, "ok")
-			}).negativeButton("cancel", func(ad *FAlertDialog) {
-				showToast(a, "cancelled")
-			}).show()
-		}))
+	LinearLayout(a).size(-2, -2).deferShow().append(
+		Toolbar(a),
+		Button(a).layoutWeight(1).text("s"),
+		Button(a).layoutWeight(2).text("two").marginAll(12).layoutGravity(Gravitys.Right))
+	Fab(a).icon("drawable://add").layoutGravity(Gravitys.Bottom | Gravitys.Right).marginAll(16).elevation(8).onClick(func() {
+		showToast(a, "clicked")
+	}).show()
 }
 
 /* ListView example

@@ -33,6 +33,7 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
         v = new ViewPager(parentController.activity);
         v.setId(ViewCompat.generateViewId());
         view=v;
+        parseSize(parentController.activity,v,"[-1,-1]");
     }
 
     @Override

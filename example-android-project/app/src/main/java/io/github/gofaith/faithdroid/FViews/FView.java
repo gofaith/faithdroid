@@ -5,13 +5,18 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
+
+import java.util.ArrayList;
 
 import io.github.gofaith.faithdroid.UI.Toolkit;
 import io.github.gofaith.faithdroid.UI.UIController;
@@ -20,6 +25,10 @@ public class FView {
     public String className,vID,TAG="FView";
     public View view;
     protected UIController parentController;
+    public int[] margin=new int[4];
+    public int layoutGravity;
+    public float layoutWeight;
+    public int[] size = new int[]{-2, -2};
     protected void parseSize(AppCompatActivity activity, View v, String value) {
         long width,height;
         try {
@@ -48,7 +57,8 @@ public class FView {
         }else{
             p.height = (int) dp2pixel(activity, height);
         }
-        v.setLayoutParams(p);
+        size[0]=p.width;
+        size[1]=p.height;
     }
     public static float dp2pixel(AppCompatActivity activity, float dps) {
         float pxs = dps *activity.getResources().getDisplayMetrics().density;
@@ -117,9 +127,25 @@ public class FView {
     void setMargin(String value) {
         try {
             JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
-            ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(view.getLayoutParams());
-            params.setMargins(array.getInt(0),array.getInt(1),array.getInt(2),array.getInt(3));
-            view.setLayoutParams(params);
+            margin[0] =(int)dp2pixel(parentController.activity, array.getInt(0));
+            margin[1] =(int)dp2pixel(parentController.activity, array.getInt(1));
+            margin[2] =(int)dp2pixel(parentController.activity, array.getInt(2));
+            margin[3] =(int)dp2pixel(parentController.activity, array.getInt(3));
+//            if (view.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+//                LinearLayout.MarginLayoutParams params = new LinearLayout.MarginLayoutParams(view.getLayoutParams());
+//                params.setMargins((int) (dp2pixel(parentController.activity, array.getInt(0))),
+//                        (int) (dp2pixel(parentController.activity, array.getInt(2))),
+//                        (int) (dp2pixel(parentController.activity, array.getInt(1))),
+//                        (int) (dp2pixel(parentController.activity, array.getInt(3))));
+//                view.setLayoutParams(params);
+//            } else if (view.getLayoutParams() instanceof FrameLayout.LayoutParams) {
+//                FrameLayout.MarginLayoutParams params = new FrameLayout.MarginLayoutParams(view.getLayoutParams());
+//                params.setMargins((int) (dp2pixel(parentController.activity, array.getInt(0))),
+//                        (int) (dp2pixel(parentController.activity, array.getInt(2))),
+//                        (int) (dp2pixel(parentController.activity, array.getInt(1))),
+//                        (int) (dp2pixel(parentController.activity, array.getInt(3))));
+//                view.setLayoutParams(params);
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -127,14 +153,11 @@ public class FView {
 
     void setLayoutGravity(String value) {
         try {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(view.getLayoutParams());
-            lp.gravity = Integer.parseInt(value);
-            view.setLayoutParams(lp);
+            layoutGravity = Integer.parseInt(value);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     void setElevation(String value) {
         try {
             float f = Float.parseFloat(value);
@@ -146,9 +169,7 @@ public class FView {
 
     void setLayoutWeight(String value) {
         try {
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(view.getLayoutParams());
-            lp.weight = Float.parseFloat(value);
-            view.setLayoutParams(lp);
+            layoutWeight = Float.parseFloat(value);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,9 +1,14 @@
 package io.github.gofaith.faithdroid.FViews;
 
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
+import android.view.View;
+import android.view.ViewGroup;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
+import io.github.gofaith.faithdroid.UI.Toolkit;
 import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FFab extends  FView implements AttrGettable, AttrSettable {
@@ -13,6 +18,7 @@ public class FFab extends  FView implements AttrGettable, AttrSettable {
         parentController=controller;
         v = new FloatingActionButton(parentController.activity);
         view=v;
+        setElevation("8");
     }
     @Override
     public String getAttr(String attr) {
@@ -23,7 +29,7 @@ public class FFab extends  FView implements AttrGettable, AttrSettable {
         return "";
     }
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (value==null)
             return;
         switch (attr) {
@@ -55,7 +61,17 @@ public class FFab extends  FView implements AttrGettable, AttrSettable {
                 setLayoutWeight(value);
                 break;
             // -------------------------------------------------------------------
-
+            case "Icon":
+                v.setImageDrawable(Toolkit.file2Drawable(parentController.activity,value));
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Faithdroid.triggerEventHandler(value, "");
+                    }
+                });
+                break;
         }
     }
 }

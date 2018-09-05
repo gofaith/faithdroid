@@ -135,16 +135,15 @@ func (v *FViewPager) layoutGravity(gravity int) *FViewPager {
 	v.FBaseView.layoutGravity(gravity)
 	return v
 }
-
 func (v *FViewPager) elevation(dp float32) *FViewPager {
 	v.FBaseView.elevation(dp)
 	return v
 }
+
 func (v *FViewPager) assign(fb **FViewPager) *FViewPager {
 	*fb = v
 	return v
 }
-
 func (v *FViewPager) layoutWeight(f int) *FViewPager {
 	v.FBaseView.layoutWeight(f)
 	return v

@@ -19,6 +19,8 @@ import faithdroid.Activity;
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.FViews.FAlertDialog;
 import io.github.gofaith.faithdroid.FViews.FButton;
+import io.github.gofaith.faithdroid.FViews.FFab;
+import io.github.gofaith.faithdroid.FViews.FFrameLayout;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
@@ -111,6 +113,10 @@ public class UIController implements faithdroid.UIController{
                 FAlertDialog fAlertDialog = new FAlertDialog(this);
                 v=fAlertDialog;
                 break;
+            case "Fab":
+                FFab fFab = new FFab(this);
+                v=fFab;
+                break;
         }
         v.className =vName;
         v.vID=vID;
@@ -171,7 +177,10 @@ public class UIController implements faithdroid.UIController{
     @Override
     public void showOnRootView(String vID) {
         FView v = viewmap.get(vID);
-        rootView.addView(v.view);
+        if (v == null) {
+            return;
+        }
+        FFrameLayout.addToframeLayout(rootView,v);
     }
 
     private void activitySet(String attr, String value) {

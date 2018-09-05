@@ -22,6 +22,7 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
         v.setLayoutManager(lm);
         adapter=new MyAdapter(this);
         v.setAdapter(adapter);
+        parseSize(parentController.activity,v,"[-1,-1]");
     }
 
     @Override

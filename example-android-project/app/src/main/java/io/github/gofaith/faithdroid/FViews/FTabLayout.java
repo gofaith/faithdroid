@@ -25,6 +25,7 @@ public class FTabLayout extends FView implements AttrSettable, AttrGettable {
         v.setTabTextColors(Color.parseColor("#dddddd"),Color.WHITE);
         v.setSelectedTabIndicatorColor(parentController.activity.getResources().getColor(R.color.colorAccent));
         v.setBackgroundColor(parentController.activity.getResources().getColor(R.color.colorPrimary));
+        parseSize(parentController.activity,v,"[-1,-1]");
     }
     @Override
     public String getAttr(String attr) {

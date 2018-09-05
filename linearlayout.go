@@ -137,16 +137,15 @@ func (v *FLinearLayout) layoutGravity(gravity int) *FLinearLayout {
 	v.FBaseView.layoutGravity(gravity)
 	return v
 }
-
 func (v *FLinearLayout) elevation(dp float32) *FLinearLayout {
 	v.FBaseView.elevation(dp)
 	return v
 }
+
 func (v *FLinearLayout) assign(fb **FLinearLayout) *FLinearLayout {
 	*fb = v
 	return v
 }
-
 func (v *FLinearLayout) layoutWeight(f int) *FLinearLayout {
 	v.FBaseView.layoutWeight(f)
 	return v

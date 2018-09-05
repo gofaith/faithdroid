@@ -15,6 +15,7 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
         view=v;
         setElevation("4");
         parentController.activity.setSupportActionBar(v);
+        parseSize(parentController.activity,v,"[-2,-1]");
     }
     @Override
     public String getAttr(String attr) {

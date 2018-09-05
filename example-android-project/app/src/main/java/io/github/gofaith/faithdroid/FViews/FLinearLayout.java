@@ -15,6 +15,7 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
         v = new LinearLayout(parentController.activity);
         view=v;
         v.setOrientation(LinearLayout.VERTICAL);
+        parseSize(parentController.activity,v,"[-1,-1]");
     }
     @Override
     public String getAttr(String attr) {
@@ -76,7 +77,15 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
                 break;
             case "AddView":
                 final String childVid=value;
-                v.addView(parentController.viewmap.get(childVid).view);
+                FView f=parentController.viewmap.get(childVid);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(f.size[0], f.size[1]);
+                lp.gravity=f.layoutGravity;
+                lp.weight=f.layoutWeight;
+                lp.leftMargin = f.margin[0];
+                lp.topMargin = f.margin[1];
+                lp.rightMargin = f.margin[2];
+                lp.bottomMargin = f.margin[3];
+                v.addView(f.view,lp);
                 break;
             case "OnClick":
                 v.setOnClickListener(new View.OnClickListener() {

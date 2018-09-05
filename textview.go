@@ -132,15 +132,16 @@ func (v *FTextView) marginAll(dp int) *FTextView {
 	v.FBaseView.margin(dp, dp, dp, dp)
 	return v
 }
+
 func (v *FTextView) layoutGravity(gravity int) *FTextView {
 	v.FBaseView.layoutGravity(gravity)
 	return v
 }
-
 func (v *FTextView) elevation(dp float32) *FTextView {
 	v.FBaseView.elevation(dp)
 	return v
 }
+
 func (v *FTextView) assign(fb **FTextView) *FTextView {
 	*fb = v
 	return v

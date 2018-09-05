@@ -3,12 +3,16 @@ package io.github.gofaith.faithdroid.UI;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.IconCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import io.github.gofaith.faithdroid.R;
 
 public class Toolkit {
     public static void parseMenu(UIController uiController,Menu menu, JSONArray array) throws JSONException {
@@ -46,6 +50,17 @@ public class Toolkit {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (value.startsWith("drawable://")) {
+            int src;
+            switch (value.substring("drawable://".length())){
+                case "add":
+                    src=R.drawable.add;
+                    break;
+                default:
+                    src= R.mipmap.ic_launcher_round;
+                    break;
+            }
+            return ContextCompat.getDrawable(activity, src);
         }
         return null;
     }
