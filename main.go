@@ -18,7 +18,7 @@ func (m *MainActivity) OnCreate() {
 				MenuItem("title"),
 				SubMenu("sub",
 					MenuItem("change txt").onClick(func() {
-						bt.text("changed")
+						showSnackbar(a, "clicked")
 					}))).show()
 		}))
 }

@@ -1,10 +1,12 @@
 package io.github.gofaith.faithdroid.UI;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,6 +21,7 @@ import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
+import io.github.gofaith.faithdroid.FViews.FSnackbar;
 import io.github.gofaith.faithdroid.FViews.FTabLayout;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
@@ -99,6 +102,10 @@ public class UIController implements faithdroid.UIController{
                     e.printStackTrace();
                 }
                 return;
+            case "Snackbar":
+                FSnackbar fSnackbar = new FSnackbar(this, rootView);
+                v=fSnackbar;
+                break;
         }
         v.className =vName;
         v.vID=vID;
@@ -164,6 +171,9 @@ public class UIController implements faithdroid.UIController{
 
     private void activitySet(String attr, String value) {
         switch (attr) {
+            case "ShowToast":
+                Toast.makeText(activity, value, Toast.LENGTH_SHORT).show();
+                break;
             case "Finish":
                 activity.finish();
                 break;

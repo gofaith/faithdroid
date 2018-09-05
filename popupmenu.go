@@ -14,6 +14,9 @@ func (base *FBaseView) popupMenu(menuItems ...interface{}) *FPopupMenu {
 	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Menus", jsonArray(menuItems))
 	return v
 }
+func (base *FBaseView) showPopupMenu(menuItems ...interface{}) {
+	base.popupMenu(menuItems).show()
+}
 func (v *FPopupMenu) getVID() string {
 	return v.VID
 }

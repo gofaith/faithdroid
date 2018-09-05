@@ -27,7 +27,7 @@ type ActivityConfig struct {
 	FnId       string
 }
 
-func (a *Activity) startActivity(createView func(*Activity), conf *ActivityConfig) {
+func startActivity(a *Activity, createView func(*Activity), conf *ActivityConfig) {
 	fnId := newToken()
 	GlobalVars.eventHandlersMap[fnId] = func(uId string) string {
 		if createView != nil {
@@ -42,6 +42,9 @@ func (a *Activity) startActivity(createView func(*Activity), conf *ActivityConfi
 	conf.FnId = fnId
 	GlobalVars.uis[a.UI].NewView("Activity", jsonObject(conf))
 }
-func (a *Activity) finish() {
+func finish(a *Activity) {
 	GlobalVars.uis[a.UI].ViewSetAttr("Activity", "Finish", "")
+}
+func showToast(a *Activity, s string) {
+	GlobalVars.uis[a.UI].ViewSetAttr("Activity", "ShowToast", s)
 }
