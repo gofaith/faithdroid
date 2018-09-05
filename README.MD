@@ -11,9 +11,11 @@
 - [x]listview simplify
 - [x]startActivity
 - [x]popupMenu
+- [x]Snackbar
+- [x]toolbar
+- [x]Toast
 - alertDialog
 - fab
-- [x]toolbar
 
 - Space
 - EditText
@@ -23,8 +25,6 @@
 - FloatingActionButton
 - RecyclerView
 
-- Toast
-- Snackbar
 - Dialog
 
 - toolbar

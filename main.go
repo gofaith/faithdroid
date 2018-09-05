@@ -15,10 +15,14 @@ func (m *MainActivity) OnCreate() {
 		Button(a).setId("bt").text("popup").onClick(func() {
 			bt := getButtonById("bt")
 			bt.popupMenu(
-				MenuItem("title"),
+				MenuItem("title").onClick(func() {
+					showToast(a, "toast")
+				}),
 				SubMenu("sub",
 					MenuItem("change txt").onClick(func() {
-						showSnackbar(a, "clicked")
+						showSnackbarWithAction(a, "s", "act", func() {
+							showToast(a, "jump")
+						})
 					}))).show()
 		}))
 }
