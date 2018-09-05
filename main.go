@@ -8,6 +8,7 @@ func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	LinearLayout(a).deferShow().append(
 		Toolbar(a).size(-2, -1).title("hello").menus(
+			MenuItem("search").showAsAction(),
 			SubMenu("sub",
 				MenuItem("sub1"),
 				MenuItem("sub2"))),

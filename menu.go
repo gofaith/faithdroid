@@ -1,9 +1,10 @@
 package faithdroid
 
 type FMenuItem struct {
-	MyTitle   string
-	MyIcon    string
-	MyOnClick string
+	MyTitle        string
+	MyIcon         string
+	MyOnClick      string
+	MyShowAsAction string
 }
 type FSubMenu struct {
 	MyTitle   string
@@ -26,6 +27,10 @@ func (m *FMenuItem) onClick(f func()) *FMenuItem {
 }
 func (m *FMenuItem) icon(s string) *FMenuItem {
 	m.MyIcon = s
+	return m
+}
+func (m *FMenuItem) showAsAction() *FMenuItem {
+	m.MyShowAsAction = "IF_ROOM"
 	return m
 }
 func SubMenu(title string, menuItems ...interface{}) *FSubMenu {

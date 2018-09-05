@@ -20,8 +20,10 @@ public class Toolkit {
                     uiController.menuItemsOnClickMap.put(item, object.getString("MyOnClick"));
                 }
                 if (!object.isNull("MyIcon") && !object.getString("MyIcon").equals("")) {
-                    item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
                     item.setIcon(file2Drawable(uiController.activity,object.getString("MyIcon")));
+                }
+                if (!object.isNull("MyShowAsAction") && !object.getString("MyShowAsAction").equals("")) {
+                    item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
                 }
                 continue;
             }
