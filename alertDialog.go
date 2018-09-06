@@ -6,46 +6,46 @@ type FAlertDialog struct {
 
 func AlertDialog(a *Activity) *FAlertDialog {
 	v := &FAlertDialog{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "AlertDialog"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 
-func (v *FAlertDialog) title(s string) *FAlertDialog {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Title", s)
+func (v *FAlertDialog) Title(s string) *FAlertDialog {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)
 	return v
 }
-func (v *FAlertDialog) view(iv IView) *FAlertDialog {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "View", iv.getVID())
+func (v *FAlertDialog) View(iv IView) *FAlertDialog {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "View", iv.GetVID())
 	return v
 }
-func (v *FAlertDialog) positiveButton(text string, onClick func(*FAlertDialog)) *FAlertDialog {
-	fnId := newToken()
-	GlobalVars.eventHandlersMap[fnId] = func(string) string {
+func (v *FAlertDialog) PositiveButton(text string, onClick func(*FAlertDialog)) *FAlertDialog {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(string) string {
 		onClick(v)
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "PositiveButton", jsonArray([]string{text, fnId}))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PositiveButton", JsonArray([]string{text, fnId}))
 	return v
 }
 
-func (v *FAlertDialog) negativeButton(text string, onClick func(*FAlertDialog)) *FAlertDialog {
-	fnId := newToken()
-	GlobalVars.eventHandlersMap[fnId] = func(string) string {
+func (v *FAlertDialog) NegativeButton(text string, onClick func(*FAlertDialog)) *FAlertDialog {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(string) string {
 		onClick(v)
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "NegativeButton", jsonArray([]string{text, fnId}))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NegativeButton", JsonArray([]string{text, fnId}))
 	return v
 }
-func (v *FAlertDialog) show() *FAlertDialog {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Show", "")
+func (v *FAlertDialog) Show() *FAlertDialog {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Show", "")
 	return v
 }
-func (v *FAlertDialog) dismiss() *FAlertDialog {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Dismiss", "")
+func (v *FAlertDialog) Dismiss() *FAlertDialog {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Dismiss", "")
 	return v
 }

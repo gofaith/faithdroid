@@ -6,166 +6,166 @@ type FTextView struct {
 
 func TextView(a *Activity) *FTextView {
 	v := &FTextView{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "TextView"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func (vh *ViewHolder) getTextViewByItemId(id string) *FTextView {
+func (vh *ViewHolder) GetTextViewByItemId(id string) *FTextView {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.viewMap[v].(*FTextView); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FTextView); ok {
 			return bt
 		}
 	}
 	return nil
 }
-func (v *FTextView) setId(s string) *FTextView {
-	GlobalVars.idMap[s] = v
+func (v *FTextView) SetId(s string)*FTextView {
+	GlobalVars.IdMap[s] = v
 	return v
 }
 
-func (v *FTextView) setItemId(parent *FListView, id string) *FTextView {
+func (v *FTextView) SetItemId(parent *FListView, id string) *FTextView {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.getVID()
+	parent.Vh.Vlist[id] = v.GetVID()
 	return v
 }
 
-func getTextViewById(id string) *FTextView {
-	if v, ok := GlobalVars.idMap[id].(*FTextView); ok {
+func GetTextViewById(id string) *FTextView {
+	if v, ok := GlobalVars.IdMap[id].(*FTextView); ok {
 		return v
 	}
 	return nil
 }
 
-func (v *FTextView) size(w, h int) *FTextView {
+func (v *FTextView) Size(w, h int) *FTextView {
 	i := []int{w, h}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
 
-func (v *FTextView) background(s string) *FTextView {
-	v.FBaseView.background(s)
+func (v *FTextView) Background(s string) *FTextView {
+	v.FBaseView.Background(s)
 	return v
 }
-func (v *FTextView) backgroundColor(s int) *FTextView {
-	v.FBaseView.backgroundColor(s)
+func (v *FTextView) BackgroundColor(s int) *FTextView {
+	v.FBaseView.BackgroundColor(s)
 	return v
 }
 
-func (v *FTextView) cachedBackground(s string) *FTextView {
-	v.FBaseView.cachedBackground(s)
+func (v *FTextView) CachedBackground(s string) *FTextView {
+	v.FBaseView.CachedBackground(s)
 	return v
 }
 func (v *FTextView) onClick(f func()) *FTextView {
-	fnID := newToken()
-	GlobalVars.eventHandlersMap[fnID] = func(string) string {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
 		f()
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
 
-func (v *FTextView) visible() *FTextView {
-	v.FBaseView.visible()
+func (v *FTextView) Visible() *FTextView {
+	v.FBaseView.Visible()
 	return v
 }
-func (v *FTextView) invisible() *FTextView {
-	v.FBaseView.invisible()
+func (v *FTextView) Invisible() *FTextView {
+	v.FBaseView.Invisible()
 	return v
 }
-func (v *FTextView) gone() *FTextView {
-	v.FBaseView.gone()
-	return v
-}
-
-func (v *FTextView) padding(left, top, right, bottom int) *FTextView {
-	v.FBaseView.padding(left, top, right, bottom)
-	return v
-}
-func (v *FTextView) paddingLeft(dp int) *FTextView {
-	v.FBaseView.padding(dp, 0, 0, 0)
-	return v
-}
-func (v *FTextView) paddingTop(dp int) *FTextView {
-	v.FBaseView.padding(0, dp, 0, 0)
-	return v
-}
-func (v *FTextView) paddingRight(dp int) *FTextView {
-	v.FBaseView.padding(0, 0, dp, 0)
-	return v
-}
-func (v *FTextView) paddingBottom(dp int) *FTextView {
-	v.FBaseView.padding(0, 0, 0, dp)
-	return v
-}
-func (v *FTextView) paddingAll(all int) *FTextView {
-	v.FBaseView.padding(all, all, all, all)
+func (v *FTextView) Gone() *FTextView {
+	v.FBaseView.Gone()
 	return v
 }
 
-func (v *FTextView) margin(left, top, right, bottom int) *FTextView {
-	v.FBaseView.margin(left, top, right, bottom)
+func (v *FTextView) Padding(left, top, right, bottom int) *FTextView {
+	v.FBaseView.Padding(left, top, right, bottom)
 	return v
 }
-func (v *FTextView) marginLeft(dp int) *FTextView {
-	v.FBaseView.margin(dp, 0, 0, 0)
+func (v *FTextView) PaddingLeft(dp int) *FTextView {
+	v.FBaseView.Padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FTextView) marginTop(dp int) *FTextView {
-	v.FBaseView.margin(0, dp, 0, 0)
+func (v *FTextView) PaddingTop(dp int) *FTextView {
+	v.FBaseView.Padding(0, dp, 0, 0)
 	return v
 }
-func (v *FTextView) marginRight(dp int) *FTextView {
-	v.FBaseView.margin(0, 0, dp, 0)
+func (v *FTextView) PaddingRight(dp int) *FTextView {
+	v.FBaseView.Padding(0, 0, dp, 0)
 	return v
 }
-func (v *FTextView) marginBottom(dp int) *FTextView {
-	v.FBaseView.margin(0, 0, 0, dp)
+func (v *FTextView) PaddingBottom(dp int) *FTextView {
+	v.FBaseView.Padding(0, 0, 0, dp)
 	return v
 }
-func (v *FTextView) marginAll(dp int) *FTextView {
-	v.FBaseView.margin(dp, dp, dp, dp)
-	return v
-}
-
-func (v *FTextView) layoutGravity(gravity int) *FTextView {
-	v.FBaseView.layoutGravity(gravity)
-	return v
-}
-func (v *FTextView) elevation(dp float32) *FTextView {
-	v.FBaseView.elevation(dp)
+func (v *FTextView) PaddingAll(all int) *FTextView {
+	v.FBaseView.Padding(all, all, all, all)
 	return v
 }
 
-func (v *FTextView) assign(fb **FTextView) *FTextView {
+func (v *FTextView) Margin(left, top, right, bottom int) *FTextView {
+	v.FBaseView.Margin(left, top, right, bottom)
+	return v
+}
+func (v *FTextView) MarginLeft(dp int) *FTextView {
+	v.FBaseView.Margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FTextView) MarginTop(dp int) *FTextView {
+	v.FBaseView.Margin(0, dp, 0, 0)
+	return v
+}
+func (v *FTextView) MarginRight(dp int) *FTextView {
+	v.FBaseView.Margin(0, 0, dp, 0)
+	return v
+}
+func (v *FTextView) MarginBottom(dp int) *FTextView {
+	v.FBaseView.Margin(0, 0, 0, dp)
+	return v
+}
+func (v *FTextView) MarginAll(dp int) *FTextView {
+	v.FBaseView.Margin(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FTextView) LayoutGravity(gravity int) *FTextView {
+	v.FBaseView.LayoutGravity(gravity)
+	return v
+}
+func (v *FTextView) Elevation(dp float32) *FTextView {
+	v.FBaseView.Elevation(dp)
+	return v
+}
+
+func (v *FTextView) Assign(fb **FTextView) *FTextView {
 	*fb = v
 	return v
 }
-func (v *FTextView) layoutWeight(f int) *FTextView {
-	v.FBaseView.layoutWeight(f)
+func (v *FTextView) LayoutWeight(f int) *FTextView {
+	v.FBaseView.LayoutWeight(f)
 	return v
 }
 
 // --------------------------------------------------------
-func (v *FTextView) text(s string) *FTextView {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Text", s)
+func (v *FTextView) Text(s string) *FTextView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)
 	return v
 }
 
-func (v *FTextView) textColor(s string) *FTextView {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TextColor", s)
+func (v *FTextView) TextColor(s string) *FTextView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TextColor", s)
 	return v
 }
 
-func (v *FTextView) textSize(dpsize int) *FTextView {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TextSize", sPrintf(dpsize))
+func (v *FTextView) TextSize(dpsize int) *FTextView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TextSize", SPrintf(dpsize))
 	return v
 }
-func (v *FTextView) getText() string {
-	return GlobalVars.uis[v.UI].ViewGetAttr(v.VID, "Text")
+func (v *FTextView) GetText() string {
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Text")
 }

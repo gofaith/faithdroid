@@ -4,149 +4,149 @@ type FTabLayout struct {
 	FBaseView
 }
 
-func (vh *ViewHolder) getTabLayoutByItemId(id string) *FTabLayout {
+func (vh *ViewHolder) GetTabLayoutByItemId(id string) *FTabLayout {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.viewMap[v].(*FTabLayout); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FTabLayout); ok {
 			return bt
 		}
 	}
 	return nil
 }
 
-func (v *FTabLayout) setId(s string) *FTabLayout {
-	GlobalVars.idMap[s] = v
+func (v *FTabLayout) SetId(s string)*FTabLayout {
+	GlobalVars.IdMap[s] = v
 	return v
 }
 
-func (v *FTabLayout) setItemId(parent *FListView, id string) *FTabLayout {
+func (v *FTabLayout) SetItemId(parent *FListView, id string) *FTabLayout {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.getVID()
+	parent.Vh.Vlist[id] = v.GetVID()
 	return v
 }
-func getTabLayoutById(id string) *FTabLayout {
-	if v, ok := GlobalVars.idMap[id].(*FTabLayout); ok {
+func GetTabLayoutById(id string) *FTabLayout {
+	if v, ok := GlobalVars.IdMap[id].(*FTabLayout); ok {
 		return v
 	}
 	return nil
 }
 func TabLayout(a *Activity) *FTabLayout {
 	v := &FTabLayout{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "TabLayout"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func (v *FTabLayout) size(w, h int) *FTabLayout {
+func (v *FTabLayout) Size(w, h int) *FTabLayout {
 	i := []int{w, h}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
 
-func (v *FTabLayout) background(s string) *FTabLayout {
-	v.FBaseView.background(s)
+func (v *FTabLayout) Background(s string) *FTabLayout {
+	v.FBaseView.Background(s)
 	return v
 }
-func (v *FTabLayout) backgroundColor(s int) *FTabLayout {
-	v.FBaseView.backgroundColor(s)
+func (v *FTabLayout) BackgroundColor(s int) *FTabLayout {
+	v.FBaseView.BackgroundColor(s)
 	return v
 }
 
-func (v *FTabLayout) cachedBackground(s string) *FTabLayout {
-	v.FBaseView.cachedBackground(s)
+func (v *FTabLayout) CachedBackground(s string) *FTabLayout {
+	v.FBaseView.CachedBackground(s)
 	return v
 }
 func (v *FTabLayout) onClick(f func()) *FTabLayout {
-	fnID := newToken()
-	GlobalVars.eventHandlersMap[fnID] = func(string) string {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
 		f()
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
 
-func (v *FTabLayout) visible() *FTabLayout {
-	v.FBaseView.visible()
+func (v *FTabLayout) Visible() *FTabLayout {
+	v.FBaseView.Visible()
 	return v
 }
-func (v *FTabLayout) invisible() *FTabLayout {
-	v.FBaseView.invisible()
+func (v *FTabLayout) Invisible() *FTabLayout {
+	v.FBaseView.Invisible()
 	return v
 }
-func (v *FTabLayout) gone() *FTabLayout {
-	v.FBaseView.gone()
-	return v
-}
-
-func (v *FTabLayout) padding(left, top, right, bottom int) *FTabLayout {
-	v.FBaseView.padding(left, top, right, bottom)
-	return v
-}
-func (v *FTabLayout) paddingLeft(dp int) *FTabLayout {
-	v.FBaseView.padding(dp, 0, 0, 0)
-	return v
-}
-func (v *FTabLayout) paddingTop(dp int) *FTabLayout {
-	v.FBaseView.padding(0, dp, 0, 0)
-	return v
-}
-func (v *FTabLayout) paddingRight(dp int) *FTabLayout {
-	v.FBaseView.padding(0, 0, dp, 0)
-	return v
-}
-func (v *FTabLayout) paddingBottom(dp int) *FTabLayout {
-	v.FBaseView.padding(0, 0, 0, dp)
-	return v
-}
-func (v *FTabLayout) paddingAll(all int) *FTabLayout {
-	v.FBaseView.padding(all, all, all, all)
+func (v *FTabLayout) Gone() *FTabLayout {
+	v.FBaseView.Gone()
 	return v
 }
 
-func (v *FTabLayout) margin(left, top, right, bottom int) *FTabLayout {
-	v.FBaseView.margin(left, top, right, bottom)
+func (v *FTabLayout) Padding(left, top, right, bottom int) *FTabLayout {
+	v.FBaseView.Padding(left, top, right, bottom)
 	return v
 }
-func (v *FTabLayout) marginLeft(dp int) *FTabLayout {
-	v.FBaseView.margin(dp, 0, 0, 0)
+func (v *FTabLayout) PaddingLeft(dp int) *FTabLayout {
+	v.FBaseView.Padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FTabLayout) marginTop(dp int) *FTabLayout {
-	v.FBaseView.margin(0, dp, 0, 0)
+func (v *FTabLayout) PaddingTop(dp int) *FTabLayout {
+	v.FBaseView.Padding(0, dp, 0, 0)
 	return v
 }
-func (v *FTabLayout) marginRight(dp int) *FTabLayout {
-	v.FBaseView.margin(0, 0, dp, 0)
+func (v *FTabLayout) PaddingRight(dp int) *FTabLayout {
+	v.FBaseView.Padding(0, 0, dp, 0)
 	return v
 }
-func (v *FTabLayout) marginBottom(dp int) *FTabLayout {
-	v.FBaseView.margin(0, 0, 0, dp)
+func (v *FTabLayout) PaddingBottom(dp int) *FTabLayout {
+	v.FBaseView.Padding(0, 0, 0, dp)
 	return v
 }
-func (v *FTabLayout) marginAll(dp int) *FTabLayout {
-	v.FBaseView.margin(dp, dp, dp, dp)
-	return v
-}
-
-func (v *FTabLayout) layoutGravity(gravity int) *FTabLayout {
-	v.FBaseView.layoutGravity(gravity)
-	return v
-}
-func (v *FTabLayout) elevation(dp float32) *FTabLayout {
-	v.FBaseView.elevation(dp)
+func (v *FTabLayout) PaddingAll(all int) *FTabLayout {
+	v.FBaseView.Padding(all, all, all, all)
 	return v
 }
 
-func (v *FTabLayout) assign(fb **FTabLayout) *FTabLayout {
+func (v *FTabLayout) Margin(left, top, right, bottom int) *FTabLayout {
+	v.FBaseView.Margin(left, top, right, bottom)
+	return v
+}
+func (v *FTabLayout) MarginLeft(dp int) *FTabLayout {
+	v.FBaseView.Margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FTabLayout) MarginTop(dp int) *FTabLayout {
+	v.FBaseView.Margin(0, dp, 0, 0)
+	return v
+}
+func (v *FTabLayout) MarginRight(dp int) *FTabLayout {
+	v.FBaseView.Margin(0, 0, dp, 0)
+	return v
+}
+func (v *FTabLayout) MarginBottom(dp int) *FTabLayout {
+	v.FBaseView.Margin(0, 0, 0, dp)
+	return v
+}
+func (v *FTabLayout) MarginAll(dp int) *FTabLayout {
+	v.FBaseView.Margin(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FTabLayout) LayoutGravity(gravity int) *FTabLayout {
+	v.FBaseView.LayoutGravity(gravity)
+	return v
+}
+func (v *FTabLayout) Elevation(dp float32) *FTabLayout {
+	v.FBaseView.Elevation(dp)
+	return v
+}
+
+func (v *FTabLayout) Assign(fb **FTabLayout) *FTabLayout {
 	*fb = v
 	return v
 }
-func (v *FTabLayout) layoutWeight(f int) *FTabLayout {
-	v.FBaseView.layoutWeight(f)
+func (v *FTabLayout) LayoutWeight(f int) *FTabLayout {
+	v.FBaseView.LayoutWeight(f)
 	return v
 }
 
@@ -156,7 +156,7 @@ type FTab struct {
 	Text, Icon string
 }
 
-func tab(text string, i ...string) *FTab {
+func Tab(text string, i ...string) *FTab {
 	t := &FTab{}
 	t.Text = text
 	if len(i) > 0 {
@@ -167,9 +167,9 @@ func tab(text string, i ...string) *FTab {
 
 // ----------------------------------------------------------
 
-func (v *FTabLayout) tabs(ts ...*FTab) *FTabLayout {
+func (v *FTabLayout) Tabs(ts ...*FTab) *FTabLayout {
 	for _, t := range ts {
-		GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "AddTab", jsonObject(t))
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddTab", JsonObject(t))
 	}
 	return v
 }

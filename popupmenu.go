@@ -5,26 +5,26 @@ type FPopupMenu struct {
 	UI             string
 }
 
-func (base *FBaseView) popupMenu(menuItems ...interface{}) *FPopupMenu {
+func (base *FBaseView) PopupMenu(menuItems ...interface{}) *FPopupMenu {
 	v := &FPopupMenu{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "PopupMenu"
 	v.UI = base.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, jsonArray([]string{v.VID, base.VID}))
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Menus", jsonArray(menuItems))
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, JsonArray([]string{v.VID, base.VID}))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Menus", JsonArray(menuItems))
 	return v
 }
-func (base *FBaseView) showPopupMenu(menuItems ...interface{}) {
-	base.popupMenu(menuItems).show()
+func (base *FBaseView) ShowPopupMenu(menuItems ...interface{}) {
+	base.PopupMenu(menuItems).Show()
 }
-func (v *FPopupMenu) getVID() string {
+func (v *FPopupMenu) GetVID() string {
 	return v.VID
 }
-func (v *FPopupMenu) show() *FPopupMenu {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Show", "")
+func (v *FPopupMenu) Show() *FPopupMenu {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Show", "")
 	return v
 }
-func (v *FPopupMenu) dismiss() *FPopupMenu {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Dismiss", "")
+func (v *FPopupMenu) Dismiss() *FPopupMenu {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Dismiss", "")
 	return v
 }

@@ -17,9 +17,9 @@ func MenuItem(title string) *FMenuItem {
 	return mi
 }
 func (m *FMenuItem) onClick(f func()) *FMenuItem {
-	fnId := newToken()
+	fnId := NewToken()
 	m.MyOnClick = fnId
-	GlobalVars.eventHandlersMap[fnId] = func(string) string {
+	GlobalVars.EventHandlersMap[fnId] = func(string) string {
 		f()
 		return ""
 	}

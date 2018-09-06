@@ -5,8 +5,8 @@ type Activity struct {
 }
 
 func (a *Activity) SetUIInterface(u UIController) string {
-	uId := newToken()
-	GlobalVars.uis[uId] = u
+	uId := NewToken()
+	GlobalVars.UIs[uId] = u
 	a.UI = uId
 	return uId
 }
@@ -27,9 +27,9 @@ type ActivityConfig struct {
 	FnId       string
 }
 
-func startActivity(a *Activity, createView func(*Activity), conf *ActivityConfig) {
-	fnId := newToken()
-	GlobalVars.eventHandlersMap[fnId] = func(uId string) string {
+func StartActivity(a *Activity, createView func(*Activity), conf *ActivityConfig) {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(uId string) string {
 		if createView != nil {
 			createView(&Activity{UI: uId})
 		}
@@ -40,11 +40,11 @@ func startActivity(a *Activity, createView func(*Activity), conf *ActivityConfig
 		conf.LaunchMode = "Standard"
 	}
 	conf.FnId = fnId
-	GlobalVars.uis[a.UI].NewView("Activity", jsonObject(conf))
+	GlobalVars.UIs[a.UI].NewView("Activity", JsonObject(conf))
 }
-func finish(a *Activity) {
-	GlobalVars.uis[a.UI].ViewSetAttr("Activity", "Finish", "")
+func Finish(a *Activity) {
+	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "Finish", "")
 }
-func showToast(a *Activity, s string) {
-	GlobalVars.uis[a.UI].ViewSetAttr("Activity", "ShowToast", s)
+func ShowToast(a *Activity, s string) {
+	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "ShowToast", s)
 }

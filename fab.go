@@ -6,152 +6,152 @@ type FFab struct {
 
 func Fab(a *Activity) *FFab {
 	v := &FFab{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "Fab"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func (vh *ViewHolder) getFabByItemId(id string) *FFab {
+func (vh *ViewHolder) GetFabByItemId(id string) *FFab {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.viewMap[v].(*FFab); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FFab); ok {
 			return bt
 		}
 	}
 	return nil
 }
 
-func (v *FFab) size(w, h int) *FFab {
+func (v *FFab) Size(w, h int) *FFab {
 	i := []int{w, h}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FFab) setId(s string) *FFab {
-	GlobalVars.idMap[s] = v
+func (v *FFab) SetId(s string)*FFab {
+	GlobalVars.IdMap[s] = v
 	return v
 }
 
-func (v *FFab) setItemId(parent *FListView, id string) *FFab {
+func (v *FFab) SetItemId(parent *FListView, id string) *FFab {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.getVID()
+	parent.Vh.Vlist[id] = v.GetVID()
 	return v
 }
-func getFabById(id string) *FFab {
-	if v, ok := GlobalVars.idMap[id].(*FFab); ok {
+func GetFabById(id string) *FFab {
+	if v, ok := GlobalVars.IdMap[id].(*FFab); ok {
 		return v
 	}
 	return nil
 }
 
-func (v *FFab) background(s string) *FFab {
-	v.FBaseView.background(s)
+func (v *FFab) Background(s string) *FFab {
+	v.FBaseView.Background(s)
 	return v
 }
-func (v *FFab) backgroundColor(s int) *FFab {
-	v.FBaseView.backgroundColor(s)
+func (v *FFab) BackgroundColor(s int) *FFab {
+	v.FBaseView.BackgroundColor(s)
 	return v
 }
-func (v *FFab) cachedBackground(s string) *FFab {
-	v.FBaseView.cachedBackground(s)
-	return v
-}
-
-func (v *FFab) visible() *FFab {
-	v.FBaseView.visible()
-	return v
-}
-func (v *FFab) invisible() *FFab {
-	v.FBaseView.invisible()
-	return v
-}
-func (v *FFab) gone() *FFab {
-	v.FBaseView.gone()
+func (v *FFab) CachedBackground(s string) *FFab {
+	v.FBaseView.CachedBackground(s)
 	return v
 }
 
-func (v *FFab) padding(left, top, right, bottom int) *FFab {
-	v.FBaseView.padding(left, top, right, bottom)
+func (v *FFab) Visible() *FFab {
+	v.FBaseView.Visible()
 	return v
 }
-func (v *FFab) paddingLeft(dp int) *FFab {
-	v.FBaseView.padding(dp, 0, 0, 0)
+func (v *FFab) Invisible() *FFab {
+	v.FBaseView.Invisible()
 	return v
 }
-func (v *FFab) paddingTop(dp int) *FFab {
-	v.FBaseView.padding(0, dp, 0, 0)
-	return v
-}
-func (v *FFab) paddingRight(dp int) *FFab {
-	v.FBaseView.padding(0, 0, dp, 0)
-	return v
-}
-func (v *FFab) paddingBottom(dp int) *FFab {
-	v.FBaseView.padding(0, 0, 0, dp)
-	return v
-}
-func (v *FFab) paddingAll(dp int) *FFab {
-	v.FBaseView.padding(dp, dp, dp, dp)
+func (v *FFab) Gone() *FFab {
+	v.FBaseView.Gone()
 	return v
 }
 
-func (v *FFab) margin(left, top, right, bottom int) *FFab {
-	v.FBaseView.margin(left, top, right, bottom)
+func (v *FFab) Padding(left, top, right, bottom int) *FFab {
+	v.FBaseView.Padding(left, top, right, bottom)
 	return v
 }
-func (v *FFab) marginLeft(dp int) *FFab {
-	v.FBaseView.margin(dp, 0, 0, 0)
+func (v *FFab) PaddingLeft(dp int) *FFab {
+	v.FBaseView.Padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FFab) marginTop(dp int) *FFab {
-	v.FBaseView.margin(0, dp, 0, 0)
+func (v *FFab) PaddingTop(dp int) *FFab {
+	v.FBaseView.Padding(0, dp, 0, 0)
 	return v
 }
-func (v *FFab) marginRight(dp int) *FFab {
-	v.FBaseView.margin(0, 0, dp, 0)
+func (v *FFab) PaddingRight(dp int) *FFab {
+	v.FBaseView.Padding(0, 0, dp, 0)
 	return v
 }
-func (v *FFab) marginBottom(dp int) *FFab {
-	v.FBaseView.margin(0, 0, 0, dp)
+func (v *FFab) PaddingBottom(dp int) *FFab {
+	v.FBaseView.Padding(0, 0, 0, dp)
 	return v
 }
-func (v *FFab) marginAll(dp int) *FFab {
-	v.FBaseView.margin(dp, dp, dp, dp)
-	return v
-}
-
-func (v *FFab) layoutGravity(gravity int) *FFab {
-	v.FBaseView.layoutGravity(gravity)
-	return v
-}
-func (v *FFab) elevation(dp float32) *FFab {
-	v.FBaseView.elevation(dp)
+func (v *FFab) PaddingAll(dp int) *FFab {
+	v.FBaseView.Padding(dp, dp, dp, dp)
 	return v
 }
 
-func (v *FFab) assign(fb **FFab) *FFab {
+func (v *FFab) Margin(left, top, right, bottom int) *FFab {
+	v.FBaseView.Margin(left, top, right, bottom)
+	return v
+}
+func (v *FFab) MarginLeft(dp int) *FFab {
+	v.FBaseView.Margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FFab) MarginTop(dp int) *FFab {
+	v.FBaseView.Margin(0, dp, 0, 0)
+	return v
+}
+func (v *FFab) MarginRight(dp int) *FFab {
+	v.FBaseView.Margin(0, 0, dp, 0)
+	return v
+}
+func (v *FFab) MarginBottom(dp int) *FFab {
+	v.FBaseView.Margin(0, 0, 0, dp)
+	return v
+}
+func (v *FFab) MarginAll(dp int) *FFab {
+	v.FBaseView.Margin(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FFab) LayoutGravity(gravity int) *FFab {
+	v.FBaseView.LayoutGravity(gravity)
+	return v
+}
+func (v *FFab) Elevation(dp float32) *FFab {
+	v.FBaseView.Elevation(dp)
+	return v
+}
+
+func (v *FFab) Assign(fb **FFab) *FFab {
 	*fb = v
 	return v
 }
-func (v *FFab) layoutWeight(f int) *FFab {
-	v.FBaseView.layoutWeight(f)
+func (v *FFab) LayoutWeight(f int) *FFab {
+	v.FBaseView.LayoutWeight(f)
 	return v
 }
 
 // --------------------------------------------------------
 
-func (v *FFab) icon(s string) *FFab {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Icon", s)
+func (v *FFab) Icon(s string) *FFab {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Icon", s)
 	return v
 }
-func (v *FFab) onClick(f func()) *FFab {
-	fnId := newToken()
-	GlobalVars.eventHandlersMap[fnId] = func(string) string {
+func (v *FFab) OnClick(f func()) *FFab {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(string) string {
 		f()
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnId)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnId)
 	return v
 }

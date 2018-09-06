@@ -42,30 +42,30 @@ func multiViews(ps ...interface{}) ([]IView, bool) {
 	return ws, true
 }
 */
-func newToken() string {
+func NewToken() string {
 	return strToolkit.NewToken()
 }
-func jsonArray(i interface{}) string {
+func JsonArray(i interface{}) string {
 	b, e := json.Marshal(i)
 	if e != nil {
 		return "[]"
 	}
 	return string(b)
 }
-func jsonObject(i interface{}) string {
+func JsonObject(i interface{}) string {
 	b, e := json.Marshal(i)
 	if e != nil {
 		return "{}"
 	}
 	return string(b)
 }
-func unJson(str string, v interface{}) {
+func UnJson(str string, v interface{}) {
 	e := json.Unmarshal([]byte(str), v)
 	if e != nil {
-		fmt.Println("unJson() err:", e)
+		fmt.Println("UnJson() err:", e)
 	}
 }
-func getrpath(s string) string {
+func Getrpath(s string) string {
 	if len(s) < 1 {
 		return ""
 	}
@@ -75,8 +75,8 @@ func getrpath(s string) string {
 	}
 	return s + sp
 }
-func downloadNetFile(url, downloadDir string, callback func(string)) {
-	f := getrpath(downloadDir) + newToken()
+func DownloadNetFile(url, downloadDir string, callback func(string)) {
+	f := Getrpath(downloadDir) + NewToken()
 	e := netToolkit.DownloadFile(url, f)
 	if e != nil {
 		fmt.Println(e)
@@ -84,8 +84,8 @@ func downloadNetFile(url, downloadDir string, callback func(string)) {
 	}
 	callback(f)
 }
-func cacheNetFile(url, cacheDir string, callback func(string)) {
-	f := getrpath(cacheDir) + url2cachePath(url)
+func CacheNetFile(url, cacheDir string, callback func(string)) {
+	f := Getrpath(cacheDir) + Url2cachePath(url)
 	if _, e := os.Stat(f); e != nil {
 		e = netToolkit.DownloadFile(url, f)
 		if e != nil {
@@ -95,15 +95,15 @@ func cacheNetFile(url, cacheDir string, callback func(string)) {
 	}
 	callback(f)
 }
-func url2cachePath(url string) string {
-	rUrl := getRealUrl(url)
+func Url2cachePath(url string) string {
+	rUrl := GetRealUrl(url)
 	s := strings.Replace(rUrl, "://", "/", -1)
 	if strToolkit.EndsWith(s, "/") {
 		return s[:len(s)-1]
 	}
 	return s
 }
-func getRealUrl(url string) string {
+func GetRealUrl(url string) string {
 	for i := 0; i < len(url); i++ {
 		item := url[i : i+1]
 		if item == "?" || item == "#" {
@@ -112,9 +112,9 @@ func getRealUrl(url string) string {
 	}
 	return url
 }
-func sPrintf(a interface{}) string {
+func SPrintf(a interface{}) string {
 	return fmt.Sprintf("%v", a)
 }
-func xPrintf(a int) string {
+func XPrintf(a int) string {
 	return fmt.Sprintf("%x", a)
 }

@@ -6,174 +6,174 @@ type FLinearLayout struct {
 	Children  []IView
 }
 
-func (vh *ViewHolder) getLinearLayoutByItemId(id string) *FLinearLayout {
+func (vh *ViewHolder) GetLinearLayoutByItemId(id string) *FLinearLayout {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.viewMap[v].(*FLinearLayout); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FLinearLayout); ok {
 			return bt
 		}
 	}
 	return nil
 }
-func (v *FLinearLayout) setId(s string) *FLinearLayout {
-	GlobalVars.idMap[s] = v
+func (v *FLinearLayout) SetId(s string)*FLinearLayout {
+	GlobalVars.IdMap[s] = v
 	return v
 }
 
-func (v *FLinearLayout) setItemId(parent *FListView, id string) *FLinearLayout {
+func (v *FLinearLayout) SetItemId(parent *FListView, id string) *FLinearLayout {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.getVID()
+	parent.Vh.Vlist[id] = v.GetVID()
 	return v
 }
-func getLinearLayoutById(id string) *FLinearLayout {
-	if v, ok := GlobalVars.idMap[id].(*FLinearLayout); ok {
+func GetLinearLayoutById(id string) *FLinearLayout {
+	if v, ok := GlobalVars.IdMap[id].(*FLinearLayout); ok {
 		return v
 	}
 	return nil
 }
 func LinearLayout(a *Activity) *FLinearLayout {
 	v := &FLinearLayout{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "LinearLayout"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func (v *FLinearLayout) size(w, h int) *FLinearLayout {
+func (v *FLinearLayout) Size(w, h int) *FLinearLayout {
 	i := []int{w, h}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
 
-func (v *FLinearLayout) background(s string) *FLinearLayout {
-	v.FBaseView.background(s)
+func (v *FLinearLayout) Background(s string) *FLinearLayout {
+	v.FBaseView.Background(s)
 	return v
 }
-func (v *FLinearLayout) backgroundColor(s int) *FLinearLayout {
-	v.FBaseView.backgroundColor(s)
+func (v *FLinearLayout) BackgroundColor(s int) *FLinearLayout {
+	v.FBaseView.BackgroundColor(s)
 	return v
 }
 
-func (v *FLinearLayout) cachedBackground(s string) *FLinearLayout {
-	v.FBaseView.cachedBackground(s)
+func (v *FLinearLayout) CachedBackground(s string) *FLinearLayout {
+	v.FBaseView.CachedBackground(s)
 	return v
 }
 func (v *FLinearLayout) onClick(f func()) *FLinearLayout {
-	fnID := newToken()
-	GlobalVars.eventHandlersMap[fnID] = func(string) string {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
 		f()
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
 
-func (v *FLinearLayout) visible() *FLinearLayout {
-	v.FBaseView.visible()
+func (v *FLinearLayout) Visible() *FLinearLayout {
+	v.FBaseView.Visible()
 	return v
 }
-func (v *FLinearLayout) invisible() *FLinearLayout {
-	v.FBaseView.invisible()
+func (v *FLinearLayout) Invisible() *FLinearLayout {
+	v.FBaseView.Invisible()
 	return v
 }
-func (v *FLinearLayout) gone() *FLinearLayout {
-	v.FBaseView.gone()
-	return v
-}
-
-func (v *FLinearLayout) padding(left, top, right, bottom int) *FLinearLayout {
-	v.FBaseView.padding(left, top, right, bottom)
-	return v
-}
-func (v *FLinearLayout) paddingLeft(dp int) *FLinearLayout {
-	v.FBaseView.padding(dp, 0, 0, 0)
-	return v
-}
-func (v *FLinearLayout) paddingTop(dp int) *FLinearLayout {
-	v.FBaseView.padding(0, dp, 0, 0)
-	return v
-}
-func (v *FLinearLayout) paddingRight(dp int) *FLinearLayout {
-	v.FBaseView.padding(0, 0, dp, 0)
-	return v
-}
-func (v *FLinearLayout) paddingBottom(dp int) *FLinearLayout {
-	v.FBaseView.padding(0, 0, 0, dp)
-	return v
-}
-func (v *FLinearLayout) paddingAll(all int) *FLinearLayout {
-	v.FBaseView.padding(all, all, all, all)
+func (v *FLinearLayout) Gone() *FLinearLayout {
+	v.FBaseView.Gone()
 	return v
 }
 
-func (v *FLinearLayout) margin(left, top, right, bottom int) *FLinearLayout {
-	v.FBaseView.margin(left, top, right, bottom)
+func (v *FLinearLayout) Padding(left, top, right, bottom int) *FLinearLayout {
+	v.FBaseView.Padding(left, top, right, bottom)
 	return v
 }
-func (v *FLinearLayout) marginLeft(dp int) *FLinearLayout {
-	v.FBaseView.margin(dp, 0, 0, 0)
+func (v *FLinearLayout) PaddingLeft(dp int) *FLinearLayout {
+	v.FBaseView.Padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FLinearLayout) marginTop(dp int) *FLinearLayout {
-	v.FBaseView.margin(0, dp, 0, 0)
+func (v *FLinearLayout) PaddingTop(dp int) *FLinearLayout {
+	v.FBaseView.Padding(0, dp, 0, 0)
 	return v
 }
-func (v *FLinearLayout) marginRight(dp int) *FLinearLayout {
-	v.FBaseView.margin(0, 0, dp, 0)
+func (v *FLinearLayout) PaddingRight(dp int) *FLinearLayout {
+	v.FBaseView.Padding(0, 0, dp, 0)
 	return v
 }
-func (v *FLinearLayout) marginBottom(dp int) *FLinearLayout {
-	v.FBaseView.margin(0, 0, 0, dp)
+func (v *FLinearLayout) PaddingBottom(dp int) *FLinearLayout {
+	v.FBaseView.Padding(0, 0, 0, dp)
 	return v
 }
-func (v *FLinearLayout) marginAll(dp int) *FLinearLayout {
-	v.FBaseView.margin(dp, dp, dp, dp)
-	return v
-}
-
-func (v *FLinearLayout) layoutGravity(gravity int) *FLinearLayout {
-	v.FBaseView.layoutGravity(gravity)
-	return v
-}
-func (v *FLinearLayout) elevation(dp float32) *FLinearLayout {
-	v.FBaseView.elevation(dp)
+func (v *FLinearLayout) PaddingAll(all int) *FLinearLayout {
+	v.FBaseView.Padding(all, all, all, all)
 	return v
 }
 
-func (v *FLinearLayout) assign(fb **FLinearLayout) *FLinearLayout {
+func (v *FLinearLayout) Margin(left, top, right, bottom int) *FLinearLayout {
+	v.FBaseView.Margin(left, top, right, bottom)
+	return v
+}
+func (v *FLinearLayout) MarginLeft(dp int) *FLinearLayout {
+	v.FBaseView.Margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FLinearLayout) MarginTop(dp int) *FLinearLayout {
+	v.FBaseView.Margin(0, dp, 0, 0)
+	return v
+}
+func (v *FLinearLayout) MarginRight(dp int) *FLinearLayout {
+	v.FBaseView.Margin(0, 0, dp, 0)
+	return v
+}
+func (v *FLinearLayout) MarginBottom(dp int) *FLinearLayout {
+	v.FBaseView.Margin(0, 0, 0, dp)
+	return v
+}
+func (v *FLinearLayout) MarginAll(dp int) *FLinearLayout {
+	v.FBaseView.Margin(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FLinearLayout) LayoutGravity(gravity int) *FLinearLayout {
+	v.FBaseView.LayoutGravity(gravity)
+	return v
+}
+func (v *FLinearLayout) Elevation(dp float32) *FLinearLayout {
+	v.FBaseView.Elevation(dp)
+	return v
+}
+
+func (v *FLinearLayout) Assign(fb **FLinearLayout) *FLinearLayout {
 	*fb = v
 	return v
 }
-func (v *FLinearLayout) layoutWeight(f int) *FLinearLayout {
-	v.FBaseView.layoutWeight(f)
+func (v *FLinearLayout) LayoutWeight(f int) *FLinearLayout {
+	v.FBaseView.LayoutWeight(f)
 	return v
 }
 
 // --------------------------------------------------------
-func (v *FLinearLayout) append(vs ...IView) *FLinearLayout {
+func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
 	v.Children = vs
 	for _, i := range vs {
-		GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "AddView", i.getVID())
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetVID())
 	}
 	if v.showAfter {
-		v.show()
+		v.Show()
 	}
 	return v
 }
-func (v *FLinearLayout) deferShow() *FLinearLayout {
+func (v *FLinearLayout) DeferShow() *FLinearLayout {
 	v.showAfter = true
 	return v
 }
-func (v *FLinearLayout) vertical() *FLinearLayout {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Orientation", "VERTICAL")
+func (v *FLinearLayout) Vertical() *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Orientation", "VERTICAL")
 	return v
 }
-func (v *FLinearLayout) horizontal() *FLinearLayout {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Orientation", "HORIZONTAL")
+func (v *FLinearLayout) Horizontal() *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Orientation", "HORIZONTAL")
 	return v
 }
-func (v *FLinearLayout) isVertical() bool {
-	return GlobalVars.uis[v.UI].ViewGetAttr(v.VID, "Orientation") == "VERTICAL"
+func (v *FLinearLayout) IsVertical() bool {
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Orientation") == "VERTICAL"
 }

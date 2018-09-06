@@ -6,168 +6,168 @@ type FImageView struct {
 
 func ImageView(a *Activity) *FImageView {
 	v := &FImageView{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "ImageView"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func (vh *ViewHolder) getImageViewByItemId(id string) *FImageView {
+func (vh *ViewHolder) GetImageViewByItemId(id string) *FImageView {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.viewMap[v].(*FImageView); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FImageView); ok {
 			return bt
 		}
 	}
 	return nil
 }
 
-func (v *FImageView) size(w, h int) *FImageView {
+func (v *FImageView) Size(w, h int) *FImageView {
 	i := []int{w, h}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FImageView) setId(s string) *FImageView {
-	GlobalVars.idMap[s] = v
+func (v *FImageView) SetId(s string)*FImageView {
+	GlobalVars.IdMap[s] = v
 	return v
 }
 
-func (v *FImageView) setItemId(parent *FListView, id string) *FImageView {
+func (v *FImageView) SetItemId(parent *FListView, id string) *FImageView {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.getVID()
+	parent.Vh.Vlist[id] = v.GetVID()
 	return v
 }
-func getImageViewById(id string) *FImageView {
-	if v, ok := GlobalVars.idMap[id].(*FImageView); ok {
+func GetImageViewById(id string) *FImageView {
+	if v, ok := GlobalVars.IdMap[id].(*FImageView); ok {
 		return v
 	}
 	return nil
 }
 
-func (v *FImageView) background(s string) *FImageView {
-	v.FBaseView.background(s)
+func (v *FImageView) Background(s string) *FImageView {
+	v.FBaseView.Background(s)
 	return v
 }
-func (v *FImageView) backgroundColor(s int) *FImageView {
-	v.FBaseView.backgroundColor(s)
+func (v *FImageView) BackgroundColor(s int) *FImageView {
+	v.FBaseView.BackgroundColor(s)
 	return v
 }
-func (v *FImageView) cachedBackground(s string) *FImageView {
-	v.FBaseView.cachedBackground(s)
-	return v
-}
-
-func (v *FImageView) visible() *FImageView {
-	v.FBaseView.visible()
-	return v
-}
-func (v *FImageView) invisible() *FImageView {
-	v.FBaseView.invisible()
-	return v
-}
-func (v *FImageView) gone() *FImageView {
-	v.FBaseView.gone()
+func (v *FImageView) CachedBackground(s string) *FImageView {
+	v.FBaseView.CachedBackground(s)
 	return v
 }
 
-func (v *FImageView) padding(left, top, right, bottom int) *FImageView {
-	v.FBaseView.padding(left, top, right, bottom)
+func (v *FImageView) Visible() *FImageView {
+	v.FBaseView.Visible()
 	return v
 }
-func (v *FImageView) paddingLeft(dp int) *FImageView {
-	v.FBaseView.padding(dp, 0, 0, 0)
+func (v *FImageView) Invisible() *FImageView {
+	v.FBaseView.Invisible()
 	return v
 }
-func (v *FImageView) paddingTop(dp int) *FImageView {
-	v.FBaseView.padding(0, dp, 0, 0)
-	return v
-}
-func (v *FImageView) paddingRight(dp int) *FImageView {
-	v.FBaseView.padding(0, 0, dp, 0)
-	return v
-}
-func (v *FImageView) paddingBottom(dp int) *FImageView {
-	v.FBaseView.padding(0, 0, 0, dp)
-	return v
-}
-func (v *FImageView) paddingAll(dp int) *FImageView {
-	v.FBaseView.padding(dp, dp, dp, dp)
+func (v *FImageView) Gone() *FImageView {
+	v.FBaseView.Gone()
 	return v
 }
 
-func (v *FImageView) margin(left, top, right, bottom int) *FImageView {
-	v.FBaseView.margin(left, top, right, bottom)
+func (v *FImageView) Padding(left, top, right, bottom int) *FImageView {
+	v.FBaseView.Padding(left, top, right, bottom)
 	return v
 }
-func (v *FImageView) marginLeft(dp int) *FImageView {
-	v.FBaseView.margin(dp, 0, 0, 0)
+func (v *FImageView) PaddingLeft(dp int) *FImageView {
+	v.FBaseView.Padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FImageView) marginTop(dp int) *FImageView {
-	v.FBaseView.margin(0, dp, 0, 0)
+func (v *FImageView) PaddingTop(dp int) *FImageView {
+	v.FBaseView.Padding(0, dp, 0, 0)
 	return v
 }
-func (v *FImageView) marginRight(dp int) *FImageView {
-	v.FBaseView.margin(0, 0, dp, 0)
+func (v *FImageView) PaddingRight(dp int) *FImageView {
+	v.FBaseView.Padding(0, 0, dp, 0)
 	return v
 }
-func (v *FImageView) marginBottom(dp int) *FImageView {
-	v.FBaseView.margin(0, 0, 0, dp)
+func (v *FImageView) PaddingBottom(dp int) *FImageView {
+	v.FBaseView.Padding(0, 0, 0, dp)
 	return v
 }
-func (v *FImageView) marginAll(dp int) *FImageView {
-	v.FBaseView.margin(dp, dp, dp, dp)
-	return v
-}
-
-func (v *FImageView) layoutGravity(gravity int) *FImageView {
-	v.FBaseView.layoutGravity(gravity)
-	return v
-}
-func (v *FImageView) elevation(dp float32) *FImageView {
-	v.FBaseView.elevation(dp)
+func (v *FImageView) PaddingAll(dp int) *FImageView {
+	v.FBaseView.Padding(dp, dp, dp, dp)
 	return v
 }
 
-func (v *FImageView) assign(fb **FImageView) *FImageView {
+func (v *FImageView) Margin(left, top, right, bottom int) *FImageView {
+	v.FBaseView.Margin(left, top, right, bottom)
+	return v
+}
+func (v *FImageView) MarginLeft(dp int) *FImageView {
+	v.FBaseView.Margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FImageView) MarginTop(dp int) *FImageView {
+	v.FBaseView.Margin(0, dp, 0, 0)
+	return v
+}
+func (v *FImageView) MarginRight(dp int) *FImageView {
+	v.FBaseView.Margin(0, 0, dp, 0)
+	return v
+}
+func (v *FImageView) MarginBottom(dp int) *FImageView {
+	v.FBaseView.Margin(0, 0, 0, dp)
+	return v
+}
+func (v *FImageView) MarginAll(dp int) *FImageView {
+	v.FBaseView.Margin(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FImageView) LayoutGravity(gravity int) *FImageView {
+	v.FBaseView.LayoutGravity(gravity)
+	return v
+}
+func (v *FImageView) Elevation(dp float32) *FImageView {
+	v.FBaseView.Elevation(dp)
+	return v
+}
+
+func (v *FImageView) Assign(fb **FImageView) *FImageView {
 	*fb = v
 	return v
 }
-func (v *FImageView) layoutWeight(f int) *FImageView {
-	v.FBaseView.layoutWeight(f)
+func (v *FImageView) LayoutWeight(f int) *FImageView {
+	v.FBaseView.LayoutWeight(f)
 	return v
 }
 
 // --------------------------------------------------------
-func (v *FImageView) src(s string) *FImageView {
+func (v *FImageView) Src(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
-		go downloadNetFile(s, "/data/data/"+GlobalVars.uis[v.UI].GetPkg()+"/tmp/", func(f string) {
-			fnID := newToken()
-			GlobalVars.eventHandlersMap[fnID] = func(string) string {
-				GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Src", "file://"+f)
+		go DownloadNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/tmp/", func(f string) {
+			fnID := NewToken()
+			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", "file://"+f)
 				return ""
 			}
-			GlobalVars.uis[v.UI].RunOnUIThread(fnID)
+			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
 		})
 		return v
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Src", s)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", s)
 	return v
 }
-func (v *FImageView) cachedSrc(s string) *FImageView {
+func (v *FImageView) CachedSrc(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
-		go cacheNetFile(s, "/data/data/"+GlobalVars.uis[v.UI].GetPkg()+"/cacheDir/", func(f string) {
-			fnID := newToken()
-			GlobalVars.eventHandlersMap[fnID] = func(string) string {
-				GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Src", "file://"+f)
+		go CacheNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/cacheDir/", func(f string) {
+			fnID := NewToken()
+			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", "file://"+f)
 				return ""
 			}
-			GlobalVars.uis[v.UI].RunOnUIThread(fnID)
+			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
 		})
 		return v
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Src", s)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", s)
 	return v
 }

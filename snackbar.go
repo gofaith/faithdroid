@@ -6,28 +6,28 @@ type FSnackbar struct {
 
 func Snackbar(a *Activity) *FSnackbar {
 	v := &FSnackbar{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "Snackbar"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (v *FSnackbar) text(s string) *FSnackbar {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Text", s)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)
 	return v
 }
 func (v *FSnackbar) action(s string, onClick func()) *FSnackbar {
-	fnId := newToken()
-	GlobalVars.eventHandlersMap[fnId] = func(string) string {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(string) string {
 		onClick()
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Action", jsonArray([]string{s, fnId}))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Action", JsonArray([]string{s, fnId}))
 	return v
 }
 func (v *FSnackbar) show() {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Show", "")
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Show", "")
 }
 func showSnackbar(a *Activity, s string) {
 	Snackbar(a).text(s).show()

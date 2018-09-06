@@ -15,9 +15,9 @@ type ViewHolder struct {
 	Vlist map[string]string
 }
 
-func (vh *ViewHolder) getListViewById(id string) *FListView {
+func (vh *ViewHolder) GetListViewById(id string) *FListView {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.viewMap[v].(*FListView); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FListView); ok {
 			return bt
 		}
 	}
@@ -25,201 +25,201 @@ func (vh *ViewHolder) getListViewById(id string) *FListView {
 }
 
 // -----------------------------------
-func (v *FListView) setId(s string) *FListView {
-	GlobalVars.idMap[s] = v
+func (v *FListView) SetId(s string)*FListView {
+	GlobalVars.IdMap[s] = v
 	return v
 }
-func (v *FListView) setItemId(parent *FListView, id string) *FListView {
+func (v *FListView) SetItemId(parent *FListView, id string) *FListView {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.getVID()
+	parent.Vh.Vlist[id] = v.GetVID()
 	return v
 }
-func getListViewByItemId(id string) *FListView {
-	if v, ok := GlobalVars.idMap[id].(*FListView); ok {
+func GetListViewByItemId(id string) *FListView {
+	if v, ok := GlobalVars.IdMap[id].(*FListView); ok {
 		return v
 	}
 	return nil
 }
 func VListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "VListView"
 	v.UI = a.UI
 	v.Vh.Vlist = make(map[string]string)
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
-	fnId1 := newToken()
-	GlobalVars.eventHandlersMap[fnId1] = func(string) string {
-		v.Vh.VID = getView(v).getVID()
-		return jsonObject(v.Vh)
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
+	fnId1 := NewToken()
+	GlobalVars.EventHandlersMap[fnId1] = func(string) string {
+		v.Vh.VID = getView(v).GetVID()
+		return JsonObject(v.Vh)
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
 
-	fnId2 := newToken()
-	GlobalVars.eventHandlersMap[fnId2] = func(str string) string {
+	fnId2 := NewToken()
+	GlobalVars.EventHandlersMap[fnId2] = func(str string) string {
 		obd := TypeOnBindDataArgsBundle{}
-		unJson(str, &obd)
+		UnJson(str, &obd)
 		vh := ViewHolder{}
-		unJson(obd.Str, &vh)
+		UnJson(obd.Str, &vh)
 		bindData(&vh, obd.Position)
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
 
-	fnId3 := newToken()
-	GlobalVars.eventHandlersMap[fnId3] = func(str string) string {
-		return sPrintf(getCount())
+	fnId3 := NewToken()
+	GlobalVars.EventHandlersMap[fnId3] = func(str string) string {
+		return SPrintf(getCount())
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
 func HListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "HListView"
 	v.UI = a.UI
 	v.Vh.Vlist = make(map[string]string)
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
-	fnId1 := newToken()
-	GlobalVars.eventHandlersMap[fnId1] = func(string) string {
-		v.Vh.VID = getView(v).getVID()
-		return jsonObject(v.Vh)
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
+	fnId1 := NewToken()
+	GlobalVars.EventHandlersMap[fnId1] = func(string) string {
+		v.Vh.VID = getView(v).GetVID()
+		return JsonObject(v.Vh)
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
 
-	fnId2 := newToken()
-	GlobalVars.eventHandlersMap[fnId2] = func(str string) string {
+	fnId2 := NewToken()
+	GlobalVars.EventHandlersMap[fnId2] = func(str string) string {
 		obd := TypeOnBindDataArgsBundle{}
-		unJson(str, &obd)
+		UnJson(str, &obd)
 		vh := ViewHolder{}
-		unJson(obd.Str, &vh)
+		UnJson(obd.Str, &vh)
 		bindData(&vh, obd.Position)
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
 
-	fnId3 := newToken()
-	GlobalVars.eventHandlersMap[fnId3] = func(str string) string {
-		return sPrintf(getCount())
+	fnId3 := NewToken()
+	GlobalVars.EventHandlersMap[fnId3] = func(str string) string {
+		return SPrintf(getCount())
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
-func (v *FListView) size(w, h int) *FListView {
+func (v *FListView) Size(w, h int) *FListView {
 	i := []int{w, h}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
 
-func (v *FListView) background(s string) *FListView {
-	v.FBaseView.background(s)
+func (v *FListView) Background(s string) *FListView {
+	v.FBaseView.Background(s)
 	return v
 }
-func (v *FListView) backgroundColor(s int) *FListView {
-	v.FBaseView.backgroundColor(s)
+func (v *FListView) BackgroundColor(s int) *FListView {
+	v.FBaseView.BackgroundColor(s)
 	return v
 }
 
-func (v *FListView) cachedBackground(s string) *FListView {
-	v.FBaseView.cachedBackground(s)
+func (v *FListView) CachedBackground(s string) *FListView {
+	v.FBaseView.CachedBackground(s)
 	return v
 }
 func (v *FListView) onClick(f func()) *FListView {
-	fnID := newToken()
-	GlobalVars.eventHandlersMap[fnID] = func(string) string {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
 		f()
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
 
-func (v *FListView) visible() *FListView {
-	v.FBaseView.visible()
+func (v *FListView) Visible() *FListView {
+	v.FBaseView.Visible()
 	return v
 }
-func (v *FListView) invisible() *FListView {
-	v.FBaseView.invisible()
+func (v *FListView) Invisible() *FListView {
+	v.FBaseView.Invisible()
 	return v
 }
-func (v *FListView) gone() *FListView {
-	v.FBaseView.gone()
-	return v
-}
-
-func (v *FListView) padding(left, top, right, bottom int) *FListView {
-	v.FBaseView.padding(left, top, right, bottom)
-	return v
-}
-func (v *FListView) paddingLeft(dp int) *FListView {
-	v.FBaseView.padding(dp, 0, 0, 0)
-	return v
-}
-func (v *FListView) paddingTop(dp int) *FListView {
-	v.FBaseView.padding(0, dp, 0, 0)
-	return v
-}
-func (v *FListView) paddingRight(dp int) *FListView {
-	v.FBaseView.padding(0, 0, dp, 0)
-	return v
-}
-func (v *FListView) paddingBottom(dp int) *FListView {
-	v.FBaseView.padding(0, 0, 0, dp)
-	return v
-}
-func (v *FListView) paddingAll(all int) *FListView {
-	v.FBaseView.padding(all, all, all, all)
+func (v *FListView) Gone() *FListView {
+	v.FBaseView.Gone()
 	return v
 }
 
-func (v *FListView) margin(left, top, right, bottom int) *FListView {
-	v.FBaseView.margin(left, top, right, bottom)
+func (v *FListView) Padding(left, top, right, bottom int) *FListView {
+	v.FBaseView.Padding(left, top, right, bottom)
 	return v
 }
-func (v *FListView) marginLeft(dp int) *FListView {
-	v.FBaseView.margin(dp, 0, 0, 0)
+func (v *FListView) PaddingLeft(dp int) *FListView {
+	v.FBaseView.Padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FListView) marginTop(dp int) *FListView {
-	v.FBaseView.margin(0, dp, 0, 0)
+func (v *FListView) PaddingTop(dp int) *FListView {
+	v.FBaseView.Padding(0, dp, 0, 0)
 	return v
 }
-func (v *FListView) marginRight(dp int) *FListView {
-	v.FBaseView.margin(0, 0, dp, 0)
+func (v *FListView) PaddingRight(dp int) *FListView {
+	v.FBaseView.Padding(0, 0, dp, 0)
 	return v
 }
-func (v *FListView) marginBottom(dp int) *FListView {
-	v.FBaseView.margin(0, 0, 0, dp)
+func (v *FListView) PaddingBottom(dp int) *FListView {
+	v.FBaseView.Padding(0, 0, 0, dp)
 	return v
 }
-func (v *FListView) marginAll(dp int) *FListView {
-	v.FBaseView.margin(dp, dp, dp, dp)
-	return v
-}
-
-func (v *FListView) layoutGravity(gravity int) *FListView {
-	v.FBaseView.layoutGravity(gravity)
-	return v
-}
-func (v *FListView) elevation(dp float32) *FListView {
-	v.FBaseView.elevation(dp)
+func (v *FListView) PaddingAll(all int) *FListView {
+	v.FBaseView.Padding(all, all, all, all)
 	return v
 }
 
-func (v *FListView) assign(fb **FListView) *FListView {
+func (v *FListView) Margin(left, top, right, bottom int) *FListView {
+	v.FBaseView.Margin(left, top, right, bottom)
+	return v
+}
+func (v *FListView) MarginLeft(dp int) *FListView {
+	v.FBaseView.Margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FListView) MarginTop(dp int) *FListView {
+	v.FBaseView.Margin(0, dp, 0, 0)
+	return v
+}
+func (v *FListView) MarginRight(dp int) *FListView {
+	v.FBaseView.Margin(0, 0, dp, 0)
+	return v
+}
+func (v *FListView) MarginBottom(dp int) *FListView {
+	v.FBaseView.Margin(0, 0, 0, dp)
+	return v
+}
+func (v *FListView) MarginAll(dp int) *FListView {
+	v.FBaseView.Margin(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FListView) LayoutGravity(gravity int) *FListView {
+	v.FBaseView.LayoutGravity(gravity)
+	return v
+}
+func (v *FListView) Elevation(dp float32) *FListView {
+	v.FBaseView.Elevation(dp)
+	return v
+}
+
+func (v *FListView) Assign(fb **FListView) *FListView {
 	*fb = v
 	return v
 }
-func (v *FListView) layoutWeight(f int) *FListView {
-	v.FBaseView.layoutWeight(f)
+func (v *FListView) LayoutWeight(f int) *FListView {
+	v.FBaseView.LayoutWeight(f)
 	return v
 }
 
 // --------------------------------------------------------------------
-func (v *FListView) notifyDataSetChanged() *FListView {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")
+func (v *FListView) NotifyDataSetChanged() *FListView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")
 	return v
 }

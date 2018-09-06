@@ -6,177 +6,177 @@ type FButton struct {
 
 func Button(a *Activity) *FButton {
 	v := &FButton{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "Button"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func (vh *ViewHolder) getButtonByItemId(id string) *FButton {
+func (vh *ViewHolder) GetButtonByItemId(id string) *FButton {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.viewMap[v].(*FButton); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FButton); ok {
 			return bt
 		}
 	}
 	return nil
 }
 
-func (v *FButton) size(w, h int) *FButton {
+func (v *FButton) Size(w, h int) *FButton {
 	i := []int{w, h}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FButton) setId(s string) *FButton {
-	GlobalVars.idMap[s] = v
+func (v *FButton) SetId(s string) *FButton {
+	GlobalVars.IdMap[s] = v
 	return v
 }
 
-func (v *FButton) setItemId(parent *FListView, id string) *FButton {
+func (v *FButton) SetItemId(parent *FListView, id string) *FButton {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.getVID()
+	parent.Vh.Vlist[id] = v.GetVID()
 	return v
 }
-func getButtonById(id string) *FButton {
-	if v, ok := GlobalVars.idMap[id].(*FButton); ok {
+func GetButtonById(id string) *FButton {
+	if v, ok := GlobalVars.IdMap[id].(*FButton); ok {
 		return v
 	}
 	return nil
 }
 
-func (v *FButton) background(s string) *FButton {
-	v.FBaseView.background(s)
+func (v *FButton) Background(s string) *FButton {
+	v.FBaseView.Background(s)
 	return v
 }
-func (v *FButton) backgroundColor(s int) *FButton {
-	v.FBaseView.backgroundColor(s)
+func (v *FButton) BackgroundColor(s int) *FButton {
+	v.FBaseView.BackgroundColor(s)
 	return v
 }
-func (v *FButton) cachedBackground(s string) *FButton {
-	v.FBaseView.cachedBackground(s)
-	return v
-}
-
-func (v *FButton) visible() *FButton {
-	v.FBaseView.visible()
-	return v
-}
-func (v *FButton) invisible() *FButton {
-	v.FBaseView.invisible()
-	return v
-}
-func (v *FButton) gone() *FButton {
-	v.FBaseView.gone()
+func (v *FButton) CachedBackground(s string) *FButton {
+	v.FBaseView.CachedBackground(s)
 	return v
 }
 
-func (v *FButton) padding(left, top, right, bottom int) *FButton {
-	v.FBaseView.padding(left, top, right, bottom)
+func (v *FButton) Visible() *FButton {
+	v.FBaseView.Visible()
 	return v
 }
-func (v *FButton) paddingLeft(dp int) *FButton {
-	v.FBaseView.padding(dp, 0, 0, 0)
+func (v *FButton) Invisible() *FButton {
+	v.FBaseView.Invisible()
 	return v
 }
-func (v *FButton) paddingTop(dp int) *FButton {
-	v.FBaseView.padding(0, dp, 0, 0)
-	return v
-}
-func (v *FButton) paddingRight(dp int) *FButton {
-	v.FBaseView.padding(0, 0, dp, 0)
-	return v
-}
-func (v *FButton) paddingBottom(dp int) *FButton {
-	v.FBaseView.padding(0, 0, 0, dp)
-	return v
-}
-func (v *FButton) paddingAll(dp int) *FButton {
-	v.FBaseView.padding(dp, dp, dp, dp)
+func (v *FButton) Gone() *FButton {
+	v.FBaseView.Gone()
 	return v
 }
 
-func (v *FButton) margin(left, top, right, bottom int) *FButton {
-	v.FBaseView.margin(left, top, right, bottom)
+func (v *FButton) Padding(left, top, right, bottom int) *FButton {
+	v.FBaseView.Padding(left, top, right, bottom)
 	return v
 }
-func (v *FButton) marginLeft(dp int) *FButton {
-	v.FBaseView.margin(dp, 0, 0, 0)
+func (v *FButton) PaddingLeft(dp int) *FButton {
+	v.FBaseView.Padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FButton) marginTop(dp int) *FButton {
-	v.FBaseView.margin(0, dp, 0, 0)
+func (v *FButton) PaddingTop(dp int) *FButton {
+	v.FBaseView.Padding(0, dp, 0, 0)
 	return v
 }
-func (v *FButton) marginRight(dp int) *FButton {
-	v.FBaseView.margin(0, 0, dp, 0)
+func (v *FButton) PaddingRight(dp int) *FButton {
+	v.FBaseView.Padding(0, 0, dp, 0)
 	return v
 }
-func (v *FButton) marginBottom(dp int) *FButton {
-	v.FBaseView.margin(0, 0, 0, dp)
+func (v *FButton) PaddingBottom(dp int) *FButton {
+	v.FBaseView.Padding(0, 0, 0, dp)
 	return v
 }
-func (v *FButton) marginAll(dp int) *FButton {
-	v.FBaseView.margin(dp, dp, dp, dp)
-	return v
-}
-
-func (v *FButton) layoutGravity(gravity int) *FButton {
-	v.FBaseView.layoutGravity(gravity)
-	return v
-}
-func (v *FButton) elevation(dp float32) *FButton {
-	v.FBaseView.elevation(dp)
+func (v *FButton) PaddingAll(dp int) *FButton {
+	v.FBaseView.Padding(dp, dp, dp, dp)
 	return v
 }
 
-func (v *FButton) assign(fb **FButton) *FButton {
+func (v *FButton) Margin(left, top, right, bottom int) *FButton {
+	v.FBaseView.Margin(left, top, right, bottom)
+	return v
+}
+func (v *FButton) MarginLeft(dp int) *FButton {
+	v.FBaseView.Margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FButton) MarginTop(dp int) *FButton {
+	v.FBaseView.Margin(0, dp, 0, 0)
+	return v
+}
+func (v *FButton) MarginRight(dp int) *FButton {
+	v.FBaseView.Margin(0, 0, dp, 0)
+	return v
+}
+func (v *FButton) MarginBottom(dp int) *FButton {
+	v.FBaseView.Margin(0, 0, 0, dp)
+	return v
+}
+func (v *FButton) MarginAll(dp int) *FButton {
+	v.FBaseView.Margin(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FButton) LayoutGravity(gravity int) *FButton {
+	v.FBaseView.LayoutGravity(gravity)
+	return v
+}
+func (v *FButton) Elevation(dp float32) *FButton {
+	v.FBaseView.Elevation(dp)
+	return v
+}
+
+func (v *FButton) Assign(fb **FButton) *FButton {
 	*fb = v
 	return v
 }
-func (v *FButton) layoutWeight(f int) *FButton {
-	v.FBaseView.layoutWeight(f)
+func (v *FButton) LayoutWeight(f int) *FButton {
+	v.FBaseView.LayoutWeight(f)
 	return v
 }
 
 // --------------------------------------------------------
-func (v *FButton) text(s string) *FButton {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Text", s)
+func (v *FButton) Text(s string) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)
 	return v
 }
-func (v *FButton) textColor(s string) *FButton {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TextColor", s)
+func (v *FButton) TextColor(s string) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TextColor", s)
 	return v
 }
-func (v *FButton) textSize(dpsize int) *FButton {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "TextSize", sPrintf(dpsize))
+func (v *FButton) TextSize(dpsize int) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TextSize", SPrintf(dpsize))
 	return v
 }
-func (v *FButton) getText() string {
-	return GlobalVars.uis[v.UI].ViewGetAttr(v.VID, "Text")
+func (v *FButton) GetText() string {
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Text")
 }
-func (v *FButton) enabled(b bool) *FButton {
+func (v *FButton) Enabled(b bool) *FButton {
 	if b {
-		GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Enabled", "true")
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Enabled", "true")
 	} else {
-		GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Enabled", "false")
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Enabled", "false")
 	}
 	return v
 }
-func (v *FButton) isEnabled() bool {
-	if GlobalVars.uis[v.UI].ViewGetAttr(v.VID, "Enabled") == "true" {
+func (v *FButton) IsEnabled() bool {
+	if GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Enabled") == "true" {
 		return true
 	}
 	return false
 }
 
-func (v *FButton) onClick(f func()) *FButton {
-	fnID := newToken()
-	GlobalVars.eventHandlersMap[fnID] = func(string) string {
+func (v *FButton) OnClick(f func()) *FButton {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
 		f()
 		return ""
 	}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }

@@ -8,142 +8,142 @@ type FToolbar struct {
 // --------------------------------------------------------------------------------
 func Toolbar(a *Activity) *FToolbar {
 	v := &FToolbar{}
-	v.VID = newToken()
+	v.VID = NewToken()
 	v.ClassName = "Toolbar"
 	v.UI = a.UI
-	GlobalVars.uis[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.viewMap[v.VID] = v
+	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func (v *FToolbar) size(w, h int) *FToolbar {
+func (v *FToolbar) Size(w, h int) *FToolbar {
 	i := []int{w, h}
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Size", jsonArray(i))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FToolbar) setId(s string) *FToolbar {
-	GlobalVars.idMap[s] = v
+func (v *FToolbar) SetId(s string)*FToolbar {
+	GlobalVars.IdMap[s] = v
 	return v
 }
 
-func (v *FToolbar) setItemId(parent *FListView, id string) *FToolbar {
+func (v *FToolbar) SetItemId(parent *FListView, id string) *FToolbar {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.getVID()
+	parent.Vh.Vlist[id] = v.GetVID()
 	return v
 }
-func getToolbarById(id string) *FToolbar {
-	if v, ok := GlobalVars.idMap[id].(*FToolbar); ok {
+func GetToolbarById(id string) *FToolbar {
+	if v, ok := GlobalVars.IdMap[id].(*FToolbar); ok {
 		return v
 	}
 	return nil
 }
 
-func (v *FToolbar) background(s string) *FToolbar {
-	v.FBaseView.background(s)
+func (v *FToolbar) Background(s string) *FToolbar {
+	v.FBaseView.Background(s)
 	return v
 }
-func (v *FToolbar) backgroundColor(s int) *FToolbar {
-	v.FBaseView.backgroundColor(s)
+func (v *FToolbar) BackgroundColor(s int) *FToolbar {
+	v.FBaseView.BackgroundColor(s)
 	return v
 }
-func (v *FToolbar) cachedBackground(s string) *FToolbar {
-	v.FBaseView.cachedBackground(s)
-	return v
-}
-
-func (v *FToolbar) visible() *FToolbar {
-	v.FBaseView.visible()
-	return v
-}
-func (v *FToolbar) invisible() *FToolbar {
-	v.FBaseView.invisible()
-	return v
-}
-func (v *FToolbar) gone() *FToolbar {
-	v.FBaseView.gone()
+func (v *FToolbar) CachedBackground(s string) *FToolbar {
+	v.FBaseView.CachedBackground(s)
 	return v
 }
 
-func (v *FToolbar) padding(left, top, right, bottom int) *FToolbar {
-	v.FBaseView.padding(left, top, right, bottom)
+func (v *FToolbar) Visible() *FToolbar {
+	v.FBaseView.Visible()
 	return v
 }
-func (v *FToolbar) paddingLeft(dp int) *FToolbar {
-	v.FBaseView.padding(dp, 0, 0, 0)
+func (v *FToolbar) Invisible() *FToolbar {
+	v.FBaseView.Invisible()
 	return v
 }
-func (v *FToolbar) paddingTop(dp int) *FToolbar {
-	v.FBaseView.padding(0, dp, 0, 0)
-	return v
-}
-func (v *FToolbar) paddingRight(dp int) *FToolbar {
-	v.FBaseView.padding(0, 0, dp, 0)
-	return v
-}
-func (v *FToolbar) paddingBottom(dp int) *FToolbar {
-	v.FBaseView.padding(0, 0, 0, dp)
-	return v
-}
-func (v *FToolbar) paddingAll(dp int) *FToolbar {
-	v.FBaseView.padding(dp, dp, dp, dp)
+func (v *FToolbar) Gone() *FToolbar {
+	v.FBaseView.Gone()
 	return v
 }
 
-func (v *FToolbar) margin(left, top, right, bottom int) *FToolbar {
-	v.FBaseView.margin(left, top, right, bottom)
+func (v *FToolbar) Padding(left, top, right, bottom int) *FToolbar {
+	v.FBaseView.Padding(left, top, right, bottom)
 	return v
 }
-func (v *FToolbar) marginLeft(dp int) *FToolbar {
-	v.FBaseView.margin(dp, 0, 0, 0)
+func (v *FToolbar) PaddingLeft(dp int) *FToolbar {
+	v.FBaseView.Padding(dp, 0, 0, 0)
 	return v
 }
-func (v *FToolbar) marginTop(dp int) *FToolbar {
-	v.FBaseView.margin(0, dp, 0, 0)
+func (v *FToolbar) PaddingTop(dp int) *FToolbar {
+	v.FBaseView.Padding(0, dp, 0, 0)
 	return v
 }
-func (v *FToolbar) marginRight(dp int) *FToolbar {
-	v.FBaseView.margin(0, 0, dp, 0)
+func (v *FToolbar) PaddingRight(dp int) *FToolbar {
+	v.FBaseView.Padding(0, 0, dp, 0)
 	return v
 }
-func (v *FToolbar) marginBottom(dp int) *FToolbar {
-	v.FBaseView.margin(0, 0, 0, dp)
+func (v *FToolbar) PaddingBottom(dp int) *FToolbar {
+	v.FBaseView.Padding(0, 0, 0, dp)
 	return v
 }
-func (v *FToolbar) marginAll(dp int) *FToolbar {
-	v.FBaseView.margin(dp, dp, dp, dp)
-	return v
-}
-
-func (v *FToolbar) layoutGravity(gravity int) *FToolbar {
-	v.FBaseView.layoutGravity(gravity)
-	return v
-}
-func (v *FToolbar) elevation(dp float32) *FToolbar {
-	v.FBaseView.elevation(dp)
+func (v *FToolbar) PaddingAll(dp int) *FToolbar {
+	v.FBaseView.Padding(dp, dp, dp, dp)
 	return v
 }
 
-func (v *FToolbar) assign(fb **FToolbar) *FToolbar {
+func (v *FToolbar) Margin(left, top, right, bottom int) *FToolbar {
+	v.FBaseView.Margin(left, top, right, bottom)
+	return v
+}
+func (v *FToolbar) MarginLeft(dp int) *FToolbar {
+	v.FBaseView.Margin(dp, 0, 0, 0)
+	return v
+}
+func (v *FToolbar) MarginTop(dp int) *FToolbar {
+	v.FBaseView.Margin(0, dp, 0, 0)
+	return v
+}
+func (v *FToolbar) MarginRight(dp int) *FToolbar {
+	v.FBaseView.Margin(0, 0, dp, 0)
+	return v
+}
+func (v *FToolbar) MarginBottom(dp int) *FToolbar {
+	v.FBaseView.Margin(0, 0, 0, dp)
+	return v
+}
+func (v *FToolbar) MarginAll(dp int) *FToolbar {
+	v.FBaseView.Margin(dp, dp, dp, dp)
+	return v
+}
+
+func (v *FToolbar) LayoutGravity(gravity int) *FToolbar {
+	v.FBaseView.LayoutGravity(gravity)
+	return v
+}
+func (v *FToolbar) Elevation(dp float32) *FToolbar {
+	v.FBaseView.Elevation(dp)
+	return v
+}
+
+func (v *FToolbar) Assign(fb **FToolbar) *FToolbar {
 	*fb = v
 	return v
 }
-func (v *FToolbar) layoutWeight(f int) *FToolbar {
-	v.FBaseView.layoutWeight(f)
+func (v *FToolbar) LayoutWeight(f int) *FToolbar {
+	v.FBaseView.LayoutWeight(f)
 	return v
 }
 
 // ----------------------------------------------------------
-func (v *FToolbar) title(s string) *FToolbar {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Title", s)
+func (v *FToolbar) Title(s string) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)
 	return v
 }
-func (v *FToolbar) subtitle(s string) *FToolbar {
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "SubTitle", s)
+func (v *FToolbar) Subtitle(s string) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SubTitle", s)
 	return v
 }
-func (v *FToolbar) menus(mis ...interface{}) *FToolbar {
+func (v *FToolbar) Menus(mis ...interface{}) *FToolbar {
 	v.MyMenu = mis
-	GlobalVars.uis[v.UI].ViewSetAttr(v.VID, "Menu", jsonArray(v.MyMenu))
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Menu", JsonArray(v.MyMenu))
 	return v
 }
