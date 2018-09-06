@@ -8,10 +8,8 @@ func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	LinearLayout(a).size(-2, -2).deferShow().append(
 		Toolbar(a),
-		EditText(a).size(-2, -1).typeEnglish(),
-		EditText(a).size(-2, -1).typeText(),
-		EditText(a).size(-2, -1).typeNumber(),
-		EditText(a).size(-2, -1).typePassword())
+		ImageView(a).src(`https://www.baidu.com/img/bd_logo1.png`).layoutWeight(1),
+		ImageView(a).cachedSrc(`https://www.baidu.com/img/bd_logo1.png`).layoutWeight(1))
 	Fab(a).icon("drawable://add").layoutGravity(Gravitys.Bottom | Gravitys.Right).marginAll(16).elevation(8).onClick(func() {
 		showToast(a, "clicked")
 	}).show()

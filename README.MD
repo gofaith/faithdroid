@@ -18,7 +18,7 @@
 - [x]fab
 
 - [x]Space
-- EditText
+- [x]EditText
 - imageview
 - Switch
 - SpinnerBox

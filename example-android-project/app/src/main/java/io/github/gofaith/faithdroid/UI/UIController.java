@@ -22,6 +22,7 @@ import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FEditText;
 import io.github.gofaith.faithdroid.FViews.FFab;
 import io.github.gofaith.faithdroid.FViews.FFrameLayout;
+import io.github.gofaith.faithdroid.FViews.FImageView;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
@@ -126,6 +127,10 @@ public class UIController implements faithdroid.UIController{
             case "Space":
                 FSpace space = new FSpace(this);
                 v=space;
+                break;
+            case "ImageView":
+                FImageView imageView = new FImageView(this);
+                v=imageView;
                 break;
         }
         v.className =vName;
