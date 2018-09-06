@@ -22,7 +22,7 @@ func (v *FTabLayout) SetItemId(parent *FListView, id string) *FTabLayout {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.GetVID()
+	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
 func GetTabLayoutById(id string) *FTabLayout {

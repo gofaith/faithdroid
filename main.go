@@ -6,7 +6,9 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	Button(a).Show()
+	LinearLayout(a).Append(
+		TextView(a).Text(a.IntentAction),
+		TextView(a).Text(SPrintf(len(a.IntentPaths)))).Show()
 }
 
 /* ListView example

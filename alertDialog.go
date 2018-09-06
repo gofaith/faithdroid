@@ -19,7 +19,7 @@ func (v *FAlertDialog) Title(s string) *FAlertDialog {
 	return v
 }
 func (v *FAlertDialog) View(iv IView) *FAlertDialog {
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "View", iv.GetVID())
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "View", iv.GetViewId())
 	return v
 }
 func (v *FAlertDialog) PositiveButton(text string, onClick func(*FAlertDialog)) *FAlertDialog {

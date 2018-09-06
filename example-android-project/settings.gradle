@@ -1,1 +1,1 @@
-include ':app',':faithdroid'
+include ':app', ':faithdroid'

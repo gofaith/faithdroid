@@ -1,6 +1,10 @@
 package io.github.gofaith.faithdroid.UI;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +16,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import faithdroid.Activity;
@@ -49,6 +56,46 @@ public class UIController implements faithdroid.UIController{
         this.rootView =main_ctn;
     }
 
+    public static List<String> parsePaths(Context context, Intent intent) {
+        String action=intent.getAction();
+        Bundle extras=intent.getExtras();
+        List<String> paths = new ArrayList<>();
+        if (Intent.ACTION_SEND.equals(action)) {
+            Uri uri = (Uri) extras.getParcelable(Intent.EXTRA_STREAM);
+            String path= null;
+            try {
+                path = Toolkit.getPath(context,uri);
+                paths.add(path);
+                return paths;
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }else if (Intent.ACTION_VIEW.equals(action)){
+            Uri uri=intent.getData();
+            String path= null;
+            try {
+                path = Toolkit.getPath(context,uri);
+                paths.add(path);
+                return paths;
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }else if (Intent.ACTION_SEND_MULTIPLE.equals(action)) {
+            for (Parcelable parcelable: intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM)) {
+                Uri uri = (Uri) parcelable;
+                String path= null;
+                try {
+                    path = Toolkit.getPath(context,uri);
+                    paths.add(path);
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                    continue;
+                }
+            }
+            return paths;
+        }
+        return paths;
+    }
     @Override
     public String getPkg() {
         return activity.getPackageName();

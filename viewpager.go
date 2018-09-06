@@ -21,7 +21,7 @@ func (v *FViewPager) SetItemId(parent *FListView, id string) *FViewPager {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.GetVID()
+	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
 func GetViewPagerById(id string) *FViewPager {
@@ -158,7 +158,7 @@ func Page(createView func() IView) *FPage {
 	p := &FPage{}
 	p.VID = NewToken()
 	GlobalVars.EventHandlersMap[p.VID] = func(string) string {
-		return createView().GetVID()
+		return createView().GetViewId()
 	}
 	return p
 }
@@ -172,7 +172,7 @@ func (v *FViewPager) Pages(ps ...*FPage) *FViewPager {
 }
 func (v *FViewPager) BindTabLayoutById(id string) *FViewPager {
 	if iview, ok := GlobalVars.IdMap[id]; ok {
-		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TabLayout", iview.GetVID())
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TabLayout", iview.GetViewId())
 	}
 	return v
 }

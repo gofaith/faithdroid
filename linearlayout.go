@@ -23,7 +23,7 @@ func (v *FLinearLayout) SetItemId(parent *FListView, id string) *FLinearLayout {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.GetVID()
+	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
 func GetLinearLayoutById(id string) *FLinearLayout {
@@ -155,7 +155,7 @@ func (v *FLinearLayout) LayoutWeight(f int) *FLinearLayout {
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
 	v.Children = vs
 	for _, i := range vs {
-		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetVID())
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())
 	}
 	if v.showAfter {
 		v.Show()

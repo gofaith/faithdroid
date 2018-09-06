@@ -1,5 +1,6 @@
 package io.github.gofaith.faithdroid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import java.util.List;
+
+import faithdroid.Activity;
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
 import io.github.gofaith.faithdroid.UI.UIController;
@@ -32,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         a=new faithdroid.MainActivity();
         uiController=new UIController(this, rootview);
         a.setUIInterface(uiController);
+        a.setAction(getIntent().getAction());
+        List<String> ps = UIController.parsePaths(this, getIntent());
+        for (int i = 0; i < ps.size(); i++) {
+            a.addPath(ps.get(i));
+        }
         a.onCreate();
     }
     @Override

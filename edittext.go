@@ -36,7 +36,7 @@ func (v *FEditText) SetItemId(parent *FListView, id string) *FEditText {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.GetVID()
+	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
 func GetEditTextById(id string) *FEditText {

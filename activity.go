@@ -1,7 +1,24 @@
 package faithdroid
 
 type Activity struct {
-	UI string
+	UI           string
+	IntentAction string
+	IntentPaths  []string
+}
+
+var IntentActions = struct {
+	VIEW, SEND, SEND_MULTIPLE string
+}{
+	"android.intent.action.VIEW",
+	"android.intent.action.SEND",
+	"android.intent.action.SEND_MULTIPLE",
+}
+
+func (a *Activity) SetAction(s string) {
+	a.IntentAction = s
+}
+func (a *Activity) AddPath(s string) {
+	a.IntentPaths = append(a.IntentPaths, s)
 }
 
 func (a *Activity) SetUIInterface(u UIController) string {

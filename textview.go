@@ -30,7 +30,7 @@ func (v *FTextView) SetItemId(parent *FListView, id string) *FTextView {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.GetVID()
+	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
 

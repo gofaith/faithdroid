@@ -36,7 +36,7 @@ func (v *FImageView) SetItemId(parent *FListView, id string) *FImageView {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.GetVID()
+	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
 func GetImageViewById(id string) *FImageView {

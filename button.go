@@ -36,7 +36,7 @@ func (v *FButton) SetItemId(parent *FListView, id string) *FButton {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.GetVID()
+	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
 func GetButtonById(id string) *FButton {

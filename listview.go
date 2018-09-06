@@ -33,7 +33,7 @@ func (v *FListView) SetItemId(parent *FListView, id string) *FListView {
 	if parent.Vh.Vlist == nil {
 		parent.Vh.Vlist = make(map[string]string)
 	}
-	parent.Vh.Vlist[id] = v.GetVID()
+	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
 func GetListViewByItemId(id string) *FListView {
@@ -52,7 +52,7 @@ func VListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh 
 	GlobalVars.ViewMap[v.VID] = v
 	fnId1 := NewToken()
 	GlobalVars.EventHandlersMap[fnId1] = func(string) string {
-		v.Vh.VID = getView(v).GetVID()
+		v.Vh.VID = getView(v).GetViewId()
 		return JsonObject(v.Vh)
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
@@ -85,7 +85,7 @@ func HListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh 
 	GlobalVars.ViewMap[v.VID] = v
 	fnId1 := NewToken()
 	GlobalVars.EventHandlersMap[fnId1] = func(string) string {
-		v.Vh.VID = getView(v).GetVID()
+		v.Vh.VID = getView(v).GetViewId()
 		return JsonObject(v.Vh)
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)

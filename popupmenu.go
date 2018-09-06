@@ -17,7 +17,7 @@ func (base *FBaseView) PopupMenu(menuItems ...interface{}) *FPopupMenu {
 func (base *FBaseView) ShowPopupMenu(menuItems ...interface{}) {
 	base.PopupMenu(menuItems).Show()
 }
-func (v *FPopupMenu) GetVID() string {
+func (v *FPopupMenu) GetViewId() string {
 	return v.VID
 }
 func (v *FPopupMenu) Show() *FPopupMenu {

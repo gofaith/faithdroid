@@ -13,10 +13,10 @@ type FBaseView struct {
 	UI             string
 }
 type IView interface {
-	GetVID() string
+	GetViewId() string
 }
 
-func (v FBaseView) GetVID() string {
+func (v FBaseView) GetViewId() string {
 	return v.VID
 }
 func (v *FBaseView) Show() {
