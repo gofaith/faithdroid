@@ -40,7 +40,7 @@ public class FFab extends  FView implements AttrGettable, AttrSettable {
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(parentController.activity, v, value);
+                parseSize( value);
                 break;
             case "Visibility":
                 setVisibility(value);

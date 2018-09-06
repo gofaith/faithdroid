@@ -1,37 +1,36 @@
 package io.github.gofaith.faithdroid.FViews;
 
-import android.support.v7.widget.Toolbar;
+import android.widget.Space;
 
-import io.github.gofaith.faithdroid.R;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
 import io.github.gofaith.faithdroid.UI.UIController;
 
-public class FToolbar extends FView implements AttrSettable,AttrGettable {
-    private Toolbar v;
-    public FToolbar(UIController controller) {
-        parentController =controller;
-        v = (Toolbar) parentController.activity.getLayoutInflater().inflate(R.layout.my_toolbar, parentController.rootView, false);
+public class FSpace extends FView implements AttrSettable, AttrGettable {
+    public Space v;
+
+    public FSpace(UIController controller) {
+        parentController=controller;
+        v = new Space(controller.activity);
         view=v;
-        setElevation("4");
-        parentController.activity.setSupportActionBar(v);
-        parseSize("[-2,-1]");
+        layoutWeight=1;
     }
     @Override
     public String getAttr(String attr) {
+        if (attr == null) {
+            return "";
+        }
         switch (attr) {
             case "Visibility":
                 return getVisibility();
-                //----------------------------------------------
         }
         return "";
     }
 
     @Override
     public void setAttr(String attr, String value) {
-        if (value == null) {
+        if (value==null)
             return;
-        }
         switch (attr) {
             case "BackgroundColor":
                 setBackgroundColor(value);
@@ -40,7 +39,7 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(value);
+                parseSize( value);
                 break;
             case "Visibility":
                 setVisibility(value);
@@ -61,15 +60,6 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 setLayoutWeight(value);
                 break;
             // -------------------------------------------------------------------
-            case "Title":
-                parentController.activity.getSupportActionBar().setTitle(value);
-                break;
-            case "SubTitle":
-                parentController.activity.getSupportActionBar().setSubtitle(value);
-                break;
-            case "Menu":
-                parentController.optionMenus=value;
-                break;
         }
     }
 }

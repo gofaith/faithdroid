@@ -29,7 +29,7 @@ public class FView {
     public int layoutGravity;
     public float layoutWeight;
     public int[] size = new int[]{-2, -2};
-    protected void parseSize(AppCompatActivity activity, View v, String value) {
+    protected void parseSize(String value) {
         long width,height;
         try {
             JSONArray array=(JSONArray)(new JSONTokener(value).nextValue());
@@ -39,7 +39,7 @@ public class FView {
             e.printStackTrace();
             return;
         }
-        ViewGroup.LayoutParams p = v.getLayoutParams();
+        ViewGroup.LayoutParams p = view.getLayoutParams();
         if (p == null) {
             p=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
@@ -48,14 +48,14 @@ public class FView {
         } else if (width == -2) {
             p.width= ViewGroup.LayoutParams.MATCH_PARENT;
         }else{
-            p.width = (int) dp2pixel(activity, width);
+            p.width = (int) dp2pixel(parentController.activity, width);
         }
         if (height == -1) {
             p.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else if (height == -2) {
             p.height = ViewGroup.LayoutParams.MATCH_PARENT;
         }else{
-            p.height = (int) dp2pixel(activity, height);
+            p.height = (int) dp2pixel(parentController.activity, height);
         }
         size[0]=p.width;
         size[1]=p.height;

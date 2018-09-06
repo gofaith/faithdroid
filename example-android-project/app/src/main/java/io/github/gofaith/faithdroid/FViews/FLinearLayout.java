@@ -15,7 +15,6 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
         v = new LinearLayout(parentController.activity);
         view=v;
         v.setOrientation(LinearLayout.VERTICAL);
-        parseSize(parentController.activity,v,"[-1,-1]");
     }
     @Override
     public String getAttr(String attr) {
@@ -47,7 +46,7 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(parentController.activity, v, value);
+                parseSize( value);
                 break;
             case "Visibility":
                 setVisibility(value);

@@ -16,7 +16,6 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
         parentController =c;
         v = new TextView(parentController.activity);
         view=v;
-        parseSize(parentController.activity,v,"[-1,-1]");
     }
     @Override
     public String getAttr(String attr) {
@@ -40,7 +39,7 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
                 setBackground(value);
                 break;
             case "Size":
-                parseSize(parentController.activity, v, value);
+                parseSize(value);
                 break;
             case "Visibility":
                 setVisibility(value);

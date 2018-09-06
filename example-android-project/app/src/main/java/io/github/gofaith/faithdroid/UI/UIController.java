@@ -25,6 +25,7 @@ import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
 import io.github.gofaith.faithdroid.FViews.FSnackbar;
+import io.github.gofaith.faithdroid.FViews.FSpace;
 import io.github.gofaith.faithdroid.FViews.FTabLayout;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
@@ -116,6 +117,10 @@ public class UIController implements faithdroid.UIController{
             case "Fab":
                 FFab fFab = new FFab(this);
                 v=fFab;
+                break;
+            case "Space":
+                FSpace space = new FSpace(this);
+                v=space;
                 break;
         }
         v.className =vName;
