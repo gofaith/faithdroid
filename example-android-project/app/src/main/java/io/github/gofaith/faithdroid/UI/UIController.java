@@ -19,6 +19,7 @@ import org.json.JSONTokener;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -202,13 +203,13 @@ public class UIController implements faithdroid.UIController{
     private void newActivity(String activityConfig) {
         try {
             JSONObject object = (JSONObject) (new JSONTokener(activityConfig).nextValue());
-            String launchMode = object.getString("LaunchMode");
-            String genViewFnId = object.getString("FnId");
+            String launchMode = object.getString("MyLaunchMode");
+            String genViewFnId = object.getString("MyFnId");
             if (launchMode == null || genViewFnId == null) {
                 return;
             }
             Intent intent = new Intent();
-            intent.putExtra("FnId", genViewFnId);
+            intent.putExtra("MyFnId", genViewFnId);
             if (launchMode.equals("SingleInstance")) {
                 intent.setClass(activity, SingleInstanceActivity.class);
             } else if (launchMode.equals("SingleTask")) {
@@ -217,6 +218,18 @@ public class UIController implements faithdroid.UIController{
                 intent.setClass(activity, SingleTopActivity.class);
             } else {
                 intent.setClass(activity, StandardActivity.class);
+            }
+            JSONObject intentObj = object.getJSONObject("MyIntent");
+            String gAction=intentObj.getString("Action");
+            if (gAction!=null&&!gAction.equals("")) {
+                intent.setAction(intentObj.getString("Action"));
+            }
+            JSONObject extraMap = intentObj.getJSONObject("Extras");
+            if (extraMap != null) {
+                for (Iterator<String> it = extraMap.keys(); it.hasNext(); ) {
+                    String key = it.next();
+                    intent.putExtra(key, extraMap.getString(key));
+                }
             }
             activity.startActivity(intent);
         } catch (Exception e) {

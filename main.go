@@ -13,7 +13,7 @@ func (m *MainActivity) OnCreate() {
 				LinearLayout(act).DeferShow().Append(
 					TextView(act).Text(act.GetIntentAction()),
 					TextView(act).Text(act.GetAllExtras()))
-			}, nil)
+			}, NewActivityConfig().PutExtra("one", "two").IntentAction("mm"))
 		}))
 }
 

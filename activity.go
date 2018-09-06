@@ -77,11 +77,6 @@ func (a *Activity) OnStart() {
 func (a *Activity) OnDestroy() {
 }
 
-type ActivityConfig struct {
-	LaunchMode string
-	FnId       string
-}
-
 func StartActivity(a *Activity, createView func(*Activity), conf *ActivityConfig) {
 	fnId := NewToken()
 	GlobalVars.EventHandlersMap[fnId] = func(uId string) string {
@@ -91,10 +86,9 @@ func StartActivity(a *Activity, createView func(*Activity), conf *ActivityConfig
 		return ""
 	}
 	if conf == nil {
-		conf = &ActivityConfig{}
-		conf.LaunchMode = "Standard"
+		conf = NewActivityConfig()
 	}
-	conf.FnId = fnId
+	conf.MyFnId = fnId
 	GlobalVars.UIs[a.UI].NewView("Activity", JsonObject(conf))
 }
 func Finish(a *Activity) {

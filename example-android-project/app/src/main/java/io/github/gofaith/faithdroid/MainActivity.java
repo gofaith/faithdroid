@@ -3,13 +3,11 @@ package io.github.gofaith.faithdroid;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.util.Iterator;
@@ -84,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         try {
-            Log.d(TAG, "onCreateOptionsMenu: "+uiController.optionMenus);
             JSONArray array = (JSONArray) (new JSONTokener(uiController.optionMenus).nextValue());
             parseMenu(uiController,menu,array);
             return true;

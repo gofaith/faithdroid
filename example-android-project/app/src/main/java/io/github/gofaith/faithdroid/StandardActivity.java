@@ -30,7 +30,7 @@ public class StandardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_standard);
-        fnId = getIntent().getStringExtra("FnId");
+        fnId = getIntent().getStringExtra("MyFnId");
         ctn = findViewById(R.id.standard_ctn);
         a=new Activity();
         uiController=new UIController(this, ctn,a);
@@ -44,7 +44,6 @@ public class StandardActivity extends AppCompatActivity {
     private void handleIntent() {
         Intent intent=getIntent();
         a.setIntentAction(intent.getAction());
-        Log.d(TAG, "handleIntent: "+intent.getAction());
         List<String> ps = UIController.parsePaths(this, intent);
         for (int j = 0; j < ps.size(); j++) {
             a.addPath(ps.get(j));
@@ -86,7 +85,6 @@ public class StandardActivity extends AppCompatActivity {
             return false;
         }
         try {
-            Log.d(TAG, "onCreateOptionsMenu: "+uiController.optionMenus);
             JSONArray array = (JSONArray) (new JSONTokener(uiController.optionMenus).nextValue());
             parseMenu(uiController,menu,array);
             return true;
