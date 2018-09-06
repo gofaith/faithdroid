@@ -19,6 +19,7 @@ import faithdroid.Activity;
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.FViews.FAlertDialog;
 import io.github.gofaith.faithdroid.FViews.FButton;
+import io.github.gofaith.faithdroid.FViews.FEditText;
 import io.github.gofaith.faithdroid.FViews.FFab;
 import io.github.gofaith.faithdroid.FViews.FFrameLayout;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
@@ -70,6 +71,10 @@ public class UIController implements faithdroid.UIController{
             case "Button":
                 FButton button = new FButton(this);
                 v=button;
+                break;
+            case "EditText":
+                FEditText editText = new FEditText(this);
+                v=editText;
                 break;
             case "VListView":
                 LinearLayoutManager llm = new LinearLayoutManager(activity);

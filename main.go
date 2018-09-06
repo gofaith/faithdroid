@@ -8,9 +8,10 @@ func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	LinearLayout(a).size(-2, -2).deferShow().append(
 		Toolbar(a),
-		Button(a).text("s"),
-		Space(a),
-		Button(a).text("two").marginAll(12).layoutGravity(Gravitys.Right))
+		EditText(a).size(-2, -1).typeEnglish(),
+		EditText(a).size(-2, -1).typeText(),
+		EditText(a).size(-2, -1).typeNumber(),
+		EditText(a).size(-2, -1).typePassword())
 	Fab(a).icon("drawable://add").layoutGravity(Gravitys.Bottom | Gravitys.Right).marginAll(16).elevation(8).onClick(func() {
 		showToast(a, "clicked")
 	}).show()

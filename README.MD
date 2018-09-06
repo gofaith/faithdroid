@@ -17,7 +17,7 @@
 - [x]alertDialog
 - [x]fab
 
-- Space
+- [x]Space
 - EditText
 - imageview
 - Switch
