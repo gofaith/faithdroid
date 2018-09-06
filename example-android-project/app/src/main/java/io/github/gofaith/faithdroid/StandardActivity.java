@@ -1,5 +1,6 @@
 package io.github.gofaith.faithdroid;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.widget.FrameLayout;
 
 import org.json.JSONArray;
 import org.json.JSONTokener;
+
+import java.util.List;
 
 import faithdroid.Activity;
 import faithdroid.Faithdroid;
@@ -30,12 +33,29 @@ public class StandardActivity extends AppCompatActivity {
         fnId = getIntent().getStringExtra("FnId");
         ctn = findViewById(R.id.standard_ctn);
         a=new Activity();
-        uiController=new UIController(this, ctn);
+        uiController=new UIController(this, ctn,a);
         String uId=a.setUIInterface(uiController);
+
+        handleIntent();
+
         a.onCreate();
         Faithdroid.triggerEventHandler(fnId, uId);
     }
-
+    private void handleIntent() {
+        Intent intent=getIntent();
+        a.setIntentAction(intent.getAction());
+        Log.d(TAG, "handleIntent: "+intent.getAction());
+        List<String> ps = UIController.parsePaths(this, intent);
+        for (int j = 0; j < ps.size(); j++) {
+            a.addPath(ps.get(j));
+        }
+        Bundle bundle=intent.getExtras();
+        if (bundle != null) {
+            for (String key : bundle.keySet()) {
+                a.putExtra(key, String.valueOf(bundle.get(key)));
+            }
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();

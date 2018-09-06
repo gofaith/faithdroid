@@ -9,15 +9,13 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import java.util.Iterator;
 import java.util.List;
 
-import faithdroid.Activity;
 import faithdroid.Faithdroid;
-import io.github.gofaith.faithdroid.FViews.FToolbar;
 import io.github.gofaith.faithdroid.UI.UIController;
 
 import static io.github.gofaith.faithdroid.UI.Toolkit.parseMenu;
@@ -34,15 +32,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         rootview = findViewById(R.id.main_ctn);
         a=new faithdroid.MainActivity();
-        uiController=new UIController(this, rootview);
+        uiController=new UIController(this, rootview,null);
         a.setUIInterface(uiController);
-        a.setAction(getIntent().getAction());
-        List<String> ps = UIController.parsePaths(this, getIntent());
-        for (int i = 0; i < ps.size(); i++) {
-            a.addPath(ps.get(i));
-        }
+
+        handleIntent();
         a.onCreate();
     }
+
+    private void handleIntent() {
+        Intent intent=getIntent();
+        a.setIntentAction(intent.getAction());
+        List<String> ps = UIController.parsePaths(this, intent);
+        for (int j = 0; j < ps.size(); j++) {
+            a.addPath(ps.get(j));
+        }
+        Bundle bundle=intent.getExtras();
+        if (bundle != null) {
+            for (String key : bundle.keySet()) {
+                a.putExtra(key, String.valueOf(bundle.get(key)));
+            }
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();

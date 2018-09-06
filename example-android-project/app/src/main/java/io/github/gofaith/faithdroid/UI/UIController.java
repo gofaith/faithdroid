@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import faithdroid.Activity;
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.FViews.FAlertDialog;
 import io.github.gofaith.faithdroid.FViews.FButton;
@@ -46,14 +45,16 @@ import io.github.gofaith.faithdroid.SingleTopActivity;
 import io.github.gofaith.faithdroid.StandardActivity;
 
 public class UIController implements faithdroid.UIController{
+    private final faithdroid.Activity factivity;
     public AppCompatActivity activity;
     public HashMap<String, FView> viewmap = new HashMap<>();
     public FrameLayout rootView;
     public String optionMenus;
     public Map<MenuItem, String> menuItemsOnClickMap = new HashMap<>();
-    public UIController(AppCompatActivity a, FrameLayout main_ctn) {
+    public UIController(AppCompatActivity a, FrameLayout main_ctn,faithdroid.Activity factivity) {
         this.activity=a;
         this.rootView =main_ctn;
+        this.factivity=factivity;
     }
 
     public static List<String> parsePaths(Context context, Intent intent) {
@@ -62,6 +63,7 @@ public class UIController implements faithdroid.UIController{
         List<String> paths = new ArrayList<>();
         if (Intent.ACTION_SEND.equals(action)) {
             Uri uri = (Uri) extras.getParcelable(Intent.EXTRA_STREAM);
+            if (uri==null)return paths;
             String path= null;
             try {
                 path = Toolkit.getPath(context,uri);
@@ -72,6 +74,7 @@ public class UIController implements faithdroid.UIController{
             }
         }else if (Intent.ACTION_VIEW.equals(action)){
             Uri uri=intent.getData();
+            if (uri==null)return paths;
             String path= null;
             try {
                 path = Toolkit.getPath(context,uri);
@@ -81,8 +84,13 @@ public class UIController implements faithdroid.UIController{
                 e.printStackTrace();
             }
         }else if (Intent.ACTION_SEND_MULTIPLE.equals(action)) {
+            ArrayList<Parcelable> list = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+            if (list == null || list.size() == 0) {
+                return paths;
+            }
             for (Parcelable parcelable: intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM)) {
                 Uri uri = (Uri) parcelable;
+                if (uri==null)return paths;
                 String path= null;
                 try {
                     path = Toolkit.getPath(context,uri);
@@ -96,6 +104,12 @@ public class UIController implements faithdroid.UIController{
         }
         return paths;
     }
+
+    @Override
+    public faithdroid.Activity getCurrentFActivity() {
+        return factivity;
+    }
+
     @Override
     public String getPkg() {
         return activity.getPackageName();

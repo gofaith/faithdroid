@@ -6,9 +6,15 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	LinearLayout(a).Append(
-		TextView(a).Text(a.IntentAction),
-		TextView(a).Text(SPrintf(len(a.IntentPaths)))).Show()
+	LinearLayout(a).DeferShow().Append(
+		TextView(a).Text(a.GetIntentAction()),
+		Button(a).Text("click").OnClick(func() {
+			StartActivity(a, func(act *Activity) {
+				LinearLayout(act).DeferShow().Append(
+					TextView(act).Text(act.GetIntentAction()),
+					TextView(act).Text(act.GetAllExtras()))
+			}, nil)
+		}))
 }
 
 /* ListView example

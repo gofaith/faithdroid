@@ -7,6 +7,7 @@ type UIController interface {
 	ShowOnRootView(VID string)
 	RunOnUIThread(fnID string)
 	GetPkg() string
+	GetCurrentFActivity() *Activity
 }
 type FBaseView struct {
 	VID, ClassName string
