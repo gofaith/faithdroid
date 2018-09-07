@@ -6,15 +6,8 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	LinearLayout(a).DeferShow().Append(
-		TextView(a).Text(a.GetIntentAction()),
-		Button(a).Text("click").OnClick(func() {
-			StartActivity(a, func(act *Activity) {
-				LinearLayout(act).DeferShow().Append(
-					TextView(act).Text(act.GetIntentAction()),
-					TextView(act).Text(act.GetAllExtras()))
-			}, NewActivityConfig().PutExtra("one", "two").IntentAction("mm"))
-		}))
+	LinearLayout(a).Size(-2, -2).DeferShow().BackgroundColor(Colors.Red).Append(
+		WebView(a).loadUri("file:///android_asset/out.webp").Focusable(false).BackgroundColor(Colors.Transparent))
 }
 
 /* ListView example

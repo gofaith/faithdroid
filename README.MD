@@ -19,7 +19,8 @@
 
 - [x]Space
 - [x]EditText
-- imageview
+- webview
+- gifImageview
 - Switch
 - SpinnerBox
 - FloatingActionButton

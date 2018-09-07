@@ -1,5 +1,7 @@
 package io.github.gofaith.faithdroid.FViews;
 
+import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 

@@ -15,7 +15,6 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
         parentController =c;
         v = new Button(parentController.activity);
         view=v;
-        parseSize("[-1,-1]");
     }
     @Override
     public String getAttr(String attr) {

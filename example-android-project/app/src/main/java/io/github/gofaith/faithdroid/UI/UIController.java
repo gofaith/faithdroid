@@ -40,6 +40,7 @@ import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
 import io.github.gofaith.faithdroid.FViews.FView;
 import io.github.gofaith.faithdroid.FViews.FViewPager;
+import io.github.gofaith.faithdroid.FViews.FWebView;
 import io.github.gofaith.faithdroid.SingleInstanceActivity;
 import io.github.gofaith.faithdroid.SingleTaskActivity;
 import io.github.gofaith.faithdroid.SingleTopActivity;
@@ -193,6 +194,10 @@ public class UIController implements faithdroid.UIController{
             case "ImageView":
                 FImageView imageView = new FImageView(this);
                 v=imageView;
+                break;
+            case "WebView":
+                FWebView webView = new FWebView(this);
+                v=webView;
                 break;
         }
         v.className =vName;

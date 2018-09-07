@@ -72,6 +72,10 @@ public class FView {
     void setBackgroundColor(String value) {
         if (value==null)
             return;
+        if (value.equals("#0")) {
+            view.setBackgroundColor(Color.TRANSPARENT);
+            return;
+        }
         try {
             view.setBackgroundColor(Color.parseColor(value));
         } catch (Exception e) {
