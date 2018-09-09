@@ -21,6 +21,7 @@
 - [x]EditText
 - [x]ViewPager(Infinite)
 - [x]gifImageview
+- frameLayout
 - webview
 - Switch
 - SpinnerBox

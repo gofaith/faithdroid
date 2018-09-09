@@ -46,6 +46,63 @@ func (v *FTabLayout) Size(w, h int) *FTabLayout {
 	return v
 }
 
+func (v *FTabLayout) X(x float64) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "X", SPrintf(x))
+	return v
+}
+func (v *FTabLayout) Y(y float64) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Y", SPrintf(y))
+	return v
+}
+func (v *FTabLayout) PivotX(x float64) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotX", SPrintf(x))
+	return v
+}
+func (v *FTabLayout) PivotY(y float64) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotY", SPrintf(y))
+	return v
+}
+func (v *FTabLayout) ScaleX(x float64) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleX", SPrintf(x))
+	return v
+}
+func (v *FTabLayout) ScaleY(y float64) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleY", SPrintf(y))
+	return v
+}
+func (v *FTabLayout) Rotation(r float64) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Rotation", SPrintf(r))
+	return v
+}
+
+func (v *FTabLayout) GetX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "X")
+	return a2f(x)
+}
+func (v *FTabLayout) GetY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
+	return a2f(x)
+}
+func (v *FTabLayout) GetPivotX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
+	return a2f(x)
+}
+func (v *FTabLayout) GetPivotY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotY")
+	return a2f(x)
+}
+func (v *FTabLayout) GetScaleX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleX")
+	return a2f(x)
+}
+func (v *FTabLayout) GetScaleY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleY")
+	return a2f(x)
+}
+func (v *FTabLayout) GetRotation() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Rotation")
+	return a2f(x)
+}
 func (v *FTabLayout) Background(s string) *FTabLayout {
 	v.FBaseView.Background(s)
 	return v
@@ -136,7 +193,7 @@ func (v *FTabLayout) LayoutGravity(gravity int) *FTabLayout {
 	v.FBaseView.LayoutGravity(gravity)
 	return v
 }
-func (v *FTabLayout) Elevation(dp float32) *FTabLayout {
+func (v *FTabLayout) Elevation(dp float64) *FTabLayout {
 	v.FBaseView.Elevation(dp)
 	return v
 }

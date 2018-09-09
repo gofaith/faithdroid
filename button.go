@@ -27,6 +27,65 @@ func (v *FButton) Size(w, h int) *FButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
+
+func (v *FButton) X(x float64) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "X", SPrintf(x))
+	return v
+}
+func (v *FButton) Y(y float64) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Y", SPrintf(y))
+	return v
+}
+func (v *FButton) PivotX(x float64) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotX", SPrintf(x))
+	return v
+}
+func (v *FButton) PivotY(y float64) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotY", SPrintf(y))
+	return v
+}
+func (v *FButton) ScaleX(x float64) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleX", SPrintf(x))
+	return v
+}
+func (v *FButton) ScaleY(y float64) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleY", SPrintf(y))
+	return v
+}
+func (v *FButton) Rotation(r float64) *FButton {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Rotation", SPrintf(r))
+	return v
+}
+
+func (v *FButton) GetX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "X")
+	return a2f(x)
+}
+func (v *FButton) GetY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
+	return a2f(x)
+}
+func (v *FButton) GetPivotX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
+	return a2f(x)
+}
+func (v *FButton) GetPivotY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotY")
+	return a2f(x)
+}
+func (v *FButton) GetScaleX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleX")
+	return a2f(x)
+}
+func (v *FButton) GetScaleY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleY")
+	return a2f(x)
+}
+func (v *FButton) GetRotation() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Rotation")
+	return a2f(x)
+}
+
 func (v *FButton) SetId(s string) *FButton {
 	GlobalVars.IdMap[s] = v
 	return v
@@ -126,7 +185,7 @@ func (v *FButton) LayoutGravity(gravity int) *FButton {
 	v.FBaseView.LayoutGravity(gravity)
 	return v
 }
-func (v *FButton) Elevation(dp float32) *FButton {
+func (v *FButton) Elevation(dp float64) *FButton {
 	v.FBaseView.Elevation(dp)
 	return v
 }

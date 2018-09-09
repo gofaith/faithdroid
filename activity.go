@@ -97,3 +97,11 @@ func Finish(a *Activity) {
 func ShowToast(a *Activity, s string) {
 	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "ShowToast", s)
 }
+func RunOnUIThread(a *Activity, f func()) {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[a.UI].RunOnUIThread(fnId)
+}

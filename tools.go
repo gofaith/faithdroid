@@ -122,3 +122,11 @@ func XPrintf(a int) string {
 func a2i(a string) (int, error) {
 	return strconv.Atoi(a)
 }
+func a2f(a string) float64 {
+	f, e := strconv.ParseFloat(a, 32)
+	if e != nil {
+		fmt.Println(e)
+		return 0
+	}
+	return float64(f)
+}

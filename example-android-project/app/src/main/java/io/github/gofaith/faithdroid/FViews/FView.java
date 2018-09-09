@@ -165,7 +165,7 @@ public class FView {
     }
     void setElevation(String value) {
         try {
-            float f = Float.parseFloat(value);
+            float f = dp2pixel(parentController.activity, Float.parseFloat(value));
             ViewCompat.setElevation(view,f);
         } catch (Exception e) {
             e.printStackTrace();
@@ -175,6 +175,64 @@ public class FView {
     void setLayoutWeight(String value) {
         try {
             layoutWeight = Float.parseFloat(value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void setX(String value) {
+        try {
+            float f = dp2pixel(parentController.activity, Float.parseFloat(value));
+            view.setX(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void setY(String value) {
+        try {
+            float f = dp2pixel(parentController.activity, Float.parseFloat(value));
+            view.setY(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void setPivotX(String value) {
+        try {
+            float f = dp2pixel(parentController.activity, Float.parseFloat(value));
+            view.setPivotX(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void setPivotY(String value) {
+        try {
+            float f = dp2pixel(parentController.activity, Float.parseFloat(value));
+            view.setPivotY(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void setScaleX(String value) {
+        try {
+            float f = dp2pixel(parentController.activity, Float.parseFloat(value));
+            view.setScaleX(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void setScaleY(String value) {
+        try {
+            float f = dp2pixel(parentController.activity, Float.parseFloat(value));
+            view.setScaleY(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void setRotation(String value) {
+        try {
+            float f = dp2pixel(parentController.activity, Float.parseFloat(value));
+            view.setRotation(f);
         } catch (Exception e) {
             e.printStackTrace();
         }

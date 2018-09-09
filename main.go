@@ -6,8 +6,7 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	LinearLayout(a).DeferShow().Size(-2, -2).PaddingAll(30).BackgroundColor(Colors.Teal).Append(
-		WebViewItem(a, UriAssets("out.webp")))
+	Button(a).SetId("bt").Text("move").Show()
 }
 
 /* ListView example

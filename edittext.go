@@ -27,6 +27,64 @@ func (v *FEditText) Size(w, h int) *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
+
+func (v *FEditText) X(x float64) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "X", SPrintf(x))
+	return v
+}
+func (v *FEditText) Y(y float64) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Y", SPrintf(y))
+	return v
+}
+func (v *FEditText) PivotX(x float64) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotX", SPrintf(x))
+	return v
+}
+func (v *FEditText) PivotY(y float64) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotY", SPrintf(y))
+	return v
+}
+func (v *FEditText) ScaleX(x float64) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleX", SPrintf(x))
+	return v
+}
+func (v *FEditText) ScaleY(y float64) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleY", SPrintf(y))
+	return v
+}
+func (v *FEditText) Rotation(r float64) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Rotation", SPrintf(r))
+	return v
+}
+
+func (v *FEditText) GetX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "X")
+	return a2f(x)
+}
+func (v *FEditText) GetY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
+	return a2f(x)
+}
+func (v *FEditText) GetPivotX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
+	return a2f(x)
+}
+func (v *FEditText) GetPivotY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotY")
+	return a2f(x)
+}
+func (v *FEditText) GetScaleX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleX")
+	return a2f(x)
+}
+func (v *FEditText) GetScaleY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleY")
+	return a2f(x)
+}
+func (v *FEditText) GetRotation() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Rotation")
+	return a2f(x)
+}
 func (v *FEditText) SetId(s string) *FEditText {
 	GlobalVars.IdMap[s] = v
 	return v
@@ -126,7 +184,7 @@ func (v *FEditText) LayoutGravity(gravity int) *FEditText {
 	v.FBaseView.LayoutGravity(gravity)
 	return v
 }
-func (v *FEditText) Elevation(dp float32) *FEditText {
+func (v *FEditText) Elevation(dp float64) *FEditText {
 	v.FBaseView.Elevation(dp)
 	return v
 }

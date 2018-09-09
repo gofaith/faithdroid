@@ -27,6 +27,63 @@ func (v *FImageView) Size(w, h int) *FImageView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
+func (v *FImageView) X(x float64) *FImageView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "X", SPrintf(x))
+	return v
+}
+func (v *FImageView) Y(y float64) *FImageView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Y", SPrintf(y))
+	return v
+}
+func (v *FImageView) PivotX(x float64) *FImageView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotX", SPrintf(x))
+	return v
+}
+func (v *FImageView) PivotY(y float64) *FImageView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotY", SPrintf(y))
+	return v
+}
+func (v *FImageView) ScaleX(x float64) *FImageView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleX", SPrintf(x))
+	return v
+}
+func (v *FImageView) ScaleY(y float64) *FImageView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleY", SPrintf(y))
+	return v
+}
+func (v *FImageView) Rotation(r float64) *FImageView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Rotation", SPrintf(r))
+	return v
+}
+
+func (v *FImageView) GetX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "X")
+	return a2f(x)
+}
+func (v *FImageView) GetY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
+	return a2f(x)
+}
+func (v *FImageView) GetPivotX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
+	return a2f(x)
+}
+func (v *FImageView) GetPivotY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotY")
+	return a2f(x)
+}
+func (v *FImageView) GetScaleX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleX")
+	return a2f(x)
+}
+func (v *FImageView) GetScaleY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleY")
+	return a2f(x)
+}
+func (v *FImageView) GetRotation() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Rotation")
+	return a2f(x)
+}
 func (v *FImageView) SetId(s string) *FImageView {
 	GlobalVars.IdMap[s] = v
 	return v
@@ -126,7 +183,7 @@ func (v *FImageView) LayoutGravity(gravity int) *FImageView {
 	v.FBaseView.LayoutGravity(gravity)
 	return v
 }
-func (v *FImageView) Elevation(dp float32) *FImageView {
+func (v *FImageView) Elevation(dp float64) *FImageView {
 	v.FBaseView.Elevation(dp)
 	return v
 }

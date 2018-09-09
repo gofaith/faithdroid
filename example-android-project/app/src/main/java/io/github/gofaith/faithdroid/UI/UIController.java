@@ -35,6 +35,7 @@ import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
 import io.github.gofaith.faithdroid.FViews.FSnackbar;
 import io.github.gofaith.faithdroid.FViews.FSpace;
+import io.github.gofaith.faithdroid.FViews.FSwitch;
 import io.github.gofaith.faithdroid.FViews.FTabLayout;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
@@ -198,6 +199,10 @@ public class UIController implements faithdroid.UIController{
             case "WebView":
                 FWebView webView = new FWebView(this);
                 v=webView;
+                break;
+            case "Switch":
+                FSwitch fSwitch = new FSwitch(this);
+                v=fSwitch;
                 break;
         }
         v.className =vName;

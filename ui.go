@@ -72,7 +72,7 @@ func (v *FBaseView) Margin(left, top, right, bottom int) {
 func (v *FBaseView) LayoutGravity(gravity int) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "LayoutGravity", SPrintf(gravity))
 }
-func (v *FBaseView) Elevation(dp float32) {
+func (v *FBaseView) Elevation(dp float64) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Elevation", SPrintf(dp))
 }
 func (v *FBaseView) LayoutWeight(f int) {

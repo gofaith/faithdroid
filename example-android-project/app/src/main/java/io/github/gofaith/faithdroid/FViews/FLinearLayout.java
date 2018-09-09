@@ -25,6 +25,20 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
         switch (attr) {
             case "Visibility":
                 return getVisibility();
+            case "X":
+                return String.valueOf(v.getX());
+            case "Y":
+                return String.valueOf(v.getY());
+            case "PivotX":
+                return String.valueOf(v.getPivotX());
+            case "PivotY":
+                return String.valueOf(v.getPivotY());
+            case "ScaleX":
+                return String.valueOf(v.getScaleX());
+            case "ScaleY":
+                return String.valueOf(v.getScaleY());
+            case "Rotation":
+                return String.valueOf(v.getRotation());
                 // --------------------------------------------------
             case "Orientation":
                 if (v.getOrientation()==LinearLayout.HORIZONTAL)
@@ -49,6 +63,27 @@ public class FLinearLayout extends FView implements AttrSettable,AttrGettable {
                 break;
             case "Size":
                 parseSize( value);
+                break;
+            case "X":
+                setX(value);
+                break;
+            case "Y":
+                setY(value);
+                break;
+            case "PivotX":
+                setPivotX(value);
+                break;
+            case "PivotY":
+                setPivotY(value);
+                break;
+            case "ScaleX":
+                setScaleX(value);
+                break;
+            case "ScaleY":
+                setScaleY(value);
+                break;
+            case "Rotation":
+                setRotation(value);
                 break;
             case "Visibility":
                 setVisibility(value);

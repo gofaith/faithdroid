@@ -46,6 +46,63 @@ func (v *FLinearLayout) Size(w, h int) *FLinearLayout {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
+func (v *FLinearLayout) X(x float64) *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "X", SPrintf(x))
+	return v
+}
+func (v *FLinearLayout) Y(y float64) *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Y", SPrintf(y))
+	return v
+}
+func (v *FLinearLayout) PivotX(x float64) *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotX", SPrintf(x))
+	return v
+}
+func (v *FLinearLayout) PivotY(y float64) *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotY", SPrintf(y))
+	return v
+}
+func (v *FLinearLayout) ScaleX(x float64) *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleX", SPrintf(x))
+	return v
+}
+func (v *FLinearLayout) ScaleY(y float64) *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleY", SPrintf(y))
+	return v
+}
+func (v *FLinearLayout) Rotation(r float64) *FLinearLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Rotation", SPrintf(r))
+	return v
+}
+
+func (v *FLinearLayout) GetX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "X")
+	return a2f(x)
+}
+func (v *FLinearLayout) GetY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
+	return a2f(x)
+}
+func (v *FLinearLayout) GetPivotX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
+	return a2f(x)
+}
+func (v *FLinearLayout) GetPivotY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotY")
+	return a2f(x)
+}
+func (v *FLinearLayout) GetScaleX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleX")
+	return a2f(x)
+}
+func (v *FLinearLayout) GetScaleY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleY")
+	return a2f(x)
+}
+func (v *FLinearLayout) GetRotation() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Rotation")
+	return a2f(x)
+}
 
 func (v *FLinearLayout) Background(s string) *FLinearLayout {
 	v.FBaseView.Background(s)
@@ -137,7 +194,7 @@ func (v *FLinearLayout) LayoutGravity(gravity int) *FLinearLayout {
 	v.FBaseView.LayoutGravity(gravity)
 	return v
 }
-func (v *FLinearLayout) Elevation(dp float32) *FLinearLayout {
+func (v *FLinearLayout) Elevation(dp float64) *FLinearLayout {
 	v.FBaseView.Elevation(dp)
 	return v
 }

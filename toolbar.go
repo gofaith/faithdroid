@@ -20,6 +20,63 @@ func (v *FToolbar) Size(w, h int) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
+func (v *FToolbar) X(x float64) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "X", SPrintf(x))
+	return v
+}
+func (v *FToolbar) Y(y float64) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Y", SPrintf(y))
+	return v
+}
+func (v *FToolbar) PivotX(x float64) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotX", SPrintf(x))
+	return v
+}
+func (v *FToolbar) PivotY(y float64) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PivotY", SPrintf(y))
+	return v
+}
+func (v *FToolbar) ScaleX(x float64) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleX", SPrintf(x))
+	return v
+}
+func (v *FToolbar) ScaleY(y float64) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleY", SPrintf(y))
+	return v
+}
+func (v *FToolbar) Rotation(r float64) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Rotation", SPrintf(r))
+	return v
+}
+
+func (v *FToolbar) GetX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "X")
+	return a2f(x)
+}
+func (v *FToolbar) GetY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
+	return a2f(x)
+}
+func (v *FToolbar) GetPivotX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
+	return a2f(x)
+}
+func (v *FToolbar) GetPivotY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotY")
+	return a2f(x)
+}
+func (v *FToolbar) GetScaleX() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleX")
+	return a2f(x)
+}
+func (v *FToolbar) GetScaleY() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "ScaleY")
+	return a2f(x)
+}
+func (v *FToolbar) GetRotation() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Rotation")
+	return a2f(x)
+}
 func (v *FToolbar) SetId(s string) *FToolbar {
 	GlobalVars.IdMap[s] = v
 	return v
@@ -119,7 +176,7 @@ func (v *FToolbar) LayoutGravity(gravity int) *FToolbar {
 	v.FBaseView.LayoutGravity(gravity)
 	return v
 }
-func (v *FToolbar) Elevation(dp float32) *FToolbar {
+func (v *FToolbar) Elevation(dp float64) *FToolbar {
 	v.FBaseView.Elevation(dp)
 	return v
 }

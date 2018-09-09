@@ -1,19 +1,20 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.Color;
-import android.text.InputType;
-import android.widget.EditText;
+import android.support.v7.widget.SwitchCompat;
+import android.widget.CompoundButton;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
 import io.github.gofaith.faithdroid.UI.UIController;
 
-public class FEditText extends FView implements AttrGettable, AttrSettable {
-    public EditText v;
+public class FSwitch extends FView implements AttrSettable, AttrGettable {
+    public SwitchCompat v;
 
-    public FEditText(UIController controller) {
+    public FSwitch(UIController controller) {
         parentController=controller;
-        v = new EditText(parentController.activity);
+        v = new SwitchCompat(parentController.activity);
         view=v;
     }
     @Override
@@ -36,14 +37,20 @@ public class FEditText extends FView implements AttrGettable, AttrSettable {
             case "Rotation":
                 return String.valueOf(v.getRotation());
             // ------------------------------------------
-            case "Text":
-                return v.getText().toString();
+            case "Checked":
+                return String.valueOf(v.isChecked());
+            case "Enabled":
+                return String.valueOf(v.isEnabled());
+            case "TextOn":
+                return v.getTextOn().toString();
+            case "TextOff":
+                return v.getTextOff().toString();
         }
         return "";
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (value==null)
             return;
         switch (attr) {
@@ -96,9 +103,6 @@ public class FEditText extends FView implements AttrGettable, AttrSettable {
                 setLayoutWeight(value);
                 break;
             // -------------------------------------------------------------------
-            case "Text":
-                v.setText(value);
-                break;
             case "TextColor":
                 try {
                     v.setTextColor(Color.parseColor(value));
@@ -108,24 +112,34 @@ public class FEditText extends FView implements AttrGettable, AttrSettable {
                 break;
             case "TextSize":
                 try {
-                    v.setTextSize(dp2pixel(parentController.activity, Float.valueOf(value)));
+                    v.setTextSize(dp2pixel(parentController.activity,Float.valueOf(value)));
                 } catch (Exception e) {
                     e.printStackTrace();
                     return;
                 }
                 break;
-            case "InputType":
-                int it;
-                if (value.equals("Text")) {
-                    it=InputType.TYPE_CLASS_TEXT;
-                } else if (value.equals("Number")) {
-                    it = InputType.TYPE_CLASS_NUMBER;
-                } else if (value.equals("Password")) {
-                    it=InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD;
-                } else  {
-                    it = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
+            case "Enabled":
+                if (value.equals("true")) {
+                    v.setEnabled(true);
+                } else {
+                    v.setEnabled(false);
                 }
-                v.setInputType(it);
+                break;
+            case "TextOn":
+                v.setShowText(true);
+                v.setTextOn(value);
+                break;
+            case "TextOff":
+                v.setShowText(true);
+                v.setTextOff(value);
+                break;
+            case "OnCheckedChangeListener":
+                v.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Faithdroid.triggerEventHandler(value, String.valueOf(isChecked));
+                    }
+                });
                 break;
         }
     }
