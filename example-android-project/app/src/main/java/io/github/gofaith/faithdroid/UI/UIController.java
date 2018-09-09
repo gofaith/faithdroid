@@ -130,6 +130,10 @@ public class UIController implements faithdroid.UIController{
                 FLinearLayout fLinearLayout = new FLinearLayout(this);
                 v=fLinearLayout;
                 break;
+            case "FrameLayout":
+                FFrameLayout fFrameLayout = new FFrameLayout(this);
+                v=fFrameLayout;
+                break;
             case "TextView":
                 FTextView textView = new FTextView(this);
                 v=textView;

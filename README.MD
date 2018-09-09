@@ -22,10 +22,10 @@
 - [x]ViewPager(Infinite)
 - [x]gifImageview
 - [x]ValueAnimator
-- frameLayout
+- [x]frameLayout
 - [x]Switch
 - [x]FloatingActionButton
-- onTouchEvent
+- [x]onTouchEvent
 - webview
 - SpinnerBox
 
