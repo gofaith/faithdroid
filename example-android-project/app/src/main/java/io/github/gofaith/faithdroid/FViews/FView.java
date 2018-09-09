@@ -7,17 +7,20 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONTokener;
 
 
 import java.util.ArrayList;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.Toolkit;
 import io.github.gofaith.faithdroid.UI.UIController;
 
@@ -97,7 +100,7 @@ public class FView {
         }
     }
 
-     void setVisibility(String value) {
+    void setVisibility(String value) {
         int vsb=View.VISIBLE;
         if (value.equals("INVISIBLE")){
             vsb=View.INVISIBLE;
@@ -106,7 +109,7 @@ public class FView {
         }
         view.setVisibility(vsb);
     }
-     String getVisibility(){
+    String getVisibility(){
         int vsb=view.getVisibility();
         if (vsb== View.VISIBLE) {
             return "VISIBLE";
@@ -116,7 +119,7 @@ public class FView {
         return "INVISIBLE";
     }
 
-     void setPadding(String value) {
+    void setPadding(String value) {
         try {
             JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
             int left= (int) dp2pixel(parentController.activity,array.getLong(0));
@@ -263,5 +266,36 @@ public class FView {
     }
     String getRotation(){
         return String.valueOf(view.getRotation());
+    }
+
+    void setOnTouchListener(final String value){
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                try {
+                    String action = "";
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_MOVE:
+                            action = "Move";
+                            break;
+                        case MotionEvent.ACTION_DOWN:
+                            action = "Down";
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            action = "Up";
+                            break;
+                    }
+                    JSONObject object = new JSONObject();
+                    object.put("Action", action);
+                    object.put("X", pixel2dp(parentController.activity,event.getX()));
+                    object.put("Y", pixel2dp(parentController.activity,event.getY()));
+                    Faithdroid.triggerEventHandler(value, object.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+                return true;
+            }
+        });
     }
 }

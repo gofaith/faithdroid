@@ -98,6 +98,9 @@ public class FTextView extends FView implements AttrGettable,AttrSettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
                 // ----------------------------------------------------------
             case "Text":
                 if (value!=null)

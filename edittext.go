@@ -206,6 +206,11 @@ func (v *FEditText) LayoutWeight(f int) *FEditText {
 	return v
 }
 
+func (v *FEditText) OnTouch(f func(TouchEvent)) *FEditText {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FEditText) Text(s string) *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

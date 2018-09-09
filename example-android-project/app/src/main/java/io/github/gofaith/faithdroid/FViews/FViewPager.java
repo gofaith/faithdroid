@@ -122,6 +122,9 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
             // ----------------------------------------------------------------------------
             case "Pages":
                 Log.d(TAG, "setAttr: "+value);

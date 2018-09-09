@@ -215,6 +215,11 @@ func (v *FTabLayout) LayoutWeight(f int) *FTabLayout {
 	return v
 }
 
+func (v *FTabLayout) OnTouch(f func(TouchEvent)) *FTabLayout {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // ------------------------------------------------------------
 
 type FTab struct {

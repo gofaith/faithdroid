@@ -106,6 +106,9 @@ public class FSwitch extends FView implements AttrSettable, AttrGettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
             // -------------------------------------------------------------------
             case "TextColor":
                 try {

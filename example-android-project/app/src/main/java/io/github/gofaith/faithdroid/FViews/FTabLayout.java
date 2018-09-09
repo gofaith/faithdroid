@@ -108,6 +108,9 @@ public class FTabLayout extends FView implements AttrSettable, AttrGettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
             // -------------------------------------------------------------------
             case "TabTextColors":
                 try {

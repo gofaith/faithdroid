@@ -6,11 +6,10 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	LinearLayout(a).SetId("l").Size(-2, -2).Append(
-		Button(a).Text("show").OnClick(func() {
-			l := GetLinearLayoutById("l")
-			ShowToast(a, SPrintf(l.GetWidth(), l.GetHeight()))
-		})).Show()
+	LinearLayout(a).SetId("l").Size(-2, -2).OnTouch(func(te TouchEvent) {
+		GetButtonById("bt").X(te.X).Y(te.Y)
+	}).Append(
+		Button(a).SetId("bt").Text("show")).Show()
 }
 
 /* ListView example

@@ -98,6 +98,9 @@ public class FSpace extends FView implements AttrSettable, AttrGettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
             // -------------------------------------------------------------------
         }
     }

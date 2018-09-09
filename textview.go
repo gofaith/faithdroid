@@ -216,6 +216,11 @@ func (v *FTextView) LayoutWeight(f int) *FTextView {
 	return v
 }
 
+func (v *FTextView) OnTouch(f func(TouchEvent)) *FTextView {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FTextView) Text(s string) *FTextView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

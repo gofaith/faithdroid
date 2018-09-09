@@ -205,6 +205,11 @@ func (v *FSwitch) LayoutWeight(f int) *FSwitch {
 	return v
 }
 
+func (v *FSwitch) OnTouch(f func(TouchEvent)) *FSwitch {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FSwitch) Enabled(b bool) *FSwitch {
 	if b {

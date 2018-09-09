@@ -101,6 +101,9 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
                 // -------------------------------------------------------------------
             case "Text":
                 v.setText(value);

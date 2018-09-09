@@ -214,6 +214,11 @@ func (v *FViewPager) LayoutWeight(f int) *FViewPager {
 	return v
 }
 
+func (v *FViewPager) OnTouch(f func(TouchEvent)) *FViewPager {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------
 type FPage struct {
 	VID string

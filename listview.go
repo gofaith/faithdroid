@@ -283,6 +283,11 @@ func (v *FListView) LayoutWeight(f int) *FListView {
 	return v
 }
 
+func (v *FListView) OnTouch(f func(TouchEvent)) *FListView {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------------------
 func (v *FListView) NotifyDataSetChanged() *FListView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")

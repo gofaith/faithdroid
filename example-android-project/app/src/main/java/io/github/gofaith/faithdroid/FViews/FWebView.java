@@ -94,6 +94,9 @@ public class FWebView extends FView implements AttrGettable, AttrSettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
             // -------------------------------------------------------------------
             case "Uri":
                 v.loadUrl(value);

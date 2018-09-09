@@ -206,4 +206,9 @@ func (v *FSpace) LayoutWeight(f int) *FSpace {
 	return v
 }
 
+func (v *FSpace) OnTouch(f func(TouchEvent)) *FSpace {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------

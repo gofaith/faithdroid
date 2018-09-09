@@ -25,9 +25,9 @@
 - frameLayout
 - [x]Switch
 - [x]FloatingActionButton
+- onTouchEvent
 - webview
 - SpinnerBox
-- RecyclerView
 
 - Dialog
 

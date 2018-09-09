@@ -209,6 +209,11 @@ func (v *FWebView) LayoutWeight(f int) *FWebView {
 	return v
 }
 
+func (v *FWebView) OnTouch(f func(TouchEvent)) *FWebView {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------
 
 func (v *FWebView) loadUri(s string) *FWebView {

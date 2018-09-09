@@ -206,6 +206,11 @@ func (v *FFab) LayoutWeight(f int) *FFab {
 	return v
 }
 
+func (v *FFab) OnTouch(f func(TouchEvent)) *FFab {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------
 
 func (v *FFab) Icon(s string) *FFab {

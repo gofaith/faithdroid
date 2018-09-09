@@ -97,6 +97,9 @@ public class FImageView extends FView implements AttrSettable, AttrGettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
             // -------------------------------------------------------------------
             case "Src":
                 Drawable drawable = Toolkit.file2Drawable(parentController.activity, value);

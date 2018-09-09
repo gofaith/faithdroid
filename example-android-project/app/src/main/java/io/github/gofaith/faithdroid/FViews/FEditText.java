@@ -99,6 +99,9 @@ public class FEditText extends FView implements AttrGettable, AttrSettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
             // -------------------------------------------------------------------
             case "Text":
                 v.setText(value);

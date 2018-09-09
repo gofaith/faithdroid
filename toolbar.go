@@ -198,6 +198,11 @@ func (v *FToolbar) LayoutWeight(f int) *FToolbar {
 	return v
 }
 
+func (v *FToolbar) OnTouch(f func(TouchEvent)) *FToolbar {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // ----------------------------------------------------------
 func (v *FToolbar) Title(s string) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)

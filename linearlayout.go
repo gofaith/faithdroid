@@ -216,6 +216,11 @@ func (v *FLinearLayout) LayoutWeight(f int) *FLinearLayout {
 	return v
 }
 
+func (v *FLinearLayout) OnTouch(f func(TouchEvent)) *FLinearLayout {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
 	v.Children = vs

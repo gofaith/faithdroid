@@ -205,6 +205,11 @@ func (v *FImageView) LayoutWeight(f int) *FImageView {
 	return v
 }
 
+func (v *FImageView) OnTouch(f func(TouchEvent)) *FImageView {
+	v.FBaseView.OnTouch(f)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FImageView) Src(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {

@@ -99,6 +99,9 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
             case "LayoutWeight":
                 setLayoutWeight(value);
                 break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
             // -------------------------------------------------------------------
             case "Title":
                 parentController.activity.getSupportActionBar().setTitle(value);
