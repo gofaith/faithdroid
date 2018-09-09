@@ -10,6 +10,9 @@ type UIController interface {
 	GetCurrentFActivity() *Activity
 }
 type FBaseView struct {
+	FBase
+}
+type FBase struct {
 	VID, ClassName string
 	UI             string
 }
@@ -17,7 +20,7 @@ type IView interface {
 	GetViewId() string
 }
 
-func (v FBaseView) GetViewId() string {
+func (v FBase) GetViewId() string {
 	return v.VID
 }
 func (v *FBaseView) Show() {

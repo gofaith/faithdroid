@@ -6,7 +6,12 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	Button(a).SetId("bt").Text("move").Show()
+	Button(a).SetId("bt").Text("move").OnClick(func() {
+		ValueAnimator(a).Duration(2000).OfInt(0, 400).OnValueChanged(func(s string) {
+			println(s)
+			GetButtonById("bt").X(a2f(s))
+		}).Start()
+	}).Show()
 }
 
 /* ListView example

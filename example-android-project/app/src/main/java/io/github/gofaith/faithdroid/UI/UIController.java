@@ -39,6 +39,7 @@ import io.github.gofaith.faithdroid.FViews.FSwitch;
 import io.github.gofaith.faithdroid.FViews.FTabLayout;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
+import io.github.gofaith.faithdroid.FViews.FValueAnimator;
 import io.github.gofaith.faithdroid.FViews.FView;
 import io.github.gofaith.faithdroid.FViews.FViewPager;
 import io.github.gofaith.faithdroid.FViews.FWebView;
@@ -203,6 +204,10 @@ public class UIController implements faithdroid.UIController{
             case "Switch":
                 FSwitch fSwitch = new FSwitch(this);
                 v=fSwitch;
+                break;
+            case "ValueAnimator":
+                FValueAnimator valueAnimator = new FValueAnimator(this);
+                v=valueAnimator;
                 break;
         }
         v.className =vName;

@@ -21,11 +21,12 @@
 - [x]EditText
 - [x]ViewPager(Infinite)
 - [x]gifImageview
+- [x]ValueAnimator
 - frameLayout
+- [x]Switch
+- [x]FloatingActionButton
 - webview
-- Switch
 - SpinnerBox
-- FloatingActionButton
 - RecyclerView
 
 - Dialog
