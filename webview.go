@@ -119,6 +119,14 @@ func (v *FWebView) Background(s string) *FWebView {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FWebView) Foreground(s string) *FWebView {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FWebView) CachedForeground(s string) *FWebView {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FWebView) BackgroundColor(s string) *FWebView {
 	v.FBaseView.BackgroundColor(s)
 	return v

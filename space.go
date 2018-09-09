@@ -116,6 +116,14 @@ func (v *FSpace) Background(s string) *FSpace {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FSpace) Foreground(s string) *FSpace {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FSpace) CachedForeground(s string) *FSpace {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FSpace) BackgroundColor(s string) *FSpace {
 	v.FBaseView.BackgroundColor(s)
 	return v

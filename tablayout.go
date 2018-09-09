@@ -115,6 +115,14 @@ func (v *FTabLayout) Background(s string) *FTabLayout {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FTabLayout) Foreground(s string) *FTabLayout {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FTabLayout) CachedForeground(s string) *FTabLayout {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FTabLayout) BackgroundColor(s string) *FTabLayout {
 	v.FBaseView.BackgroundColor(s)
 	return v

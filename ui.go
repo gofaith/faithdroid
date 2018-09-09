@@ -54,6 +54,34 @@ func (v *FBaseView) CachedBackground(s string) {
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Background", s)
 }
+func (v *FBaseView) Foreground(s string) {
+	if len(s) > len("https://") && s[:len("http")] == "http" {
+		go DownloadNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/tmp/", func(f string) {
+			fnID := NewToken()
+			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Foreground", "file://"+f)
+				return ""
+			}
+			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
+		})
+		return
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Foreground", s)
+}
+func (v *FBaseView) CachedForeground(s string) {
+	if len(s) > len("https://") && s[:len("http")] == "http" {
+		go CacheNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/cacheDir/", func(f string) {
+			fnID := NewToken()
+			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Foreground", "file://"+f)
+				return ""
+			}
+			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
+		})
+		return
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Foreground", s)
+}
 func (v *FBaseView) BackgroundColor(s string) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BackgroundColor", s)
 }

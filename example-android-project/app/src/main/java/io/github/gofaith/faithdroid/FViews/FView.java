@@ -98,8 +98,26 @@ public class FView {
         }else {
             view.setBackgroundDrawable(draw);
         }
+        if (value.equals("RippleEffect")) {
+            view.setClickable(true);
+        }
     }
 
+    void setForeground(String value) {
+        if (value == null) {
+            return;
+        }
+        Drawable draw = Toolkit.file2Drawable(parentController.activity, value);
+        if (draw == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            view.setForeground(draw);
+        }
+        if (value.equals("RippleEffect")) {
+            view.setClickable(true);
+        }
+    }
     void setVisibility(String value) {
         int vsb=View.VISIBLE;
         if (value.equals("INVISIBLE")){
@@ -298,4 +316,5 @@ public class FView {
             }
         });
     }
+
 }

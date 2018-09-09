@@ -116,6 +116,14 @@ func (v *FEditText) Background(s string) *FEditText {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FEditText) Foreground(s string) *FEditText {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FEditText) CachedForeground(s string) *FEditText {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FEditText) BackgroundColor(s string) *FEditText {
 	v.FBaseView.BackgroundColor(s)
 	return v

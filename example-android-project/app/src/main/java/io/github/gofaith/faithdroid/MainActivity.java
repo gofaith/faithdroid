@@ -1,11 +1,15 @@
 package io.github.gofaith.faithdroid;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONTokener;

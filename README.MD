@@ -29,20 +29,20 @@
 - webview
 - SpinnerBox
 
-- Dialog
+- [x]Dialog
 
-- toolbar
-- TabLayout
 - DrawerLayout
 - BottomNavigation
 - BottomSheets
 - Material Card
 
-- startActivity
+- deleteObject
+
+- [x]startActivity
 - Service
 - Notification
 
 
 - rippleEffect
-- animation
+- fadeIn & fadeOut
 - radius of Button

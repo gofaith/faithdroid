@@ -115,6 +115,14 @@ func (v *FSwitch) Background(s string) *FSwitch {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FSwitch) Foreground(s string) *FSwitch {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FSwitch) CachedForeground(s string) *FSwitch {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FSwitch) BackgroundColor(s string) *FSwitch {
 	v.FBaseView.BackgroundColor(s)
 	return v

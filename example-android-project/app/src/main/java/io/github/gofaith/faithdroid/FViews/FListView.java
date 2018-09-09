@@ -66,6 +66,9 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
             case "Background":
                 setBackground(value);
                 break;
+            case "Foreground":
+                setForeground(value);
+                break;
             case "Size":
                 parseSize(value);
                 break;

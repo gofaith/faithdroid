@@ -116,6 +116,14 @@ func (v *FLinearLayout) Background(s string) *FLinearLayout {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FLinearLayout) Foreground(s string) *FLinearLayout {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FLinearLayout) CachedForeground(s string) *FLinearLayout {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FLinearLayout) BackgroundColor(s string) *FLinearLayout {
 	v.FBaseView.BackgroundColor(s)
 	return v

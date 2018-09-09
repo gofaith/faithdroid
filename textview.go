@@ -116,6 +116,14 @@ func (v *FTextView) Background(s string) *FTextView {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FTextView) Foreground(s string) *FTextView {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FTextView) CachedForeground(s string) *FTextView {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FTextView) BackgroundColor(s string) *FTextView {
 	v.FBaseView.BackgroundColor(s)
 	return v

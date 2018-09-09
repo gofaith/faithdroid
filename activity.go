@@ -77,20 +77,6 @@ func (a *Activity) OnStart() {
 func (a *Activity) OnDestroy() {
 }
 
-func StartActivity(a *Activity, createView func(*Activity), conf *ActivityConfig) {
-	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(uId string) string {
-		if createView != nil {
-			createView(GlobalVars.UIs[uId].GetCurrentFActivity())
-		}
-		return ""
-	}
-	if conf == nil {
-		conf = NewActivityConfig()
-	}
-	conf.MyFnId = fnId
-	GlobalVars.UIs[a.UI].NewView("Activity", JsonObject(conf))
-}
 func Finish(a *Activity) {
 	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "Finish", "")
 }

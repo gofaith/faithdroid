@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +15,7 @@ import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.IconCompat;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -71,6 +74,16 @@ public class Toolkit {
                     break;
             }
             return ContextCompat.getDrawable(activity, src);
+        } else if (value.equals("RippleEffect")) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//                // If we're running on Honeycomb or newer, then we can use the Theme's
+//                // selectableItemBackground to ensure that the View has a pressed state
+//                TypedValue outValue = new TypedValue();
+//                activity.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
+//                Drawable d= activity.getResources().getDrawable(outValue.resourceId);
+//                return  d;
+//            }
+            return activity.getResources().getDrawable(R.drawable.ripple);
         }
         return null;
     }

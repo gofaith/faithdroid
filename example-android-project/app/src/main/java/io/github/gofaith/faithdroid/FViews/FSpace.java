@@ -56,6 +56,9 @@ public class FSpace extends FView implements AttrSettable, AttrGettable {
             case "Background":
                 setBackground(value);
                 break;
+            case "Foreground":
+                setForeground(value);
+                break;
             case "Size":
                 parseSize( value);
                 break;

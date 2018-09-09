@@ -183,6 +183,14 @@ func (v *FListView) Background(s string) *FListView {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FListView) Foreground(s string) *FListView {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FListView) CachedForeground(s string) *FListView {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FListView) BackgroundColor(s string) *FListView {
 	v.FBaseView.BackgroundColor(s)
 	return v

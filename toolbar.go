@@ -108,6 +108,14 @@ func (v *FToolbar) Background(s string) *FToolbar {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FToolbar) Foreground(s string) *FToolbar {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FToolbar) CachedForeground(s string) *FToolbar {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FToolbar) BackgroundColor(s string) *FToolbar {
 	v.FBaseView.BackgroundColor(s)
 	return v

@@ -114,6 +114,14 @@ func (v *FViewPager) Background(s string) *FViewPager {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FViewPager) Foreground(s string) *FViewPager {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FViewPager) CachedForeground(s string) *FViewPager {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FViewPager) BackgroundColor(s string) *FViewPager {
 	v.FBaseView.BackgroundColor(s)
 	return v

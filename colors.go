@@ -61,6 +61,7 @@ type ColorsCollection struct {
 	BlueGreyDark    string
 	Black, White    string
 	Transparent     string
+	RippleEffect    string
 }
 
 var Colors = ColorsCollection{
@@ -122,5 +123,6 @@ var Colors = ColorsCollection{
 	BlueGreyLight:   "#90a4ae",
 	BlueGreyDark:    "#455a64",
 	Black:           "#000000", White: "#ffffff",
-	Transparent: "#0000000",
+	Transparent:  "#0000000",
+	RippleEffect: "RippleEffect",
 }

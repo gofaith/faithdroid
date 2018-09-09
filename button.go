@@ -117,6 +117,14 @@ func (v *FButton) Background(s string) *FButton {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FButton) Foreground(s string) *FButton {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FButton) CachedForeground(s string) *FButton {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FButton) BackgroundColor(s string) *FButton {
 	v.FBaseView.BackgroundColor(s)
 	return v

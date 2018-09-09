@@ -6,8 +6,9 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	FrameLayout(a).Size(-2, -2).MarginAll(30).BackgroundColor(Colors.White).Elevation(10).Append(
-		Button(a).Text("OK")).Show()
+	img := `http://img.ithome.com/newsuploadfiles/focus/7d739df2-570f-4e0d-b419-60ad2df697f8.jpg?r=131809578775293415`
+	FrameLayout(a).Size(-2, -2).PaddingAll(50).BackgroundColor(Colors.White).Append(
+		ImageView(a).Src(img).BackgroundColor(Colors.White).Foreground(Colors.RippleEffect).Elevation(16).Size(-2, -2).MarginAll(30)).Show()
 }
 
 /* ListView example

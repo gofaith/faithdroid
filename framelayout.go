@@ -116,6 +116,14 @@ func (v *FFrameLayout) Background(s string) *FFrameLayout {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FFrameLayout) Foreground(s string) *FFrameLayout {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FFrameLayout) CachedForeground(s string) *FFrameLayout {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FFrameLayout) BackgroundColor(s string) *FFrameLayout {
 	v.FBaseView.BackgroundColor(s)
 	return v

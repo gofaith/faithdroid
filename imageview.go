@@ -115,6 +115,14 @@ func (v *FImageView) Background(s string) *FImageView {
 	v.FBaseView.Background(s)
 	return v
 }
+func (v *FImageView) Foreground(s string) *FImageView {
+	v.FBaseView.Foreground(s)
+	return v
+}
+func (v *FImageView) CachedForeground(s string) *FImageView {
+	v.FBaseView.CachedForeground(s)
+	return v
+}
 func (v *FImageView) BackgroundColor(s string) *FImageView {
 	v.FBaseView.BackgroundColor(s)
 	return v
