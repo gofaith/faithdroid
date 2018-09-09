@@ -28,7 +28,7 @@ func (v *FSpace) Size(w, h int) *FSpace {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FSpace) SetId(s string)*FSpace {
+func (v *FSpace) SetId(s string) *FSpace {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -51,7 +51,7 @@ func (v *FSpace) Background(s string) *FSpace {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FSpace) BackgroundColor(s int) *FSpace {
+func (v *FSpace) BackgroundColor(s string) *FSpace {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

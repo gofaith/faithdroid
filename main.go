@@ -6,8 +6,13 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	LinearLayout(a).Size(-2, -2).DeferShow().BackgroundColor(Colors.Red).Append(
-		WebView(a).loadUri("file:///android_asset/out.webp").Focusable(false).BackgroundColor(Colors.Transparent))
+	LinearLayout(a).DeferShow().Size(-2, -2).Append(
+		ViewPager(a).Size(-2, -2).BackgroundColor(Colors.White).Elevation(8).OnGetPage(func(pos int) IView {
+			return TextView(a).Text(SPrintf(pos))
+		}, func() int {
+			return 8
+		}),
+	).PaddingAll(30).BackgroundColor(Colors.Teal)
 }
 
 /* ListView example

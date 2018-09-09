@@ -21,7 +21,7 @@ func (vh *ViewHolder) GetTextViewByItemId(id string) *FTextView {
 	}
 	return nil
 }
-func (v *FTextView) SetId(s string)*FTextView {
+func (v *FTextView) SetId(s string) *FTextView {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -51,7 +51,7 @@ func (v *FTextView) Background(s string) *FTextView {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FTextView) BackgroundColor(s int) *FTextView {
+func (v *FTextView) BackgroundColor(s string) *FTextView {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

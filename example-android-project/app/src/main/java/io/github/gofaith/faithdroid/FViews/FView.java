@@ -70,9 +70,10 @@ public class FView {
     }
 
     void setBackgroundColor(String value) {
+        Log.d(TAG, "setBackgroundColor: "+value);
         if (value==null)
             return;
-        if (value.equals("#0")) {
+        if (value.equals("#0000000")) {
             view.setBackgroundColor(Color.TRANSPARENT);
             return;
         }

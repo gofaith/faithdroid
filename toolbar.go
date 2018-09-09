@@ -20,7 +20,7 @@ func (v *FToolbar) Size(w, h int) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FToolbar) SetId(s string)*FToolbar {
+func (v *FToolbar) SetId(s string) *FToolbar {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -43,7 +43,7 @@ func (v *FToolbar) Background(s string) *FToolbar {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FToolbar) BackgroundColor(s int) *FToolbar {
+func (v *FToolbar) BackgroundColor(s string) *FToolbar {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

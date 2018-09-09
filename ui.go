@@ -51,8 +51,8 @@ func (v *FBaseView) CachedBackground(s string) {
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Background", s)
 }
-func (v *FBaseView) BackgroundColor(s int) {
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BackgroundColor", "#"+XPrintf(s))
+func (v *FBaseView) BackgroundColor(s string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BackgroundColor", s)
 }
 func (v *FBaseView) Visible() {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Visibility", "VISIBLE")

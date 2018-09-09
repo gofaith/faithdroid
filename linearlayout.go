@@ -14,7 +14,7 @@ func (vh *ViewHolder) GetLinearLayoutByItemId(id string) *FLinearLayout {
 	}
 	return nil
 }
-func (v *FLinearLayout) SetId(s string)*FLinearLayout {
+func (v *FLinearLayout) SetId(s string) *FLinearLayout {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -51,7 +51,7 @@ func (v *FLinearLayout) Background(s string) *FLinearLayout {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FLinearLayout) BackgroundColor(s int) *FLinearLayout {
+func (v *FLinearLayout) BackgroundColor(s string) *FLinearLayout {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

@@ -51,7 +51,7 @@ func (v *FWebView) Background(s string) *FWebView {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FWebView) BackgroundColor(s int) *FWebView {
+func (v *FWebView) BackgroundColor(s string) *FWebView {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

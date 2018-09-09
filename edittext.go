@@ -27,7 +27,7 @@ func (v *FEditText) Size(w, h int) *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FEditText) SetId(s string)*FEditText {
+func (v *FEditText) SetId(s string) *FEditText {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -46,11 +46,11 @@ func GetEditTextById(id string) *FEditText {
 	return nil
 }
 
-func (v *FEditText) Background(s string)*FEditText {
+func (v *FEditText) Background(s string) *FEditText {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FEditText) BackgroundColor(s int) *FEditText {
+func (v *FEditText) BackgroundColor(s string) *FEditText {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

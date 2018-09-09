@@ -6,6 +6,7 @@ import (
 	"github.com/StevenZack/tools/netToolkit"
 	"github.com/StevenZack/tools/strToolkit"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -117,4 +118,7 @@ func SPrintf(a interface{}) string {
 }
 func XPrintf(a int) string {
 	return fmt.Sprintf("%x", a)
+}
+func a2i(a string) (int, error) {
+	return strconv.Atoi(a)
 }

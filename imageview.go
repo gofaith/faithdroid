@@ -27,7 +27,7 @@ func (v *FImageView) Size(w, h int) *FImageView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FImageView) SetId(s string)*FImageView {
+func (v *FImageView) SetId(s string) *FImageView {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -50,7 +50,7 @@ func (v *FImageView) Background(s string) *FImageView {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FImageView) BackgroundColor(s int) *FImageView {
+func (v *FImageView) BackgroundColor(s string) *FImageView {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

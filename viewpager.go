@@ -12,7 +12,7 @@ func (vh *ViewHolder) GetViewPagerByItemId(id string) *FViewPager {
 	}
 	return nil
 }
-func (v *FViewPager) SetId(s string)*FViewPager {
+func (v *FViewPager) SetId(s string) *FViewPager {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -49,7 +49,7 @@ func (v *FViewPager) Background(s string) *FViewPager {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FViewPager) BackgroundColor(s int) *FViewPager {
+func (v *FViewPager) BackgroundColor(s string) *FViewPager {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }
@@ -168,6 +168,25 @@ func (v *FViewPager) Pages(ps ...*FPage) *FViewPager {
 		return v
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Pages", JsonArray(ps))
+	return v
+}
+func (v *FViewPager) OnGetPage(getView func(pos int) IView, getCount func() int) *FViewPager {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
+		i, e := a2i(s)
+		if e != nil {
+			print("OnCreateView():", e.Error())
+			return ""
+		}
+		return getView(i).GetViewId()
+	}
+	fnId2 := NewToken()
+	GlobalVars.EventHandlersMap[fnId2] = func(string) string {
+		return SPrintf(getCount())
+	}
+
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnCreateView", fnId)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId2)
 	return v
 }
 func (v *FViewPager) BindTabLayoutById(id string) *FViewPager {

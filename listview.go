@@ -25,7 +25,7 @@ func (vh *ViewHolder) GetListViewById(id string) *FListView {
 }
 
 // -----------------------------------
-func (v *FListView) SetId(s string)*FListView {
+func (v *FListView) SetId(s string) *FListView {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -118,7 +118,7 @@ func (v *FListView) Background(s string) *FListView {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FListView) BackgroundColor(s int) *FListView {
+func (v *FListView) BackgroundColor(s string) *FListView {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

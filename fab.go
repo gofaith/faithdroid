@@ -27,7 +27,7 @@ func (v *FFab) Size(w, h int) *FFab {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
 	return v
 }
-func (v *FFab) SetId(s string)*FFab {
+func (v *FFab) SetId(s string) *FFab {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -50,7 +50,7 @@ func (v *FFab) Background(s string) *FFab {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FFab) BackgroundColor(s int) *FFab {
+func (v *FFab) BackgroundColor(s string) *FFab {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

@@ -28,6 +28,7 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
     private FaithCollectionPagerAdapter adapter;
     public ViewPager v;
     List<FPage> pages = new ArrayList<>();
+    public String onCreateView,onGetCount;
     public FViewPager(UIController controller) {
         parentController = controller;
         v = new ViewPager(parentController.activity);
@@ -92,8 +93,10 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
                         fPage.vid = object.getString("VID");
                         pages.add(fPage);
                     }
-                    adapter = new FaithCollectionPagerAdapter(parentController.activity.getSupportFragmentManager(), this);
-                    v.setAdapter(adapter);
+                    if(adapter==null) {
+                        adapter = new FaithCollectionPagerAdapter(parentController.activity.getSupportFragmentManager(), this);
+                        v.setAdapter(adapter);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -104,11 +107,25 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
                 FTabLayout fTabLayout=(FTabLayout)o;
                 fTabLayout.v.setupWithViewPager(v);
                 break;
+            case "OnCreateView":
+                onCreateView = value;
+                if (adapter==null&&onGetCount!=null) {
+                    adapter = new FaithCollectionPagerAdapter(parentController.activity.getSupportFragmentManager(), this);
+                    v.setAdapter(adapter);
+                }
+                break;
+            case "OnGetCount":
+                onGetCount=value;
+                if (adapter==null&&onCreateView!=null) {
+                    adapter = new FaithCollectionPagerAdapter(parentController.activity.getSupportFragmentManager(), this);
+                    v.setAdapter(adapter);
+                }
+                break;
         }
     }
     // ------------------
     class FPage{
-        String vid, onSelected;
+        String vid;
     }
     class FaithCollectionPagerAdapter extends FragmentStatePagerAdapter {
         private final FViewPager fviewPager;
@@ -128,6 +145,12 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
         }
         @Override
         public int getCount() {
+            if (fviewPager.pages.size()==0&&onGetCount!=null&&onCreateView!=null) {
+                try {
+                    return Integer.parseInt(Faithdroid.triggerEventHandler(onGetCount, ""));
+                } catch (Exception e) {
+                }
+            }
             return fviewPager.pages.size();
         }
         @Override
@@ -148,6 +171,21 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             Bundle args = getArguments();
             int i=args.getInt(ARG_OBJECT);
+            if (fviewPager.onCreateView != null && !fviewPager.onCreateView.equals("")) {
+                Log.d("TAG", "onCreateView: 1");
+                String vid = Faithdroid.triggerEventHandler(fviewPager.onCreateView, String.valueOf(i));
+                if (fviewPager.parentController.viewmap.containsKey(vid)) {
+                    Log.d("TAG", "onCreateView: 2");
+                    FView cview = fviewPager.parentController.viewmap.get(vid);
+                    if (cview != null) {
+                        Log.d("TAG", "onCreateView: 3");
+                        return cview.view;
+                    }
+                }
+            }
+            if (fviewPager.pages.size() <= i) {
+                return null;
+            }
             FPage p = fviewPager.pages.get(i);
             View rootView=fviewPager.parentController.viewmap.get(Faithdroid.triggerEventHandler(p.vid,"")).view;
             return rootView;

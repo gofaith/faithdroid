@@ -25,6 +25,7 @@
 - SpinnerBox
 - FloatingActionButton
 - RecyclerView
+- ViewPager(Infinite)
 
 - Dialog
 

@@ -50,7 +50,7 @@ func (v *FButton) Background(s string) *FButton {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FButton) BackgroundColor(s int) *FButton {
+func (v *FButton) BackgroundColor(s string) *FButton {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }

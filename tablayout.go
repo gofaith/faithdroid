@@ -13,7 +13,7 @@ func (vh *ViewHolder) GetTabLayoutByItemId(id string) *FTabLayout {
 	return nil
 }
 
-func (v *FTabLayout) SetId(s string)*FTabLayout {
+func (v *FTabLayout) SetId(s string) *FTabLayout {
 	GlobalVars.IdMap[s] = v
 	return v
 }
@@ -50,7 +50,7 @@ func (v *FTabLayout) Background(s string) *FTabLayout {
 	v.FBaseView.Background(s)
 	return v
 }
-func (v *FTabLayout) BackgroundColor(s int) *FTabLayout {
+func (v *FTabLayout) BackgroundColor(s string) *FTabLayout {
 	v.FBaseView.BackgroundColor(s)
 	return v
 }
