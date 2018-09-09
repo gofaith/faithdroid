@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="73f5f8ce-af48-4fd5-8369-478873c2c569" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSwitch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activity.go" beforeDir="false" afterPath="$PROJECT_DIR$/activity.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/button.go" beforeDir="false" afterPath="$PROJECT_DIR$/button.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edittext.go" beforeDir="false" afterPath="$PROJECT_DIR$/edittext.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FEditText.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FEditText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FFab.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FFab.java" afterDir="false" />
@@ -14,23 +12,22 @@
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FLinearLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FLinearLayout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FListView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSpace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSwitch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FTabLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FTabLayout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FTextView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FTextView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FToolbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FToolbar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FViewPager.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FViewPager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FWebView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FWebView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/UI/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/UI/UIController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fab.go" beforeDir="false" afterPath="$PROJECT_DIR$/fab.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imageview.go" beforeDir="false" afterPath="$PROJECT_DIR$/imageview.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/linearlayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/linearlayout.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/listview.go" beforeDir="false" afterPath="$PROJECT_DIR$/listview.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/space.go" beforeDir="false" afterPath="$PROJECT_DIR$/space.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/switch.go" beforeDir="false" afterPath="$PROJECT_DIR$/switch.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tablayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/tablayout.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/textview.go" beforeDir="false" afterPath="$PROJECT_DIR$/textview.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/toolbar.go" beforeDir="false" afterPath="$PROJECT_DIR$/toolbar.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools.go" beforeDir="false" afterPath="$PROJECT_DIR$/tools.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/viewpager.go" beforeDir="false" afterPath="$PROJECT_DIR$/viewpager.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webview.go" beforeDir="false" afterPath="$PROJECT_DIR$/webview.go" afterDir="false" />
     </list>
@@ -44,21 +41,22 @@
     <session id="-1153036295">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="go" value="16" />
+          <entry key="go" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="16" />
+          <entry key="Go" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -74,105 +72,26 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/linearlayout.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2492">
-              <caret line="196" column="44" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/listview.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3363">
-              <caret line="263" column="40" selection-start-line="263" selection-start-column="40" selection-end-line="263" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/space.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2362">
-              <caret line="186" column="37" selection-start-line="186" selection-start-column="37" selection-end-line="186" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/switch.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2349">
-              <caret line="185" column="38" selection-start-line="185" selection-start-column="38" selection-end-line="185" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tablayout.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2479">
-              <caret line="195" column="41" selection-start-line="195" selection-start-column="41" selection-end-line="195" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/textview.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2492">
-              <caret line="196" column="40" selection-start-line="196" selection-start-column="40" selection-end-line="196" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/toolbar.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2258">
-              <caret line="178" column="39" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tools.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/viewpager.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2466">
-              <caret line="194" column="41" selection-start-line="194" selection-start-column="41" selection-end-line="194" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webview.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2401">
-              <caret line="189" column="39" selection-start-line="189" selection-start-column="39" selection-end-line="189" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>float32</find>
+      <find>FButton</find>
     </findStrings>
     <replaceStrings>
       <replace>float64</replace>
+      <replace>FFab</replace>
+      <replace>FImageView</replace>
+      <replace>FLinearLayout</replace>
+      <replace>FListView</replace>
+      <replace>FSpace</replace>
+      <replace>FSwitch</replace>
+      <replace>FTabLayout</replace>
+      <replace>FTextView</replace>
+      <replace>FToolbar</replace>
+      <replace>FViewPager</replace>
+      <replace>FWebView</replace>
     </replaceStrings>
   </component>
   <component name="GOROOT" path="/opt/go" />
@@ -186,6 +105,7 @@
         <option value="$PROJECT_DIR$/popupmenu.go" />
         <option value="$PROJECT_DIR$/button.go" />
         <option value="$PROJECT_DIR$/edittext.go" />
+        <option value="$PROJECT_DIR$/tools.go" />
         <option value="$PROJECT_DIR$/fab.go" />
         <option value="$PROJECT_DIR$/imageview.go" />
         <option value="$PROJECT_DIR$/linearlayout.go" />
@@ -195,7 +115,6 @@
         <option value="$PROJECT_DIR$/tablayout.go" />
         <option value="$PROJECT_DIR$/textview.go" />
         <option value="$PROJECT_DIR$/toolbar.go" />
-        <option value="$PROJECT_DIR$/tools.go" />
         <option value="$PROJECT_DIR$/viewpager.go" />
         <option value="$PROJECT_DIR$/webview.go" />
       </list>
@@ -267,9 +186,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2524013" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25506938" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -323,94 +241,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tools.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="849">
+          <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/edittext.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2362">
-          <caret line="186" column="40" selection-start-line="186" selection-start-column="40" selection-end-line="186" selection-end-column="40" />
+        <state relative-caret-position="873">
+          <caret line="186" column="38" lean-forward="true" selection-start-line="186" selection-start-column="38" selection-end-line="186" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fab.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2362">
-          <caret line="186" column="35" selection-start-line="186" selection-start-column="35" selection-end-line="186" selection-end-column="35" />
+        <state relative-caret-position="325">
+          <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imageview.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2349">
-          <caret line="185" column="41" selection-start-line="185" selection-start-column="41" selection-end-line="185" selection-end-column="41" />
+        <state relative-caret-position="325">
+          <caret line="70" column="19" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/linearlayout.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2492">
-          <caret line="196" column="44" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
+        <state relative-caret-position="325">
+          <caret line="89" column="22" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/listview.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3363">
-          <caret line="263" column="40" selection-start-line="263" selection-start-column="40" selection-end-line="263" selection-end-column="40" />
+        <state relative-caret-position="325">
+          <caret line="157" column="18" selection-start-line="157" selection-start-column="18" selection-end-line="157" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/space.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2362">
-          <caret line="186" column="37" selection-start-line="186" selection-start-column="37" selection-end-line="186" selection-end-column="37" />
+        <state relative-caret-position="325">
+          <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/switch.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2349">
-          <caret line="185" column="38" selection-start-line="185" selection-start-column="38" selection-end-line="185" selection-end-column="38" />
+        <state relative-caret-position="325">
+          <caret line="70" column="16" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tablayout.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2479">
-          <caret line="195" column="41" selection-start-line="195" selection-start-column="41" selection-end-line="195" selection-end-column="41" />
+        <state relative-caret-position="325">
+          <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textview.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2492">
-          <caret line="196" column="40" selection-start-line="196" selection-start-column="40" selection-end-line="196" selection-end-column="40" />
+        <state relative-caret-position="325">
+          <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/toolbar.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2258">
-          <caret line="178" column="39" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
+        <state relative-caret-position="325">
+          <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/viewpager.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2466">
-          <caret line="194" column="41" selection-start-line="194" selection-start-column="41" selection-end-line="194" selection-end-column="41" />
+        <state relative-caret-position="325">
+          <caret line="88" column="19" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webview.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2401">
-          <caret line="189" column="39" selection-start-line="189" selection-start-column="39" selection-end-line="189" selection-end-column="39" />
+        <state relative-caret-position="381">
+          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
         </state>
       </provider>
     </entry>

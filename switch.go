@@ -64,6 +64,14 @@ func (v *FSwitch) GetY() float64 {
 	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
 	return a2f(x)
 }
+func (v *FSwitch) GetWidth() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Width")
+	return a2f(x)
+}
+func (v *FSwitch) GetHeight() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Height")
+	return a2f(x)
+}
 func (v *FSwitch) GetPivotX() float64 {
 	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
 	return a2f(x)

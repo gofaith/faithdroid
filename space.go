@@ -65,6 +65,14 @@ func (v *FSpace) GetY() float64 {
 	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
 	return a2f(x)
 }
+func (v *FSpace) GetWidth() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Width")
+	return a2f(x)
+}
+func (v *FSpace) GetHeight() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Height")
+	return a2f(x)
+}
 func (v *FSpace) GetPivotX() float64 {
 	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
 	return a2f(x)

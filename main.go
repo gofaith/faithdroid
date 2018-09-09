@@ -6,12 +6,11 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	Button(a).SetId("bt").Text("move").OnClick(func() {
-		ValueAnimator(a).Duration(2000).OfInt(0, 400).OnValueChanged(func(s string) {
-			println(s)
-			GetButtonById("bt").X(a2f(s))
-		}).Start()
-	}).Show()
+	LinearLayout(a).SetId("l").Size(-2, -2).Append(
+		Button(a).Text("show").OnClick(func() {
+			l := GetLinearLayoutById("l")
+			ShowToast(a, SPrintf(l.GetWidth(), l.GetHeight()))
+		})).Show()
 }
 
 /* ListView example

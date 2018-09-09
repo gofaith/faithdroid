@@ -65,6 +65,14 @@ func (v *FButton) GetY() float64 {
 	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
 	return a2f(x)
 }
+func (v *FButton) GetWidth() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Width")
+	return a2f(x)
+}
+func (v *FButton) GetHeight() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Height")
+	return a2f(x)
+}
 func (v *FButton) GetPivotX() float64 {
 	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
 	return a2f(x)

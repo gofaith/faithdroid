@@ -83,6 +83,14 @@ func (v *FLinearLayout) GetY() float64 {
 	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Y")
 	return a2f(x)
 }
+func (v *FLinearLayout) GetWidth() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Width")
+	return a2f(x)
+}
+func (v *FLinearLayout) GetHeight() float64 {
+	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Height")
+	return a2f(x)
+}
 func (v *FLinearLayout) GetPivotX() float64 {
 	x := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "PivotX")
 	return a2f(x)

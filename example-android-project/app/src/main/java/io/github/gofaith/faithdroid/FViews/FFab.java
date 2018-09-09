@@ -26,19 +26,23 @@ public class FFab extends  FView implements AttrGettable, AttrSettable {
             case "Visibility":
                 return getVisibility();
             case "X":
-                return String.valueOf(v.getX());
+                return getX();
             case "Y":
-                return String.valueOf(v.getY());
+                return getY();
+            case "Width":
+                return getWidth();
+            case "Height":
+                return getHeight();
             case "PivotX":
-                return String.valueOf(v.getPivotX());
+                return getPivotX();
             case "PivotY":
-                return String.valueOf(v.getPivotY());
+                return getPivotY();
             case "ScaleX":
-                return String.valueOf(v.getScaleX());
+                return getScaleX();
             case "ScaleY":
-                return String.valueOf(v.getScaleY());
+                return getScaleY();
             case "Rotation":
-                return String.valueOf(v.getRotation());
+                return getRotation();
                 //------------------
         }
         return "";

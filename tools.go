@@ -113,8 +113,8 @@ func GetRealUrl(url string) string {
 	}
 	return url
 }
-func SPrintf(a interface{}) string {
-	return fmt.Sprintf("%v", a)
+func SPrintf(a ...interface{}) string {
+	return fmt.Sprint(a...)
 }
 func XPrintf(a int) string {
 	return fmt.Sprintf("%x", a)

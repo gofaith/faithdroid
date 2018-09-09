@@ -237,4 +237,31 @@ public class FView {
             e.printStackTrace();
         }
     }
+    String getX(){
+        return String.valueOf(pixel2dp(parentController.activity, view.getX()));
+    }
+    String getY(){
+        return String.valueOf(pixel2dp(parentController.activity, view.getY()));
+    }
+    String getWidth(){
+        return String.valueOf(pixel2dp(parentController.activity, view.getWidth()));
+    }
+    String getHeight(){
+        return String.valueOf(pixel2dp(parentController.activity, view.getHeight()));
+    }
+    String getPivotX(){
+        return String.valueOf(pixel2dp(parentController.activity, view.getPivotX()));
+    }
+    String getPivotY() {
+        return String.valueOf(pixel2dp(parentController.activity, view.getPivotY()));
+    }
+    String getScaleX(){
+        return String.valueOf(pixel2dp(parentController.activity, view.getScaleX()));
+    }
+    String getScaleY(){
+        return String.valueOf(pixel2dp(parentController.activity, view.getScaleY()));
+    }
+    String getRotation(){
+        return String.valueOf(view.getRotation());
+    }
 }
