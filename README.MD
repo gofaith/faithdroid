@@ -19,13 +19,13 @@
 
 - [x]Space
 - [x]EditText
+- [x]ViewPager(Infinite)
+- [x]gifImageview
 - webview
-- gifImageview
 - Switch
 - SpinnerBox
 - FloatingActionButton
 - RecyclerView
-- ViewPager(Infinite)
 
 - Dialog
 

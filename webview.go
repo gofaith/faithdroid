@@ -13,7 +13,10 @@ func WebView(a *Activity) *FWebView {
 	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-
+func WebViewItem(a *Activity, uri string) *FWebView {
+	w := WebView(a)
+	return w.Focusable(false).BackgroundColor(Colors.Transparent).Size(-1, -1).loadUri(uri)
+}
 func (vh *ViewHolder) GetWebViewByItemId(id string) *FWebView {
 	if v, ok := vh.Vlist[id]; ok {
 		if bt, ok := GlobalVars.ViewMap[v].(*FWebView); ok {
