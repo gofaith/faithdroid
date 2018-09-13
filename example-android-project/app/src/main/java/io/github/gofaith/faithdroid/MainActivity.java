@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private faithdroid.MainActivity a;
     private String TAG=this.getClass().getName();
     private UIController uiController;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         a.onDestroy();
+        for (int i=0;i<uiController.onDestroyEvent.size();i++) {
+            runOnUiThread(uiController.onDestroyEvent.get(i));
+        }
     }
 
     @Override

@@ -2,7 +2,9 @@ package io.github.gofaith.faithdroid.FViews;
 
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.DownloadListener;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -28,6 +30,25 @@ public class FWebView extends FView implements AttrGettable, AttrSettable {
         this.parentController=controller;
         v = new WebView(parentController.activity);
         view=v;
+        parentController.onDestroyEvent.add(new Runnable() {
+            @Override
+            public void run() {
+                if (v!=null) {
+                    ViewGroup parent = (ViewGroup) v.getParent();
+                    if (parent != null) {
+                        parent.removeView(v);
+                    }
+                    v.stopLoading();
+                    v.getSettings().setJavaScriptEnabled(false);
+                    v.clearHistory();
+                    v.clearView();
+                    v.removeAllViews();
+                    v.destroy();
+                    v = null;
+                }
+                parentController.viewmap.remove(vID);
+            }
+        });
     }
     @Override
     public String getAttr(String attr) {
@@ -195,6 +216,7 @@ public class FWebView extends FView implements AttrGettable, AttrSettable {
                     try {
                         wc.urlHandlersMap = new HashMap<>();
                         JSONObject object = (JSONObject) (new JSONTokener(value).nextValue());
+                        Log.d(TAG, "setAttr: HandleUrl"+value);
                         for (Iterator<String> it = object.keys(); it.hasNext(); ) {
                             String key = it.next();
                             wc.urlHandlersMap.put(key, object.getString(key));
@@ -213,6 +235,10 @@ public class FWebView extends FView implements AttrGettable, AttrSettable {
                     }
                 });
                 break;
+            case "LoadHtmlData":
+                String a = value.replace("#", "%23");
+                v.loadData(a, "text/html", "UTF-8");
+                break;
         }
     }
     class MyWebViewClient extends WebViewClient{
@@ -222,12 +248,42 @@ public class FWebView extends FView implements AttrGettable, AttrSettable {
             if (urlHandlersMap==null) {
                 return super.shouldOverrideUrlLoading(view, request);
             }else {
+                Log.d(TAG, "shouldOverrideUrlLoading: "+urlHandlersMap.size());
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     String url = request.getUrl().toString();
                     if (urlHandlersMap.containsKey(removeQuery(url))) {
                         String fnId = urlHandlersMap.get(removeQuery(url));
-                        Faithdroid.triggerEventHandler(fnId, url);
-                        return true;
+                        String s= Faithdroid.triggerEventHandler(fnId, url);
+                        if(s!=null&&s.equals("true"))
+                            return true;
+                    }else if (urlHandlersMap.containsKey(url)) {
+                        String fnId = urlHandlersMap.get(url);
+                        String s= Faithdroid.triggerEventHandler(fnId, url);
+                        if(s!=null&&s.equals("true"))
+                            return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            if (urlHandlersMap==null) {
+                return super.shouldOverrideUrlLoading(view, url);
+            }else {
+                Log.d(TAG, "shouldOverrideUrlLoading2: "+urlHandlersMap.size());
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    if (urlHandlersMap.containsKey(removeQuery(url))) {
+                        String fnId = urlHandlersMap.get(removeQuery(url));
+                        String s= Faithdroid.triggerEventHandler(fnId, url);
+                        if(s!=null&&s.equals("true"))
+                            return true;
+                    }else if (urlHandlersMap.containsKey(url)) {
+                        String fnId = urlHandlersMap.get(url);
+                        String s= Faithdroid.triggerEventHandler(fnId, url);
+                        if(s!=null&&s.equals("true"))
+                            return true;
                     }
                 }
             }

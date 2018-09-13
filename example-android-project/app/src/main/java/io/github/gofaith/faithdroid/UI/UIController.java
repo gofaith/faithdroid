@@ -55,6 +55,8 @@ public class UIController implements faithdroid.UIController{
     public FrameLayout rootView;
     public String optionMenus;
     public Map<MenuItem, String> menuItemsOnClickMap = new HashMap<>();
+
+    public List<Runnable> onDestroyEvent = new ArrayList<>();
     public UIController(AppCompatActivity a, FrameLayout main_ctn,faithdroid.Activity factivity) {
         this.activity=a;
         this.rootView =main_ctn;

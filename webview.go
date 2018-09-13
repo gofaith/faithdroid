@@ -245,3 +245,151 @@ func (v *FWebView) Focusable(b bool) *FWebView {
 	}
 	return v
 }
+func (v *FWebView) SupportZoom(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SupportZoom", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SupportZoom", "false")
+	}
+	return v
+}
+func (v *FWebView) BuiltInZoomControls(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BuiltInZoomControls", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BuiltInZoomControls", "false")
+	}
+	return v
+}
+func (v *FWebView) UseWideViewPort(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "UseWideViewPort", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "UseWideViewPort", "false")
+	}
+	return v
+}
+func (v *FWebView) AllowContentAccess(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AllowContentAccess", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AllowContentAccess", "false")
+	}
+	return v
+}
+func (v *FWebView) AllowFileAccess(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AllowFileAccess", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AllowFileAccess", "false")
+	}
+	return v
+}
+func (v *FWebView) AllowFileAccessFromFileURLs(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AllowFileAccessFromFileURLs", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AllowFileAccessFromFileURLs", "false")
+	}
+	return v
+}
+func (v *FWebView) AllowUniversalAccessFromFileURLs(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AllowUniversalAccessFromFileURLs", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AllowUniversalAccessFromFileURLs", "false")
+	}
+	return v
+}
+func (v *FWebView) AppCacheEnabled(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AppCacheEnabled", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AppCacheEnabled", "false")
+	}
+	return v
+}
+func (v *FWebView) BlockNetworkImage(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BlockNetworkImage", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BlockNetworkImage", "false")
+	}
+	return v
+}
+func (v *FWebView) BlockNetworkLoads(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BlockNetworkLoads", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BlockNetworkLoads", "false")
+	}
+	return v
+}
+func (v *FWebView) JavaScriptEnabled(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "JavaScriptEnabled", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "JavaScriptEnabled", "false")
+	}
+	return v
+}
+func (v *FWebView) OffscreenPreRaster(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OffscreenPreRaster", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OffscreenPreRaster", "false")
+	}
+	return v
+}
+func (v *FWebView) SaveFormData(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SaveFormData", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SaveFormData", "false")
+	}
+	return v
+}
+func (v *FWebView) SupportMultipleWindows(b bool) *FWebView {
+	if b {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SupportMultipleWindows", "true")
+	} else {
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SupportMultipleWindows", "false")
+	}
+	return v
+}
+func (v *FWebView) TextZoom(i int) *FWebView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TextZoom", SPrintf(i))
+	return v
+}
+func (v *FWebView) UserAgentString(s string) *FWebView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "UserAgentString", s)
+	return v
+}
+func (v *FWebView) HandleUrl(m map[string]func(string) bool) *FWebView {
+	if m == nil {
+		return v
+	}
+	ms := make(map[string]string)
+	for k, h := range m {
+		fnId := NewToken()
+		GlobalVars.EventHandlersMap[fnId] = func(url string) string {
+			return SPrintf(h(url))
+		}
+		ms[k] = fnId
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "HandleUrl", JsonObject(ms))
+	return v
+}
+func (v *FWebView) OnDownload(f func(string)) *FWebView {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(url string) string {
+		f(url)
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "DownloadListener", fnId)
+	return v
+}
+func (v *FWebView) LoadHtmlData(s string) *FWebView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "LoadHtmlData", s)
+	return v
+}
