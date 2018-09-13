@@ -9,3 +9,12 @@ func UriAssets(a string) string {
 	}
 	return S
 }
+func UriRes(a string) string {
+	s := ""
+	if a[:1] == "/" {
+		s = "file:///android_res" + a
+	} else {
+		s = "file:///android_res/" + a
+	}
+	return s
+}

@@ -217,6 +217,15 @@ func (v *FSwitch) OnTouch(f func(TouchEvent)) *FSwitch {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FSwitch) OnClick(f func()) *FSwitch {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FSwitch) Enabled(b bool) *FSwitch {

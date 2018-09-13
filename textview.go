@@ -228,6 +228,15 @@ func (v *FTextView) OnTouch(f func(TouchEvent)) *FTextView {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FTextView) OnClick(f func()) *FTextView {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FTextView) Text(s string) *FTextView {

@@ -107,6 +107,14 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
             case "OnTouch":
                 setOnTouchListener(value);
                 break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
+                break;
                 // -------------------------------------------------------------------
             case "Text":
                 v.setText(value);
@@ -132,14 +140,6 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
                 } else {
                     v.setEnabled(false);
                 }
-                break;
-            case "OnClick":
-                v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Faithdroid.triggerEventHandler(value,"");
-                    }
-                });
                 break;
         }
     }

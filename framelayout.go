@@ -228,6 +228,15 @@ func (v *FFrameLayout) OnTouch(f func(TouchEvent)) *FFrameLayout {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FFrameLayout) OnClick(f func()) *FFrameLayout {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FFrameLayout) Append(vs ...IView) *FFrameLayout {

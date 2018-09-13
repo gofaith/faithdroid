@@ -219,6 +219,15 @@ func (v *FButton) OnTouch(f func(TouchEvent)) *FButton {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FButton) OnClick(f func()) *FButton {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FButton) Text(s string) *FButton {
@@ -249,14 +258,4 @@ func (v *FButton) IsEnabled() bool {
 		return true
 	}
 	return false
-}
-
-func (v *FButton) OnClick(f func()) *FButton {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
 }

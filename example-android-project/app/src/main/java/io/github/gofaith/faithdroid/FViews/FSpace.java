@@ -1,7 +1,9 @@
 package io.github.gofaith.faithdroid.FViews;
 
+import android.view.View;
 import android.widget.Space;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
 import io.github.gofaith.faithdroid.UI.UIController;
@@ -46,7 +48,7 @@ public class FSpace extends FView implements AttrSettable, AttrGettable {
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (value==null)
             return;
         switch (attr) {
@@ -103,6 +105,14 @@ public class FSpace extends FView implements AttrSettable, AttrGettable {
                 break;
             case "OnTouch":
                 setOnTouchListener(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
             // -------------------------------------------------------------------
         }

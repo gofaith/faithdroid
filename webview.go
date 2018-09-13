@@ -221,6 +221,15 @@ func (v *FWebView) OnTouch(f func(TouchEvent)) *FWebView {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FWebView) OnClick(f func()) *FWebView {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------
 

@@ -295,6 +295,15 @@ func (v *FListView) OnTouch(f func(TouchEvent)) *FListView {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FListView) OnClick(f func()) *FListView {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------------------
 func (v *FListView) NotifyDataSetChanged() *FListView {

@@ -217,6 +217,15 @@ func (v *FImageView) OnTouch(f func(TouchEvent)) *FImageView {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FImageView) OnClick(f func()) *FImageView {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FImageView) Src(s string) *FImageView {

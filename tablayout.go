@@ -227,6 +227,15 @@ func (v *FTabLayout) OnTouch(f func(TouchEvent)) *FTabLayout {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FTabLayout) OnClick(f func()) *FTabLayout {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // ------------------------------------------------------------
 

@@ -3,11 +3,13 @@ package io.github.gofaith.faithdroid.FViews;
 import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.R;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
@@ -55,7 +57,7 @@ public class FTabLayout extends FView implements AttrSettable, AttrGettable {
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (value == null) {
             return;
         }
@@ -113,6 +115,14 @@ public class FTabLayout extends FView implements AttrSettable, AttrGettable {
                 break;
             case "OnTouch":
                 setOnTouchListener(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
             // -------------------------------------------------------------------
             case "TabTextColors":

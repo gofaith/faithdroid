@@ -1,6 +1,7 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import org.json.JSONObject;
@@ -55,7 +56,7 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (attr == null) {
             return ;
         }
@@ -113,6 +114,14 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
                 break;
             case "OnTouch":
                 setOnTouchListener(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
             // --------------------------------------------
             case "OnGetView":

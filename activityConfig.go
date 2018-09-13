@@ -53,3 +53,6 @@ func StartActivity(a *Activity, createView func(*Activity), conf *ActivityConfig
 	conf.MyFnId = fnId
 	GlobalVars.UIs[a.UI].NewView("Activity", JsonObject(conf))
 }
+func StartUriIntent(a *Activity, uri string) {
+	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "StartUriIntent", uri)
+}

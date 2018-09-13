@@ -2,8 +2,10 @@ package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.Color;
 import android.text.InputType;
+import android.view.View;
 import android.widget.EditText;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
 import io.github.gofaith.faithdroid.UI.UIController;
@@ -47,7 +49,7 @@ public class FEditText extends FView implements AttrGettable, AttrSettable {
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (value==null)
             return;
         switch (attr) {
@@ -104,6 +106,14 @@ public class FEditText extends FView implements AttrGettable, AttrSettable {
                 break;
             case "OnTouch":
                 setOnTouchListener(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
             // -------------------------------------------------------------------
             case "Text":

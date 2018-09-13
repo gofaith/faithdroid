@@ -2,6 +2,7 @@ package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.Color;
 import android.support.v7.widget.SwitchCompat;
+import android.view.View;
 import android.widget.CompoundButton;
 
 import faithdroid.Faithdroid;
@@ -111,6 +112,14 @@ public class FSwitch extends FView implements AttrSettable, AttrGettable {
                 break;
             case "OnTouch":
                 setOnTouchListener(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
             // -------------------------------------------------------------------
             case "TextColor":

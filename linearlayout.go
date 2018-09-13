@@ -228,6 +228,15 @@ func (v *FLinearLayout) OnTouch(f func(TouchEvent)) *FLinearLayout {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FLinearLayout) OnClick(f func()) *FLinearLayout {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {

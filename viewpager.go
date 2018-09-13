@@ -226,6 +226,15 @@ func (v *FViewPager) OnTouch(f func(TouchEvent)) *FViewPager {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FViewPager) OnClick(f func()) *FViewPager {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // --------------------------------------------------------
 type FPage struct {

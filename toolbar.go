@@ -210,6 +210,15 @@ func (v *FToolbar) OnTouch(f func(TouchEvent)) *FToolbar {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FToolbar) OnClick(f func()) *FToolbar {
+	fnID := NewToken()
+	GlobalVars.EventHandlersMap[fnID] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	return v
+}
 
 // ----------------------------------------------------------
 func (v *FToolbar) Title(s string) *FToolbar {

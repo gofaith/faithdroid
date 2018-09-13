@@ -1,8 +1,10 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.ImageView;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
 import io.github.gofaith.faithdroid.UI.Toolkit;
@@ -45,7 +47,7 @@ public class FImageView extends FView implements AttrSettable, AttrGettable {
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (value==null)
             return;
         switch (attr) {
@@ -102,6 +104,14 @@ public class FImageView extends FView implements AttrSettable, AttrGettable {
                 break;
             case "OnTouch":
                 setOnTouchListener(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
             // -------------------------------------------------------------------
             case "Src":

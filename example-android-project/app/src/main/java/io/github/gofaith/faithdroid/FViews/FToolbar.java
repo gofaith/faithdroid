@@ -1,7 +1,9 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.R;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
@@ -46,7 +48,7 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (value == null) {
             return;
         }
@@ -104,6 +106,14 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 break;
             case "OnTouch":
                 setOnTouchListener(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
             // -------------------------------------------------------------------
             case "Title":

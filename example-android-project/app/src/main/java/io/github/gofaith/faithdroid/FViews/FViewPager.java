@@ -69,7 +69,7 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
     }
 
     @Override
-    public void setAttr(String attr, String value) {
+    public void setAttr(String attr, final String value) {
         if (attr == null || value == null) {
             return;
         }
@@ -127,6 +127,14 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
                 break;
             case "OnTouch":
                 setOnTouchListener(value);
+                break;
+            case "OnClick":
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Faithdroid.triggerEventHandler(value,"");
+                    }
+                });
                 break;
             // ----------------------------------------------------------------------------
             case "Pages":

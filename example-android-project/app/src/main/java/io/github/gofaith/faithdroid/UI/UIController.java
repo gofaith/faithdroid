@@ -299,6 +299,12 @@ public class UIController implements faithdroid.UIController{
             case "Finish":
                 activity.finish();
                 break;
+            case "StartUriIntent":
+                Intent intent = new Intent();
+                intent.setData(Uri.parse(value));
+                intent.setAction(Intent.ACTION_VIEW);
+                activity.startActivity(intent);
+                break;
         }
     }
 }
