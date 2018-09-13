@@ -26,11 +26,11 @@
 - [x]Switch
 - [x]FloatingActionButton
 - [x]onTouchEvent
-- webview
-- SpinnerBox
+- [x]webview
+- [x]Spinner
 
 - [x]Dialog
-
+- scrollview
 - DrawerLayout
 - BottomNavigation
 - BottomSheets
@@ -43,6 +43,6 @@
 - Notification
 
 
-- rippleEffect
+- [x]rippleEffect
 - fadeIn & fadeOut
 - radius of Button

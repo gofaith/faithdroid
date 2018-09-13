@@ -1,20 +1,32 @@
 package io.github.gofaith.faithdroid.FViews;
 
-import android.graphics.Color;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import org.json.JSONArray;
+import org.json.JSONTokener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
 import io.github.gofaith.faithdroid.UI.UIController;
 
-public class FButton extends FView implements AttrSettable,AttrGettable {
-    public Button v;
-    public FButton(UIController c){
-        parentController =c;
-        v = new Button(parentController.activity);
+public class FSpinner extends FView implements AttrGettable,AttrSettable {
+    public Spinner v;
+    private List<String> data_list = new ArrayList<>();
+    private ArrayAdapter<String> adapter =null;
+    private int selected=-1;
+    public FSpinner(UIController controller) {
+        parentController = controller;
+        v = new Spinner(parentController.activity);
         view=v;
+        adapter = new ArrayAdapter<>(parentController.activity, android.R.layout.simple_spinner_dropdown_item, data_list);
+        v.setAdapter(adapter);
     }
     @Override
     public String getAttr(String attr) {
@@ -40,8 +52,6 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
             case "Rotation":
                 return getRotation();
             // ------------------------------------------
-            case "Text":
-                return v.getText().toString();
             case "Enabled":
                 return String.valueOf(v.isEnabled());
         }
@@ -111,36 +121,49 @@ public class FButton extends FView implements AttrSettable,AttrGettable {
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Faithdroid.triggerEventHandler(value,"");
+                        Faithdroid.triggerEventHandler(value, "");
                     }
                 });
                 break;
-                // -------------------------------------------------------------------
-            case "Text":
-                v.setText(value);
+            // -------------------------------------------------------------------
+            case "NotifyDataSetChanged":
+                adapter.notifyDataSetChanged();
                 break;
-            case "TextColor":
+            case "List":
                 try {
-                    v.setTextColor(Color.parseColor(value));
+                    JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
+                    data_list.clear();
+                    for (int i=0;i<array.length();i++) {
+                        data_list.add(array.getString(i));
+                    }
+                    adapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
-            case "TextSize":
-                try {
-                    v.setTextSize(dp2pixel(parentController.activity,Float.valueOf(value)));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return;
-                }
+            case "ListAdd":
+                data_list.add(value);
+                adapter.notifyDataSetChanged();
+                break;
+            case "ListRemove":
+                data_list.remove(Integer.parseInt(value));
+                adapter.notifyDataSetChanged();
+                break;
+            case "OnItemClick":
+                v.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Faithdroid.triggerEventHandler(value, String.valueOf(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
                 break;
             case "Enabled":
-                if (value.equals("true")) {
-                    v.setEnabled(true);
-                } else {
-                    v.setEnabled(false);
-                }
-                break;
+                v.setEnabled(value.equals("true"));
         }
     }
 }

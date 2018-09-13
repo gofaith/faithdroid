@@ -35,6 +35,7 @@ import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
 import io.github.gofaith.faithdroid.FViews.FSnackbar;
 import io.github.gofaith.faithdroid.FViews.FSpace;
+import io.github.gofaith.faithdroid.FViews.FSpinner;
 import io.github.gofaith.faithdroid.FViews.FSwitch;
 import io.github.gofaith.faithdroid.FViews.FTabLayout;
 import io.github.gofaith.faithdroid.FViews.FTextView;
@@ -214,6 +215,10 @@ public class UIController implements faithdroid.UIController{
             case "ValueAnimator":
                 FValueAnimator valueAnimator = new FValueAnimator(this);
                 v=valueAnimator;
+                break;
+            case "Spinner":
+                FSpinner spinner = new FSpinner(this);
+                v = spinner;
                 break;
         }
         v.className =vName;
