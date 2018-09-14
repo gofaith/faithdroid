@@ -4,6 +4,9 @@ type Activity struct {
 	UI       string
 	MyIntent Intent
 }
+type MainActivity struct {
+	Activity
+}
 
 // Intent
 type Intent struct {

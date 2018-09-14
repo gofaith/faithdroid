@@ -1,26 +1,12 @@
 package faithdroid
 
-type MainActivity struct {
-	Activity
-}
-
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	LinearLayout(a).Size(-2, -2).Append(
-		ViewPager(a).SetId("id").LayoutWeight(1).Size(-2, -2).Pages(
-			Page(func() IView {
-				return TextView(a).Text("one")
-			}),
-			Page(func() IView {
-				return TextView(a).Text("two")
-			})),
-		BottomNav(a).Menus(
-			MenuItem("title1").onClick(func() {
-				GetViewPagerById("id").CurrentItem(0, true)
-			}),
-			MenuItem("title2").onClick(func() {
-				GetViewPagerById("id").CurrentItem(1, true)
-			})),
+		TextView(a).Text("text view").SetId("text"),
+		Button(a).Text("change text").OnClick(func() {
+			GetTextViewById("text").Text("clicked")
+		}),
 	).Show()
 }
 
