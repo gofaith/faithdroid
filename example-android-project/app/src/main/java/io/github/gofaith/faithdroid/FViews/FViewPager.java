@@ -175,6 +175,16 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
                     v.setAdapter(adapter);
                 }
                 break;
+            case "CurrentItem":
+                try {
+                    JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
+                    int index = array.getInt(0);
+                    int is = array.getInt(1);
+                    v.setCurrentItem(index,is==1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
         }
     }
     // ------------------

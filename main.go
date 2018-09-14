@@ -7,14 +7,20 @@ type MainActivity struct {
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	LinearLayout(a).Size(-2, -2).Append(
-		HScrollView(a).Size(-2, -2).LayoutWeight(1).Append(
-			Button(a).Size(300, -1).Text("one"),
-			Button(a).Size(300, -1).Text("one"),
-		),
-		VScrollView(a).Size(-2, -2).LayoutWeight(1).Append(
-			Button(a).Size(-2, 500).Text("1"),
-			Button(a).Size(-2, 500).Text("1"),
-		)).Show()
+		LinearLayout(a).Size(-2, -1).Horizontal().Append(
+			Button(a).Text("1").OnClick(func() {
+				GetViewPagerById("id").CurrentItem(0, true)
+			}),
+			Button(a).Text("2").OnClick(func() {
+				GetViewPagerById("id").CurrentItem(1, false)
+			})),
+		ViewPager(a).SetId("id").Size(-2, -2).Pages(
+			Page(func() IView {
+				return TextView(a).Text("one")
+			}),
+			Page(func() IView {
+				return TextView(a).Text("two")
+			}))).Show()
 }
 
 /* ListView example

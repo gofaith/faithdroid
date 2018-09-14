@@ -282,3 +282,11 @@ func (v *FViewPager) BindTabLayoutById(id string) *FViewPager {
 	}
 	return v
 }
+func (v *FViewPager) CurrentItem(i int, soomth bool) *FViewPager {
+	i2 := 0
+	if soomth {
+		i2 = 1
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "CurrentItem", JsonArray([]int{i, i2}))
+	return v
+}
