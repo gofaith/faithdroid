@@ -1,4 +1,10 @@
-# Faithdroid :Android GUI lib for GO
+# Faithdroid - New Android GUI lib for GO
+
+- [Wiki](https://github.com/gofaith/faithdroid/wiki)
+- [中文文档](https://github.com/gofaith/faithdroid/wiki/%E7%9B%AE%E5%BD%95)
+
+---
+## Get started
 
 1.'Hello world' code :
 
@@ -18,3 +24,10 @@ func (m *MainActivity) OnCreate() {
 2.Result
 
 ![hello](https://github.com/gofaith/faithdroid/blob/master/res/hello.jpeg?raw=true)
+
+---
+
+## Explore more
+
+- [Wiki](https://github.com/gofaith/faithdroid/wiki)
+- [中文文档](https://github.com/gofaith/faithdroid/wiki/%E7%9B%AE%E5%BD%95)
