@@ -1,13 +1,13 @@
 # 全新的Go语言Android GUI框架
 # New Android GUI lib for GO 
 
-- [Wiki](https://github.com/gofaith/faithdroid/wiki)
 - [中文文档](https://github.com/gofaith/faithdroid/wiki/%E7%9B%AE%E5%BD%95)
+- [Wiki](https://github.com/gofaith/faithdroid/wiki)
 
 ---
-## Get started
+## 快速入门 Get started
 
-1.'Hello world' code :
+1.基础示例 'Hello world' code :
 
 ```Go
 package faithdroid
@@ -22,7 +22,7 @@ func (m *MainActivity) OnCreate() {
 	).Show()
 }
 ```
-2.Result
+2.结果 Result
 
 ![hello](https://github.com/gofaith/faithdroid/blob/master/res/hello.jpeg?raw=true)
 
@@ -30,5 +30,5 @@ func (m *MainActivity) OnCreate() {
 
 ## Explore more
 
-- [Wiki](https://github.com/gofaith/faithdroid/wiki)
 - [中文文档](https://github.com/gofaith/faithdroid/wiki/%E7%9B%AE%E5%BD%95)
+- [Wiki](https://github.com/gofaith/faithdroid/wiki)
