@@ -16,3 +16,5 @@ func (m *MainActivity) OnCreate() {
 }
 ```
 2.Result
+
+![hello](https://github.com/gofaith/faithdroid/blob/master/res/hello.jpeg?raw=true)
