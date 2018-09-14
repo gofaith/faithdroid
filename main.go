@@ -6,10 +6,15 @@ type MainActivity struct {
 
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
-	LinearLayout(a).Append(
-		Spinner(a).List([]string{"one", "two"}).OnItemClick(func(i int) {
-			ShowToast(a, SPrintf(i))
-		})).Show()
+	LinearLayout(a).Size(-2, -2).Append(
+		HScrollView(a).Size(-2, -2).LayoutWeight(1).Append(
+			Button(a).Size(300, -1).Text("one"),
+			Button(a).Size(300, -1).Text("one"),
+		),
+		VScrollView(a).Size(-2, -2).LayoutWeight(1).Append(
+			Button(a).Size(-2, 500).Text("1"),
+			Button(a).Size(-2, 500).Text("1"),
+		)).Show()
 }
 
 /* ListView example

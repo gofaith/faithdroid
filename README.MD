@@ -30,7 +30,7 @@
 - [x]Spinner
 
 - [x]Dialog
-- scrollview
+- [x]scrollview
 - DrawerLayout
 - BottomNavigation
 - BottomSheets

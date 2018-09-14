@@ -29,6 +29,7 @@ import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FEditText;
 import io.github.gofaith.faithdroid.FViews.FFab;
 import io.github.gofaith.faithdroid.FViews.FFrameLayout;
+import io.github.gofaith.faithdroid.FViews.FHScrollView;
 import io.github.gofaith.faithdroid.FViews.FImageView;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
@@ -40,6 +41,7 @@ import io.github.gofaith.faithdroid.FViews.FSwitch;
 import io.github.gofaith.faithdroid.FViews.FTabLayout;
 import io.github.gofaith.faithdroid.FViews.FTextView;
 import io.github.gofaith.faithdroid.FViews.FToolbar;
+import io.github.gofaith.faithdroid.FViews.FVScrollView;
 import io.github.gofaith.faithdroid.FViews.FValueAnimator;
 import io.github.gofaith.faithdroid.FViews.FView;
 import io.github.gofaith.faithdroid.FViews.FViewPager;
@@ -219,6 +221,14 @@ public class UIController implements faithdroid.UIController{
             case "Spinner":
                 FSpinner spinner = new FSpinner(this);
                 v = spinner;
+                break;
+            case "VScrollView":
+                FVScrollView fvScrollView = new FVScrollView(this);
+                v = fvScrollView;
+                break;
+            case "HScrollView":
+                FHScrollView fhScrollView = new FHScrollView(this);
+                v = fhScrollView;
                 break;
         }
         v.className =vName;
