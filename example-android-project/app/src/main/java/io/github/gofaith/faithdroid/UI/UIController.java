@@ -25,6 +25,7 @@ import java.util.Map;
 
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.FViews.FAlertDialog;
+import io.github.gofaith.faithdroid.FViews.FBottomNav;
 import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FEditText;
 import io.github.gofaith.faithdroid.FViews.FFab;
@@ -229,6 +230,10 @@ public class UIController implements faithdroid.UIController{
             case "HScrollView":
                 FHScrollView fhScrollView = new FHScrollView(this);
                 v = fhScrollView;
+                break;
+            case "BottomNav":
+                FBottomNav fBottomNav = new FBottomNav(this);
+                v = fBottomNav;
                 break;
         }
         v.className =vName;

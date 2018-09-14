@@ -7,20 +7,21 @@ type MainActivity struct {
 func (m *MainActivity) OnCreate() {
 	a := &m.Activity
 	LinearLayout(a).Size(-2, -2).Append(
-		LinearLayout(a).Size(-2, -1).Horizontal().Append(
-			Button(a).Text("1").OnClick(func() {
-				GetViewPagerById("id").CurrentItem(0, true)
-			}),
-			Button(a).Text("2").OnClick(func() {
-				GetViewPagerById("id").CurrentItem(1, false)
-			})),
-		ViewPager(a).SetId("id").Size(-2, -2).Pages(
+		ViewPager(a).SetId("id").LayoutWeight(1).Size(-2, -2).Pages(
 			Page(func() IView {
 				return TextView(a).Text("one")
 			}),
 			Page(func() IView {
 				return TextView(a).Text("two")
-			}))).Show()
+			})),
+		BottomNav(a).Menus(
+			MenuItem("title1").onClick(func() {
+				GetViewPagerById("id").CurrentItem(0, true)
+			}),
+			MenuItem("title2").onClick(func() {
+				GetViewPagerById("id").CurrentItem(1, true)
+			})),
+	).Show()
 }
 
 /* ListView example
