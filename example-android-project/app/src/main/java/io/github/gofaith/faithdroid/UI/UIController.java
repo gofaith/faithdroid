@@ -28,6 +28,7 @@ import io.github.gofaith.faithdroid.CoreService;
 import io.github.gofaith.faithdroid.FViews.FAlertDialog;
 import io.github.gofaith.faithdroid.FViews.FBottomNav;
 import io.github.gofaith.faithdroid.FViews.FButton;
+import io.github.gofaith.faithdroid.FViews.FClipboard;
 import io.github.gofaith.faithdroid.FViews.FEditText;
 import io.github.gofaith.faithdroid.FViews.FFab;
 import io.github.gofaith.faithdroid.FViews.FFrameLayout;
@@ -236,6 +237,10 @@ public class UIController implements faithdroid.UIController{
             case "BottomNav":
                 FBottomNav fBottomNav = new FBottomNav(this);
                 v = fBottomNav;
+                break;
+            case "Clipboard":
+                FClipboard clipboard = new FClipboard(this);
+                v = clipboard;
                 break;
         }
         v.className =vName;
