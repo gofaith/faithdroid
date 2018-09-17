@@ -32,15 +32,12 @@
 - [x]Dialog
 - [x]scrollview
 - [x]BottomNavigation
-- DrawerLayout
-- BottomSheets
-- Material Card
-
-- deleteObject
-
 - [x]startActivity
-- Service
+- [x]Service
 - Notification
+- Permissions
+- Clipboard
+- NotifySystem
 
 
 - [x]rippleEffect

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.github.gofaith.faithdroid">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +22,12 @@
         <activity android:name=".StandardActivity" />
         <activity android:name=".SingleInstanceActivity" />
         <activity android:name=".SingleTopActivity" />
-        <activity android:name=".SingleTaskActivity"></activity>
+        <activity android:name=".SingleTaskActivity" />
+
+        <service
+            android:name=".CoreService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

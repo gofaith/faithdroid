@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import faithdroid.Faithdroid;
+import io.github.gofaith.faithdroid.CoreService;
 import io.github.gofaith.faithdroid.FViews.FAlertDialog;
 import io.github.gofaith.faithdroid.FViews.FBottomNav;
 import io.github.gofaith.faithdroid.FViews.FButton;
@@ -35,6 +36,7 @@ import io.github.gofaith.faithdroid.FViews.FImageView;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
+import io.github.gofaith.faithdroid.FViews.FService;
 import io.github.gofaith.faithdroid.FViews.FSnackbar;
 import io.github.gofaith.faithdroid.FViews.FSpace;
 import io.github.gofaith.faithdroid.FViews.FSpinner;
@@ -290,6 +292,9 @@ public class UIController implements faithdroid.UIController{
 
     @Override
     public String viewGetAttr(String vID, String attr) {
+        if (vID.equals("Service")) {
+            return FService.getAttr(activity,attr);
+        }
         FView v = viewmap.get(vID);
         return ((AttrGettable) v).getAttr(attr);
     }
@@ -298,6 +303,9 @@ public class UIController implements faithdroid.UIController{
     public void viewSetAttr(String vID, String attr, String value) {
         if (vID.equals("Activity")) {
             activitySet(attr, value);
+            return;
+        } else if (vID.equals("Service")) {
+            FService.setAttr(activity,attr,value);
             return;
         }
         FView v = viewmap.get(vID);

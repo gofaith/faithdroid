@@ -8,6 +8,10 @@ type MainActivity struct {
 	Activity
 }
 
+func (a Activity) GetContext() string {
+	return "Activity"
+}
+
 // Intent
 type Intent struct {
 	Action string

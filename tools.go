@@ -1,50 +1,23 @@
 package faithdroid
 
 import (
+	"crypto/md5"
 	"encoding/json"
 	"fmt"
-	"github.com/StevenZack/tools/netToolkit"
-	"github.com/StevenZack/tools/strToolkit"
+	"io"
+	"net/http"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
-/*
-func twoInt(ps ...interface{}) (int, int, bool) {
-	if len(ps) != 2 {
-		return -1, -1, false
-	}
-	v1, ok1 := ps[0].(int)
-	v2, ok2 := ps[1].(int)
-	return v1, v2, ok1 && ok2
-}
-func oneString(ps ...interface{}) (string, bool) {
-	if len(ps) == 1 {
-		if v, ok := ps[0].(string); ok {
-			return v, true
-		}
-	}
-	return "", false
-}
-func multiViews(ps ...interface{}) ([]IView, bool) {
-	if len(ps) <= 0 {
-		return nil, false
-	}
-	var ws []IView
-	if _, ok := ps[0].(IView); !ok {
-		return nil, false
-	}
-	for _, v := range ps {
-		if widget, ok := v.(IView); ok {
-			ws = append(ws, widget)
-		}
-	}
-	return ws, true
-}
-*/
 func NewToken() string {
-	return strToolkit.NewToken()
+	ct := time.Now().UnixNano()
+	h := md5.New()
+	io.WriteString(h, strconv.FormatInt(ct, 10))
+	token := fmt.Sprintf("%x", h.Sum(nil))
+	return token
 }
 func JsonArray(i interface{}) string {
 	b, e := json.Marshal(i)
@@ -78,7 +51,7 @@ func Getrpath(s string) string {
 }
 func DownloadNetFile(url, downloadDir string, callback func(string)) {
 	f := Getrpath(downloadDir) + NewToken()
-	e := netToolkit.DownloadFile(url, f)
+	e := DownloadFile(url, f)
 	if e != nil {
 		fmt.Println(e)
 		return
@@ -88,7 +61,7 @@ func DownloadNetFile(url, downloadDir string, callback func(string)) {
 func CacheNetFile(url, cacheDir string, callback func(string)) {
 	f := Getrpath(cacheDir) + Url2cachePath(url)
 	if _, e := os.Stat(f); e != nil {
-		e = netToolkit.DownloadFile(url, f)
+		e = DownloadFile(url, f)
 		if e != nil {
 			fmt.Println(e)
 			return
@@ -96,10 +69,19 @@ func CacheNetFile(url, cacheDir string, callback func(string)) {
 	}
 	callback(f)
 }
+func EndsWith(s, suffix string) bool {
+	if len(suffix) > len(s) {
+		return false
+	}
+	if s[len(s)-len(suffix):] == suffix {
+		return true
+	}
+	return false
+}
 func Url2cachePath(url string) string {
 	rUrl := GetRealUrl(url)
 	s := strings.Replace(rUrl, "://", "/", -1)
-	if strToolkit.EndsWith(s, "/") {
+	if EndsWith(s, "/") {
 		return s[:len(s)-1]
 	}
 	return s
@@ -129,4 +111,35 @@ func a2f(a string) float64 {
 		return 0
 	}
 	return float64(f)
+}
+func DownloadFile(url, fdist string) error {
+	rp, e := http.Get(url)
+	if e != nil {
+		return e
+	}
+	defer rp.Body.Close()
+	f, e := WriteFile(fdist)
+	if e != nil {
+		return e
+	}
+	defer f.Close()
+	_, e = io.Copy(f, rp.Body)
+	return e
+}
+func WriteFile(f string) (*os.File, error) {
+	e := os.MkdirAll(GetDirOfFile(f), 0755)
+	if e != nil {
+		fmt.Println(e)
+		return nil, e
+	}
+	file, e := os.OpenFile(f, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0644)
+	return file, e
+}
+func GetDirOfFile(f string) string {
+	for i := len(f) - 1; i > -1; i-- {
+		if f[i:i+1] == string(os.PathSeparator) {
+			return f[:i]
+		}
+	}
+	return f
 }
