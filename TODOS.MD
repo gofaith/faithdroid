@@ -34,9 +34,8 @@
 - [x]BottomNavigation
 - [x]startActivity
 - [x]Service
-- Notification
-- Permissions
-- Clipboard
+- [x]Clipboard
+- [x]Permissions
 - NotifySystem
 
 

@@ -1,21 +1,17 @@
 package io.github.gofaith.faithdroid;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONTokener;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import faithdroid.Faithdroid;
@@ -27,15 +23,15 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout rootview;
     private faithdroid.MainActivity a;
     private String TAG=this.getClass().getName();
-    private UIController uiController;
+    private UIController parentUIController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rootview = findViewById(R.id.main_ctn);
         a=new faithdroid.MainActivity();
-        uiController=new UIController(this, rootview,null);
-        a.setUIInterface(uiController);
+        parentUIController =new UIController(this, rootview,null);
+        a.setUIInterface(parentUIController);
 
         handleIntent();
         a.onCreate();
@@ -78,19 +74,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         a.onDestroy();
-        for (int i=0;i<uiController.onDestroyEvent.size();i++) {
-            runOnUiThread(uiController.onDestroyEvent.get(i));
+        for (int i = 0; i< parentUIController.onDestroyEvent.size(); i++) {
+            runOnUiThread(parentUIController.onDestroyEvent.get(i));
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (uiController.optionMenus== null || uiController.optionMenus == "" || uiController.optionMenus == "[]") {
+        if (parentUIController.optionMenus== null || parentUIController.optionMenus == "" || parentUIController.optionMenus == "[]") {
             return false;
         }
         try {
-            JSONArray array = (JSONArray) (new JSONTokener(uiController.optionMenus).nextValue());
-            parseMenu(uiController,menu,array);
+            JSONArray array = (JSONArray) (new JSONTokener(parentUIController.optionMenus).nextValue());
+            parseMenu(parentUIController,menu,array);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,10 +96,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (uiController.menuItemsOnClickMap.containsKey(item)) {
-            Faithdroid.triggerEventHandler(uiController.menuItemsOnClickMap.get(item), "");
+        if (parentUIController.menuItemsOnClickMap.containsKey(item)) {
+            Faithdroid.triggerEventHandler(parentUIController.menuItemsOnClickMap.get(item), "");
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (parentUIController.onPermissionResults.containsKey(requestCode)) {
+            JSONArray array = new JSONArray();
+            for(int i=0;i<grantResults.length;i++) {
+                array.put(grantResults[i] == PackageManager.PERMISSION_GRANTED);
+            }
+            Faithdroid.triggerEventHandler(parentUIController.onPermissionResults.get(requestCode), array.toString());
+        }
     }
 }

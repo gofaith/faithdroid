@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math/rand"
 	"net/http"
 	"os"
 	"strconv"
@@ -12,6 +13,10 @@ import (
 	"time"
 )
 
+func NewNumToken() string {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	return strconv.FormatInt(int64(r.Intn(60000)), 10)
+}
 func NewToken() string {
 	ct := time.Now().UnixNano()
 	h := md5.New()

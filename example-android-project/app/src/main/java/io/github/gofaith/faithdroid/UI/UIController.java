@@ -1,5 +1,6 @@
 package io.github.gofaith.faithdroid.UI;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -36,6 +37,7 @@ import io.github.gofaith.faithdroid.FViews.FHScrollView;
 import io.github.gofaith.faithdroid.FViews.FImageView;
 import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
+import io.github.gofaith.faithdroid.FViews.FPermission;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
 import io.github.gofaith.faithdroid.FViews.FService;
 import io.github.gofaith.faithdroid.FViews.FSnackbar;
@@ -62,7 +64,7 @@ public class UIController implements faithdroid.UIController{
     public FrameLayout rootView;
     public String optionMenus;
     public Map<MenuItem, String> menuItemsOnClickMap = new HashMap<>();
-
+    public Map<Integer, String> onPermissionResults = new HashMap<>();
     public List<Runnable> onDestroyEvent = new ArrayList<>();
     public UIController(AppCompatActivity a, FrameLayout main_ctn,faithdroid.Activity factivity) {
         this.activity=a;
@@ -300,6 +302,9 @@ public class UIController implements faithdroid.UIController{
         if (vID.equals("Service")) {
             return FService.getAttr(activity,attr);
         }
+        if (vID.equals("Permission")) {
+            return FPermission.getAttr(this, attr);
+        }
         FView v = viewmap.get(vID);
         return ((AttrGettable) v).getAttr(attr);
     }
@@ -311,6 +316,9 @@ public class UIController implements faithdroid.UIController{
             return;
         } else if (vID.equals("Service")) {
             FService.setAttr(activity,attr,value);
+            return;
+        } else if (vID.equals("Permission")) {
+            FPermission.setAttr(this, attr, value);
             return;
         }
         FView v = viewmap.get(vID);
