@@ -43,6 +43,8 @@ import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPermission;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
+import io.github.gofaith.faithdroid.FViews.FRadioButton;
+import io.github.gofaith.faithdroid.FViews.FRadioGroup;
 import io.github.gofaith.faithdroid.FViews.FService;
 import io.github.gofaith.faithdroid.FViews.FSnackbar;
 import io.github.gofaith.faithdroid.FViews.FSpace;
@@ -247,6 +249,14 @@ public class UIController implements faithdroid.UIController{
             case "Clipboard":
                 FClipboard clipboard = new FClipboard(this);
                 v = clipboard;
+                break;
+            case "RadioGroup":
+                FRadioGroup fRadioGroup = new FRadioGroup(this);
+                v = fRadioGroup;
+                break;
+            case "RadioButton":
+                FRadioButton fRadioButton = new FRadioButton(this);
+                v = fRadioButton;
                 break;
         }
         v.className =vName;
