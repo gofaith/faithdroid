@@ -98,3 +98,12 @@ func RunOnUIThread(a *Activity, f func()) {
 	}
 	GlobalVars.UIs[a.UI].RunOnUIThread(fnId)
 }
+func ScanFile(a *Activity, fpath string) {
+	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "ScanFile", fpath)
+}
+func GetExternalStorageDirectory(a *Activity) string {
+	return GlobalVars.UIs[a.UI].ViewGetAttr("Activity", "ExternalStorageDirectory")
+}
+func GuessFileName(a *Activity, url string) string {
+	return GlobalVars.UIs[a.UI].ViewGetAttr("Activity", JsonArray([]string{"GuessFileName", url}))
+}

@@ -3,13 +3,17 @@ package io.github.gofaith.faithdroid.UI;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
+import android.webkit.URLUtil;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -305,9 +309,13 @@ public class UIController implements faithdroid.UIController{
         if (vID.equals("Permission")) {
             return FPermission.getAttr(this, attr);
         }
+        if (vID.equals("Activity")) {
+            return activityGet(attr);
+        }
         FView v = viewmap.get(vID);
         return ((AttrGettable) v).getAttr(attr);
     }
+
 
     @Override
     public void viewSetAttr(String vID, String attr, String value) {
@@ -334,6 +342,25 @@ public class UIController implements faithdroid.UIController{
         FFrameLayout.addToframeLayout(rootView,v);
     }
 
+    private String activityGet(String attr) {
+        if (attr.startsWith("[\"GuessFileName\",")) {
+            try {
+                JSONArray array = (JSONArray) (new JSONTokener(attr).nextValue());
+                String url = array.getString(1);
+                return URLUtil.guessFileName(url, null, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "";
+            }
+        }
+        switch (attr) {
+            case "Build.MODEL":
+                return Build.MODEL;
+            case "ExternalStorageDirectory":
+                return Environment.getExternalStorageDirectory().getAbsolutePath();
+        }
+        return null;
+    }
     private void activitySet(String attr, String value) {
         switch (attr) {
             case "ShowToast":
@@ -347,6 +374,9 @@ public class UIController implements faithdroid.UIController{
                 intent.setData(Uri.parse(value));
                 intent.setAction(Intent.ACTION_VIEW);
                 activity.startActivity(intent);
+                break;
+            case "ScanFile":
+                MediaScannerConnection.scanFile(activity,new String[]{value},null,null);
                 break;
         }
     }

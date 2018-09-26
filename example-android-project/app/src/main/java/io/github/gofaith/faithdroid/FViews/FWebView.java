@@ -30,6 +30,7 @@ public class FWebView extends FView implements AttrGettable, AttrSettable {
         this.parentController=controller;
         v = new WebView(parentController.activity);
         view=v;
+        v.getSettings().setDefaultTextEncodingName("UTF -8");
         parentController.onDestroyEvent.add(new Runnable() {
             @Override
             public void run() {
@@ -237,7 +238,7 @@ public class FWebView extends FView implements AttrGettable, AttrSettable {
                 break;
             case "LoadHtmlData":
                 String a = value.replace("#", "%23");
-                v.loadData(a, "text/html", "UTF-8");
+                v.loadData(a, "text/html; charset=UTF-8", null);
                 break;
         }
     }

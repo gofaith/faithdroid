@@ -36,13 +36,13 @@
 - [x]Service
 - [x]Clipboard
 - [x]Permissions
-- NotifySystem
 
 
 - [x]rippleEffect
+- [x]webview utf-8
+- [x]MediaScannerConnection
+
 - fadeIn & fadeOut
 - radius of Button
 - checkBox
 - constraintLayout
-- MediaScannerConnection
-- webview utf-8
