@@ -42,3 +42,7 @@
 - [x]rippleEffect
 - fadeIn & fadeOut
 - radius of Button
+- checkBox
+- constraintLayout
+- MediaScannerConnection
+- webview utf-8
