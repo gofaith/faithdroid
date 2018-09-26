@@ -42,7 +42,7 @@
 - [x]webview utf-8
 - [x]MediaScannerConnection
 - [x]radius of Button
+- [x]checkBox
 
 - fadeIn & fadeOut
-- checkBox
 - constraintLayout

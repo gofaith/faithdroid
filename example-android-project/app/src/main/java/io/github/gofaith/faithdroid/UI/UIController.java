@@ -33,6 +33,7 @@ import io.github.gofaith.faithdroid.CoreService;
 import io.github.gofaith.faithdroid.FViews.FAlertDialog;
 import io.github.gofaith.faithdroid.FViews.FBottomNav;
 import io.github.gofaith.faithdroid.FViews.FButton;
+import io.github.gofaith.faithdroid.FViews.FCheckBox;
 import io.github.gofaith.faithdroid.FViews.FClipboard;
 import io.github.gofaith.faithdroid.FViews.FEditText;
 import io.github.gofaith.faithdroid.FViews.FFab;
@@ -257,6 +258,10 @@ public class UIController implements faithdroid.UIController{
             case "RadioButton":
                 FRadioButton fRadioButton = new FRadioButton(this);
                 v = fRadioButton;
+                break;
+            case "CheckBox":
+                FCheckBox fCheckBox = new FCheckBox(this);
+                v = fCheckBox;
                 break;
         }
         v.className =vName;
