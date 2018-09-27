@@ -30,11 +30,11 @@ func GetViewPagerById(id string) *FViewPager {
 	}
 	return nil
 }
-func ViewPager(a *Activity) *FViewPager {
+func ViewPager(a IActivity) *FViewPager {
 	v := &FViewPager{}
 	v.VID = NewToken()
 	v.ClassName = "ViewPager"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v

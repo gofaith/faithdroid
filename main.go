@@ -1,7 +1,6 @@
 package faithdroid
 
-func (m *MainActivity) OnCreate() {
-	a := &m.Activity
+func (a *MainActivity) OnCreate() {
 	var bt1, bt2, bt3 *FButton
 	ConstraintLayout(a).Size(-2, -2).DeferShow().Append(
 		Button(a).Assign(&bt1).Size(-1, -1).Text("one").LeftToLeft(Parent).TopToTop(Parent),

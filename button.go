@@ -4,11 +4,11 @@ type FButton struct {
 	FBaseView
 }
 
-func Button(a *Activity) *FButton {
+func Button(a IActivity) *FButton {
 	v := &FButton{}
 	v.VID = NewToken()
 	v.ClassName = "Button"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v

@@ -30,11 +30,11 @@ func GetRadioGroupById(id string) *FRadioGroup {
 	}
 	return nil
 }
-func RadioGroup(a *Activity) *FRadioGroup {
+func RadioGroup(a IActivity) *FRadioGroup {
 	v := &FRadioGroup{}
 	v.VID = NewToken()
 	v.ClassName = "RadioGroup"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v

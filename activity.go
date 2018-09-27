@@ -1,15 +1,30 @@
 package faithdroid
 
+// Activity
 type Activity struct {
 	UI       string
 	MyIntent Intent
 }
+
+func (a *Activity) GetMyActivity() *Activity {
+	return a
+}
+func (a Activity) GetContext() string {
+	return "Activity"
+}
+
+// MainActivity
 type MainActivity struct {
 	Activity
 }
 
-func (a Activity) GetContext() string {
-	return "Activity"
+func (a *MainActivity) GetMyActivity() *Activity {
+	return &a.Activity
+}
+
+// Interface
+type IActivity interface {
+	GetMyActivity() *Activity
 }
 
 // Intent

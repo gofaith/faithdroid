@@ -4,11 +4,11 @@ type FValueAnimator struct {
 	FBase
 }
 
-func ValueAnimator(a *Activity) *FValueAnimator {
+func ValueAnimator(a IActivity) *FValueAnimator {
 	v := &FValueAnimator{}
 	v.VID = NewToken()
 	v.ClassName = "ValueAnimator"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v

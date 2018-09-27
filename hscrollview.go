@@ -32,11 +32,11 @@ func GetHScrollViewById(id string) *FHScrollView {
 	}
 	return nil
 }
-func HScrollView(a *Activity) *FHScrollView {
+func HScrollView(a IActivity) *FHScrollView {
 	v := &FHScrollView{}
 	v.VID = NewToken()
 	v.ClassName = "HScrollView"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v

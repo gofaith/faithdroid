@@ -34,11 +34,11 @@ func GetConstraintLayoutById(id string) *FConstraintLayout {
 	}
 	return nil
 }
-func ConstraintLayout(a *Activity) *FConstraintLayout {
+func ConstraintLayout(a IActivity) *FConstraintLayout {
 	v := &FConstraintLayout{}
 	v.VID = NewToken()
 	v.ClassName = "ConstraintLayout"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v

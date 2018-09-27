@@ -4,11 +4,11 @@ type FSwitch struct {
 	FBaseView
 }
 
-func Switch(a *Activity) *FSwitch {
+func Switch(a IActivity) *FSwitch {
 	v := &FSwitch{}
 	v.VID = NewToken()
 	v.ClassName = "Switch"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v

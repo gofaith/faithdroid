@@ -44,7 +44,7 @@
 - [x]radius of Button
 - [x]checkBox
 - [x]constraintLayout
-- IActivity
+- [x]IActivity
 - addView
 - progress
 

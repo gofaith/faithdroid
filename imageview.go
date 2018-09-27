@@ -4,11 +4,11 @@ type FImageView struct {
 	FBaseView
 }
 
-func ImageView(a *Activity) *FImageView {
+func ImageView(a IActivity) *FImageView {
 	v := &FImageView{}
 	v.VID = NewToken()
 	v.ClassName = "ImageView"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v

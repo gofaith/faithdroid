@@ -4,11 +4,11 @@ type FSpace struct {
 	FBaseView
 }
 
-func Space(a *Activity) *FSpace {
+func Space(a IActivity) *FSpace {
 	v := &FSpace{}
 	v.VID = NewToken()
 	v.ClassName = "Space"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.BaseMap[v.VID] = v
 	return v
