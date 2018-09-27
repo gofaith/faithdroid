@@ -10,7 +10,7 @@ func WebView(a *Activity) *FWebView {
 	v.ClassName = "WebView"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func WebViewItem(a *Activity, uri string) *FWebView {
@@ -19,7 +19,7 @@ func WebViewItem(a *Activity, uri string) *FWebView {
 }
 func (vh *ViewHolder) GetWebViewByItemId(id string) *FWebView {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FWebView); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FWebView); ok {
 			return bt
 		}
 	}
@@ -230,7 +230,41 @@ func (v *FWebView) OnClick(f func()) *FWebView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FWebView) TopToTop(iv IBaseView) *FWebView {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FWebView) TopToBottom(iv IBaseView) *FWebView {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FWebView) BottomToBottom(iv IBaseView) *FWebView {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FWebView) BottomToTop(iv IBaseView) *FWebView {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FWebView) LeftToLeft(iv IBaseView) *FWebView {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FWebView) LeftToRight(iv IBaseView) *FWebView {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FWebView) RightToRight(iv IBaseView) *FWebView {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FWebView) RightToLeft(iv IBaseView) *FWebView {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FWebView) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
 
 func (v *FWebView) loadUri(s string) *FWebView {

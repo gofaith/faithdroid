@@ -6,7 +6,7 @@ type FViewPager struct {
 
 func (vh *ViewHolder) GetViewPagerByItemId(id string) *FViewPager {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FViewPager); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FViewPager); ok {
 			return bt
 		}
 	}
@@ -36,7 +36,7 @@ func ViewPager(a *Activity) *FViewPager {
 	v.ClassName = "ViewPager"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (v *FViewPager) Size(w, h int) *FViewPager {
@@ -235,13 +235,47 @@ func (v *FViewPager) OnClick(f func()) *FViewPager {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FViewPager) TopToTop(iv IBaseView) *FViewPager {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FViewPager) TopToBottom(iv IBaseView) *FViewPager {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FViewPager) BottomToBottom(iv IBaseView) *FViewPager {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FViewPager) BottomToTop(iv IBaseView) *FViewPager {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FViewPager) LeftToLeft(iv IBaseView) *FViewPager {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FViewPager) LeftToRight(iv IBaseView) *FViewPager {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FViewPager) RightToRight(iv IBaseView) *FViewPager {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FViewPager) RightToLeft(iv IBaseView) *FViewPager {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FViewPager) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
 type FPage struct {
 	VID string
 }
 
-func Page(createView func() IView) *FPage {
+func Page(createView func() IBaseView) *FPage {
 	p := &FPage{}
 	p.VID = NewToken()
 	GlobalVars.EventHandlersMap[p.VID] = func(string) string {
@@ -257,7 +291,7 @@ func (v *FViewPager) Pages(ps ...*FPage) *FViewPager {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Pages", JsonArray(ps))
 	return v
 }
-func (v *FViewPager) OnGetPage(getView func(pos int) IView, getCount func() int) *FViewPager {
+func (v *FViewPager) OnGetPage(getView func(pos int) IBaseView, getCount func() int) *FViewPager {
 	fnId := NewToken()
 	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
 		i, e := a2i(s)

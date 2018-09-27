@@ -10,12 +10,12 @@ func Spinner(a *Activity) *FSpinner {
 	v.ClassName = "Spinner"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetSpinnerByItemId(id string) *FSpinner {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FSpinner); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FSpinner); ok {
 			return bt
 		}
 	}
@@ -228,7 +228,41 @@ func (v *FSpinner) OnClick(f func()) *FSpinner {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FSpinner) TopToTop(iv IBaseView) *FSpinner {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FSpinner) TopToBottom(iv IBaseView) *FSpinner {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FSpinner) BottomToBottom(iv IBaseView) *FSpinner {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FSpinner) BottomToTop(iv IBaseView) *FSpinner {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FSpinner) LeftToLeft(iv IBaseView) *FSpinner {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FSpinner) LeftToRight(iv IBaseView) *FSpinner {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FSpinner) RightToRight(iv IBaseView) *FSpinner {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FSpinner) RightToLeft(iv IBaseView) *FSpinner {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FSpinner) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
 
 func (v *FSpinner) Enabled(b bool) *FSpinner {

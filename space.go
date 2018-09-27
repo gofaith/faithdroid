@@ -10,13 +10,13 @@ func Space(a *Activity) *FSpace {
 	v.ClassName = "Space"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 
 func (vh *ViewHolder) GetSpaceByItemId(id string) *FSpace {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FSpace); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FSpace); ok {
 			return bt
 		}
 	}
@@ -227,5 +227,39 @@ func (v *FSpace) OnClick(f func()) *FSpace {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FSpace) TopToTop(iv IBaseView) *FSpace {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FSpace) TopToBottom(iv IBaseView) *FSpace {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FSpace) BottomToBottom(iv IBaseView) *FSpace {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FSpace) BottomToTop(iv IBaseView) *FSpace {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FSpace) LeftToLeft(iv IBaseView) *FSpace {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FSpace) LeftToRight(iv IBaseView) *FSpace {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FSpace) RightToRight(iv IBaseView) *FSpace {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FSpace) RightToLeft(iv IBaseView) *FSpace {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FSpace) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------

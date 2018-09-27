@@ -6,7 +6,7 @@ type FTabLayout struct {
 
 func (vh *ViewHolder) GetTabLayoutByItemId(id string) *FTabLayout {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FTabLayout); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FTabLayout); ok {
 			return bt
 		}
 	}
@@ -37,7 +37,7 @@ func TabLayout(a *Activity) *FTabLayout {
 	v.ClassName = "TabLayout"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (v *FTabLayout) Size(w, h int) *FTabLayout {
@@ -236,7 +236,41 @@ func (v *FTabLayout) OnClick(f func()) *FTabLayout {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FTabLayout) TopToTop(iv IBaseView) *FTabLayout {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FTabLayout) TopToBottom(iv IBaseView) *FTabLayout {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FTabLayout) BottomToBottom(iv IBaseView) *FTabLayout {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FTabLayout) BottomToTop(iv IBaseView) *FTabLayout {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FTabLayout) LeftToLeft(iv IBaseView) *FTabLayout {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FTabLayout) LeftToRight(iv IBaseView) *FTabLayout {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FTabLayout) RightToRight(iv IBaseView) *FTabLayout {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FTabLayout) RightToLeft(iv IBaseView) *FTabLayout {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FTabLayout) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // ------------------------------------------------------------
 
 type FTab struct {

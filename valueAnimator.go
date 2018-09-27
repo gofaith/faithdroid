@@ -10,7 +10,7 @@ func ValueAnimator(a *Activity) *FValueAnimator {
 	v.ClassName = "ValueAnimator"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (v *FValueAnimator) OfFloat(fs ...float64) *FValueAnimator {

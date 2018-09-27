@@ -10,7 +10,7 @@ func Snackbar(a *Activity) *FSnackbar {
 	v.ClassName = "Snackbar"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (v *FSnackbar) text(s string) *FSnackbar {

@@ -10,12 +10,12 @@ func Switch(a *Activity) *FSwitch {
 	v.ClassName = "Switch"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetSwitchByItemId(id string) *FSwitch {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FSwitch); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FSwitch); ok {
 			return bt
 		}
 	}
@@ -226,7 +226,41 @@ func (v *FSwitch) OnClick(f func()) *FSwitch {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FSwitch) TopToTop(iv IBaseView) *FSwitch {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FSwitch) TopToBottom(iv IBaseView) *FSwitch {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FSwitch) BottomToBottom(iv IBaseView) *FSwitch {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FSwitch) BottomToTop(iv IBaseView) *FSwitch {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FSwitch) LeftToLeft(iv IBaseView) *FSwitch {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FSwitch) LeftToRight(iv IBaseView) *FSwitch {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FSwitch) RightToRight(iv IBaseView) *FSwitch {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FSwitch) RightToLeft(iv IBaseView) *FSwitch {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FSwitch) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
 func (v *FSwitch) Enabled(b bool) *FSwitch {
 	if b {

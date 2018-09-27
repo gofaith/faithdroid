@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6f119847-3239-4ea5-9589-d834192e7539" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/TODOS.MD" beforeDir="false" afterPath="$PROJECT_DIR$/TODOS.MD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alertDialog.go" beforeDir="false" afterPath="$PROJECT_DIR$/alertDialog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bottomnav.go" beforeDir="false" afterPath="$PROJECT_DIR$/bottomnav.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/button.go" beforeDir="false" afterPath="$PROJECT_DIR$/button.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkbox.go" beforeDir="false" afterPath="$PROJECT_DIR$/checkbox.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clipboard.go" beforeDir="false" afterPath="$PROJECT_DIR$/clipboard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/edittext.go" beforeDir="false" afterPath="$PROJECT_DIR$/edittext.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/.idea/caches/gradle_models.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FBottomNav.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FBottomNav.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FCheckBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FCheckBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FEditText.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FEditText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FFab.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FFab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FFrameLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FFrameLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FHScrollView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FHScrollView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FImageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FImageView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FLinearLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FLinearLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FRadioButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FRadioButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FRadioGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FRadioGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSpace.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSpace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSpinner.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSpinner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FSwitch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FTabLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FTabLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FTextView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FTextView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FToolbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FToolbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FVScrollView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FVScrollView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FViewPager.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FViewPager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FWebView.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/FViews/FWebView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/UI/UIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/app/src/main/java/io/github/gofaith/faithdroid/UI/UIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example-android-project/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fab.go" beforeDir="false" afterPath="$PROJECT_DIR$/fab.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/framelayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/framelayout.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hscrollview.go" beforeDir="false" afterPath="$PROJECT_DIR$/hscrollview.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imageview.go" beforeDir="false" afterPath="$PROJECT_DIR$/imageview.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linearlayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/linearlayout.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listview.go" beforeDir="false" afterPath="$PROJECT_DIR$/listview.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/radiobutton.go" beforeDir="false" afterPath="$PROJECT_DIR$/radiobutton.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/radiogroup.go" beforeDir="false" afterPath="$PROJECT_DIR$/radiogroup.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snackbar.go" beforeDir="false" afterPath="$PROJECT_DIR$/snackbar.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/space.go" beforeDir="false" afterPath="$PROJECT_DIR$/space.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spinner.go" beforeDir="false" afterPath="$PROJECT_DIR$/spinner.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/switch.go" beforeDir="false" afterPath="$PROJECT_DIR$/switch.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tablayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/tablayout.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/textview.go" beforeDir="false" afterPath="$PROJECT_DIR$/textview.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toolbar.go" beforeDir="false" afterPath="$PROJECT_DIR$/toolbar.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/valueAnimator.go" beforeDir="false" afterPath="$PROJECT_DIR$/valueAnimator.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vars.go" beforeDir="false" afterPath="$PROJECT_DIR$/vars.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewpager.go" beforeDir="false" afterPath="$PROJECT_DIR$/viewpager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vscrollview.go" beforeDir="false" afterPath="$PROJECT_DIR$/vscrollview.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webview.go" beforeDir="false" afterPath="$PROJECT_DIR$/webview.go" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1153036295">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="go" value="74" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Go" value="74" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="go" value="580" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Go" value="580" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.go.postfix.template.usages.trigger" />
+      <usages-collector id="statistics.vcs.git.usages" />
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ui.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="798">
+              <caret line="192" column="9" selection-start-line="192" selection-start-column="9" selection-end-line="192" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/alertDialog.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vars.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/constraintlayout.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>FBottomNav</find>
+      <find>append</find>
+      <find>interfa</find>
+      <find>vid</find>
+      <find>FConstraintLayout</find>
+      <find>iv.GetViewId()</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>iv</replace>
+      <replace>FWebView</replace>
+      <replace>FVScrollView</replace>
+      <replace>FViewPager</replace>
+      <replace>FToolbar</replace>
+      <replace>FTextView</replace>
+      <replace>FTabLayout</replace>
+      <replace>FSwitch</replace>
+      <replace>FSpinner</replace>
+      <replace>FSpace</replace>
+      <replace>FRadioGroup</replace>
+      <replace>FRadioButton</replace>
+      <replace>FListView</replace>
+      <replace>FFrameLayout</replace>
+      <replace>FEditText</replace>
+      <replace>FFab</replace>
+      <replace>FHScrollView</replace>
+      <replace>FImageView</replace>
+      <replace>FLinearLayout</replace>
+      <replace>FBottomNav</replace>
+      <replace>FCheckBox</replace>
+      <replace>FButton</replace>
+      <replace>vid</replace>
+    </replaceStrings>
+  </component>
+  <component name="GOROOT" path="/opt/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/constraintlayout.go" />
+        <option value="$PROJECT_DIR$/webview.go" />
+        <option value="$PROJECT_DIR$/vscrollview.go" />
+        <option value="$PROJECT_DIR$/viewpager.go" />
+        <option value="$PROJECT_DIR$/toolbar.go" />
+        <option value="$PROJECT_DIR$/textview.go" />
+        <option value="$PROJECT_DIR$/tablayout.go" />
+        <option value="$PROJECT_DIR$/switch.go" />
+        <option value="$PROJECT_DIR$/spinner.go" />
+        <option value="$PROJECT_DIR$/space.go" />
+        <option value="$PROJECT_DIR$/radiogroup.go" />
+        <option value="$PROJECT_DIR$/radiobutton.go" />
+        <option value="$PROJECT_DIR$/listview.go" />
+        <option value="$PROJECT_DIR$/linearlayout.go" />
+        <option value="$PROJECT_DIR$/imageview.go" />
+        <option value="$PROJECT_DIR$/hscrollview.go" />
+        <option value="$PROJECT_DIR$/framelayout.go" />
+        <option value="$PROJECT_DIR$/fab.go" />
+        <option value="$PROJECT_DIR$/edittext.go" />
+        <option value="$PROJECT_DIR$/checkbox.go" />
+        <option value="$PROJECT_DIR$/button.go" />
+        <option value="$PROJECT_DIR$/bottomnav.go" />
+        <option value="$PROJECT_DIR$/vars.go" />
+        <option value="$PROJECT_DIR$/ui.go" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-3" />
+    <option name="width" value="1926" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="faithdroid" type="b2602c69:ProjectViewProjectNode" />
+              <item name="faithdroid" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-3" y="0" width="1926" height="1050" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18196371" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/build.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/activity.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webview.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="264" column="44" selection-start-line="264" selection-start-column="44" selection-end-line="264" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vscrollview.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="271" column="31" selection-start-line="271" selection-start-column="31" selection-end-line="271" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/viewpager.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="269" column="33" selection-start-line="269" selection-start-column="33" selection-end-line="269" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toolbar.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="253" column="44" selection-start-line="253" selection-start-column="44" selection-end-line="253" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/textview.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="271" column="42" selection-start-line="271" selection-start-column="42" selection-end-line="271" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tablayout.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="270" column="33" selection-start-line="270" selection-start-column="33" selection-end-line="270" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/switch.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="261" column="4" selection-start-line="261" selection-start-column="4" selection-end-line="261" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spinner.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="262" column="44" selection-start-line="262" selection-start-column="44" selection-end-line="262" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/space.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="262" column="7" selection-start-line="262" selection-start-column="7" selection-end-line="262" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/radiogroup.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="269" column="32" selection-start-line="269" selection-start-column="32" selection-end-line="269" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/radiobutton.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="262" column="31" selection-start-line="262" selection-start-column="31" selection-end-line="262" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/listview.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="338" column="42" selection-start-line="338" selection-start-column="42" selection-end-line="338" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framelayout.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="271" column="31" selection-start-line="271" selection-start-column="31" selection-end-line="271" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/edittext.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="261" column="42" selection-start-line="261" selection-start-column="42" selection-end-line="261" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fab.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="249" column="13" selection-start-line="249" selection-start-column="13" selection-end-line="249" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hscrollview.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="271" column="31" selection-start-line="271" selection-start-column="31" selection-end-line="271" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imageview.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="260" column="33" selection-start-line="260" selection-start-column="33" selection-end-line="260" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/linearlayout.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="271" column="26" selection-start-line="271" selection-start-column="26" selection-end-line="271" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bottomnav.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="271" column="33" selection-start-line="271" selection-start-column="33" selection-end-line="271" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/checkbox.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="260" column="42" selection-start-line="260" selection-start-column="42" selection-end-line="260" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/button.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="767">
+          <caret line="263" column="4" selection-start-line="263" selection-start-column="4" selection-end-line="263" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constraintlayout.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vars.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="192" column="9" selection-start-line="192" selection-start-column="9" selection-end-line="192" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alertDialog.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -10,7 +10,7 @@ func Clipboard(a *Activity) *FClipboard {
 	v.ClassName = "Clipboard"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (v *FClipboard) OnChange(f func()) *FClipboard {

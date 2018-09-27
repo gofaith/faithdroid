@@ -3,12 +3,12 @@ package faithdroid
 type FHScrollView struct {
 	FBaseView
 	showAfter bool
-	Children  []IView
+	Children  []IBaseView
 }
 
 func (vh *ViewHolder) GetHScrollViewByItemId(id string) *FHScrollView {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FHScrollView); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FHScrollView); ok {
 			return bt
 		}
 	}
@@ -38,7 +38,7 @@ func HScrollView(a *Activity) *FHScrollView {
 	v.ClassName = "HScrollView"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (v *FHScrollView) Size(w, h int) *FHScrollView {
@@ -237,9 +237,43 @@ func (v *FHScrollView) OnClick(f func()) *FHScrollView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FHScrollView) TopToTop(iv IBaseView) *FHScrollView {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FHScrollView) TopToBottom(iv IBaseView) *FHScrollView {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FHScrollView) BottomToBottom(iv IBaseView) *FHScrollView {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FHScrollView) BottomToTop(iv IBaseView) *FHScrollView {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FHScrollView) LeftToLeft(iv IBaseView) *FHScrollView {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FHScrollView) LeftToRight(iv IBaseView) *FHScrollView {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FHScrollView) RightToRight(iv IBaseView) *FHScrollView {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FHScrollView) RightToLeft(iv IBaseView) *FHScrollView {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FHScrollView) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
-func (v *FHScrollView) Append(vs ...IView) *FHScrollView {
+func (v *FHScrollView) Append(vs ...IBaseView) *FHScrollView {
 	v.Children = vs
 	for _, i := range vs {
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())

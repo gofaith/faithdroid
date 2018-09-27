@@ -3,12 +3,12 @@ package faithdroid
 type FLinearLayout struct {
 	FBaseView
 	showAfter bool
-	Children  []IView
+	Children  []IBaseView
 }
 
 func (vh *ViewHolder) GetLinearLayoutByItemId(id string) *FLinearLayout {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FLinearLayout); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FLinearLayout); ok {
 			return bt
 		}
 	}
@@ -38,7 +38,7 @@ func LinearLayout(a *Activity) *FLinearLayout {
 	v.ClassName = "LinearLayout"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (v *FLinearLayout) Size(w, h int) *FLinearLayout {
@@ -237,9 +237,43 @@ func (v *FLinearLayout) OnClick(f func()) *FLinearLayout {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FLinearLayout) TopToTop(iv IBaseView) *FLinearLayout {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FLinearLayout) TopToBottom(iv IBaseView) *FLinearLayout {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FLinearLayout) BottomToBottom(iv IBaseView) *FLinearLayout {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FLinearLayout) BottomToTop(iv IBaseView) *FLinearLayout {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FLinearLayout) LeftToLeft(iv IBaseView) *FLinearLayout {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FLinearLayout) LeftToRight(iv IBaseView) *FLinearLayout {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FLinearLayout) RightToRight(iv IBaseView) *FLinearLayout {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FLinearLayout) RightToLeft(iv IBaseView) *FLinearLayout {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FLinearLayout) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
-func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
+func (v *FLinearLayout) Append(vs ...IBaseView) *FLinearLayout {
 	v.Children = vs
 	for _, i := range vs {
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())

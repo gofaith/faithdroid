@@ -32,6 +32,165 @@ public class FView {
     public int layoutGravity;
     public float layoutWeight;
     public int[] size = new int[]{-2, -2};
+    public int topToTopOf,topToBottomOf,bottomToTopOf,bottomToBottomOf,leftToLeftOf,leftToRightOf,rightToRightOf,rightToLeftOf;
+
+    protected String getUniversalAttr(String attr) {
+        if (attr == null) {
+            return "";
+        }
+        switch (attr) {
+            case "Visibility":
+                return getVisibility();
+            case "X":
+                return getX();
+            case "Y":
+                return getY();
+            case "Width":
+                return getWidth();
+            case "Height":
+                return getHeight();
+            case "PivotX":
+                return getPivotX();
+            case "PivotY":
+                return getPivotY();
+            case "ScaleX":
+                return getScaleX();
+            case "ScaleY":
+                return getScaleY();
+            case "Rotation":
+                return getRotation();
+            default:
+                return null;
+        }
+    }
+    protected boolean setUniversalAttr(String attr, final String value) {
+        if (attr == null || value == null) {
+            return true;
+        }
+        switch (attr) {
+            case "BackgroundColor":
+                setBackgroundColor(value);
+                break;
+            case "Background":
+                setBackground(value);
+                break;
+            case "Foreground":
+                setForeground(value);
+                break;
+            case "Size":
+                parseSize( value);
+                break;
+            case "X":
+                setX(value);
+                break;
+            case "Y":
+                setY(value);
+                break;
+            case "PivotX":
+                setPivotX(value);
+                break;
+            case "PivotY":
+                setPivotY(value);
+                break;
+            case "ScaleX":
+                setScaleX(value);
+                break;
+            case "ScaleY":
+                setScaleY(value);
+                break;
+            case "Rotation":
+                setRotation(value);
+                break;
+            case "Visibility":
+                setVisibility(value);
+                break;
+            case "Padding":
+                setPadding(value);
+                break;
+            case "Margin":
+                setMargin(value);
+                break;
+            case "LayoutGravity":
+                setLayoutGravity(value);
+                break;
+            case "Elevation":
+                setElevation(value);
+                break;
+            case "LayoutWeight":
+                setLayoutWeight(value);
+                break;
+            case "OnTouch":
+                setOnTouchListener(value);
+                break;
+            case "OnClick":
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Faithdroid.triggerEventHandler(value, "");
+                    }
+                });
+                //--------------------------------
+            case "TopToTop":
+                if (value.equals("Parent")) {
+                    topToTopOf=-24;
+                    break;
+                }
+                topToTopOf = parentController.viewmap.get(value).view.getId();
+                break;
+            case "TopToBottom":
+                if (value.equals("Parent")) {
+                    topToBottomOf=-24;
+                    break;
+                }
+                topToBottomOf = parentController.viewmap.get(value).view.getId();
+                break;
+            case "BottomToBottom":
+                if (value.equals("Parent")) {
+                    bottomToBottomOf=-24;
+                    break;
+                }
+                bottomToBottomOf = parentController.viewmap.get(value).view.getId();
+                break;
+            case "BottomToTop":
+                if (value.equals("Parent")) {
+                    bottomToTopOf=-24;
+                    break;
+                }
+                bottomToTopOf = parentController.viewmap.get(value).view.getId();
+                break;
+            case "LeftToLeft":
+                if (value.equals("Parent")) {
+                    leftToLeftOf=-24;
+                    break;
+                }
+                leftToLeftOf = parentController.viewmap.get(value).view.getId();
+                break;
+            case "LeftToRight":
+                if (value.equals("Parent")) {
+                    leftToRightOf=-24;
+                    break;
+                }
+                leftToRightOf = parentController.viewmap.get(value).view.getId();
+                break;
+            case "RightToRight":
+                if (value.equals("Parent")) {
+                    rightToRightOf=-24;
+                    break;
+                }
+                rightToRightOf = parentController.viewmap.get(value).view.getId();
+                break;
+            case "RightToLeft":
+                if (value.equals("Parent")) {
+                    rightToLeftOf=-24;
+                    break;
+                }
+                rightToLeftOf = parentController.viewmap.get(value).view.getId();
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
     protected void parseSize(String value) {
         long width,height;
         try {

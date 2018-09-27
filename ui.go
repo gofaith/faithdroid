@@ -9,15 +9,27 @@ type UIController interface {
 	GetPkg() string
 	GetCurrentFActivity() *Activity
 }
-type FBaseView struct {
-	FBase
-}
 type FBase struct {
 	VID, ClassName string
 	UI             string
 }
-type IView interface {
+type FBaseView struct {
+	FBase
+	Fn_TopToTop func()
+	Fn_TopToBottom func()
+	Fn_BottomToBottom func()
+	Fn_BottomToTop func()
+	Fn_LeftToLeft func()
+	Fn_LeftToRight func()
+	Fn_RightToRight func()
+	Fn_RightToLeft func()
+}
+type IBase interface {
 	GetViewId() string
+}
+type IBaseView interface {
+	IBase
+	GetBaseView()*FBaseView
 }
 
 func (v FBase) GetViewId() string {
@@ -108,4 +120,77 @@ func (v *FBaseView) Elevation(dp float64) {
 }
 func (v *FBaseView) LayoutWeight(f int) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "LayoutWeight", SPrintf(f))
+}
+
+func (v *FBaseView) TopToTop(iv IBaseView) {
+	v.Fn_TopToTop= func() {
+		vid:= "Parent"
+		if iv != nil {
+			vid=iv.GetViewId()
+		}
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TopToTop", vid)
+	}
+}
+func (v *FBaseView) TopToBottom(iv IBaseView) {
+	v.Fn_TopToBottom=func() {
+		vid:= "Parent"
+		if iv != nil {
+			vid=iv.GetViewId()
+		}
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TopToBottom", vid)
+	}
+}
+func (v *FBaseView) BottomToBottom(iv IBaseView) {
+	v.Fn_BottomToBottom = func() {
+		vid:= "Parent"
+		if iv != nil {
+			vid=iv.GetViewId()
+		}
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BottomToBottom", vid)
+	}
+}
+func (v *FBaseView) BottomToTop(iv IBaseView) {
+	v.Fn_BottomToTop = func() {
+		vid:= "Parent"
+		if iv != nil {
+			vid=iv.GetViewId()
+		}
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BottomToTop", vid)
+	}
+}
+func (v *FBaseView) LeftToLeft(iv IBaseView) {
+	v.Fn_LeftToLeft=func() {
+		vid:= "Parent"
+		if iv != nil {
+			vid=iv.GetViewId()
+		}
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "LeftToLeft", vid)
+	}
+}
+func (v *FBaseView) LeftToRight(iv IBaseView) {
+	v.Fn_LeftToRight=func() {
+		vid:= "Parent"
+		if iv != nil {
+			vid=iv.GetViewId()
+		}
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "LeftToRight", vid)
+	}
+}
+func (v *FBaseView) RightToRight(iv IBaseView) {
+	v.Fn_RightToRight=func() {
+		vid:= "Parent"
+		if iv != nil {
+			vid=iv.GetViewId()
+		}
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "RightToRight", vid)
+	}
+}
+func (v *FBaseView) RightToLeft(iv IBaseView) {
+	v.Fn_RightToLeft= func() {
+		vid:= "Parent"
+		if iv != nil {
+			vid=iv.GetViewId()
+		}
+		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "RightToLeft", vid)
+	}
 }

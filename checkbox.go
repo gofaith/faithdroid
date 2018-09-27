@@ -10,12 +10,12 @@ func CheckBox(a *Activity) *FCheckBox {
 	v.ClassName = "CheckBox"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetCheckBoxByItemId(id string) *FCheckBox {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FCheckBox); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FCheckBox); ok {
 			return bt
 		}
 	}
@@ -226,7 +226,41 @@ func (v *FCheckBox) OnClick(f func()) *FCheckBox {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FCheckBox) TopToTop(iv IBaseView) *FCheckBox {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FCheckBox) TopToBottom(iv IBaseView) *FCheckBox {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FCheckBox) BottomToBottom(iv IBaseView) *FCheckBox {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FCheckBox) BottomToTop(iv IBaseView) *FCheckBox {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FCheckBox) LeftToLeft(iv IBaseView) *FCheckBox {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FCheckBox) LeftToRight(iv IBaseView) *FCheckBox {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FCheckBox) RightToRight(iv IBaseView) *FCheckBox {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FCheckBox) RightToLeft(iv IBaseView) *FCheckBox {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FCheckBox) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
 func (v *FCheckBox) Text(s string) *FCheckBox {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

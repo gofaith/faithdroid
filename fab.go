@@ -10,12 +10,12 @@ func Fab(a *Activity) *FFab {
 	v.ClassName = "Fab"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetFabByItemId(id string) *FFab {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FFab); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FFab); ok {
 			return bt
 		}
 	}
@@ -214,11 +214,41 @@ func (v *FFab) LayoutWeight(f int) *FFab {
 	return v
 }
 
-func (v *FFab) OnTouch(f func(TouchEvent)) *FFab {
-	v.FBaseView.OnTouch(f)
+func (v *FFab) TopToTop(iv IBaseView) *FFab {
+	v.FBaseView.TopToTop(iv)
 	return v
 }
-
+func (v *FFab) TopToBottom(iv IBaseView) *FFab {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FFab) BottomToBottom(iv IBaseView) *FFab {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FFab) BottomToTop(iv IBaseView) *FFab {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FFab) LeftToLeft(iv IBaseView) *FFab {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FFab) LeftToRight(iv IBaseView) *FFab {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FFab) RightToRight(iv IBaseView) *FFab {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FFab) RightToLeft(iv IBaseView) *FFab {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FFab) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
 
 func (v *FFab) Icon(s string) *FFab {

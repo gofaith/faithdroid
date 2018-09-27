@@ -10,12 +10,12 @@ func TextView(a *Activity) *FTextView {
 	v.ClassName = "TextView"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetTextViewByItemId(id string) *FTextView {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FTextView); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FTextView); ok {
 			return bt
 		}
 	}
@@ -237,7 +237,41 @@ func (v *FTextView) OnClick(f func()) *FTextView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FTextView) TopToTop(iv IBaseView) *FTextView {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FTextView) TopToBottom(iv IBaseView) *FTextView {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FTextView) BottomToBottom(iv IBaseView) *FTextView {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FTextView) BottomToTop(iv IBaseView) *FTextView {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FTextView) LeftToLeft(iv IBaseView) *FTextView {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FTextView) LeftToRight(iv IBaseView) *FTextView {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FTextView) RightToRight(iv IBaseView) *FTextView {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FTextView) RightToLeft(iv IBaseView) *FTextView {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FTextView) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
 func (v *FTextView) Text(s string) *FTextView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

@@ -10,12 +10,12 @@ func ImageView(a *Activity) *FImageView {
 	v.ClassName = "ImageView"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetImageViewByItemId(id string) *FImageView {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.ViewMap[v].(*FImageView); ok {
+		if bt, ok := GlobalVars.BaseMap[v].(*FImageView); ok {
 			return bt
 		}
 	}
@@ -226,7 +226,41 @@ func (v *FImageView) OnClick(f func()) *FImageView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-
+func (v *FImageView) TopToTop(iv IBaseView) *FImageView {
+	v.FBaseView.TopToTop(iv)
+	return v
+}
+func (v *FImageView) TopToBottom(iv IBaseView) *FImageView {
+	v.FBaseView.TopToBottom(iv)
+	return v
+}
+func (v *FImageView) BottomToBottom(iv IBaseView) *FImageView {
+	v.FBaseView.BottomToBottom(iv)
+	return v
+}
+func (v *FImageView) BottomToTop(iv IBaseView) *FImageView {
+	v.FBaseView.BottomToTop(iv)
+	return v
+}
+func (v *FImageView) LeftToLeft(iv IBaseView) *FImageView {
+	v.FBaseView.LeftToLeft(iv)
+	return v
+}
+func (v *FImageView) LeftToRight(iv IBaseView) *FImageView {
+	v.FBaseView.LeftToRight(iv)
+	return v
+}
+func (v *FImageView) RightToRight(iv IBaseView) *FImageView {
+	v.FBaseView.RightToRight(iv)
+	return v
+}
+func (v *FImageView) RightToLeft(iv IBaseView) *FImageView {
+	v.FBaseView.RightToLeft(iv)
+	return v
+}
+func (v *FImageView) GetBaseView() *FBaseView {
+	return &v.FBaseView
+}
 // --------------------------------------------------------
 func (v *FImageView) Src(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {

@@ -10,7 +10,7 @@ func AlertDialog(a *Activity) *FAlertDialog {
 	v.ClassName = "AlertDialog"
 	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.ViewMap[v.VID] = v
+	GlobalVars.BaseMap[v.VID] = v
 	return v
 }
 
@@ -18,7 +18,7 @@ func (v *FAlertDialog) Title(s string) *FAlertDialog {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)
 	return v
 }
-func (v *FAlertDialog) View(iv IView) *FAlertDialog {
+func (v *FAlertDialog) View(iv IBaseView) *FAlertDialog {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "View", iv.GetViewId())
 	return v
 }
