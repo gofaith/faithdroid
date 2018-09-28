@@ -354,7 +354,7 @@ public class UIController implements faithdroid.UIController{
         if (v == null) {
             return;
         }
-        FFrameLayout.addToframeLayout(rootView,v);
+        rootView.addView(v.view, FFrameLayout.parseLP(v));
     }
 
     private String activityGet(String attr) {

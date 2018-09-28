@@ -2,8 +2,7 @@ package faithdroid
 
 type FFrameLayout struct {
 	FBaseView
-	showAfter bool
-	Children  []IView
+	Children []IView
 }
 
 func (vh *ViewHolder) GetFrameLayoutByItemId(id string) *FFrameLayout {
@@ -240,16 +239,25 @@ func (v *FFrameLayout) OnClick(f func()) *FFrameLayout {
 
 // --------------------------------------------------------
 func (v *FFrameLayout) Append(vs ...IView) *FFrameLayout {
-	v.Children = vs
+	v.Children = append(v.Children, vs...)
 	for _, i := range vs {
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())
 	}
-	if v.showAfter {
-		v.Show()
-	}
 	return v
 }
-func (v *FFrameLayout) DeferShow() *FFrameLayout {
-	v.showAfter = true
+func (v *FFrameLayout) AddView(i IView) *FFrameLayout {
+	v.Append(i)
+	return v
+}
+func (v *FFrameLayout) AddViewAt(i IView, pos int) *FFrameLayout {
+	if pos == -1 {
+		v.AddView(i)
+		return v
+	}
+	if pos < 0 {
+		pos = len(v.Children) + pos + 1
+	}
+	v.Children = append(v.Children[:pos], append([]IView{i}, v.Children[pos:]...)...)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddViewAt", JsonArray([]string{SPrintf(pos), i.GetViewId()}))
 	return v
 }

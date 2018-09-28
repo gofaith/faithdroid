@@ -2,8 +2,7 @@ package faithdroid
 
 type FLinearLayout struct {
 	FBaseView
-	showAfter bool
-	Children  []IView
+	Children []IView
 }
 
 func (vh *ViewHolder) GetLinearLayoutByItemId(id string) *FLinearLayout {
@@ -240,17 +239,26 @@ func (v *FLinearLayout) OnClick(f func()) *FLinearLayout {
 
 // --------------------------------------------------------
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
-	v.Children = vs
+	v.Children = append(v.Children, vs...)
 	for _, i := range vs {
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())
 	}
-	if v.showAfter {
-		v.Show()
-	}
 	return v
 }
-func (v *FLinearLayout) DeferShow() *FLinearLayout {
-	v.showAfter = true
+func (v *FLinearLayout) AddView(i IView) *FLinearLayout {
+	v.Append(i)
+	return v
+}
+func (v *FLinearLayout) AddViewAt(i IView, pos int) *FLinearLayout {
+	if pos == -1 {
+		v.AddView(i)
+		return v
+	}
+	if pos < 0 {
+		pos = len(v.Children) + pos + 1
+	}
+	v.Children = append(v.Children[:pos], append([]IView{i}, v.Children[pos:]...)...)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddViewAt", JsonArray([]string{SPrintf(pos), i.GetViewId()}))
 	return v
 }
 func (v *FLinearLayout) Vertical() *FLinearLayout {

@@ -249,6 +249,23 @@ func (v *FHScrollView) Append(vs ...IView) *FHScrollView {
 	}
 	return v
 }
+
+func (v *FHScrollView) AddView(i IView) *FHScrollView {
+	v.Append(i)
+	return v
+}
+func (v *FHScrollView) AddViewAt(i IView, pos int) *FHScrollView {
+	if pos == -1 {
+		v.AddView(i)
+		return v
+	}
+	if pos < 0 {
+		pos = len(v.Children) + pos + 1
+	}
+	v.Children = append(v.Children[:pos], append([]IView{i}, v.Children[pos:]...)...)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddViewAt", JsonArray([]string{SPrintf(pos), i.GetViewId()}))
+	return v
+}
 func (v *FHScrollView) DeferShow() *FHScrollView {
 	v.showAfter = true
 	return v
