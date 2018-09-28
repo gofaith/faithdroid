@@ -7,7 +7,7 @@ type FBottomNav struct {
 
 func (vh *ViewHolder) GetFBottomNavByItemId(id string) *FBottomNav {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.BaseMap[v].(*FBottomNav); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FBottomNav); ok {
 			return bt
 		}
 	}
@@ -31,13 +31,13 @@ func GetBottomNavById(id string) *FBottomNav {
 	}
 	return nil
 }
-func BottomNav(a IActivity) *FBottomNav {
+func BottomNav(a *Activity) *FBottomNav {
 	v := &FBottomNav{}
 	v.VID = NewToken()
 	v.ClassName = "BottomNav"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (v *FBottomNav) Size(w, h int) *FBottomNav {
@@ -235,42 +235,6 @@ func (v *FBottomNav) OnClick(f func()) *FBottomNav {
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
-}
-
-func (v *FBottomNav) TopToTop(iv IBaseView) *FBottomNav {
-	v.FBaseView.TopToTop(iv)
-	return v
-}
-func (v *FBottomNav) TopToBottom(iv IBaseView) *FBottomNav {
-	v.FBaseView.TopToBottom(iv)
-	return v
-}
-func (v *FBottomNav) BottomToBottom(iv IBaseView) *FBottomNav {
-	v.FBaseView.BottomToBottom(iv)
-	return v
-}
-func (v *FBottomNav) BottomToTop(iv IBaseView) *FBottomNav {
-	v.FBaseView.BottomToTop(iv)
-	return v
-}
-func (v *FBottomNav) LeftToLeft(iv IBaseView) *FBottomNav {
-	v.FBaseView.LeftToLeft(iv)
-	return v
-}
-func (v *FBottomNav) LeftToRight(iv IBaseView) *FBottomNav {
-	v.FBaseView.LeftToRight(iv)
-	return v
-}
-func (v *FBottomNav) RightToRight(iv IBaseView) *FBottomNav {
-	v.FBaseView.RightToRight(iv)
-	return v
-}
-func (v *FBottomNav) RightToLeft(iv IBaseView) *FBottomNav {
-	v.FBaseView.RightToLeft(iv)
-	return v
-}
-func (v *FBottomNav) GetBaseView() *FBaseView {
-	return &v.FBaseView
 }
 
 // --------------------------------------------------------

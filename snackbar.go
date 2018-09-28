@@ -4,13 +4,13 @@ type FSnackbar struct {
 	FBaseView
 }
 
-func Snackbar(a IActivity) *FSnackbar {
+func Snackbar(a *Activity) *FSnackbar {
 	v := &FSnackbar{}
 	v.VID = NewToken()
 	v.ClassName = "Snackbar"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (v *FSnackbar) text(s string) *FSnackbar {
@@ -29,9 +29,9 @@ func (v *FSnackbar) action(s string, onClick func()) *FSnackbar {
 func (v *FSnackbar) show() {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Show", "")
 }
-func showSnackbar(a IActivity, s string) {
+func showSnackbar(a *Activity, s string) {
 	Snackbar(a).text(s).show()
 }
-func showSnackbarWithAction(a IActivity, s string, act string, onClick func()) {
+func showSnackbarWithAction(a *Activity, s string, act string, onClick func()) {
 	Snackbar(a).text(s).action(act, onClick).show()
 }

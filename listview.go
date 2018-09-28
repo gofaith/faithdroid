@@ -17,7 +17,7 @@ type ViewHolder struct {
 
 func (vh *ViewHolder) GetListViewById(id string) *FListView {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.BaseMap[v].(*FListView); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FListView); ok {
 			return bt
 		}
 	}
@@ -42,14 +42,14 @@ func GetListViewByItemId(id string) *FListView {
 	}
 	return nil
 }
-func VListView(a IActivity, getView func(lv *FListView) IBaseView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
+func VListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
 	v.VID = NewToken()
 	v.ClassName = "VListView"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	v.Vh.Vlist = make(map[string]string)
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	fnId1 := NewToken()
 	GlobalVars.EventHandlersMap[fnId1] = func(string) string {
 		v.Vh.VID = getView(v).GetViewId()
@@ -75,14 +75,14 @@ func VListView(a IActivity, getView func(lv *FListView) IBaseView, bindData func
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
-func HListView(a IActivity, getView func(lv *FListView) IBaseView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
+func HListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
 	v.VID = NewToken()
 	v.ClassName = "HListView"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	v.Vh.Vlist = make(map[string]string)
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	fnId1 := NewToken()
 	GlobalVars.EventHandlersMap[fnId1] = func(string) string {
 		v.Vh.VID = getView(v).GetViewId()
@@ -304,41 +304,7 @@ func (v *FListView) OnClick(f func()) *FListView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-func (v *FListView) TopToTop(iv IBaseView) *FListView {
-	v.FBaseView.TopToTop(iv)
-	return v
-}
-func (v *FListView) TopToBottom(iv IBaseView) *FListView {
-	v.FBaseView.TopToBottom(iv)
-	return v
-}
-func (v *FListView) BottomToBottom(iv IBaseView) *FListView {
-	v.FBaseView.BottomToBottom(iv)
-	return v
-}
-func (v *FListView) BottomToTop(iv IBaseView) *FListView {
-	v.FBaseView.BottomToTop(iv)
-	return v
-}
-func (v *FListView) LeftToLeft(iv IBaseView) *FListView {
-	v.FBaseView.LeftToLeft(iv)
-	return v
-}
-func (v *FListView) LeftToRight(iv IBaseView) *FListView {
-	v.FBaseView.LeftToRight(iv)
-	return v
-}
-func (v *FListView) RightToRight(iv IBaseView) *FListView {
-	v.FBaseView.RightToRight(iv)
-	return v
-}
-func (v *FListView) RightToLeft(iv IBaseView) *FListView {
-	v.FBaseView.RightToLeft(iv)
-	return v
-}
-func (v *FListView) GetBaseView() *FBaseView {
-	return &v.FBaseView
-}
+
 // --------------------------------------------------------------------
 func (v *FListView) NotifyDataSetChanged() *FListView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")

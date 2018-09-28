@@ -4,14 +4,14 @@ import (
 	"strings"
 )
 
-func CheckSelfPermission(a IActivity, permission string) bool {
-	b := GlobalVars.UIs[a.GetMyActivity().UI].ViewGetAttr("Permission", "CheckSelfPermission:"+permission)
+func CheckSelfPermission(a *Activity, permission string) bool {
+	b := GlobalVars.UIs[a.UI].ViewGetAttr("Permission", "CheckSelfPermission:"+permission)
 	if b == "true" {
 		return true
 	}
 	return false
 }
-func RequestPermissions(a IActivity, perms []string, onResult func([]bool)) {
+func RequestPermissions(a *Activity, perms []string, onResult func([]bool)) {
 	fnId := NewToken()
 	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
 		var bs []bool
@@ -19,7 +19,7 @@ func RequestPermissions(a IActivity, perms []string, onResult func([]bool)) {
 		onResult(bs)
 		return ""
 	}
-	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Permission", "RequestPermissions", fnId+":"+strings.Join(perms, "#")+":"+NewNumToken())
+	GlobalVars.UIs[a.UI].ViewSetAttr("Permission", "RequestPermissions", fnId+":"+strings.Join(perms, "#")+":"+NewNumToken())
 }
 
 var Permissions = struct {

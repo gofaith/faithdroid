@@ -1,10 +1,12 @@
 package faithdroid
 
-func (a *MainActivity) OnCreate() {
-	var bt1, bt2, bt3 *FButton
-	ConstraintLayout(a).Size(-2, -2).DeferShow().Append(
-		Button(a).Assign(&bt1).Size(-1, -1).Text("one").LeftToLeft(Parent).TopToTop(Parent),
-		Button(a).Assign(&bt2).Size(-1, -1).Text("two").LeftToRight(bt1).TopToTop(Parent).RightToRight(Parent),
-		Button(a).Assign(&bt3).Size(0, 0).Text("three").LeftToRight(bt1).RightToRight(Parent).TopToBottom(bt2).BottomToBottom(Parent),
-	)
+func (m *MainActivity) OnCreate() {
+	a := &m.Activity
+	LinearLayout(a).SetId("ctn").Size(-2, -2).Append(
+		Button(a).Text("add").Size(-2, -1).OnClick(func() {
+			GetLinearLayoutById("ctn").Append(
+				Button(a).Text("two").Size(-2, -1),
+			)
+		}),
+	).Show()
 }

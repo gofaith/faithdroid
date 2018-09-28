@@ -4,13 +4,13 @@ type FClipboard struct {
 	FBaseView
 }
 
-func Clipboard(a IActivity) *FClipboard {
+func Clipboard(a *Activity) *FClipboard {
 	v := &FClipboard{}
 	v.VID = NewToken()
 	v.ClassName = "Clipboard"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (v *FClipboard) OnChange(f func()) *FClipboard {

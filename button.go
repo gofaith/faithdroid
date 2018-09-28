@@ -4,18 +4,18 @@ type FButton struct {
 	FBaseView
 }
 
-func Button(a IActivity) *FButton {
+func Button(a *Activity) *FButton {
 	v := &FButton{}
 	v.VID = NewToken()
 	v.ClassName = "Button"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetButtonByItemId(id string) *FButton {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.BaseMap[v].(*FButton); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FButton); ok {
 			return bt
 		}
 	}
@@ -228,41 +228,7 @@ func (v *FButton) OnClick(f func()) *FButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-func (v *FButton) TopToTop(iv IBaseView) *FButton {
-	v.FBaseView.TopToTop(iv)
-	return v
-}
-func (v *FButton) TopToBottom(iv IBaseView) *FButton {
-	v.FBaseView.TopToBottom(iv)
-	return v
-}
-func (v *FButton) BottomToBottom(iv IBaseView) *FButton {
-	v.FBaseView.BottomToBottom(iv)
-	return v
-}
-func (v *FButton) BottomToTop(iv IBaseView) *FButton {
-	v.FBaseView.BottomToTop(iv)
-	return v
-}
-func (v *FButton) LeftToLeft(iv IBaseView) *FButton {
-	v.FBaseView.LeftToLeft(iv)
-	return v
-}
-func (v *FButton) LeftToRight(iv IBaseView) *FButton {
-	v.FBaseView.LeftToRight(iv)
-	return v
-}
-func (v *FButton) RightToRight(iv IBaseView) *FButton {
-	v.FBaseView.RightToRight(iv)
-	return v
-}
-func (v *FButton) RightToLeft(iv IBaseView) *FButton {
-	v.FBaseView.RightToLeft(iv)
-	return v
-}
-func (v *FButton) GetBaseView() *FBaseView {
-	return &v.FBaseView
-}
+
 // --------------------------------------------------------
 func (v *FButton) Text(s string) *FButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

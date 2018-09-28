@@ -6,13 +6,13 @@ type FToolbar struct {
 }
 
 // --------------------------------------------------------------------------------
-func Toolbar(a IActivity) *FToolbar {
+func Toolbar(a *Activity) *FToolbar {
 	v := &FToolbar{}
 	v.VID = NewToken()
 	v.ClassName = "Toolbar"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (v *FToolbar) Size(w, h int) *FToolbar {
@@ -219,41 +219,7 @@ func (v *FToolbar) OnClick(f func()) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-func (v *FToolbar) TopToTop(iv IBaseView) *FToolbar {
-	v.FBaseView.TopToTop(iv)
-	return v
-}
-func (v *FToolbar) TopToBottom(iv IBaseView) *FToolbar {
-	v.FBaseView.TopToBottom(iv)
-	return v
-}
-func (v *FToolbar) BottomToBottom(iv IBaseView) *FToolbar {
-	v.FBaseView.BottomToBottom(iv)
-	return v
-}
-func (v *FToolbar) BottomToTop(iv IBaseView) *FToolbar {
-	v.FBaseView.BottomToTop(iv)
-	return v
-}
-func (v *FToolbar) LeftToLeft(iv IBaseView) *FToolbar {
-	v.FBaseView.LeftToLeft(iv)
-	return v
-}
-func (v *FToolbar) LeftToRight(iv IBaseView) *FToolbar {
-	v.FBaseView.LeftToRight(iv)
-	return v
-}
-func (v *FToolbar) RightToRight(iv IBaseView) *FToolbar {
-	v.FBaseView.RightToRight(iv)
-	return v
-}
-func (v *FToolbar) RightToLeft(iv IBaseView) *FToolbar {
-	v.FBaseView.RightToLeft(iv)
-	return v
-}
-func (v *FToolbar) GetBaseView() *FBaseView {
-	return &v.FBaseView
-}
+
 // ----------------------------------------------------------
 func (v *FToolbar) Title(s string) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)

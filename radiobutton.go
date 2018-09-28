@@ -4,18 +4,18 @@ type FRadioButton struct {
 	FBaseView
 }
 
-func RadioButton(a IActivity) *FRadioButton {
+func RadioButton(a *Activity) *FRadioButton {
 	v := &FRadioButton{}
 	v.VID = NewToken()
 	v.ClassName = "RadioButton"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetRadioButtonByItemId(id string) *FRadioButton {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.BaseMap[v].(*FRadioButton); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FRadioButton); ok {
 			return bt
 		}
 	}
@@ -228,41 +228,7 @@ func (v *FRadioButton) OnClick(f func()) *FRadioButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-func (v *FRadioButton) TopToTop(iv IBaseView) *FRadioButton {
-	v.FBaseView.TopToTop(iv)
-	return v
-}
-func (v *FRadioButton) TopToBottom(iv IBaseView) *FRadioButton {
-	v.FBaseView.TopToBottom(iv)
-	return v
-}
-func (v *FRadioButton) BottomToBottom(iv IBaseView) *FRadioButton {
-	v.FBaseView.BottomToBottom(iv)
-	return v
-}
-func (v *FRadioButton) BottomToTop(iv IBaseView) *FRadioButton {
-	v.FBaseView.BottomToTop(iv)
-	return v
-}
-func (v *FRadioButton) LeftToLeft(iv IBaseView) *FRadioButton {
-	v.FBaseView.LeftToLeft(iv)
-	return v
-}
-func (v *FRadioButton) LeftToRight(iv IBaseView) *FRadioButton {
-	v.FBaseView.LeftToRight(iv)
-	return v
-}
-func (v *FRadioButton) RightToRight(iv IBaseView) *FRadioButton {
-	v.FBaseView.RightToRight(iv)
-	return v
-}
-func (v *FRadioButton) RightToLeft(iv IBaseView) *FRadioButton {
-	v.FBaseView.RightToLeft(iv)
-	return v
-}
-func (v *FRadioButton) GetBaseView() *FBaseView {
-	return &v.FBaseView
-}
+
 // --------------------------------------------------------
 func (v *FRadioButton) Text(s string) *FRadioButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

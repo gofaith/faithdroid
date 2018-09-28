@@ -4,13 +4,13 @@ type FAlertDialog struct {
 	FBaseView
 }
 
-func AlertDialog(a IActivity) *FAlertDialog {
+func AlertDialog(a *Activity) *FAlertDialog {
 	v := &FAlertDialog{}
 	v.VID = NewToken()
 	v.ClassName = "AlertDialog"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 
@@ -18,7 +18,7 @@ func (v *FAlertDialog) Title(s string) *FAlertDialog {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)
 	return v
 }
-func (v *FAlertDialog) View(iv IBaseView) *FAlertDialog {
+func (v *FAlertDialog) View(iv IView) *FAlertDialog {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "View", iv.GetViewId())
 	return v
 }

@@ -43,9 +43,6 @@
 - [x]MediaScannerConnection
 - [x]radius of Button
 - [x]checkBox
-- [x]constraintLayout
-- [x]IActivity
-- addView
-- progress
 
 - fadeIn & fadeOut
+- constraintLayout

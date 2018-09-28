@@ -35,7 +35,6 @@ import io.github.gofaith.faithdroid.FViews.FBottomNav;
 import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FCheckBox;
 import io.github.gofaith.faithdroid.FViews.FClipboard;
-import io.github.gofaith.faithdroid.FViews.FConstraintLayout;
 import io.github.gofaith.faithdroid.FViews.FEditText;
 import io.github.gofaith.faithdroid.FViews.FFab;
 import io.github.gofaith.faithdroid.FViews.FFrameLayout;
@@ -263,10 +262,6 @@ public class UIController implements faithdroid.UIController{
             case "CheckBox":
                 FCheckBox fCheckBox = new FCheckBox(this);
                 v = fCheckBox;
-                break;
-            case "ConstraintLayout":
-                FConstraintLayout fConstraintLayout = new FConstraintLayout(this);
-                v = fConstraintLayout;
                 break;
         }
         v.className =vName;

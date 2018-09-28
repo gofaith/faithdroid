@@ -4,18 +4,18 @@ type FEditText struct {
 	FBaseView
 }
 
-func EditText(a IActivity) *FEditText {
+func EditText(a *Activity) *FEditText {
 	v := &FEditText{}
 	v.VID = NewToken()
 	v.ClassName = "EditText"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (vh *ViewHolder) GetEditTextByItemId(id string) *FEditText {
 	if v, ok := vh.Vlist[id]; ok {
-		if bt, ok := GlobalVars.BaseMap[v].(*FEditText); ok {
+		if bt, ok := GlobalVars.ViewMap[v].(*FEditText); ok {
 			return bt
 		}
 	}
@@ -227,41 +227,7 @@ func (v *FEditText) OnClick(f func()) *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
-func (v *FEditText) TopToTop(iv IBaseView) *FEditText {
-	v.FBaseView.TopToTop(iv)
-	return v
-}
-func (v *FEditText) TopToBottom(iv IBaseView) *FEditText {
-	v.FBaseView.TopToBottom(iv)
-	return v
-}
-func (v *FEditText) BottomToBottom(iv IBaseView) *FEditText {
-	v.FBaseView.BottomToBottom(iv)
-	return v
-}
-func (v *FEditText) BottomToTop(iv IBaseView) *FEditText {
-	v.FBaseView.BottomToTop(iv)
-	return v
-}
-func (v *FEditText) LeftToLeft(iv IBaseView) *FEditText {
-	v.FBaseView.LeftToLeft(iv)
-	return v
-}
-func (v *FEditText) LeftToRight(iv IBaseView) *FEditText {
-	v.FBaseView.LeftToRight(iv)
-	return v
-}
-func (v *FEditText) RightToRight(iv IBaseView) *FEditText {
-	v.FBaseView.RightToRight(iv)
-	return v
-}
-func (v *FEditText) RightToLeft(iv IBaseView) *FEditText {
-	v.FBaseView.RightToLeft(iv)
-	return v
-}
-func (v *FEditText) GetBaseView() *FBaseView {
-	return &v.FBaseView
-}
+
 // --------------------------------------------------------
 func (v *FEditText) Text(s string) *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

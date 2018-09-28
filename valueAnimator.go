@@ -4,13 +4,13 @@ type FValueAnimator struct {
 	FBase
 }
 
-func ValueAnimator(a IActivity) *FValueAnimator {
+func ValueAnimator(a *Activity) *FValueAnimator {
 	v := &FValueAnimator{}
 	v.VID = NewToken()
 	v.ClassName = "ValueAnimator"
-	v.UI = a.GetMyActivity().UI
+	v.UI = a.UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
-	GlobalVars.BaseMap[v.VID] = v
+	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
 func (v *FValueAnimator) OfFloat(fs ...float64) *FValueAnimator {
