@@ -45,4 +45,3 @@
 - [x]checkBox
 
 - fadeIn & fadeOut
-- constraintLayout

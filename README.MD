@@ -12,8 +12,7 @@
 ```Go
 package faithdroid
 
-func (m *MainActivity) OnCreate() {
-	a := &m.Activity
+func (a *MainActivity) OnCreate() {
 	LinearLayout(a).Size(-2, -2).Append(
 		TextView(a).Text("text view").SetId("text"),
 		Button(a).Text("change text").OnClick(func() {
