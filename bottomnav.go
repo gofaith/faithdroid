@@ -31,11 +31,11 @@ func GetBottomNavById(id string) *FBottomNav {
 	}
 	return nil
 }
-func BottomNav(a *Activity) *FBottomNav {
+func BottomNav(a IActivity) *FBottomNav {
 	v := &FBottomNav{}
 	v.VID = NewToken()
 	v.ClassName = "BottomNav"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

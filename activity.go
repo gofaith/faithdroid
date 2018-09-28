@@ -1,15 +1,27 @@
 package faithdroid
 
+//Activity
 type Activity struct {
 	UI       string
 	MyIntent Intent
 }
+func (a Activity) GetContext() string {
+	return "Activity"
+}
+func (a *Activity)GetMyActivity()*Activity  {
+	return a
+}
+//MainActivity
 type MainActivity struct {
 	Activity
 }
+func (a *MainActivity)GetMyActivity()*Activity  {
+	return &a.Activity
+}
 
-func (a Activity) GetContext() string {
-	return "Activity"
+//IActivity
+type IActivity interface {
+	GetMyActivity() *Activity
 }
 
 // Intent
@@ -84,26 +96,26 @@ func (a *Activity) OnStart() {
 func (a *Activity) OnDestroy() {
 }
 
-func Finish(a *Activity) {
-	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "Finish", "")
+func Finish(a IActivity) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "Finish", "")
 }
-func ShowToast(a *Activity, s string) {
-	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "ShowToast", s)
+func ShowToast(a IActivity, s string) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "ShowToast", s)
 }
-func RunOnUIThread(a *Activity, f func()) {
+func RunOnUIThread(a IActivity, f func()) {
 	fnId := NewToken()
 	GlobalVars.EventHandlersMap[fnId] = func(string) string {
 		f()
 		return ""
 	}
-	GlobalVars.UIs[a.UI].RunOnUIThread(fnId)
+	GlobalVars.UIs[a.GetMyActivity().UI].RunOnUIThread(fnId)
 }
-func ScanFile(a *Activity, fpath string) {
-	GlobalVars.UIs[a.UI].ViewSetAttr("Activity", "ScanFile", fpath)
+func ScanFile(a IActivity, fpath string) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "ScanFile", fpath)
 }
-func GetExternalStorageDirectory(a *Activity) string {
-	return GlobalVars.UIs[a.UI].ViewGetAttr("Activity", "ExternalStorageDirectory")
+func GetExternalStorageDirectory(a IActivity) string {
+	return GlobalVars.UIs[a.GetMyActivity().UI].ViewGetAttr("Activity", "ExternalStorageDirectory")
 }
-func GuessFileName(a *Activity, url string) string {
-	return GlobalVars.UIs[a.UI].ViewGetAttr("Activity", JsonArray([]string{"GuessFileName", url}))
+func GuessFileName(a IActivity, url string) string {
+	return GlobalVars.UIs[a.GetMyActivity().UI].ViewGetAttr("Activity", JsonArray([]string{"GuessFileName", url}))
 }

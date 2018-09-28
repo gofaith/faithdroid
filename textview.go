@@ -4,11 +4,11 @@ type FTextView struct {
 	FBaseView
 }
 
-func TextView(a *Activity) *FTextView {
+func TextView(a IActivity) *FTextView {
 	v := &FTextView{}
 	v.VID = NewToken()
 	v.ClassName = "TextView"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

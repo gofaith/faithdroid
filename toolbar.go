@@ -6,11 +6,11 @@ type FToolbar struct {
 }
 
 // --------------------------------------------------------------------------------
-func Toolbar(a *Activity) *FToolbar {
+func Toolbar(a IActivity) *FToolbar {
 	v := &FToolbar{}
 	v.VID = NewToken()
 	v.ClassName = "Toolbar"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

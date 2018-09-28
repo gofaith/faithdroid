@@ -31,11 +31,11 @@ func GetVScrollViewById(id string) *FVScrollView {
 	}
 	return nil
 }
-func VScrollView(a *Activity) *FVScrollView {
+func VScrollView(a IActivity) *FVScrollView {
 	v := &FVScrollView{}
 	v.VID = NewToken()
 	v.ClassName = "VScrollView"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

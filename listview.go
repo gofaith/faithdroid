@@ -42,11 +42,11 @@ func GetListViewByItemId(id string) *FListView {
 	}
 	return nil
 }
-func VListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
+func VListView(a IActivity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
 	v.VID = NewToken()
 	v.ClassName = "VListView"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	v.Vh.Vlist = make(map[string]string)
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
@@ -75,11 +75,11 @@ func VListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh 
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
-func HListView(a *Activity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
+func HListView(a IActivity, getView func(lv *FListView) IView, bindData func(vh *ViewHolder, pos int), getCount func() int) *FListView {
 	v := &FListView{}
 	v.VID = NewToken()
 	v.ClassName = "HListView"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	v.Vh.Vlist = make(map[string]string)
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v

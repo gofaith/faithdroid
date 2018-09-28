@@ -4,11 +4,11 @@ type FFab struct {
 	FBaseView
 }
 
-func Fab(a *Activity) *FFab {
+func Fab(a IActivity) *FFab {
 	v := &FFab{}
 	v.VID = NewToken()
 	v.ClassName = "Fab"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

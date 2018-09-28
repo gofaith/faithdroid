@@ -4,11 +4,11 @@ type FEditText struct {
 	FBaseView
 }
 
-func EditText(a *Activity) *FEditText {
+func EditText(a IActivity) *FEditText {
 	v := &FEditText{}
 	v.VID = NewToken()
 	v.ClassName = "EditText"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

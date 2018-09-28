@@ -31,11 +31,11 @@ func GetFrameLayoutById(id string) *FFrameLayout {
 	}
 	return nil
 }
-func FrameLayout(a *Activity) *FFrameLayout {
+func FrameLayout(a IActivity) *FFrameLayout {
 	v := &FFrameLayout{}
 	v.VID = NewToken()
 	v.ClassName = "FrameLayout"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

@@ -31,11 +31,11 @@ func GetLinearLayoutById(id string) *FLinearLayout {
 	}
 	return nil
 }
-func LinearLayout(a *Activity) *FLinearLayout {
+func LinearLayout(a IActivity) *FLinearLayout {
 	v := &FLinearLayout{}
 	v.VID = NewToken()
 	v.ClassName = "LinearLayout"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

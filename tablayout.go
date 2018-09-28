@@ -31,11 +31,11 @@ func GetTabLayoutById(id string) *FTabLayout {
 	}
 	return nil
 }
-func TabLayout(a *Activity) *FTabLayout {
+func TabLayout(a IActivity) *FTabLayout {
 	v := &FTabLayout{}
 	v.VID = NewToken()
 	v.ClassName = "TabLayout"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

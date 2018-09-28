@@ -1,7 +1,6 @@
 package faithdroid
 
-func (m *MainActivity) OnCreate() {
-	a := &m.Activity
+func (a *MainActivity) OnCreate() {
 	LinearLayout(a).SetId("ctn").Size(-2, -2).Append(
 		Button(a).Text("add-1").Size(-1, -1).OnClick(func() {
 			GetLinearLayoutById("ctn").AddViewAt(

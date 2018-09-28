@@ -4,16 +4,16 @@ type FWebView struct {
 	FBaseView
 }
 
-func WebView(a *Activity) *FWebView {
+func WebView(a IActivity) *FWebView {
 	v := &FWebView{}
 	v.VID = NewToken()
 	v.ClassName = "WebView"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func WebViewItem(a *Activity, uri string) *FWebView {
+func WebViewItem(a IActivity, uri string) *FWebView {
 	w := WebView(a)
 	return w.Focusable(false).BackgroundColor(Colors.Transparent).Size(-1, -1).loadUri(uri)
 }

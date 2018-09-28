@@ -4,11 +4,11 @@ type FCheckBox struct {
 	FBaseView
 }
 
-func CheckBox(a *Activity) *FCheckBox {
+func CheckBox(a IActivity) *FCheckBox {
 	v := &FCheckBox{}
 	v.VID = NewToken()
 	v.ClassName = "CheckBox"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

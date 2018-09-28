@@ -4,11 +4,11 @@ type FRadioButton struct {
 	FBaseView
 }
 
-func RadioButton(a *Activity) *FRadioButton {
+func RadioButton(a IActivity) *FRadioButton {
 	v := &FRadioButton{}
 	v.VID = NewToken()
 	v.ClassName = "RadioButton"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v

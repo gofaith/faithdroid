@@ -4,11 +4,11 @@ type FSpinner struct {
 	FBaseView
 }
 
-func Spinner(a *Activity) *FSpinner {
+func Spinner(a IActivity) *FSpinner {
 	v := &FSpinner{}
 	v.VID = NewToken()
 	v.ClassName = "Spinner"
-	v.UI = a.UI
+	v.UI = a.GetMyActivity().UI
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
 	return v
