@@ -1,10 +1,8 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.drawable.Drawable;
-import android.view.View;
 import android.widget.ImageView;
 
-import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
 import io.github.gofaith.faithdroid.UI.Toolkit;
@@ -44,6 +42,30 @@ public class FImageView extends FView implements AttrSettable, AttrGettable {
                 }
                 v.setImageDrawable(drawable);
                 break;
+            case "ScaleType":
+                v.setScaleType(parseScaleType(value));
+                break;
+        }
+    }
+
+    private ImageView.ScaleType parseScaleType(String value) {
+        switch (value) {
+            case "CenterCrop":
+                return ImageView.ScaleType.CENTER_CROP;
+            case "CenterInside":
+                return ImageView.ScaleType.CENTER_INSIDE;
+            case "FitCenter":
+                return ImageView.ScaleType.FIT_CENTER;
+            case "FitStart":
+                return ImageView.ScaleType.FIT_START;
+            case "FitEnd":
+                return ImageView.ScaleType.FIT_END;
+            case "FitXY":
+                return ImageView.ScaleType.FIT_XY;
+            case "Matrix":
+                return ImageView.ScaleType.MATRIX;
+            default:
+                return ImageView.ScaleType.CENTER;
         }
     }
 }

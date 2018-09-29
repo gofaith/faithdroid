@@ -22,6 +22,26 @@ func (vh *ViewHolder) GetImageViewByItemId(id string) *FImageView {
 	return nil
 }
 
+var ScaleTypes = struct {
+	Center       string
+	CenterCrop   string
+	CenterInside string
+	FitCenter    string
+	FitStart     string
+	FitEnd       string
+	FitXY        string
+	Matrix       string
+}{
+	"Center",
+	"CenterCrop",
+	"CenterInside",
+	"FitCenter",
+	"FitStart",
+	"FitEnd",
+	"FitXY",
+	"Matrix",
+}
+
 func (v *FImageView) Size(w, h int) *FImageView {
 	i := []int{w, h}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
@@ -256,5 +276,9 @@ func (v *FImageView) CachedSrc(s string) *FImageView {
 		return v
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", s)
+	return v
+}
+func (v *FImageView) ScaleType(s string) *FImageView {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ScaleType", s)
 	return v
 }

@@ -45,5 +45,6 @@
 - [x]checkBox
 
 - [x]viewpager onselect
-- imageview scaleType
+- [x]imageview scaleType
+- menu.Icon(http)
 - fadeIn & fadeOut
