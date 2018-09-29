@@ -1,15 +1,12 @@
 package faithdroid
 
 func (a *MainActivity) OnCreate() {
-	var name string
 	LinearLayout(a).DeferShow().Size(-2, -2).Append(
-		RadioGroup(a).Vertical().OnCheckedChange(func(i int, r *FRadioButton) {
-			name = r.GetText()
-		}).Append(
-			RadioButton(a).Text("asd"),
-			RadioButton(a).Text("steven"),
-			RadioButton(a).Text("yif")),
-		Button(a).Text("show selected").Size(-2, -1).OnClick(func() {
-			ShowToast(a, name)
+		EditText(a).Size(-2, -1).Text("steven").InputTypeEnglish().SetId("username").Hint("username").MaxLength(6).MaxLines(1),
+		EditText(a).Size(-2, -1).Hint("password").InputTypePassword().SetId("password").MaxLength(12).MaxLines(1),
+		Button(a).Size(-2, -1).Text("show").OnClick(func() {
+			username := GetEditTextById("username").GetText()
+			password := GetEditTextById("password").GetText()
+			ShowToast(a, username+":"+password)
 		}))
 }

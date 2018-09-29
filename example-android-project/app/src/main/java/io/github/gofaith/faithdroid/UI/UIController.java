@@ -1,6 +1,7 @@
 package io.github.gofaith.faithdroid.UI;
 
 import android.Manifest;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaScannerConnection;

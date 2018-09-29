@@ -244,19 +244,35 @@ func (v *FEditText) TextSize(dpsize int) *FEditText {
 func (v *FEditText) GetText() string {
 	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Text")
 }
-func (v *FEditText) TypeText() *FEditText {
+func (v *FEditText) InputTypeText() *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "InputType", "Text")
 	return v
 }
-func (v *FEditText) TypeNumber() *FEditText {
+func (v *FEditText) InputTypeNumber() *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "InputType", "Number")
 	return v
 }
-func (v *FEditText) TypePassword() *FEditText {
+func (v *FEditText) InputTypePassword() *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "InputType", "Password")
 	return v
 }
-func (v *FEditText) TypeEnglish() *FEditText {
+func (v *FEditText) InputTypeEnglish() *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "InputType", "English")
+	return v
+}
+func (v *FEditText) MaxLines(i int) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "MaxLines", SPrintf(i))
+	return v
+}
+func (v *FEditText) MaxEms(i int) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "MaxEms", SPrintf(i))
+	return v
+}
+func (v *FEditText) Hint(s string) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Hint", s)
+	return v
+}
+func (v *FEditText) MaxLength(i int) *FEditText {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "MaxLength", SPrintf(i))
 	return v
 }

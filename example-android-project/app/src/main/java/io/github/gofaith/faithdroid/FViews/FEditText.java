@@ -1,6 +1,7 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.Color;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
@@ -69,6 +70,18 @@ public class FEditText extends FView implements AttrGettable, AttrSettable {
                     it = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
                 }
                 v.setInputType(it);
+                break;
+            case "MaxLines":
+                v.setMaxLines(Integer.parseInt(value));
+                break;
+            case "MaxEms":
+                v.setMaxEms(Integer.parseInt(value));
+                break;
+            case "Hint":
+                v.setHint(value);
+                break;
+            case "MaxLength":
+                v.setFilters(new InputFilter[] {new InputFilter.LengthFilter(Integer.parseInt(value))});
                 break;
         }
     }

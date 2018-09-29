@@ -11,7 +11,6 @@ import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FClipboard extends FView implements AttrSettable,AttrGettable {
     public ClipboardManager v;
-
     public FClipboard(UIController controller) {
         parentController=controller;
         v = (ClipboardManager) parentController.activity.getSystemService(Context.CLIPBOARD_SERVICE);
