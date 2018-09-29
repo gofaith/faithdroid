@@ -230,6 +230,10 @@ func (v *FWebView) OnClick(f func()) *FWebView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FWebView) Clickable(b bool) *FWebView {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 

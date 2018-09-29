@@ -226,6 +226,10 @@ func (v *FCheckBox) OnClick(f func()) *FCheckBox {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FCheckBox) Clickable(b bool) *FCheckBox {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FCheckBox) Text(s string) *FCheckBox {

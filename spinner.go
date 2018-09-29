@@ -228,6 +228,10 @@ func (v *FSpinner) OnClick(f func()) *FSpinner {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FSpinner) Clickable(b bool) *FSpinner {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 

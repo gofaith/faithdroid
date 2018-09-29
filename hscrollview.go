@@ -237,6 +237,10 @@ func (v *FHScrollView) OnClick(f func()) *FHScrollView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FHScrollView) Clickable(b bool) *FHScrollView {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FHScrollView) Append(vs ...IView) *FHScrollView {

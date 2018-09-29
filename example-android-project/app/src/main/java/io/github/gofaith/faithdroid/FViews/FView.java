@@ -128,6 +128,9 @@ public class FView {
                     }
                 });
                 break;
+            case "Clickable":
+                view.setClickable(value.equals("true"));
+                break;
             default:
                 return false;
         }

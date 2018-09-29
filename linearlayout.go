@@ -237,6 +237,10 @@ func (v *FLinearLayout) OnClick(f func()) *FLinearLayout {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FLinearLayout) Clickable(b bool) *FLinearLayout {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {

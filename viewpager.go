@@ -239,6 +239,10 @@ func (v *FViewPager) OnClick(f func()) *FViewPager {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FViewPager) Clickable(b bool) *FViewPager {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 type FPage struct {

@@ -226,6 +226,10 @@ func (v *FSwitch) OnClick(f func()) *FSwitch {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FSwitch) Clickable(b bool) *FSwitch {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FSwitch) Enabled(b bool) *FSwitch {

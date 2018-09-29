@@ -236,6 +236,10 @@ func (v *FTabLayout) OnClick(f func()) *FTabLayout {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FTabLayout) Clickable(b bool) *FTabLayout {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // ------------------------------------------------------------
 

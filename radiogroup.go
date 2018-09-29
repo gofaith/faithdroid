@@ -236,6 +236,10 @@ func (v *FRadioGroup) OnClick(f func()) *FRadioGroup {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FRadioGroup) Clickable(b bool) *FRadioGroup {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FRadioGroup) Append(vs ...*FRadioButton) *FRadioGroup {

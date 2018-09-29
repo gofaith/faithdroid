@@ -228,6 +228,10 @@ func (v *FButton) OnClick(f func()) *FButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FButton) Clickable(b bool) *FButton {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FButton) Text(s string) *FButton {

@@ -246,6 +246,10 @@ func (v *FImageView) OnClick(f func()) *FImageView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FImageView) Clickable(b bool) *FImageView {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FImageView) Src(s string) *FImageView {

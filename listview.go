@@ -304,6 +304,10 @@ func (v *FListView) OnClick(f func()) *FListView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FListView) Clickable(b bool) *FListView {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------------------
 func (v *FListView) NotifyDataSetChanged() *FListView {

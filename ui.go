@@ -109,3 +109,6 @@ func (v *FBaseView) Elevation(dp float64) {
 func (v *FBaseView) LayoutWeight(f int) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "LayoutWeight", SPrintf(f))
 }
+func (v *FBaseView) Clickable(b bool) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Clickable", SPrintf(b))
+}

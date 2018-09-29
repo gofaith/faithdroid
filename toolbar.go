@@ -219,6 +219,10 @@ func (v *FToolbar) OnClick(f func()) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FToolbar) Clickable(b bool) *FToolbar {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // ----------------------------------------------------------
 func (v *FToolbar) Title(s string) *FToolbar {

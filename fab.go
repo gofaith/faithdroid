@@ -218,6 +218,10 @@ func (v *FFab) OnTouch(f func(TouchEvent)) *FFab {
 	v.FBaseView.OnTouch(f)
 	return v
 }
+func (v *FFab) Clickable(b bool) *FFab {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 

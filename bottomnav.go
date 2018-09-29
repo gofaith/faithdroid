@@ -236,6 +236,10 @@ func (v *FBottomNav) OnClick(f func()) *FBottomNav {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FBottomNav) Clickable(b bool) *FBottomNav {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FBottomNav) Menus(mis ...interface{}) *FBottomNav {

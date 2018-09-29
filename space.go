@@ -227,5 +227,9 @@ func (v *FSpace) OnClick(f func()) *FSpace {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FSpace) Clickable(b bool) *FSpace {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------

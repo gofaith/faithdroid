@@ -237,6 +237,10 @@ func (v *FFrameLayout) OnClick(f func()) *FFrameLayout {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FFrameLayout) Clickable(b bool) *FFrameLayout {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FFrameLayout) Append(vs ...IView) *FFrameLayout {

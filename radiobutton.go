@@ -228,6 +228,10 @@ func (v *FRadioButton) OnClick(f func()) *FRadioButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
 	return v
 }
+func (v *FRadioButton) Clickable(b bool) *FRadioButton {
+	v.FBaseView.Clickable(b)
+	return v
+}
 
 // --------------------------------------------------------
 func (v *FRadioButton) Text(s string) *FRadioButton {
