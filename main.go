@@ -1,21 +1,15 @@
 package faithdroid
 
 func (a *MainActivity) OnCreate() {
+	var name string
 	LinearLayout(a).DeferShow().Size(-2, -2).Append(
-		ViewPager(a).Size(-2, -2).SetId("vp").LayoutWeight(1).Pages(
-			Page(func() IView {
-				return TextView(a).Text("page one")
-			}),
-			Page(func() IView {
-				return TextView(a).Text("page two")
-			})).OnPageSelected(func(i int) {
-			GetBottomNavById("bn").SelectedItem(i)
-		}),
-		BottomNav(a).SetId("bn").Size(-2, -1).Menus(
-			MenuItem("one").icon(`https://avatars2.githubusercontent.com/u/18564615?s=40&v=4`).onClick(func() {
-				GetViewPagerById("vp").CurrentItem(0, true)
-			}),
-			MenuItem("two").icon(`https://avatars2.githubusercontent.com/u/18564615?s=40&v=4`).onClick(func() {
-				GetViewPagerById("vp").CurrentItem(1, true)
-			})))
+		RadioGroup(a).Vertical().OnCheckedChange(func(i int, r *FRadioButton) {
+			name = r.GetText()
+		}).Append(
+			RadioButton(a).Text("asd"),
+			RadioButton(a).Text("steven"),
+			RadioButton(a).Text("yif")),
+		Button(a).Text("show selected").Size(-2, -1).OnClick(func() {
+			ShowToast(a, name)
+		}))
 }

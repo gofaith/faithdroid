@@ -16,7 +16,7 @@ func MenuItem(title string) *FMenuItem {
 	mi.MyTitle = title
 	return mi
 }
-func (m *FMenuItem) onClick(f func()) *FMenuItem {
+func (m *FMenuItem) OnClick(f func()) *FMenuItem {
 	fnId := NewToken()
 	m.MyOnClick = fnId
 	GlobalVars.EventHandlersMap[fnId] = func(string) string {
@@ -25,11 +25,11 @@ func (m *FMenuItem) onClick(f func()) *FMenuItem {
 	}
 	return m
 }
-func (m *FMenuItem) icon(s string) *FMenuItem {
+func (m *FMenuItem) Icon(s string) *FMenuItem {
 	m.MyIcon = s
 	return m
 }
-func (m *FMenuItem) showAsAction() *FMenuItem {
+func (m *FMenuItem) ShowAsAction() *FMenuItem {
 	m.MyShowAsAction = "IF_ROOM"
 	return m
 }

@@ -13,11 +13,11 @@ func Snackbar(a IActivity) *FSnackbar {
 	GlobalVars.ViewMap[v.VID] = v
 	return v
 }
-func (v *FSnackbar) text(s string) *FSnackbar {
+func (v *FSnackbar) Text(s string) *FSnackbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)
 	return v
 }
-func (v *FSnackbar) action(s string, onClick func()) *FSnackbar {
+func (v *FSnackbar) Action(s string, onClick func()) *FSnackbar {
 	fnId := NewToken()
 	GlobalVars.EventHandlersMap[fnId] = func(string) string {
 		onClick()
@@ -26,12 +26,12 @@ func (v *FSnackbar) action(s string, onClick func()) *FSnackbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Action", JsonArray([]string{s, fnId}))
 	return v
 }
-func (v *FSnackbar) show() {
+func (v *FSnackbar) Show() {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Show", "")
 }
-func showSnackbar(a IActivity, s string) {
-	Snackbar(a).text(s).show()
+func ShowSnackbar(a IActivity, s string) {
+	Snackbar(a).Text(s).Show()
 }
-func showSnackbarWithAction(a IActivity, s string, act string, onClick func()) {
-	Snackbar(a).text(s).action(act, onClick).show()
+func ShowSnackbarWithAction(a IActivity, s string, act string, onClick func()) {
+	Snackbar(a).Text(s).Action(act, onClick).Show()
 }

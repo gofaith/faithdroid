@@ -2,6 +2,7 @@ package faithdroid
 
 type FRadioGroup struct {
 	FBaseView
+	Children []*FRadioButton
 }
 
 func (vh *ViewHolder) GetRadioGroupByItemId(id string) *FRadioGroup {
@@ -238,6 +239,7 @@ func (v *FRadioGroup) OnClick(f func()) *FRadioGroup {
 
 // --------------------------------------------------------
 func (v *FRadioGroup) Append(vs ...*FRadioButton) *FRadioGroup {
+	v.Children = append(v.Children, vs...)
 	for _, i := range vs {
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())
 	}
@@ -254,10 +256,15 @@ func (v *FRadioGroup) Horizontal() *FRadioGroup {
 func (v *FRadioGroup) IsVertical() bool {
 	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Orientation") == "VERTICAL"
 }
-func (v *FRadioGroup) OnCheckedChange(f func(string)) *FRadioGroup {
+func (v *FRadioGroup) OnCheckedChange(f func(int, *FRadioButton)) *FRadioGroup {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
-		f(s)
+	GlobalVars.EventHandlersMap[fnId] = func(vid string) string {
+		for k, v := range v.Children {
+			if v.VID == vid {
+				f(k, v)
+				break
+			}
+		}
 		return ""
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnCheckedChange", fnId)
