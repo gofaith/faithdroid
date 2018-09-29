@@ -25,24 +25,56 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
 
+import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.R;
 
 import static android.content.ContentValues.TAG;
+import static android.webkit.URLUtil.isFileUrl;
 
 public class Toolkit {
-    public static void parseMenu(UIController uiController,Menu menu, JSONArray array) throws JSONException {
+    public static void parseMenu(final UIController uiController, Menu menu, JSONArray array) throws JSONException {
         for (int i=0;i<array.length();i++) {
             JSONObject object = array.getJSONObject(i);
             if (!object.has("MySubMenu")||object.isNull("MySubMenu")) {
-                MenuItem item = menu.add(0, ViewCompat.generateViewId(),i,object.getString("MyTitle"));
-                Log.d(TAG, "parseMenu: "+item.getItemId());
+                final MenuItem item = menu.add(0, ViewCompat.generateViewId(),i,object.getString("MyTitle"));
                 if (!object.isNull("MyOnClick") && !object.getString("MyOnClick").equals("")) {
                     uiController.menuItemsOnClickMap.put(item, object.getString("MyOnClick"));
                 }
                 if (!object.isNull("MyIcon") && !object.getString("MyIcon").equals("")) {
-                    item.setIcon(file2Drawable(uiController.activity,object.getString("MyIcon")));
+                    String mIcon=object.getString("MyIcon");
+                    if (mIcon.startsWith("http")) {
+                        final File file = new File("/data/data/" + uiController.getPkg() + "/cacheDir/" + Faithdroid.url2cachePath(mIcon));
+                        if (file.exists()) {
+                            item.setIcon(file2Drawable(uiController.activity, "file://" + file.getAbsolutePath()));
+                        }else{
+                            downloadFile(mIcon, file.getAbsolutePath(), new DownloadedListener() {
+                                @Override
+                                public void onFailed(String error) {
+                                    Log.d(TAG, "onFailed: "+error);
+                                }
+                                @Override
+                                public void onSucceed(String fpath) {
+                                    uiController.activity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            item.setIcon(file2Drawable(uiController.activity, "file://" + file.getAbsolutePath()));
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }else {
+                        item.setIcon(file2Drawable(uiController.activity, object.getString("MyIcon")));
+                    }
                 }
                 if (!object.isNull("MyShowAsAction") && !object.getString("MyShowAsAction").equals("")) {
                     item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
@@ -80,14 +112,6 @@ public class Toolkit {
             }
             return ContextCompat.getDrawable(activity, src);
         } else if (value.equals("RippleEffect")) {
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-//                // If we're running on Honeycomb or newer, then we can use the Theme's
-//                // selectableItemBackground to ensure that the View has a pressed state
-//                TypedValue outValue = new TypedValue();
-//                activity.getTheme().resolveAttribute(R.attr.selectableItemBackground, outValue, true);
-//                Drawable d= activity.getResources().getDrawable(outValue.resourceId);
-//                return  d;
-//            }
             return activity.getResources().getDrawable(R.drawable.ripple);
         }
         return null;
@@ -193,5 +217,43 @@ public class Toolkit {
     }
     public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    interface DownloadedListener {
+        void onFailed(String error);
+        void onSucceed(String fpath);
+    }
+
+    public static void downloadFile(final String url_str, final String fdist, final DownloadedListener callback){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File f=new File(fdist);
+                String dir=f.getAbsolutePath().substring(0,f.getAbsolutePath().length()-f.getName().length());
+                new File(dir).mkdirs();
+                int count;
+                try {
+                    URL url = new URL(url_str);
+                    URLConnection conection = url.openConnection();
+                    conection.connect();
+                    InputStream input = new BufferedInputStream(url.openStream(), 8192);
+                    OutputStream output = new FileOutputStream(fdist);
+                    byte data[] = new byte[1024];
+                    long total = 0;
+                    while ((count = input.read(data)) != -1) {
+                        total += count;
+//                publishProgress("" + (int) ((total * 100) / lenghtOfFile));
+                        output.write(data, 0, count);
+                    }
+                    output.flush();
+                    output.close();
+                    input.close();
+                    callback.onSucceed(fdist);
+                } catch (Exception e) {
+                    Log.e("Error: ", e.getMessage());
+                    callback.onFailed(e.toString());
+                }
+            }
+        }).start();
     }
 }
