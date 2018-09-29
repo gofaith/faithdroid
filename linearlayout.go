@@ -2,7 +2,8 @@ package faithdroid
 
 type FLinearLayout struct {
 	FBaseView
-	Children []IView
+	Children  []IView
+	showAfter bool
 }
 
 func (vh *ViewHolder) GetLinearLayoutByItemId(id string) *FLinearLayout {
@@ -243,6 +244,10 @@ func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
 	for _, i := range vs {
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())
 	}
+	if v.showAfter {
+		v.showAfter = false
+		v.Show()
+	}
 	return v
 }
 func (v *FLinearLayout) AddView(i IView) *FLinearLayout {
@@ -271,4 +276,8 @@ func (v *FLinearLayout) Horizontal() *FLinearLayout {
 }
 func (v *FLinearLayout) IsVertical() bool {
 	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Orientation") == "VERTICAL"
+}
+func (v *FLinearLayout) DeferShow() *FLinearLayout {
+	v.showAfter = true
+	return v
 }

@@ -2,7 +2,8 @@ package faithdroid
 
 type FHScrollView struct {
 	FBaseView
-	Children []IView
+	Children  []IView
+	showAfter bool
 }
 
 func (vh *ViewHolder) GetHScrollViewByItemId(id string) *FHScrollView {
@@ -243,6 +244,10 @@ func (v *FHScrollView) Append(vs ...IView) *FHScrollView {
 	for _, i := range vs {
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())
 	}
+	if v.showAfter {
+		v.showAfter = false
+		v.Show()
+	}
 	return v
 }
 
@@ -260,5 +265,9 @@ func (v *FHScrollView) AddViewAt(i IView, pos int) *FHScrollView {
 	}
 	v.Children = append(v.Children[:pos], append([]IView{i}, v.Children[pos:]...)...)
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddViewAt", JsonArray([]string{SPrintf(pos), i.GetViewId()}))
+	return v
+}
+func (v *FHScrollView) DeferShow() *FHScrollView {
+	v.showAfter = true
 	return v
 }

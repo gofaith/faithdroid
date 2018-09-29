@@ -13,12 +13,11 @@
 package faithdroid
 
 func (a *MainActivity) OnCreate() {
-	LinearLayout(a).Size(-2, -2).Append(
-		TextView(a).Text("text view").SetId("text"),
-		Button(a).Text("change text").OnClick(func() {
-			GetTextViewById("text").Text("clicked")
-		}),
-	).Show()
+	LinearLayout(a).DeferShow().Size(-2, -2).Append(
+		TextView(a).SetId("text").Text("text view"),
+		Button(a).Size(-2, -1).Text("change text").OnClick(func() {
+			GetTextViewById("text").Text("text changed")
+		}))
 }
 ```
 2.结果 Result
