@@ -28,11 +28,29 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
     private FaithCollectionPagerAdapter adapter;
     public ViewPager v;
     List<FPage> pages = new ArrayList<>();
-    public String onCreateView,onGetCount;
+    public String onCreateView,onGetCount,onPageSelected;
     public FViewPager(UIController controller) {
         parentController = controller;
         v = new ViewPager(parentController.activity);
         v.setId(ViewCompat.generateViewId());
+        v.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                if (onPageSelected != null) {
+                    Faithdroid.triggerEventHandler(onPageSelected, String.valueOf(i));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
         view=v;
         parseSize("[-1,-1]");
     }
@@ -103,6 +121,9 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
+            case "OnPageSelected":
+                onPageSelected = value;
                 break;
         }
     }

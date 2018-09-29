@@ -1,5 +1,9 @@
 package faithdroid
 
+import (
+	"fmt"
+)
+
 type FViewPager struct {
 	FBaseView
 }
@@ -288,5 +292,19 @@ func (v *FViewPager) CurrentItem(i int, soomth bool) *FViewPager {
 		i2 = 1
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "CurrentItem", JsonArray([]int{i, i2}))
+	return v
+}
+func (v *FViewPager) OnPageSelected(f func(i int)) *FViewPager {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
+		i, e := a2i(s)
+		if e != nil {
+			fmt.Println("OnPageSelected() a2i error:", e)
+			return ""
+		}
+		f(i)
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnPageSelected", fnId)
 	return v
 }

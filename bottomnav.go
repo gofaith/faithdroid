@@ -243,3 +243,7 @@ func (v *FBottomNav) Menus(mis ...interface{}) *FBottomNav {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Menu", JsonArray(v.MyMenu))
 	return v
 }
+func (v *FBottomNav) SelectedItem(i int) *FBottomNav {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SelectedItem", SPrintf(i))
+	return v
+}

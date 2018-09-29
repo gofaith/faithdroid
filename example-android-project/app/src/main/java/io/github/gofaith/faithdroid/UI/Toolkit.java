@@ -15,6 +15,8 @@ import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.IconCompat;
+import android.support.v4.view.ViewCompat;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,12 +29,15 @@ import java.net.URISyntaxException;
 
 import io.github.gofaith.faithdroid.R;
 
+import static android.content.ContentValues.TAG;
+
 public class Toolkit {
     public static void parseMenu(UIController uiController,Menu menu, JSONArray array) throws JSONException {
         for (int i=0;i<array.length();i++) {
             JSONObject object = array.getJSONObject(i);
             if (!object.has("MySubMenu")||object.isNull("MySubMenu")) {
-                MenuItem item = menu.add(object.getString("MyTitle"));
+                MenuItem item = menu.add(0, ViewCompat.generateViewId(),i,object.getString("MyTitle"));
+                Log.d(TAG, "parseMenu: "+item.getItemId());
                 if (!object.isNull("MyOnClick") && !object.getString("MyOnClick").equals("")) {
                     uiController.menuItemsOnClickMap.put(item, object.getString("MyOnClick"));
                 }

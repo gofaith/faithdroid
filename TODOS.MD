@@ -44,4 +44,6 @@
 - [x]radius of Button
 - [x]checkBox
 
+- [x]viewpager onselect
+- imageview scaleType
 - fadeIn & fadeOut

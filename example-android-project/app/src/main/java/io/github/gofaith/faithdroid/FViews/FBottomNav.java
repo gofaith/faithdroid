@@ -73,6 +73,10 @@ public class FBottomNav extends FView implements AttrGettable,AttrSettable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
+            case "SelectedItem":
+                v.setSelectedItemId(v.getMenu().getItem(Integer.parseInt(value)).getItemId());
+                break;
         }
     }
 }
