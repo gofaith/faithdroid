@@ -1,9 +1,10 @@
 package io.github.gofaith.faithdroid;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -23,7 +24,7 @@ public class StandardActivity extends AppCompatActivity {
     private FrameLayout ctn;
     private Activity a;
     private String fnId;
-    private UIController uiController;
+    private UIController parentUIController;
     private String TAG=this.getClass().getName();
 
     @Override
@@ -33,8 +34,8 @@ public class StandardActivity extends AppCompatActivity {
         fnId = getIntent().getStringExtra("MyFnId");
         ctn = findViewById(R.id.standard_ctn);
         a=new Activity();
-        uiController=new UIController(this, ctn,a);
-        String uId=a.setUIInterface(uiController);
+        parentUIController =new UIController(this, ctn,a);
+        String uId=a.setUIInterface(parentUIController);
 
         handleIntent();
 
@@ -81,12 +82,12 @@ public class StandardActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (uiController.optionMenus== null || uiController.optionMenus == "" || uiController.optionMenus == "[]") {
+        if (parentUIController.optionMenus== null || parentUIController.optionMenus == "" || parentUIController.optionMenus == "[]") {
             return false;
         }
         try {
-            JSONArray array = (JSONArray) (new JSONTokener(uiController.optionMenus).nextValue());
-            parseMenu(uiController,menu,array);
+            JSONArray array = (JSONArray) (new JSONTokener(parentUIController.optionMenus).nextValue());
+            parseMenu(parentUIController,menu,array);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,10 +97,21 @@ public class StandardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (uiController.menuItemsOnClickMap.containsKey(item)) {
-            Faithdroid.triggerEventHandler(uiController.menuItemsOnClickMap.get(item), "");
+        if (parentUIController.menuItemsOnClickMap.containsKey(item)) {
+            Faithdroid.triggerEventHandler(parentUIController.menuItemsOnClickMap.get(item), "");
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (parentUIController.onPermissionResults.containsKey(requestCode)) {
+            JSONArray array = new JSONArray();
+            for(int i=0;i<grantResults.length;i++) {
+                array.put(grantResults[i] == PackageManager.PERMISSION_GRANTED);
+            }
+            Faithdroid.triggerEventHandler(parentUIController.onPermissionResults.get(requestCode), array.toString());
+        }
     }
 }
