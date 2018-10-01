@@ -47,4 +47,7 @@
 - [x]viewpager onselect
 - [x]imageview scaleType
 - menu.Icon(http)
+- setStatusBarColor
+- FullScreen
+- setBottomColor
 - fadeIn & fadeOut
