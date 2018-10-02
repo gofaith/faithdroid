@@ -6,8 +6,4 @@
     android:id="@+id/main_ctn"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <EditText
-        android:layout_width="match_parent"
-        android:maxLines="1"
-        android:layout_height="wrap_content" />
 </FrameLayout>
