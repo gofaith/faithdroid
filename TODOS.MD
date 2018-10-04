@@ -51,3 +51,7 @@
 - FullScreen
 - setBottomColor
 - fadeIn & fadeOut
+
+- isVisible
+- go pkgify
+- db
