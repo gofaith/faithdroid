@@ -39,7 +39,7 @@ func (c *ActivityConfig) PutExtra(key, value string) *ActivityConfig {
 	c.MyIntent.Extras[key] = value
 	return c
 }
-func StartActivity(a IActivity, createView func(*Activity), conf *ActivityConfig) {
+func StartActivity(a IActivity, createView func(IActivity), conf *ActivityConfig) {
 	fnId := NewToken()
 	GlobalVars.EventHandlersMap[fnId] = func(uId string) string {
 		if createView != nil {
