@@ -247,12 +247,13 @@ type FTab struct {
 	Text, Icon string
 }
 
-func Tab(text string, i ...string) *FTab {
+func Tab(text string) *FTab {
 	t := &FTab{}
 	t.Text = text
-	if len(i) > 0 {
-		t.Icon = i[0]
-	}
+	return t
+}
+func (t *FTab) IconSrc(s string) *FTab {
+	t.Icon = s
 	return t
 }
 
