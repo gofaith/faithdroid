@@ -52,6 +52,6 @@
 - setBottomColor
 - fadeIn & fadeOut
 
-- isVisible
+- [x]isVisible
 - go pkgify
 - db

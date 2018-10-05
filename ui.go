@@ -94,6 +94,15 @@ func (v *FBaseView) Invisible() {
 func (v *FBaseView) Gone() {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Visibility", "GONE")
 }
+func (v *FBaseView) IsVisible() bool {
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID,"Visibility")=="VISIBLE"
+}
+func (v *FBaseView) IsInvisible() bool {
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID,"Visibility")=="INVISIBLE"
+}
+func (v *FBaseView) IsGone() bool {
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID,"Visibility")=="GONE"
+}
 func (v *FBaseView) Padding(left, top, right, bottom int) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Padding", JsonArray([]int{left, top, right, bottom}))
 }
