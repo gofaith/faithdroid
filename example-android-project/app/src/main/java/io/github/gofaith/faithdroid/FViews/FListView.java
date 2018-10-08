@@ -82,6 +82,7 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
             try {
                 JSONObject object = (JSONObject) (new JSONTokener(viewGot).nextValue());
                 FView v = parentListView.parentController.viewmap.get(object.getString("VID"));
+                v.view.setLayoutParams(FFrameLayout.parseLP(v));
                 return new ViewHolder(v,viewGot);
             } catch (Exception e) {
                 e.printStackTrace();
