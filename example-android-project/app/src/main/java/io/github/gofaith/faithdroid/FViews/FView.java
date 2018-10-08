@@ -193,7 +193,7 @@ public class FView {
     void setBackground(String value) {
         if (value==null)
             return;
-        Drawable draw = Toolkit.file2Drawable(parentController.activity,value);
+        Drawable draw = Toolkit.file2Drawable(parentController,value);
         if (draw == null) {
             return;
         }
@@ -211,7 +211,7 @@ public class FView {
         if (value == null) {
             return;
         }
-        Drawable draw = Toolkit.file2Drawable(parentController.activity, value);
+        Drawable draw = Toolkit.file2Drawable(parentController, value);
         if (draw == null) {
             return;
         }

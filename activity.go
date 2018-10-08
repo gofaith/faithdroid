@@ -125,3 +125,17 @@ func GuessFileName(a IActivity, url string) string {
 func OpenFile(a IActivity, path string) {
 	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "OpenFile", path)
 }
+
+type App struct {
+	Icon, Title, Version, Package, SourceDir string
+}
+
+func GetInstalledApps(a IActivity) []App {
+	str := GlobalVars.UIs[a.GetMyActivity().UI].ViewGetAttr("Activity", "InstalledApplications")
+	var apps []App
+	UnJson(str, &apps)
+	return apps
+}
+func SaveDrawableToPNGFile(a IActivity, drawableID, distPath string) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "SaveDrawableToPNGFile", JsonArray([]string{drawableID, distPath}))
+}

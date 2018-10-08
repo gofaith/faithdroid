@@ -5,8 +5,10 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -31,6 +33,7 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
@@ -58,7 +61,7 @@ public class Toolkit {
                     if (mIcon.startsWith("http")) {
                         final File file = new File("/data/data/" + uiController.getPkg() + "/cacheDir/" + Faithdroid.url2cachePath(mIcon));
                         if (file.exists()) {
-                            item.setIcon(file2Drawable(uiController.activity, "file://" + file.getAbsolutePath()));
+                            item.setIcon(file2Drawable(uiController, "file://" + file.getAbsolutePath()));
                         }else{
                             downloadFile(mIcon, file.getAbsolutePath(), new DownloadedListener() {
                                 @Override
@@ -70,14 +73,14 @@ public class Toolkit {
                                     uiController.activity.runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            item.setIcon(file2Drawable(uiController.activity, "file://" + file.getAbsolutePath()));
+                                            item.setIcon(file2Drawable(uiController, "file://" + file.getAbsolutePath()));
                                         }
                                     });
                                 }
                             });
                         }
                     }else {
-                        item.setIcon(file2Drawable(uiController.activity, object.getString("MyIcon")));
+                        item.setIcon(file2Drawable(uiController, object.getString("MyIcon")));
                     }
                 }
                 if (!object.isNull("MyShowAsAction") && !object.getString("MyShowAsAction").equals("")) {
@@ -90,7 +93,7 @@ public class Toolkit {
         }
     }
 
-    public static Drawable file2Drawable(Activity activity, String value) {
+    public static Drawable file2Drawable(final UIController parentUIController, String value) {
         if (value.startsWith("file://")) {
             String path=value.substring("file://".length());
             Drawable draw=Drawable.createFromPath(path);
@@ -99,7 +102,7 @@ public class Toolkit {
 //            Drawable d = Drawable.createFromStream(getAssets().open("Cloths/btn_no.png"), null);
             String path = value.substring("assets://".length());
             try {
-                Drawable drawable = Drawable.createFromStream(activity.getAssets().open(path), null);
+                Drawable drawable = Drawable.createFromStream(parentUIController.activity.getAssets().open(path), null);
                 return drawable;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -114,9 +117,11 @@ public class Toolkit {
                     src= R.mipmap.ic_launcher_round;
                     break;
             }
-            return ContextCompat.getDrawable(activity, src);
+            return ContextCompat.getDrawable(parentUIController.activity, src);
         } else if (value.equals("RippleEffect")) {
-            return activity.getResources().getDrawable(R.drawable.ripple);
+            return parentUIController.activity.getResources().getDrawable(R.drawable.ripple);
+        } else if (value.startsWith("fdrawable://")) {
+            return parentUIController.drawableMap.get(value);
         }
         return null;
     }
@@ -223,11 +228,34 @@ public class Toolkit {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
+    public static void saveDrawable(Drawable drawable, Bitmap.CompressFormat format,String path) {
+        Bitmap bitmap = drawableToBitmap(drawable);
+        saveBitmap(bitmap, format,path);
+    }
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        if(drawable == null)
+            return null;
+        return ((BitmapDrawable)drawable).getBitmap();
+    }
+    public static void saveBitmap(Bitmap bitmap, Bitmap.CompressFormat format, String path) {
+        // 创建一个位于SD卡上的文件
+        File file = new File(path);
+        FileOutputStream out = null;
+        try{
+            // 打开指定文件输出流
+            out = new FileOutputStream(file);
+            // 将位图输出到指定文件
+            bitmap.compress(format, 100,
+                    out);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     interface DownloadedListener {
         void onFailed(String error);
         void onSucceed(String fpath);
     }
-
     public static void openFile(Context context,String path) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

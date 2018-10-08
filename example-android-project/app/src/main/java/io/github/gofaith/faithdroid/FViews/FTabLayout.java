@@ -70,7 +70,7 @@ public class FTabLayout extends FView implements AttrSettable, AttrGettable {
                     TabLayout.Tab tab=v.newTab();
                     tab.setText(text);
                     if (!icon.equals("")) {
-                        tab.setIcon(Toolkit.file2Drawable(parentController.activity, icon));
+                        tab.setIcon(Toolkit.file2Drawable(parentController, icon));
                     }
                     v.addTab(tab);
                 } catch (Exception e) {

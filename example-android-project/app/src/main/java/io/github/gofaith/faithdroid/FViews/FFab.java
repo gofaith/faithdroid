@@ -39,7 +39,7 @@ public class FFab extends  FView implements AttrGettable, AttrSettable {
         switch (attr){
             // -------------------------------------------------------------------
             case "Icon":
-                v.setImageDrawable(Toolkit.file2Drawable(parentController.activity,value));
+                v.setImageDrawable(Toolkit.file2Drawable(parentController,value));
                 break;
             case "OnClick":
                 v.setOnClickListener(new View.OnClickListener() {

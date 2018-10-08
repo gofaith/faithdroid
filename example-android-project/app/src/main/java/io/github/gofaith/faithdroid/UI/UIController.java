@@ -4,6 +4,10 @@ import android.Manifest;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -13,12 +17,14 @@ import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.webkit.URLUtil;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -65,6 +71,7 @@ import io.github.gofaith.faithdroid.SingleTaskActivity;
 import io.github.gofaith.faithdroid.SingleTopActivity;
 import io.github.gofaith.faithdroid.StandardActivity;
 
+import static android.content.ContentValues.TAG;
 import static io.github.gofaith.faithdroid.UI.Toolkit.openFile;
 
 public class UIController implements faithdroid.UIController{
@@ -76,6 +83,7 @@ public class UIController implements faithdroid.UIController{
     public Map<MenuItem, String> menuItemsOnClickMap = new HashMap<>();
     public Map<Integer, String> onPermissionResults = new HashMap<>();
     public List<Runnable> onDestroyEvent = new ArrayList<>();
+    public Map<String, Drawable> drawableMap = new HashMap<>();
     public UIController(AppCompatActivity a, FrameLayout main_ctn,faithdroid.Activity factivity) {
         this.activity=a;
         this.rootView =main_ctn;
@@ -376,6 +384,41 @@ public class UIController implements faithdroid.UIController{
                 return Build.MODEL;
             case "ExternalStorageDirectory":
                 return Environment.getExternalStorageDirectory().getAbsolutePath();
+            case "InstalledApplications":
+                PackageManager pm = activity.getPackageManager();
+                List<ApplicationInfo> list = pm.getInstalledApplications(PackageManager.MATCH_UNINSTALLED_PACKAGES);
+                JSONArray array = new JSONArray();
+                try{
+                    for (int i=0;i<list.size();i++) {
+                        JSONObject m = new JSONObject();
+                        String fdrawableID = "fdrawable://"+Faithdroid.newToken();
+                        drawableMap.put(fdrawableID, pm.getApplicationIcon(list.get(i)).getCurrent());
+                        m.put("Icon", fdrawableID);
+                        m.put("Title", (String) pm.getApplicationLabel(list.get(i)));
+                        m.put("Package", list.get(i).packageName);
+                        m.put("SourceDir", list.get(i).sourceDir);
+                        String versionname = "";
+                        try {
+                            versionname = pm.getPackageInfo(list.get(i).packageName, 0).versionName;
+                        } catch (PackageManager.NameNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        m.put("Version", versionname);
+                        array.put(m);
+                    }
+                    String finalStr=array.toString();
+                    Log.d(TAG, "activityGet: finalStr="+finalStr);
+                    return finalStr;
+                } catch (final JSONException e) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(activity,e.toString(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    e.printStackTrace();
+                    return "[]";
+                }
         }
         return null;
     }
@@ -398,6 +441,16 @@ public class UIController implements faithdroid.UIController{
                 break;
             case "OpenFile":
                 openFile(activity,value);
+                break;
+            case "SaveDrawableToPNGFile":
+                try {
+                    JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
+                    String did=array.getString(0);
+                    String path = array.getString(1);
+                    Toolkit.saveDrawable(drawableMap.get(did), Bitmap.CompressFormat.PNG,path);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
         }
     }
