@@ -1,14 +1,14 @@
 package faithdroid
 
 func (a *MainActivity) OnCreate() {
-	LinearLayout(a).Size(-2, -2).DeferShow().Append(
-		Button(a).Text("asd").SetId("bt").Size(-2, -1),
-		Button(a).Text("toggle").OnClick(func() {
-			bt := GetButtonById("bt")
-			if bt.IsVisible() {
-				bt.Invisible()
-			} else {
-				bt.Visible()
-			}
+	LinearLayout(a).DeferShow().Size(-2, -2).Append(
+		Button(a).Text("permission").OnClick(func() {
+			RequestPermissions(a, []string{Permissions.READ_EXTERNAL_STORAGE}, nil)
+		}),
+		Button(a).Text("open").OnClick(func() {
+			OpenFile(a, "/storage/emulated/0/Download/app.apk")
+		}),
+		Button(a).Text("scan").OnClick(func() {
+			ScanFile(a, "/storage/emulated/0/a.png")
 		}))
 }

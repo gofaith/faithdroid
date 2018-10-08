@@ -65,6 +65,8 @@ import io.github.gofaith.faithdroid.SingleTaskActivity;
 import io.github.gofaith.faithdroid.SingleTopActivity;
 import io.github.gofaith.faithdroid.StandardActivity;
 
+import static io.github.gofaith.faithdroid.UI.Toolkit.openFile;
+
 public class UIController implements faithdroid.UIController{
     private final faithdroid.Activity factivity;
     public AppCompatActivity activity;
@@ -393,6 +395,9 @@ public class UIController implements faithdroid.UIController{
                 break;
             case "ScanFile":
                 MediaScannerConnection.scanFile(activity,new String[]{value},null,null);
+                break;
+            case "OpenFile":
+                openFile(activity,value);
                 break;
         }
     }

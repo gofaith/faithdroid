@@ -5,17 +5,20 @@ type Activity struct {
 	UI       string
 	MyIntent Intent
 }
+
 func (a Activity) GetContext() string {
 	return "Activity"
 }
-func (a *Activity)GetMyActivity()*Activity  {
+func (a *Activity) GetMyActivity() *Activity {
 	return a
 }
+
 //MainActivity
 type MainActivity struct {
 	Activity
 }
-func (a *MainActivity)GetMyActivity()*Activity  {
+
+func (a *MainActivity) GetMyActivity() *Activity {
 	return &a.Activity
 }
 
@@ -118,4 +121,7 @@ func GetExternalStorageDirectory(a IActivity) string {
 }
 func GuessFileName(a IActivity, url string) string {
 	return GlobalVars.UIs[a.GetMyActivity().UI].ViewGetAttr("Activity", JsonArray([]string{"GuessFileName", url}))
+}
+func OpenFile(a IActivity, path string) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "OpenFile", path)
 }

@@ -3,6 +3,7 @@ package io.github.gofaith.faithdroid.UI;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -14,12 +15,14 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.graphics.drawable.IconCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.MimeTypeMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +38,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import faithdroid.Faithdroid;
+import io.github.gofaith.faithdroid.BuildConfig;
 import io.github.gofaith.faithdroid.R;
 
 import static android.content.ContentValues.TAG;
@@ -224,6 +228,29 @@ public class Toolkit {
         void onSucceed(String fpath);
     }
 
+    public static void openFile(Context context,String path) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            /* Android N 写法*/
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileProvider", new File(path));
+            intent.setDataAndType(contentUri, getMimeType(path));
+        } else {
+            /* Android N之前的老版本写法*/
+            intent.setDataAndType(Uri.fromFile(new File(path)), getMimeType(path));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        context.startActivity(intent);
+    }
+
+    public static String getMimeType(String url) {
+        String type = null;
+        String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+        if (extension != null) {
+            type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+        }
+        return type;
+    }
     public static void downloadFile(final String url_str, final String fdist, final DownloadedListener callback){
         new Thread(new Runnable() {
             @Override
