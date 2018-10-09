@@ -14,5 +14,5 @@ func (a *MainActivity) OnCreate() {
 }
 func createView(a IActivity) {
 	LinearLayout(a).Size(-2, -2).DeferShow().Append(
-		Toolbar(a).Title("asd"))
+		Toolbar(a).Title("asd").BackNavigation(true))
 }
