@@ -212,10 +212,11 @@ public class Toolkit {
                 final int column_index = cursor.getColumnIndexOrThrow(column);
                 return cursor.getString(column_index);
             }
-        } finally {
-            if (cursor != null)
-                cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        if (cursor != null)
+            cursor.close();
         return null;
     }
     public static boolean isExternalStorageDocument(Uri uri) {

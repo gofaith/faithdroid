@@ -139,3 +139,23 @@ func GetInstalledApps(a IActivity) []App {
 func SaveDrawableToPNGFile(a IActivity, drawableID, distPath string) {
 	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "SaveDrawableToPNGFile", JsonArray([]string{drawableID, distPath}))
 }
+func OpenFileChooser(a IActivity, selectType string, allowMultiple bool, callback func([]string)) {
+	if !CheckSelfPermission(a, Permissions.READ_EXTERNAL_STORAGE) {
+		RequestPermissions(a, []string{Permissions.READ_EXTERNAL_STORAGE}, func(bs []bool) {
+			OpenFileChooser(a, selectType, allowMultiple, callback)
+		})
+		return
+	}
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
+		var as []string
+		UnJson(s, &as)
+		callback(as)
+		return ""
+	}
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "OpenFileChooser", JsonArray([]string{
+		selectType,
+		SPrintf(allowMultiple),
+		fnId,
+	}))
+}

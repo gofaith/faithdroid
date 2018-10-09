@@ -3,6 +3,7 @@ package io.github.gofaith.faithdroid;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -112,6 +113,12 @@ public class SingleTopActivity extends AppCompatActivity {
                 array.put(grantResults[i] == PackageManager.PERMISSION_GRANTED);
             }
             Faithdroid.triggerEventHandler(parentUIController.onPermissionResults.get(requestCode), array.toString());
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (parentUIController.onActivityResults.containsKey(requestCode)) {
+            parentUIController.onActivityResults.get(requestCode).onActivityResult(data);
         }
     }
 }

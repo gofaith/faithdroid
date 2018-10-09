@@ -1,6 +1,7 @@
 package io.github.gofaith.faithdroid.UI;
 
 import android.Manifest;
+import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -66,6 +67,7 @@ import io.github.gofaith.faithdroid.FViews.FValueAnimator;
 import io.github.gofaith.faithdroid.FViews.FView;
 import io.github.gofaith.faithdroid.FViews.FViewPager;
 import io.github.gofaith.faithdroid.FViews.FWebView;
+import io.github.gofaith.faithdroid.R;
 import io.github.gofaith.faithdroid.SingleInstanceActivity;
 import io.github.gofaith.faithdroid.SingleTaskActivity;
 import io.github.gofaith.faithdroid.SingleTopActivity;
@@ -82,8 +84,11 @@ public class UIController implements faithdroid.UIController{
     public String optionMenus;
     public Map<MenuItem, String> menuItemsOnClickMap = new HashMap<>();
     public Map<Integer, String> onPermissionResults = new HashMap<>();
+    public Map<Integer, OnActivityResultListener> onActivityResults = new HashMap<>();
     public List<Runnable> onDestroyEvent = new ArrayList<>();
     public Map<String, Drawable> drawableMap = new HashMap<>();
+    private int FILE_SELECT_CODE=7125;
+
     public UIController(AppCompatActivity a, FrameLayout main_ctn,faithdroid.Activity factivity) {
         this.activity=a;
         this.rootView =main_ctn;
@@ -422,6 +427,9 @@ public class UIController implements faithdroid.UIController{
         }
         return null;
     }
+    public interface OnActivityResultListener{
+        void onActivityResult(Intent intent);
+    }
     private void activitySet(String attr, String value) {
         switch (attr) {
             case "ShowToast":
@@ -450,6 +458,68 @@ public class UIController implements faithdroid.UIController{
                     Toolkit.saveDrawable(drawableMap.get(did), Bitmap.CompressFormat.PNG,path);
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+                break;
+            case "OpenFileChooser":// [ type : "*/*" , allowMultiple : "true" , callback : "218hxjgs861h9cb1298" ]
+                try {
+                    Intent intent1 = new Intent(Intent.ACTION_GET_CONTENT);
+                    final JSONArray array = (JSONArray) (new JSONTokener(value).nextValue());
+                    intent1.setType(array.getString(0));
+                    intent1.addCategory(Intent.CATEGORY_OPENABLE);
+                    intent1.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, array.getString(1).equals("true"));
+                    activity.startActivityForResult(Intent.createChooser(intent1, ""),FILE_SELECT_CODE);
+                    final String fnID = array.getString(2);
+                    onActivityResults.put(FILE_SELECT_CODE, new OnActivityResultListener() {
+                        @Override
+                        public void onActivityResult(Intent data) {
+                            Uri uri = data.getData();
+                            JSONArray array1 = new JSONArray();
+                            try {
+                                if (uri != null) {
+                                    String path = null;
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                        path = Toolkit.getPathByUri4kitkat(activity, uri);
+                                    }else {
+                                        path=Toolkit.getPathByUriBelowKitkat(activity,uri);
+                                    }
+                                    if (path != null) {
+                                        array1.put(path);
+                                    }
+                                } else {
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                        ClipData clipData = data.getClipData();
+                                        if (clipData != null) {
+                                            for (int i=0;i<clipData.getItemCount();i++) {
+                                                ClipData.Item item = clipData.getItemAt(i);
+                                                Uri uri1=item.getUri();
+                                                String url = null;
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                                    url = Toolkit.getPathByUri4kitkat(activity, uri1);
+                                                }else {
+                                                    url=Toolkit.getPathByUriBelowKitkat(activity,uri1);
+                                                }
+                                                if (url!=null)
+                                                    array1.put(url);
+                                            }
+                                        }
+                                    }else {
+                                        Toast.makeText(activity,"No file manager installed",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                                if (array1.length() == 0) {
+                                    Toast.makeText(activity,"Failed",Toast.LENGTH_LONG).show();
+                                }else {
+                                    Faithdroid.triggerEventHandler(fnID, array1.toString());
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Toast.makeText(activity,e.toString(),Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(activity,e.toString(),Toast.LENGTH_LONG).show();
                 }
                 break;
         }
