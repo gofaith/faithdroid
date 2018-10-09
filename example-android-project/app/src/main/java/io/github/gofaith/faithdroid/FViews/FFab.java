@@ -1,5 +1,6 @@
 package io.github.gofaith.faithdroid.FViews;
 
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -39,7 +40,12 @@ public class FFab extends  FView implements AttrGettable, AttrSettable {
         switch (attr){
             // -------------------------------------------------------------------
             case "Icon":
-                v.setImageDrawable(Toolkit.file2Drawable(parentController,value));
+                Toolkit.file2Drawable(parentController, value, new Toolkit.OnDrawableReadyListener() {
+                    @Override
+                    public void onDrawableReady(Drawable drawable) {
+                        v.setImageDrawable(drawable);
+                    }
+                });
                 break;
             case "OnClick":
                 v.setOnClickListener(new View.OnClickListener() {

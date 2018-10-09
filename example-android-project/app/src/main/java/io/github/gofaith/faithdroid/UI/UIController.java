@@ -522,6 +522,9 @@ public class UIController implements faithdroid.UIController{
                     Toast.makeText(activity,e.toString(),Toast.LENGTH_LONG).show();
                 }
                 break;
+            case "BackPressed":
+                activity.onBackPressed();
+                break;
         }
     }
 }

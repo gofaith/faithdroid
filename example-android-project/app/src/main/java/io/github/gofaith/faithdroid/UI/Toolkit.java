@@ -58,30 +58,12 @@ public class Toolkit {
                 }
                 if (!object.isNull("MyIcon") && !object.getString("MyIcon").equals("")) {
                     String mIcon=object.getString("MyIcon");
-                    if (mIcon.startsWith("http")) {
-                        final File file = new File("/data/data/" + uiController.getPkg() + "/cacheDir/" + Faithdroid.url2cachePath(mIcon));
-                        if (file.exists()) {
-                            item.setIcon(file2Drawable(uiController, "file://" + file.getAbsolutePath()));
-                        }else{
-                            downloadFile(mIcon, file.getAbsolutePath(), new DownloadedListener() {
-                                @Override
-                                public void onFailed(String error) {
-                                    Log.d(TAG, "onFailed: "+error);
-                                }
-                                @Override
-                                public void onSucceed(String fpath) {
-                                    uiController.activity.runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            item.setIcon(file2Drawable(uiController, "file://" + file.getAbsolutePath()));
-                                        }
-                                    });
-                                }
-                            });
+                    file2Drawable(uiController, mIcon, new OnDrawableReadyListener() {
+                        @Override
+                        public void onDrawableReady(Drawable drawable) {
+                            item.setIcon(drawable);
                         }
-                    }else {
-                        item.setIcon(file2Drawable(uiController, object.getString("MyIcon")));
-                    }
+                    });
                 }
                 if (!object.isNull("MyShowAsAction") && !object.getString("MyShowAsAction").equals("")) {
                     item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
@@ -92,18 +74,41 @@ public class Toolkit {
             parseMenu(uiController,menu.addSubMenu(object.getString("MyTitle")),subMenu);
         }
     }
-
-    public static Drawable file2Drawable(final UIController parentUIController, String value) {
-        if (value.startsWith("file://")) {
+    public interface OnDrawableReadyListener{
+         void onDrawableReady(Drawable d);
+    }
+    public static void file2Drawable(final UIController parentUIController, String value, final OnDrawableReadyListener listener) {
+        if (value.startsWith("http")) {
+            final File file = new File("/data/data/" + parentUIController.getPkg() + "/cacheDir/" + Faithdroid.url2cachePath(value));
+            if (file.exists()) {
+                file2Drawable(parentUIController, "file://" + file.getAbsolutePath(), listener);
+            }else {
+                downloadFile(value, file.getAbsolutePath(), new DownloadedListener() {
+                    @Override
+                    public void onFailed(String error) {
+                        Log.d(TAG, "onFailed: "+error);
+                    }
+                    @Override
+                    public void onSucceed(final String fpath) {
+                        parentUIController.activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                file2Drawable(parentUIController,"file://"+fpath,listener);
+                            }
+                        });
+                    }
+                });
+            }
+        }else if (value.startsWith("file://")) {
             String path=value.substring("file://".length());
             Drawable draw=Drawable.createFromPath(path);
-            return draw;
+            listener.onDrawableReady(draw);
         } else if (value.startsWith("assets://")) {
 //            Drawable d = Drawable.createFromStream(getAssets().open("Cloths/btn_no.png"), null);
             String path = value.substring("assets://".length());
             try {
                 Drawable drawable = Drawable.createFromStream(parentUIController.activity.getAssets().open(path), null);
-                return drawable;
+                listener.onDrawableReady(drawable);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -117,13 +122,12 @@ public class Toolkit {
                     src= R.mipmap.ic_launcher_round;
                     break;
             }
-            return ContextCompat.getDrawable(parentUIController.activity, src);
+            listener.onDrawableReady(ContextCompat.getDrawable(parentUIController.activity, src));
         } else if (value.equals("RippleEffect")) {
-            return parentUIController.activity.getResources().getDrawable(R.drawable.ripple);
+            listener.onDrawableReady( parentUIController.activity.getResources().getDrawable(R.drawable.ripple));
         } else if (value.startsWith("fdrawable://")) {
-            return parentUIController.drawableMap.get(value);
+            listener.onDrawableReady( parentUIController.drawableMap.get(value));
         }
-        return null;
     }
     public static String getPath(Context context, Uri uri) throws URISyntaxException {
         if ("content".equalsIgnoreCase(uri.getScheme())) {

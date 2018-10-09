@@ -159,3 +159,6 @@ func OpenFileChooser(a IActivity, selectType string, allowMultiple bool, callbac
 		fnId,
 	}))
 }
+func backPressed(a IActivity) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "BackPressed", "")
+}

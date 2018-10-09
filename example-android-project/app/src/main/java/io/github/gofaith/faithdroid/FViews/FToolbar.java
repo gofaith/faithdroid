@@ -1,5 +1,6 @@
 package io.github.gofaith.faithdroid.FViews;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -7,6 +8,7 @@ import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.R;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
+import io.github.gofaith.faithdroid.UI.Toolkit;
 import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FToolbar extends FView implements AttrSettable,AttrGettable {
@@ -46,6 +48,33 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 break;
             case "Menu":
                 parentController.optionMenus=value;
+                break;
+            case "BackNavigation":
+                if (value.equals("true")) {
+                    v.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            parentController.activity.onBackPressed();
+                        }
+                    });
+                }
+                parentController.activity.getSupportActionBar().setDisplayHomeAsUpEnabled(value.equals("true"));
+                break;
+            case "NavigationIcon":
+                Toolkit.file2Drawable(parentController, value, new Toolkit.OnDrawableReadyListener() {
+                    @Override
+                    public void onDrawableReady(Drawable drawable) {
+                        v.setNavigationIcon(drawable);
+                    }
+                });
+                break;
+            case "NavigationOnClick":
+                v.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Faithdroid.triggerEventHandler(value, "");
+                    }
+                });
                 break;
         }
     }

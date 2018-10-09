@@ -238,3 +238,20 @@ func (v *FToolbar) Menus(mis ...interface{}) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Menu", JsonArray(v.MyMenu))
 	return v
 }
+func (v *FToolbar) BackNavigation(b bool) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "BackNavigation", SPrintf(b))
+	return v
+}
+func (v *FToolbar) NavigationIcon(i string) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NavigationIcon", i)
+	return v
+}
+func (v *FToolbar) OnNavigationIconClick(f func()) *FToolbar {
+	fnId := NewToken()
+	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+		f()
+		return ""
+	}
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NavigationOnClick", fnId)
+	return v
+}

@@ -36,11 +36,12 @@ public class FImageView extends FView implements AttrSettable, AttrGettable {
         switch (attr){
             // -------------------------------------------------------------------
             case "Src":
-                Drawable drawable = Toolkit.file2Drawable(parentController, value);
-                if (drawable == null) {
-                    return;
-                }
-                v.setImageDrawable(drawable);
+                Toolkit.file2Drawable(parentController, value, new Toolkit.OnDrawableReadyListener() {
+                    @Override
+                    public void onDrawableReady(Drawable drawable) {
+                        v.setImageDrawable(drawable);
+                    }
+                });
                 break;
             case "ScaleType":
                 v.setScaleType(parseScaleType(value));

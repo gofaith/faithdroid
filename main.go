@@ -1,15 +1,18 @@
 package faithdroid
 
-import (
-	"strings"
-)
-
 func (a *MainActivity) OnCreate() {
+	s := `https://pp.myapp.com/ma_icon/0/icon_10966186_1538016476/256`
 	LinearLayout(a).DeferShow().Size(-2, -2).Append(
-		Button(a).Size(-2, -1).Text("open").OnClick(func() {
-			OpenFileChooser(a, "*/*", true, func(as []string) {
-				GetTextViewById("txt").Text(strings.Join(as, "\n"))
-			})
+		Toolbar(a).NavigationIcon(s).OnNavigationIconClick(func() {
+			ShowToast(a, "clicked")
 		}),
-		TextView(a).Size(-2, -1).SetId("txt"))
+		Button(a).Text("open").OnClick(func() {
+			StartActivity(a, createView, nil)
+		}),
+		ImageView(a).Src(s),
+		Button(a).Size(-2, -1).Background(s).Foreground(Colors.RippleEffect))
+}
+func createView(a IActivity) {
+	LinearLayout(a).Size(-2, -2).DeferShow().Append(
+		Toolbar(a).Title("asd"))
 }

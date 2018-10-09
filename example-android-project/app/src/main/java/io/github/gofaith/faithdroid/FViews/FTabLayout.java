@@ -1,6 +1,7 @@
 package io.github.gofaith.faithdroid.FViews;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -67,10 +68,15 @@ public class FTabLayout extends FView implements AttrSettable, AttrGettable {
                     JSONObject object = (JSONObject) (new JSONTokener(value).nextValue());
                     String icon = object.getString("Icon");
                     String text = object.getString("Text");
-                    TabLayout.Tab tab=v.newTab();
+                    final TabLayout.Tab tab=v.newTab();
                     tab.setText(text);
                     if (!icon.equals("")) {
-                        tab.setIcon(Toolkit.file2Drawable(parentController, icon));
+                        Toolkit.file2Drawable(parentController, icon, new Toolkit.OnDrawableReadyListener() {
+                            @Override
+                            public void onDrawableReady(Drawable drawable) {
+                                tab.setIcon(drawable);
+                            }
+                        });
                     }
                     v.addTab(tab);
                 } catch (Exception e) {

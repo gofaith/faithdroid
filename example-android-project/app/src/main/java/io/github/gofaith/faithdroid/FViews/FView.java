@@ -193,15 +193,20 @@ public class FView {
     void setBackground(String value) {
         if (value==null)
             return;
-        Drawable draw = Toolkit.file2Drawable(parentController,value);
-        if (draw == null) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            view.setBackground(draw);
-        }else {
-            view.setBackgroundDrawable(draw);
-        }
+        Toolkit.file2Drawable(parentController, value, new Toolkit.OnDrawableReadyListener() {
+            @Override
+            public void onDrawableReady(Drawable draw) {
+                if (draw == null) {
+                    return;
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    view.setBackground(draw);
+                }else {
+                    view.setBackgroundDrawable(draw);
+                }
+            }
+        });
+
         if (value.equals("RippleEffect")) {
             view.setClickable(true);
         }
@@ -211,13 +216,18 @@ public class FView {
         if (value == null) {
             return;
         }
-        Drawable draw = Toolkit.file2Drawable(parentController, value);
-        if (draw == null) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            view.setForeground(draw);
-        }
+        Toolkit.file2Drawable(parentController, value, new Toolkit.OnDrawableReadyListener() {
+            @Override
+            public void onDrawableReady(Drawable draw) {
+                if (draw == null) {
+                    return;
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    view.setForeground(draw);
+                }
+            }
+        });
+
         if (value.equals("RippleEffect")) {
             view.setClickable(true);
         }
