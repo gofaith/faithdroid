@@ -15,7 +15,7 @@ type ViewHolder struct {
 	Vlist map[string]string
 }
 
-func (vh *ViewHolder) GetListViewById(id string) *FListView {
+func (vh *ViewHolder) GetListViewByItemId(id string) *FListView {
 	if v, ok := vh.Vlist[id]; ok {
 		if bt, ok := GlobalVars.ViewMap[v].(*FListView); ok {
 			return bt
@@ -36,7 +36,7 @@ func (v *FListView) SetItemId(parent *FListView, id string) *FListView {
 	parent.Vh.Vlist[id] = v.GetViewId()
 	return v
 }
-func GetListViewByItemId(id string) *FListView {
+func GetListViewById(id string) *FListView {
 	if v, ok := GlobalVars.IdMap[id].(*FListView); ok {
 		return v
 	}
