@@ -154,6 +154,7 @@ public class FView {
             p.width= ViewGroup.LayoutParams.WRAP_CONTENT;
         } else if (width == -2) {
             p.width= ViewGroup.LayoutParams.MATCH_PARENT;
+            setLayoutWeight("1");
         }else{
             p.width = (int) dp2pixel(parentController.activity, width);
         }
@@ -161,6 +162,7 @@ public class FView {
             p.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else if (height == -2) {
             p.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            setLayoutWeight("1");
         }else{
             p.height = (int) dp2pixel(parentController.activity, height);
         }
