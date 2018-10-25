@@ -26,7 +26,7 @@ class FView {
     func setupView()  {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sizeThatFits(CGSize(width: view.frame.size.width, height: view.frame.size.height))
-        afterAddedFuncs["gravity"] = {(parent:FView) -> Void in
+        afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
             if parent.className == "FrameLayout"{
                 self.view.topAnchor.constraint(equalTo: parent.view.topAnchor).isActive = true
                 self.view.leftAnchor.constraint(equalTo: parent.view.leftAnchor).isActive = true
@@ -44,7 +44,7 @@ class FView {
         case "BackgroundColor":
             setBackgroundColor(value)
             return true
-        case "Gravity":
+        case "LayoutGravity":
             setGravity(value)
             return true
         default:
@@ -62,7 +62,15 @@ class FView {
         
     }
     func setGravity(_ g:String)  {
-        
+        switch g {
+        case "85"://rightBottom
+            afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
+                self.view.rightAnchor.constraint(equalTo: parent.view.rightAnchor).isActive = true
+                self.view.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor).isActive = true
+            }
+        default:
+            break
+        }
     }
     func setBackgroundColor(_ value:String){
         view.backgroundColor = hexStringToUIColor(hex: value)
