@@ -62,6 +62,7 @@ class FView {
         
     }
     func setGravity(_ g:String)  {
+        
     }
     func setBackgroundColor(_ value:String){
         view.backgroundColor = hexStringToUIColor(hex: value)
