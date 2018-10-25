@@ -19,6 +19,7 @@
 		4EAFE09D218153EB008038BF /* FView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE09C218153EB008038BF /* FView.swift */; };
 		4EAFE09F218154B9008038BF /* FrameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE09E218154B9008038BF /* FrameLayout.swift */; };
 		4EAFE0A121815604008038BF /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0A021815604008038BF /* Button.swift */; };
+		4EAFE0A321815C4A008038BF /* LinearLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0A221815C4A008038BF /* LinearLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		4EAFE09C218153EB008038BF /* FView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FView.swift; sourceTree = "<group>"; };
 		4EAFE09E218154B9008038BF /* FrameLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameLayout.swift; sourceTree = "<group>"; };
 		4EAFE0A021815604008038BF /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		4EAFE0A221815C4A008038BF /* LinearLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				4EAFE09A21815357008038BF /* UIBridge.swift */,
 				4EAFE09E218154B9008038BF /* FrameLayout.swift */,
 				4EAFE09C218153EB008038BF /* FView.swift */,
+				4EAFE0A221815C4A008038BF /* LinearLayout.swift */,
 				4EAFE0A021815604008038BF /* Button.swift */,
 				4EAFE06D2181525B008038BF /* Main.storyboard */,
 				4EAFE0702181525B008038BF /* Assets.xcassets */,
@@ -283,6 +286,7 @@
 				4EAFE06C2181525B008038BF /* ViewController.swift in Sources */,
 				4EAFE0A121815604008038BF /* Button.swift in Sources */,
 				4EAFE09B21815357008038BF /* UIBridge.swift in Sources */,
+				4EAFE0A321815C4A008038BF /* LinearLayout.swift in Sources */,
 				4EAFE06A2181525B008038BF /* AppDelegate.swift in Sources */,
 				4EAFE09D218153EB008038BF /* FView.swift in Sources */,
 				4EAFE09F218154B9008038BF /* FrameLayout.swift in Sources */,

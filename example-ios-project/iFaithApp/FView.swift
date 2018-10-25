@@ -30,6 +30,12 @@ class FView {
             if parent.className == "FrameLayout"{
                 self.view.topAnchor.constraint(equalTo: parent.view.topAnchor).isActive = true
                 self.view.leftAnchor.constraint(equalTo: parent.view.leftAnchor).isActive = true
+            }else if parent.className == "LinearLayout"{
+                if parent.otherInfo == "Vertical"{
+                    self.view.leftAnchor.constraint(equalTo: parent.view.leftAnchor).isActive = true
+                }else{
+                    self.view.topAnchor.constraint(equalTo: parent.view.topAnchor).isActive = true
+                }
             }
         }
     }
@@ -63,6 +69,96 @@ class FView {
     }
     func setGravity(_ g:String)  {
         switch g {
+        case "3"://left
+            afterAddedFuncs["Gravity"] = {(parent:FView)->Void in
+                self.view.leftAnchor.constraint(equalTo: parent.view.leftAnchor).isActive = true
+                if parent.className == "FrameLayout"{
+                    self.view.topAnchor.constraint(equalTo: parent.view.topAnchor).isActive = true
+                }
+            }
+        case "5"://Right
+            afterAddedFuncs["Gravity"] = {(parent:FView)->Void in
+                self.view.rightAnchor.constraint(equalTo: parent.view.rightAnchor).isActive = true
+                if parent.className == "FrameLayout"{
+                    self.view.topAnchor.constraint(equalTo: parent.view.topAnchor).isActive = true
+                }
+            }
+        case "48"://top
+            afterAddedFuncs["Gravity"] = {(p:FView)->Void in
+                self.view.topAnchor.constraint(equalTo: p.view.topAnchor).isActive = true
+                if p.className == "FrameLayout"{
+                    self.view.leftAnchor.constraint(equalTo: p.view.leftAnchor).isActive = true
+                }
+            }
+        case "80"://bottom
+            afterAddedFuncs["Gravity"] = {(p:FView)->Void in
+                self.view.bottomAnchor.constraint(equalTo: p.view.bottomAnchor).isActive = true
+                if p.className == "FrameLayout"{
+                    self.view.leftAnchor.constraint(equalTo: p.view.leftAnchor).isActive  = true
+                }
+            }
+        case "17"://center
+            afterAddedFuncs["Gravity"] = {(p:FView)->Void in
+                if p.className  == "FrameLayout"{
+                    self.view.centerXAnchor.constraint(equalTo: p.view.centerXAnchor).isActive = true
+                    self.view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor).isActive = true
+                }else if p.className == "LinearLayout"{
+                    if p.otherInfo == "Vertical"{
+                        self.view.centerXAnchor.constraint(equalTo: p.view.centerXAnchor).isActive = true
+                    }else{
+                        self.view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor).isActive = true
+                    }
+                }
+            }
+        case "1"://HCENTER
+            afterAddedFuncs["Gravity"] = {(p:FView)->Void in
+                self.view.centerXAnchor.constraint(equalTo: p.view.centerXAnchor).isActive = true
+                if p.className == "FrameLayout"{
+                    self.view.topAnchor.constraint(equalTo: p.view.topAnchor).isActive  = true
+                }
+            }
+        case "16"://VCenter
+            afterAddedFuncs["Gravity"] = {(p:FView)->Void in
+                self.view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor).isActive = true
+                if p.className == "FrameLayout"{
+                    self.view.leftAnchor.constraint(equalTo: p.view.leftAnchor).isActive = true
+                }
+            }
+        case "51"://topLeft
+            afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
+                self.view.topAnchor.constraint(equalTo: parent.view.topAnchor).isActive = true
+                self.view.leftAnchor.constraint(equalTo: parent.view.leftAnchor).isActive = true
+            }
+        case "49"://topCenter
+            afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
+                self.view.topAnchor.constraint(equalTo: parent.view.topAnchor).isActive = true
+                self.view.centerXAnchor.constraint(equalTo: parent.view.centerXAnchor).isActive = true
+            }
+        case "53"://topRight
+            afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
+                self.view.topAnchor.constraint(equalTo: parent.view.topAnchor).isActive = true
+                self.view.rightAnchor.constraint(equalTo: parent.view.rightAnchor).isActive = true
+            }
+        case "19"://LeftCenter
+            afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
+                self.view.centerYAnchor.constraint(equalTo: parent.view.centerYAnchor).isActive = true
+                self.view.leftAnchor.constraint(equalTo: parent.view.leftAnchor).isActive = true
+            }
+        case "21"://rightCenter
+            afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
+                self.view.centerYAnchor.constraint(equalTo: parent.view.centerYAnchor).isActive = true
+                self.view.rightAnchor.constraint(equalTo: parent.view.rightAnchor).isActive = true
+            }
+        case "83"://bottomLeft
+            afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
+                self.view.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor).isActive = true
+                self.view.leftAnchor.constraint(equalTo: parent.view.leftAnchor).isActive = true
+            }
+        case "81"://bottomCenter
+            afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
+                self.view.bottomAnchor.constraint(equalTo: parent.view.bottomAnchor).isActive = true
+                self.view.centerXAnchor.constraint(equalTo: parent.view.centerXAnchor).isActive = true
+            }
         case "85"://rightBottom
             afterAddedFuncs["Gravity"] = {(parent:FView) -> Void in
                 self.view.rightAnchor.constraint(equalTo: parent.view.rightAnchor).isActive = true
