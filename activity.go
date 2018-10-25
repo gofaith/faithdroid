@@ -111,7 +111,7 @@ func RunOnUIThread(a IActivity, f func()) {
 		f()
 		return ""
 	}
-	GlobalVars.UIs[a.GetMyActivity().UI].RunOnUIThread(fnId)
+	GlobalVars.UIs[a.GetMyActivity().UI].RunUIThread(fnId)
 }
 func ScanFile(a IActivity, fpath string) {
 	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "ScanFile", fpath)

@@ -4,8 +4,8 @@ type UIController interface {
 	NewView(viewName string, VID string)
 	ViewSetAttr(VID string, attr string, value string)
 	ViewGetAttr(VID string, attr string) string
-	ShowOnRootView(VID string)
-	RunOnUIThread(fnID string)
+	Append2RootView(VID string)
+	RunUIThread(fnID string)
 	GetPkg() string
 	GetCurrentFActivity() *Activity
 }
@@ -24,7 +24,7 @@ func (v FBase) GetViewId() string {
 	return v.VID
 }
 func (v *FBaseView) Show() {
-	GlobalVars.UIs[v.UI].ShowOnRootView(v.VID)
+	GlobalVars.UIs[v.UI].Append2RootView(v.VID)
 }
 func (v *FBaseView) Background(s string) {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
@@ -34,7 +34,7 @@ func (v *FBaseView) Background(s string) {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Background", "file://"+f)
 				return ""
 			}
-			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
+			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return
 	}
@@ -48,7 +48,7 @@ func (v *FBaseView) CachedBackground(s string) {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Background", "file://"+f)
 				return ""
 			}
-			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
+			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return
 	}
@@ -62,7 +62,7 @@ func (v *FBaseView) Foreground(s string) {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Foreground", "file://"+f)
 				return ""
 			}
-			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
+			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return
 	}
@@ -76,7 +76,7 @@ func (v *FBaseView) CachedForeground(s string) {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Foreground", "file://"+f)
 				return ""
 			}
-			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
+			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return
 	}

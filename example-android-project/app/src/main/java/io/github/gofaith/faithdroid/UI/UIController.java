@@ -323,7 +323,7 @@ public class UIController implements faithdroid.UIController{
     }
 
     @Override
-    public void runOnUIThread(final String s) {
+    public void runUIThread(final String s) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -365,7 +365,7 @@ public class UIController implements faithdroid.UIController{
     }
 
     @Override
-    public void showOnRootView(String vID) {
+    public void append2RootView(String vID) {
         FView v = viewmap.get(vID);
         if (v == null) {
             return;

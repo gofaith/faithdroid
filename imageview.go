@@ -260,7 +260,7 @@ func (v *FImageView) Src(s string) *FImageView {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", "file://"+f)
 				return ""
 			}
-			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
+			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return v
 	}
@@ -275,7 +275,7 @@ func (v *FImageView) CachedSrc(s string) *FImageView {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", "file://"+f)
 				return ""
 			}
-			GlobalVars.UIs[v.UI].RunOnUIThread(fnID)
+			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return v
 	}
