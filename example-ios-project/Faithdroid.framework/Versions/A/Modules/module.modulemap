@@ -1,0 +1,8 @@
+framework module "Faithdroid" {
+	header "ref.h"
+    header "Faithdroid.objc.h"
+    header "universe.objc.h"
+    header "Faithdroid.h"
+
+    export *
+}
