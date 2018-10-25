@@ -65,7 +65,34 @@ class FView {
         return ""
     }
     func parseSize(_ value:String) {
+        let ss = value.replacingOccurrences(of: "[", with: "", options: .literal, range: nil).replacingOccurrences(of: "]", with: "", options: .literal, range: nil).split(separator: ",")
+        let width = Int(ss[0])!
+        let height =  Int(ss[1])!
+        size[0] = width
+        size[1] = height
+        if width == -2 {
+            afterAddedFuncs["width"]={(parent:FView)->Void in
+                self.view.widthAnchor.constraint(equalTo: parent.view.widthAnchor).isActive = true
+            }
+        }else if width == -1 {
+            afterAddedFuncs.removeValue(forKey: "width")
+        }else if width > 0{
+            afterAddedFuncs["width"] = {(parent:FView)->Void in
+                self.view.widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
+            }
+        }
         
+        if height == -2{
+            afterAddedFuncs["height"]={(parent:FView)->Void in
+                self.view.heightAnchor.constraint(equalTo: parent.view.heightAnchor).isActive = true
+            }
+        }else if height == -1 {
+            afterAddedFuncs.removeValue(forKey: "height")
+        }else if height > 0{
+            afterAddedFuncs["height"] = {(parent:FView)->Void in
+                self.view.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
+            }
+        }
     }
     func setGravity(_ g:String)  {
         switch g {
