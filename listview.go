@@ -345,6 +345,14 @@ func (v *FListView) Right2LeftOf(id string) *FListView {
 	return v
 }
 
+func (v *FListView) CenterX() *FListView {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FListView) CenterY() *FListView {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------------------
 func (v *FListView) NotifyDataSetChanged() *FListView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")

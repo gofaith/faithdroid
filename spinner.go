@@ -269,6 +269,14 @@ func (v *FSpinner) Right2LeftOf(id string) *FSpinner {
 	return v
 }
 
+func (v *FSpinner) CenterX() *FSpinner {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FSpinner) CenterY() *FSpinner {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 
 func (v *FSpinner) Enabled(b bool) *FSpinner {

@@ -269,6 +269,14 @@ func (v *FRadioButton) Right2LeftOf(id string) *FRadioButton {
 	return v
 }
 
+func (v *FRadioButton) CenterX() *FRadioButton {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FRadioButton) CenterY() *FRadioButton {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FRadioButton) Text(s string) *FRadioButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

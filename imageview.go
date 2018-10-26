@@ -287,6 +287,14 @@ func (v *FImageView) Right2LeftOf(id string) *FImageView {
 	return v
 }
 
+func (v *FImageView) CenterX() *FImageView {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FImageView) CenterY() *FImageView {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FImageView) Src(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {

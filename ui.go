@@ -156,3 +156,9 @@ func (v *FBaseView) Left2RightOf(id string) {
 func (v *FBaseView) Right2LeftOf(id string) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Right2LeftOf", id)
 }
+func (v *FBaseView) CenterX() {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "CenterX", "")
+}
+func (v *FBaseView) CenterY() {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "CenterY", "")
+}

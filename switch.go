@@ -267,6 +267,14 @@ func (v *FSwitch) Right2LeftOf(id string) *FSwitch {
 	return v
 }
 
+func (v *FSwitch) CenterX() *FSwitch {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FSwitch) CenterY() *FSwitch {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FSwitch) Enabled(b bool) *FSwitch {
 	if b {

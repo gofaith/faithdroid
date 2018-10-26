@@ -277,6 +277,14 @@ func (v *FTabLayout) Right2LeftOf(id string) *FTabLayout {
 	return v
 }
 
+func (v *FTabLayout) CenterX() *FTabLayout {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FTabLayout) CenterY() *FTabLayout {
+	v.FBaseView.CenterY()
+	return v
+}
 // ------------------------------------------------------------
 
 type FTab struct {

@@ -271,6 +271,14 @@ func (v *FWebView) Right2LeftOf(id string) *FWebView {
 	return v
 }
 
+func (v *FWebView) CenterX() *FWebView {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FWebView) CenterY() *FWebView {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 
 func (v *FWebView) loadUri(s string) *FWebView {

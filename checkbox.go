@@ -267,6 +267,14 @@ func (v *FCheckBox) Right2LeftOf(id string) *FCheckBox {
 	return v
 }
 
+func (v *FCheckBox) CenterX() *FCheckBox {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FCheckBox) CenterY() *FCheckBox {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FCheckBox) Text(s string) *FCheckBox {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

@@ -278,6 +278,14 @@ func (v *FFrameLayout) Right2LeftOf(id string) *FFrameLayout {
 	return v
 }
 
+func (v *FFrameLayout) CenterX() *FFrameLayout {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FFrameLayout) CenterY() *FFrameLayout {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FFrameLayout) Append(vs ...IView) *FFrameLayout {
 	v.Children = append(v.Children, vs...)

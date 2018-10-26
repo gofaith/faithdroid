@@ -277,6 +277,14 @@ func (v *FRadioGroup) Right2LeftOf(id string) *FRadioGroup {
 	return v
 }
 
+func (v *FRadioGroup) CenterX() *FRadioGroup {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FRadioGroup) CenterY() *FRadioGroup {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FRadioGroup) Append(vs ...*FRadioButton) *FRadioGroup {
 	v.Children = append(v.Children, vs...)

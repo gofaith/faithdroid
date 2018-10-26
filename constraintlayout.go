@@ -282,6 +282,14 @@ func (v *FConstraintLayout) Right2LeftOf(id string) *FConstraintLayout {
 	return v
 }
 
+func (v *FConstraintLayout) CenterX() *FConstraintLayout {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FConstraintLayout) CenterY() *FConstraintLayout {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FConstraintLayout) Append(vs ...IView) *FConstraintLayout {
 	var vids []string

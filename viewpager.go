@@ -280,6 +280,14 @@ func (v *FViewPager) Right2LeftOf(id string) *FViewPager {
 	return v
 }
 
+func (v *FViewPager) CenterX() *FViewPager {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FViewPager) CenterY() *FViewPager {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 type FPage struct {
 	VID string

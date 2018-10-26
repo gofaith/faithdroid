@@ -268,4 +268,12 @@ func (v *FSpace) Right2LeftOf(id string) *FSpace {
 	return v
 }
 
+func (v *FSpace) CenterX() *FSpace {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FSpace) CenterY() *FSpace {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------

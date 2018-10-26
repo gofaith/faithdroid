@@ -278,6 +278,14 @@ func (v *FLinearLayout) Right2LeftOf(id string) *FLinearLayout {
 	return v
 }
 
+func (v *FLinearLayout) CenterX() *FLinearLayout {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FLinearLayout) CenterY() *FLinearLayout {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
 	v.Children = append(v.Children, vs...)

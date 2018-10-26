@@ -276,7 +276,14 @@ func (v *FBottomNav) Right2LeftOf(id string) *FBottomNav {
 	v.FBaseView.Right2LeftOf(id)
 	return v
 }
-
+func (v *FBottomNav) CenterX() *FBottomNav {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FBottomNav) CenterY() *FBottomNav {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FBottomNav) Menus(mis ...interface{}) *FBottomNav {
 	v.MyMenu = mis

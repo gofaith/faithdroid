@@ -278,6 +278,14 @@ func (v *FVScrollView) Right2LeftOf(id string) *FVScrollView {
 	return v
 }
 
+func (v *FVScrollView) CenterX() *FVScrollView {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FVScrollView) CenterY() *FVScrollView {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FVScrollView) Append(vs ...IView) *FVScrollView {
 	v.Children = vs

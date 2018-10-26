@@ -234,6 +234,14 @@ public class FView {
                     }
                 });
                 break;
+            case "CenterX":
+                setUniversalAttr("Left2LeftOf", "_Parent_");
+                setUniversalAttr("Right2RightOf", "_Parent_");
+                break;
+            case "CenterY":
+                setUniversalAttr("Top2TopOf", "_Parent_");
+                setUniversalAttr("Bottom2BottomOf", "_Parent_");
+                break;
             default:
                 return false;
         }

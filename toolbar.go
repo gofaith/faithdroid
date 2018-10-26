@@ -260,6 +260,14 @@ func (v *FToolbar) Right2LeftOf(id string) *FToolbar {
 	return v
 }
 
+func (v *FToolbar) CenterX() *FToolbar {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FToolbar) CenterY() *FToolbar {
+	v.FBaseView.CenterY()
+	return v
+}
 // ----------------------------------------------------------
 func (v *FToolbar) Title(s string) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)

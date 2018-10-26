@@ -259,6 +259,14 @@ func (v *FFab) Right2LeftOf(id string) *FFab {
 	return v
 }
 
+func (v *FFab) CenterX() *FFab {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FFab) CenterY() *FFab {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 
 func (v *FFab) Icon(s string) *FFab {

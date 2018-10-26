@@ -268,6 +268,14 @@ func (v *FButton) Right2LeftOf(id string) *FButton {
 	return v
 }
 
+func (v *FButton) CenterX() *FButton {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FButton) CenterY() *FButton {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FButton) Text(s string) *FButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

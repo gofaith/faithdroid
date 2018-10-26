@@ -268,6 +268,14 @@ func (v *FEditText) Right2LeftOf(id string) *FEditText {
 	return v
 }
 
+func (v *FEditText) CenterX() *FEditText {
+	v.FBaseView.CenterX()
+	return v
+}
+func (v *FEditText) CenterY() *FEditText {
+	v.FBaseView.CenterY()
+	return v
+}
 // --------------------------------------------------------
 func (v *FEditText) Text(s string) *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)
