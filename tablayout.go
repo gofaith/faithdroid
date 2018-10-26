@@ -241,6 +241,42 @@ func (v *FTabLayout) Clickable(b bool) *FTabLayout {
 	return v
 }
 
+//constraint
+func (v *FTabLayout) Top2TopOf(id string) *FTabLayout {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FTabLayout) Top2BottomOf(id string) *FTabLayout {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FTabLayout) Bottom2TopOf(id string) *FTabLayout {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FTabLayout) Bottom2BottomOf(id string) *FTabLayout {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FTabLayout) Left2LeftOf(id string) *FTabLayout {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FTabLayout) Right2RightOf(id string) *FTabLayout {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FTabLayout) Left2RightOf(id string) *FTabLayout {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FTabLayout) Right2LeftOf(id string) *FTabLayout {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // ------------------------------------------------------------
 
 type FTab struct {

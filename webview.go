@@ -235,6 +235,42 @@ func (v *FWebView) Clickable(b bool) *FWebView {
 	return v
 }
 
+//constraint
+func (v *FWebView) Top2TopOf(id string) *FWebView {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FWebView) Top2BottomOf(id string) *FWebView {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FWebView) Bottom2TopOf(id string) *FWebView {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FWebView) Bottom2BottomOf(id string) *FWebView {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FWebView) Left2LeftOf(id string) *FWebView {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FWebView) Right2RightOf(id string) *FWebView {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FWebView) Left2RightOf(id string) *FWebView {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FWebView) Right2LeftOf(id string) *FWebView {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 
 func (v *FWebView) loadUri(s string) *FWebView {

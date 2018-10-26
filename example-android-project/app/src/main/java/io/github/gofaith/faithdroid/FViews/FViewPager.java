@@ -32,7 +32,6 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
     public FViewPager(UIController controller) {
         parentController = controller;
         v = new ViewPager(parentController.activity);
-        v.setId(ViewCompat.generateViewId());
         v.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {

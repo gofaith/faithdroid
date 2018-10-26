@@ -233,6 +233,42 @@ func (v *FRadioButton) Clickable(b bool) *FRadioButton {
 	return v
 }
 
+//constraint
+func (v *FRadioButton) Top2TopOf(id string) *FRadioButton {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FRadioButton) Top2BottomOf(id string) *FRadioButton {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FRadioButton) Bottom2TopOf(id string) *FRadioButton {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FRadioButton) Bottom2BottomOf(id string) *FRadioButton {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FRadioButton) Left2LeftOf(id string) *FRadioButton {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FRadioButton) Right2RightOf(id string) *FRadioButton {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FRadioButton) Left2RightOf(id string) *FRadioButton {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FRadioButton) Right2LeftOf(id string) *FRadioButton {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FRadioButton) Text(s string) *FRadioButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

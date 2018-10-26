@@ -244,6 +244,42 @@ func (v *FViewPager) Clickable(b bool) *FViewPager {
 	return v
 }
 
+//constraint
+func (v *FViewPager) Top2TopOf(id string) *FViewPager {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FViewPager) Top2BottomOf(id string) *FViewPager {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FViewPager) Bottom2TopOf(id string) *FViewPager {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FViewPager) Bottom2BottomOf(id string) *FViewPager {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FViewPager) Left2LeftOf(id string) *FViewPager {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FViewPager) Right2RightOf(id string) *FViewPager {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FViewPager) Left2RightOf(id string) *FViewPager {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FViewPager) Right2LeftOf(id string) *FViewPager {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 type FPage struct {
 	VID string

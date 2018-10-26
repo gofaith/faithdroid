@@ -95,13 +95,13 @@ func (v *FBaseView) Gone() {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Visibility", "GONE")
 }
 func (v *FBaseView) IsVisible() bool {
-	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID,"Visibility")=="VISIBLE"
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Visibility") == "VISIBLE"
 }
 func (v *FBaseView) IsInvisible() bool {
-	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID,"Visibility")=="INVISIBLE"
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Visibility") == "INVISIBLE"
 }
 func (v *FBaseView) IsGone() bool {
-	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID,"Visibility")=="GONE"
+	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Visibility") == "GONE"
 }
 func (v *FBaseView) Padding(left, top, right, bottom int) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Padding", JsonArray([]int{left, top, right, bottom}))
@@ -120,4 +120,39 @@ func (v *FBaseView) LayoutWeight(f int) {
 }
 func (v *FBaseView) Clickable(b bool) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Clickable", SPrintf(b))
+}
+
+//constraint
+var parent = "_Parent_"
+
+func (v *FBaseView) Top2TopOf(id string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Top2TopOf", id)
+}
+
+func (v *FBaseView) Top2BottomOf(id string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Top2BottomOf", id)
+}
+
+func (v *FBaseView) Bottom2TopOf(id string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Bottom2TopOf", id)
+}
+
+func (v *FBaseView) Bottom2BottomOf(id string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Bottom2BottomOf", id)
+}
+
+func (v *FBaseView) Left2LeftOf(id string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Left2LeftOf", id)
+}
+
+func (v *FBaseView) Right2RightOf(id string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Right2RightOf", id)
+}
+
+func (v *FBaseView) Left2RightOf(id string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Left2RightOf", id)
+}
+
+func (v *FBaseView) Right2LeftOf(id string) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Right2LeftOf", id)
 }

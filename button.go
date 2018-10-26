@@ -21,7 +21,6 @@ func (vh *ViewHolder) GetButtonByItemId(id string) *FButton {
 	}
 	return nil
 }
-
 func (v *FButton) Size(w, h int) *FButton {
 	i := []int{w, h}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Size", JsonArray(i))
@@ -230,6 +229,42 @@ func (v *FButton) OnClick(f func()) *FButton {
 }
 func (v *FButton) Clickable(b bool) *FButton {
 	v.FBaseView.Clickable(b)
+	return v
+}
+
+//constraint
+func (v *FButton) Top2TopOf(id string) *FButton {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FButton) Top2BottomOf(id string) *FButton {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FButton) Bottom2TopOf(id string) *FButton {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FButton) Bottom2BottomOf(id string) *FButton {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FButton) Left2LeftOf(id string) *FButton {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FButton) Right2RightOf(id string) *FButton {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FButton) Left2RightOf(id string) *FButton {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FButton) Right2LeftOf(id string) *FButton {
+	v.FBaseView.Right2LeftOf(id)
 	return v
 }
 

@@ -241,6 +241,42 @@ func (v *FBottomNav) Clickable(b bool) *FBottomNav {
 	return v
 }
 
+//constraint
+func (v *FBottomNav) Top2TopOf(id string) *FBottomNav {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FBottomNav) Top2BottomOf(id string) *FBottomNav {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FBottomNav) Bottom2TopOf(id string) *FBottomNav {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FBottomNav) Bottom2BottomOf(id string) *FBottomNav {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FBottomNav) Left2LeftOf(id string) *FBottomNav {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FBottomNav) Right2RightOf(id string) *FBottomNav {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FBottomNav) Left2RightOf(id string) *FBottomNav {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FBottomNav) Right2LeftOf(id string) *FBottomNav {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FBottomNav) Menus(mis ...interface{}) *FBottomNav {
 	v.MyMenu = mis

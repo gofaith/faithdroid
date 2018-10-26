@@ -309,6 +309,42 @@ func (v *FListView) Clickable(b bool) *FListView {
 	return v
 }
 
+//constraint
+func (v *FListView) Top2TopOf(id string) *FListView {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FListView) Top2BottomOf(id string) *FListView {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FListView) Bottom2TopOf(id string) *FListView {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FListView) Bottom2BottomOf(id string) *FListView {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FListView) Left2LeftOf(id string) *FListView {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FListView) Right2RightOf(id string) *FListView {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FListView) Left2RightOf(id string) *FListView {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FListView) Right2LeftOf(id string) *FListView {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------------------
 func (v *FListView) NotifyDataSetChanged() *FListView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")

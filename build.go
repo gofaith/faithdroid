@@ -4,7 +4,7 @@ type FBuild struct {
 	FBase
 }
 
-func Build(a *Activity) *FBuild {
+func GetBuild(a *Activity) *FBuild {
 	f := &FBuild{}
 	f.UI = a.UI
 	return f

@@ -232,4 +232,40 @@ func (v *FSpace) Clickable(b bool) *FSpace {
 	return v
 }
 
+//constraint
+func (v *FSpace) Top2TopOf(id string) *FSpace {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FSpace) Top2BottomOf(id string) *FSpace {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FSpace) Bottom2TopOf(id string) *FSpace {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FSpace) Bottom2BottomOf(id string) *FSpace {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FSpace) Left2LeftOf(id string) *FSpace {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FSpace) Right2RightOf(id string) *FSpace {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FSpace) Left2RightOf(id string) *FSpace {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FSpace) Right2LeftOf(id string) *FSpace {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------

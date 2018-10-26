@@ -242,6 +242,42 @@ func (v *FLinearLayout) Clickable(b bool) *FLinearLayout {
 	return v
 }
 
+//constraint
+func (v *FLinearLayout) Top2TopOf(id string) *FLinearLayout {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FLinearLayout) Top2BottomOf(id string) *FLinearLayout {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FLinearLayout) Bottom2TopOf(id string) *FLinearLayout {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FLinearLayout) Bottom2BottomOf(id string) *FLinearLayout {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FLinearLayout) Left2LeftOf(id string) *FLinearLayout {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FLinearLayout) Right2RightOf(id string) *FLinearLayout {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FLinearLayout) Left2RightOf(id string) *FLinearLayout {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FLinearLayout) Right2LeftOf(id string) *FLinearLayout {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
 	v.Children = append(v.Children, vs...)

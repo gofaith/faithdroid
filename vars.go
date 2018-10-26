@@ -11,3 +11,11 @@ var GlobalVars = struct {
 	make(map[string]func(string) string),
 	make(map[string]UIController),
 }
+
+func GetVidById(id string) string {
+	if v, ok := GlobalVars.IdMap[id]; ok {
+		return v.GetViewId()
+	} else {
+		panic(`id "` + id + `" doesn't exists`)
+	}
+}

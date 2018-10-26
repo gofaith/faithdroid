@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -43,6 +44,7 @@ import io.github.gofaith.faithdroid.FViews.FBottomNav;
 import io.github.gofaith.faithdroid.FViews.FButton;
 import io.github.gofaith.faithdroid.FViews.FCheckBox;
 import io.github.gofaith.faithdroid.FViews.FClipboard;
+import io.github.gofaith.faithdroid.FViews.FConstraintLayout;
 import io.github.gofaith.faithdroid.FViews.FEditText;
 import io.github.gofaith.faithdroid.FViews.FFab;
 import io.github.gofaith.faithdroid.FViews.FFrameLayout;
@@ -279,10 +281,14 @@ public class UIController implements faithdroid.UIController{
                 FCheckBox fCheckBox = new FCheckBox(this);
                 v = fCheckBox;
                 break;
+            case "ConstraintLayout":
+                v = new FConstraintLayout(this);
+                break;
         }
         v.className =vName;
         v.vID=vID;
         viewmap.put(vID, v);
+        v.view.setId(ViewCompat.generateViewId());
     }
 
     private void newActivity(String activityConfig) {

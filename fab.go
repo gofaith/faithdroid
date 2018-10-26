@@ -223,6 +223,42 @@ func (v *FFab) Clickable(b bool) *FFab {
 	return v
 }
 
+//constraint
+func (v *FFab) Top2TopOf(id string) *FFab {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FFab) Top2BottomOf(id string) *FFab {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FFab) Bottom2TopOf(id string) *FFab {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FFab) Bottom2BottomOf(id string) *FFab {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FFab) Left2LeftOf(id string) *FFab {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FFab) Right2RightOf(id string) *FFab {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FFab) Left2RightOf(id string) *FFab {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FFab) Right2LeftOf(id string) *FFab {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 
 func (v *FFab) Icon(s string) *FFab {

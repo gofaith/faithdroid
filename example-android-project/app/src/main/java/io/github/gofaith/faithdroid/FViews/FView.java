@@ -3,6 +3,7 @@ package io.github.gofaith.faithdroid.FViews;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +20,8 @@ import org.json.JSONTokener;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.Toolkit;
@@ -32,7 +35,10 @@ public class FView {
     public int layoutGravity;
     public float layoutWeight;
     public int[] size = new int[]{-2, -2};
-
+    public Map<String, ConstraintInterface> afterConstraintFuncs = new HashMap<>();
+    interface ConstraintInterface{
+        void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp);
+    }
     protected String getUniversalAttr(String attr) {
         if(attr==null)
             return "";
@@ -130,6 +136,103 @@ public class FView {
                 break;
             case "Clickable":
                 view.setClickable(value.equals("true"));
+                break;
+                // constraint
+            case "Top2TopOf":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("_Parent_")) {
+                            lp.topToTop = parent.view.getId();
+                            return;
+                        }
+                        lp.topToTop = parentController.viewmap.get(Faithdroid.getVidById(value)).view.getId();
+                    }
+                });
+                break;
+            case "Top2BottomOf":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("_Parent_")) {
+                            lp.bottomToBottom = parent.view.getId();
+                            return;
+                        }
+                        lp.topToBottom = parentController.viewmap.get(Faithdroid.getVidById(value)).view.getId();
+                    }
+                });
+                break;
+            case "Bottom2BottomOf":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("_Parent_")) {
+                            lp.bottomToBottom = parent.view.getId();
+                            return;
+                        }
+                        lp.bottomToBottom = parentController.viewmap.get(Faithdroid.getVidById(value)).view.getId();
+                    }
+                });
+                break;
+            case "Bottom2TopOf":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("_Parent_")) {
+                            lp.bottomToTop = parent.view.getId();
+                            return;
+                        }
+                        lp.bottomToTop = parentController.viewmap.get(Faithdroid.getVidById(value)).view.getId();
+                    }
+                });
+                break;
+            case "Left2LeftOf":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("_Parent_")) {
+                            lp.leftToLeft = parent.view.getId();
+                            return;
+                        }
+                        lp.leftToLeft = parentController.viewmap.get(Faithdroid.getVidById(value)).view.getId();
+                    }
+                });
+                break;
+            case "Right2RightOf":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("_Parent_")) {
+                            lp.rightToRight = parent.view.getId();
+                            return;
+                        }
+                        lp.rightToRight = parentController.viewmap.get(Faithdroid.getVidById(value)).view.getId();
+                    }
+                });
+                break;
+            case "Left2RightOf":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("_Parent_")) {
+                            lp.leftToRight = parent.view.getId();
+                            return;
+                        }
+                        lp.leftToRight = parentController.viewmap.get(Faithdroid.getVidById(value)).view.getId();
+                    }
+                });
+                break;
+            case "Right2LeftOf":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("_Parent_")) {
+                            lp.rightToLeft = parent.view.getId();
+                            return;
+                        }
+                        lp.rightToLeft = parentController.viewmap.get(Faithdroid.getVidById(value)).view.getId();
+                    }
+                });
                 break;
             default:
                 return false;

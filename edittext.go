@@ -232,6 +232,42 @@ func (v *FEditText) Clickable(b bool) *FEditText {
 	return v
 }
 
+//constraint
+func (v *FEditText) Top2TopOf(id string) *FEditText {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FEditText) Top2BottomOf(id string) *FEditText {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FEditText) Bottom2TopOf(id string) *FEditText {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FEditText) Bottom2BottomOf(id string) *FEditText {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FEditText) Left2LeftOf(id string) *FEditText {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FEditText) Right2RightOf(id string) *FEditText {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FEditText) Left2RightOf(id string) *FEditText {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FEditText) Right2LeftOf(id string) *FEditText {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FEditText) Text(s string) *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

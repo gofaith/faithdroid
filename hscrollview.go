@@ -242,6 +242,42 @@ func (v *FHScrollView) Clickable(b bool) *FHScrollView {
 	return v
 }
 
+//constraint
+func (v *FHScrollView) Top2TopOf(id string) *FHScrollView {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FHScrollView) Top2BottomOf(id string) *FHScrollView {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FHScrollView) Bottom2TopOf(id string) *FHScrollView {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FHScrollView) Bottom2BottomOf(id string) *FHScrollView {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FHScrollView) Left2LeftOf(id string) *FHScrollView {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FHScrollView) Right2RightOf(id string) *FHScrollView {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FHScrollView) Left2RightOf(id string) *FHScrollView {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FHScrollView) Right2LeftOf(id string) *FHScrollView {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FHScrollView) Append(vs ...IView) *FHScrollView {
 	v.Children = vs

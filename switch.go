@@ -231,6 +231,42 @@ func (v *FSwitch) Clickable(b bool) *FSwitch {
 	return v
 }
 
+//constraint
+func (v *FSwitch) Top2TopOf(id string) *FSwitch {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FSwitch) Top2BottomOf(id string) *FSwitch {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FSwitch) Bottom2TopOf(id string) *FSwitch {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FSwitch) Bottom2BottomOf(id string) *FSwitch {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FSwitch) Left2LeftOf(id string) *FSwitch {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FSwitch) Right2RightOf(id string) *FSwitch {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FSwitch) Left2RightOf(id string) *FSwitch {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FSwitch) Right2LeftOf(id string) *FSwitch {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FSwitch) Enabled(b bool) *FSwitch {
 	if b {

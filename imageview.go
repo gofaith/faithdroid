@@ -251,6 +251,42 @@ func (v *FImageView) Clickable(b bool) *FImageView {
 	return v
 }
 
+//constraint
+func (v *FImageView) Top2TopOf(id string) *FImageView {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FImageView) Top2BottomOf(id string) *FImageView {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FImageView) Bottom2TopOf(id string) *FImageView {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FImageView) Bottom2BottomOf(id string) *FImageView {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FImageView) Left2LeftOf(id string) *FImageView {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FImageView) Right2RightOf(id string) *FImageView {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FImageView) Left2RightOf(id string) *FImageView {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FImageView) Right2LeftOf(id string) *FImageView {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FImageView) Src(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {

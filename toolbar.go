@@ -224,6 +224,42 @@ func (v *FToolbar) Clickable(b bool) *FToolbar {
 	return v
 }
 
+//constraint
+func (v *FToolbar) Top2TopOf(id string) *FToolbar {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FToolbar) Top2BottomOf(id string) *FToolbar {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FToolbar) Bottom2TopOf(id string) *FToolbar {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FToolbar) Bottom2BottomOf(id string) *FToolbar {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FToolbar) Left2LeftOf(id string) *FToolbar {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FToolbar) Right2RightOf(id string) *FToolbar {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FToolbar) Left2RightOf(id string) *FToolbar {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FToolbar) Right2LeftOf(id string) *FToolbar {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // ----------------------------------------------------------
 func (v *FToolbar) Title(s string) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)

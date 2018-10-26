@@ -233,6 +233,42 @@ func (v *FSpinner) Clickable(b bool) *FSpinner {
 	return v
 }
 
+//constraint
+func (v *FSpinner) Top2TopOf(id string) *FSpinner {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FSpinner) Top2BottomOf(id string) *FSpinner {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FSpinner) Bottom2TopOf(id string) *FSpinner {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FSpinner) Bottom2BottomOf(id string) *FSpinner {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FSpinner) Left2LeftOf(id string) *FSpinner {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FSpinner) Right2RightOf(id string) *FSpinner {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FSpinner) Left2RightOf(id string) *FSpinner {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FSpinner) Right2LeftOf(id string) *FSpinner {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 
 func (v *FSpinner) Enabled(b bool) *FSpinner {

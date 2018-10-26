@@ -16,7 +16,6 @@ public class FRadioButton extends FView implements AttrSettable, AttrGettable {
     public FRadioButton(UIController controller) {
         parentController = controller;
         v = new RadioButton(parentController.activity);
-        v.setId(ViewCompat.generateViewId());
         view=v;
     }
     @Override

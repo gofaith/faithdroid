@@ -231,6 +231,42 @@ func (v *FCheckBox) Clickable(b bool) *FCheckBox {
 	return v
 }
 
+//constraint
+func (v *FCheckBox) Top2TopOf(id string) *FCheckBox {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FCheckBox) Top2BottomOf(id string) *FCheckBox {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FCheckBox) Bottom2TopOf(id string) *FCheckBox {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FCheckBox) Bottom2BottomOf(id string) *FCheckBox {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FCheckBox) Left2LeftOf(id string) *FCheckBox {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FCheckBox) Right2RightOf(id string) *FCheckBox {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FCheckBox) Left2RightOf(id string) *FCheckBox {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FCheckBox) Right2LeftOf(id string) *FCheckBox {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FCheckBox) Text(s string) *FCheckBox {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

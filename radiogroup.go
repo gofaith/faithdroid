@@ -241,6 +241,42 @@ func (v *FRadioGroup) Clickable(b bool) *FRadioGroup {
 	return v
 }
 
+//constraint
+func (v *FRadioGroup) Top2TopOf(id string) *FRadioGroup {
+	v.FBaseView.Top2TopOf(id)
+	return v
+}
+func (v *FRadioGroup) Top2BottomOf(id string) *FRadioGroup {
+	v.FBaseView.Top2BottomOf(id)
+	return v
+}
+func (v *FRadioGroup) Bottom2TopOf(id string) *FRadioGroup {
+	v.FBaseView.Bottom2TopOf(id)
+	return v
+}
+func (v *FRadioGroup) Bottom2BottomOf(id string) *FRadioGroup {
+	v.FBaseView.Bottom2BottomOf(id)
+	return v
+}
+
+func (v *FRadioGroup) Left2LeftOf(id string) *FRadioGroup {
+	v.FBaseView.Left2LeftOf(id)
+	return v
+}
+func (v *FRadioGroup) Right2RightOf(id string) *FRadioGroup {
+	v.FBaseView.Right2RightOf(id)
+	return v
+}
+
+func (v *FRadioGroup) Left2RightOf(id string) *FRadioGroup {
+	v.FBaseView.Left2RightOf(id)
+	return v
+}
+func (v *FRadioGroup) Right2LeftOf(id string) *FRadioGroup {
+	v.FBaseView.Right2LeftOf(id)
+	return v
+}
+
 // --------------------------------------------------------
 func (v *FRadioGroup) Append(vs ...*FRadioButton) *FRadioGroup {
 	v.Children = append(v.Children, vs...)
