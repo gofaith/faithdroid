@@ -353,6 +353,14 @@ func (v *FListView) CenterY() *FListView {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FListView) WidthPercent(num float64) *FListView {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FListView) HeightPercent(num float64) *FListView {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------------------
 func (v *FListView) NotifyDataSetChanged() *FListView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")

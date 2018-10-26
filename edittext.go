@@ -276,6 +276,14 @@ func (v *FEditText) CenterY() *FEditText {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FEditText) WidthPercent(num float64) *FEditText {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FEditText) HeightPercent(num float64) *FEditText {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FEditText) Text(s string) *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

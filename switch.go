@@ -275,6 +275,14 @@ func (v *FSwitch) CenterY() *FSwitch {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FSwitch) WidthPercent(num float64) *FSwitch {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FSwitch) HeightPercent(num float64) *FSwitch {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FSwitch) Enabled(b bool) *FSwitch {
 	if b {

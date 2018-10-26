@@ -286,6 +286,14 @@ func (v *FHScrollView) CenterY() *FHScrollView {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FHScrollView) WidthPercent(num float64) *FHScrollView {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FHScrollView) HeightPercent(num float64) *FHScrollView {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FHScrollView) Append(vs ...IView) *FHScrollView {
 	v.Children = vs

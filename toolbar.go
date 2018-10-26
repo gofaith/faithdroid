@@ -268,6 +268,14 @@ func (v *FToolbar) CenterY() *FToolbar {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FToolbar) WidthPercent(num float64) *FToolbar {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FToolbar) HeightPercent(num float64) *FToolbar {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // ----------------------------------------------------------
 func (v *FToolbar) Title(s string) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)

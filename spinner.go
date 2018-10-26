@@ -277,6 +277,14 @@ func (v *FSpinner) CenterY() *FSpinner {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FSpinner) WidthPercent(num float64) *FSpinner {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FSpinner) HeightPercent(num float64) *FSpinner {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 
 func (v *FSpinner) Enabled(b bool) *FSpinner {

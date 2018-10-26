@@ -162,3 +162,9 @@ func (v *FBaseView) CenterX() {
 func (v *FBaseView) CenterY() {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "CenterY", "")
 }
+func (v *FBaseView) WidthPercent(num float64) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "WidthPercent", SPrintf(num))
+}
+func (v *FBaseView) HeightPercent(num float64) {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "HeightPercent", SPrintf(num))
+}

@@ -288,6 +288,14 @@ func (v *FViewPager) CenterY() *FViewPager {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FViewPager) WidthPercent(num float64) *FViewPager {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FViewPager) HeightPercent(num float64) *FViewPager {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 type FPage struct {
 	VID string

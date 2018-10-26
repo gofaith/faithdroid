@@ -285,6 +285,14 @@ func (v *FTabLayout) CenterY() *FTabLayout {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FTabLayout) WidthPercent(num float64) *FTabLayout {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FTabLayout) HeightPercent(num float64) *FTabLayout {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // ------------------------------------------------------------
 
 type FTab struct {

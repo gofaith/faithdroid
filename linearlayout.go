@@ -286,6 +286,14 @@ func (v *FLinearLayout) CenterY() *FLinearLayout {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FLinearLayout) WidthPercent(num float64) *FLinearLayout {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FLinearLayout) HeightPercent(num float64) *FLinearLayout {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
 	v.Children = append(v.Children, vs...)

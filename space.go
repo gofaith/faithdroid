@@ -276,4 +276,12 @@ func (v *FSpace) CenterY() *FSpace {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FSpace) WidthPercent(num float64) *FSpace {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FSpace) HeightPercent(num float64) *FSpace {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------

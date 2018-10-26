@@ -295,6 +295,14 @@ func (v *FImageView) CenterY() *FImageView {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FImageView) WidthPercent(num float64) *FImageView {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FImageView) HeightPercent(num float64) *FImageView {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FImageView) Src(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {

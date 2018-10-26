@@ -267,6 +267,14 @@ func (v *FFab) CenterY() *FFab {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FFab) WidthPercent(num float64) *FFab {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FFab) HeightPercent(num float64) *FFab {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 
 func (v *FFab) Icon(s string) *FFab {

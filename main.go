@@ -6,5 +6,5 @@ func (a *MainActivity) OnCreate() {
 		Button(a).Text("second").Size(-1, -1).Top2BottomOf("bt1").SetId("bt2"),
 		Button(a).Text("right").Size(-1, -1).Left2RightOf("bt2").SetId("bt3").Top2BottomOf("bt2"),
 		Button(a).Text("center").Top2BottomOf("bt3").CenterX(),
-		Button(a).Text("centerY").Size(-2, -1).CenterY())
+		Button(a).Text("centerY").Size(-2, 0).CenterY().HeightPercent(0.5))
 }

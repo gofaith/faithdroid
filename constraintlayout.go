@@ -290,6 +290,14 @@ func (v *FConstraintLayout) CenterY() *FConstraintLayout {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FConstraintLayout) WidthPercent(num float64) *FConstraintLayout {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FConstraintLayout) HeightPercent(num float64) *FConstraintLayout {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FConstraintLayout) Append(vs ...IView) *FConstraintLayout {
 	var vids []string

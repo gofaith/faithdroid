@@ -276,6 +276,15 @@ func (v *FButton) CenterY() *FButton {
 	v.FBaseView.CenterY()
 	return v
 }
+
+func (v *FButton) WidthPercent(num float64) *FButton {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FButton) HeightPercent(num float64) *FButton {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FButton) Text(s string) *FButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

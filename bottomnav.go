@@ -284,6 +284,14 @@ func (v *FBottomNav) CenterY() *FBottomNav {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FBottomNav) WidthPercent(num float64) *FBottomNav {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FBottomNav) HeightPercent(num float64) *FBottomNav {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FBottomNav) Menus(mis ...interface{}) *FBottomNav {
 	v.MyMenu = mis

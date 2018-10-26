@@ -277,6 +277,14 @@ func (v *FRadioButton) CenterY() *FRadioButton {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FRadioButton) WidthPercent(num float64) *FRadioButton {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FRadioButton) HeightPercent(num float64) *FRadioButton {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FRadioButton) Text(s string) *FRadioButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

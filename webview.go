@@ -279,6 +279,14 @@ func (v *FWebView) CenterY() *FWebView {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FWebView) WidthPercent(num float64) *FWebView {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FWebView) HeightPercent(num float64) *FWebView {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 
 func (v *FWebView) loadUri(s string) *FWebView {

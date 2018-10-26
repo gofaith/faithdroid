@@ -286,6 +286,14 @@ func (v *FTextView) CenterY() *FTextView {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FTextView) WidthPercent(num float64) *FTextView {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FTextView) HeightPercent(num float64) *FTextView {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FTextView) Text(s string) *FTextView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)

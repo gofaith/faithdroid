@@ -285,6 +285,14 @@ func (v *FRadioGroup) CenterY() *FRadioGroup {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FRadioGroup) WidthPercent(num float64) *FRadioGroup {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FRadioGroup) HeightPercent(num float64) *FRadioGroup {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FRadioGroup) Append(vs ...*FRadioButton) *FRadioGroup {
 	v.Children = append(v.Children, vs...)

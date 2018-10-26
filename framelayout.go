@@ -286,6 +286,14 @@ func (v *FFrameLayout) CenterY() *FFrameLayout {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FFrameLayout) WidthPercent(num float64) *FFrameLayout {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FFrameLayout) HeightPercent(num float64) *FFrameLayout {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FFrameLayout) Append(vs ...IView) *FFrameLayout {
 	v.Children = append(v.Children, vs...)

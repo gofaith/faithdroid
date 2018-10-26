@@ -242,6 +242,24 @@ public class FView {
                 setUniversalAttr("Top2TopOf", "_Parent_");
                 setUniversalAttr("Bottom2BottomOf", "_Parent_");
                 break;
+            case "WidthPercent":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        lp.width = 0;
+                        lp.matchConstraintPercentWidth = Float.parseFloat(value);
+                    }
+                });
+                break;
+            case "HeightPercent":
+                afterConstraintFuncs.put(attr, new ConstraintInterface() {
+                    @Override
+                    public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        lp.height = 0;
+                        lp.matchConstraintPercentHeight = Float.parseFloat(value);
+                    }
+                });
+                break;
             default:
                 return false;
         }

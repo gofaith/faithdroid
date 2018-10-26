@@ -275,6 +275,14 @@ func (v *FCheckBox) CenterY() *FCheckBox {
 	v.FBaseView.CenterY()
 	return v
 }
+func (v *FCheckBox) WidthPercent(num float64) *FCheckBox {
+	v.FBaseView.WidthPercent(num)
+	return v
+}
+func (v *FCheckBox) HeightPercent(num float64) *FCheckBox {
+	v.FBaseView.HeightPercent(num)
+	return v
+}
 // --------------------------------------------------------
 func (v *FCheckBox) Text(s string) *FCheckBox {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)
