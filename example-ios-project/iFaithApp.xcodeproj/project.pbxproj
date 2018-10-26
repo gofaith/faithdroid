@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4EA13EE72182EE2C00CB6F66 /* ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA13EE62182EE2C00CB6F66 /* ConstraintLayout.swift */; };
+		4EA13EE92182FC1200CB6F66 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA13EE82182FC1200CB6F66 /* TextView.swift */; };
 		4EAFE06A2181525B008038BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0692181525B008038BF /* AppDelegate.swift */; };
 		4EAFE06C2181525B008038BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE06B2181525B008038BF /* ViewController.swift */; };
 		4EAFE06F2181525B008038BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAFE06D2181525B008038BF /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		4EA13EE62182EE2C00CB6F66 /* ConstraintLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintLayout.swift; sourceTree = "<group>"; };
+		4EA13EE82182FC1200CB6F66 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		4EAFE0662181525B008038BF /* iFaithApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFaithApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAFE0692181525B008038BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EAFE06B2181525B008038BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				4EAFE09E218154B9008038BF /* FrameLayout.swift */,
 				4EA13EE62182EE2C00CB6F66 /* ConstraintLayout.swift */,
 				4EAFE09C218153EB008038BF /* FView.swift */,
+				4EA13EE82182FC1200CB6F66 /* TextView.swift */,
 				4EAFE0A221815C4A008038BF /* LinearLayout.swift */,
 				4EAFE0A021815604008038BF /* Button.swift */,
 				4EAFE06D2181525B008038BF /* Main.storyboard */,
@@ -292,6 +295,7 @@
 				4EAFE0A321815C4A008038BF /* LinearLayout.swift in Sources */,
 				4EA13EE72182EE2C00CB6F66 /* ConstraintLayout.swift in Sources */,
 				4EAFE06A2181525B008038BF /* AppDelegate.swift in Sources */,
+				4EA13EE92182FC1200CB6F66 /* TextView.swift in Sources */,
 				4EAFE09D218153EB008038BF /* FView.swift in Sources */,
 				4EAFE09F218154B9008038BF /* FrameLayout.swift in Sources */,
 			);

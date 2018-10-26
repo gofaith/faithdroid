@@ -38,6 +38,8 @@ class UIBridge: NSObject, FaithdroidUIControllerProtocol {
             v = FFrameLayout().create(c: self)
         case "ConstraintLayout":
             v = FConstraintLayout().create(self)
+        case "TextView":
+            v = FTextView().create(c: self)
         default:
             break
         }
@@ -74,7 +76,7 @@ class UIBridge: NSObject, FaithdroidUIControllerProtocol {
     }
     
     func viewSetAttr(_ VID: String!, attr: String!, value: String!) {
-        print("set"+attr+":"+value)
+//        print("set"+attr+":"+value)
         if let v = viewMap[VID] {
             v.setAttr(attr: attr, value: value)
         }
