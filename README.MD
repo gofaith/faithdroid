@@ -1,6 +1,8 @@
 # 全新的Go语言Android GUI框架
 # New Android GUI lib for GO 
 
+# [Donate捐赠](https://jywjl.github.io/donate.html)
+
 - [中文文档](https://github.com/gofaith/faithdroid/wiki/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
 - [Wiki](https://github.com/gofaith/faithdroid/wiki)
 
