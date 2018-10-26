@@ -38,6 +38,7 @@ class FView {
                 }
             }
         }
+        view.layoutMargins = UIEdgeInsets.zero
     }
     func getUniversalAttr(attr:String) -> String? {
         return ""
@@ -46,17 +47,126 @@ class FView {
         switch attr {
         case "Size":
             parseSize(value)
-            return true
         case "BackgroundColor":
             setBackgroundColor(value)
-            return true
         case "LayoutGravity":
             setGravity(value)
-            return true
+        case "Top2TopOf":
+            afterAddedFuncs[attr] = {(p:FView)->Void in
+                if value == "_Parent_"{
+                    self.view.topAnchor.constraint(
+                        equalTo: p.view.topAnchor,
+                        constant: self.view.layoutMargins.top).isActive = true
+                    return
+                }
+                self.view.topAnchor.constraint(
+                    equalTo: self.parentBridge.viewMap[FaithdroidGetVidById(value)]!.view!.topAnchor,
+                    constant: self.view.layoutMargins.top).isActive = true
+            }
+        case "Top2BottomOf":
+            afterAddedFuncs[attr] = {(p:FView)->Void in
+                if value == "_Parent_"{
+                    self.view.topAnchor.constraint(
+                        equalTo: p.view.bottomAnchor,
+                        constant: self.view.layoutMargins.top).isActive = true
+                    return
+                }
+                self.view.topAnchor.constraint(
+                    equalTo: self.parentBridge.viewMap[FaithdroidGetVidById(value)]!.view!.bottomAnchor,
+                    constant: self.view.layoutMargins.top).isActive = true
+            }
+        case "Bottom2TopOf":
+            afterAddedFuncs[attr] = {(p:FView)->Void in
+                if value == "_Parent_"{
+                    self.view.bottomAnchor.constraint(
+                        equalTo: p.view.topAnchor,
+                        constant: self.view.layoutMargins.bottom).isActive = true
+                    return
+                }
+                self.view.bottomAnchor.constraint(
+                    equalTo: self.parentBridge.viewMap[FaithdroidGetVidById(value)]!.view!.topAnchor,
+                    constant: self.view.layoutMargins.bottom).isActive = true
+            }
+        case "Bottom2BottomOf":
+            afterAddedFuncs[attr] = {(p:FView)->Void in
+                if value == "_Parent_"{
+                    self.view.bottomAnchor.constraint(
+                        equalTo: p.view.bottomAnchor,
+                        constant: self.view.layoutMargins.bottom).isActive = true
+                    return
+                }
+                self.view.bottomAnchor.constraint(
+                    equalTo: self.parentBridge.viewMap[FaithdroidGetVidById(value)]!.view!.bottomAnchor,
+                    constant: self.view.layoutMargins.bottom).isActive = true
+            }
+        case "Left2LeftOf":
+            afterAddedFuncs[attr] = {(p:FView)->Void in
+                if value == "_Parent_"{
+                    self.view.leftAnchor.constraint(
+                        equalTo: p.view.leftAnchor,
+                        constant: self.view.layoutMargins.left).isActive = true
+                    return
+                }
+                self.view.leftAnchor.constraint(
+                    equalTo: self.parentBridge.viewMap[FaithdroidGetVidById(value)]!.view!.leftAnchor,
+                    constant: self.view.layoutMargins.left).isActive = true
+            }
+        case "Left2RightOf":
+            afterAddedFuncs[attr] = {(p:FView)->Void in
+                if value == "_Parent_"{
+                    self.view.leftAnchor.constraint(
+                        equalTo: p.view.rightAnchor,
+                        constant: self.view.layoutMargins.left).isActive = true
+                    return
+                }
+                self.view.leftAnchor.constraint(
+                    equalTo: self.parentBridge.viewMap[FaithdroidGetVidById(value)]!.view!.rightAnchor,
+                    constant: self.view.layoutMargins.left).isActive = true
+            }
+        case "Right2RightOf":
+            afterAddedFuncs[attr] = {(p:FView)->Void in
+                if value == "_Parent_"{
+                    self.view.rightAnchor.constraint(
+                        equalTo: p.view.rightAnchor,
+                        constant: self.view.layoutMargins.right).isActive = true
+                    return
+                }
+                self.view.rightAnchor.constraint(
+                    equalTo: self.parentBridge.viewMap[FaithdroidGetVidById(value)]!.view!.rightAnchor,
+                    constant: self.view.layoutMargins.right).isActive = true
+            }
+        case "Right2LeftOf":
+            afterAddedFuncs[attr] = {(p:FView)->Void in
+                if value == "_Parent_"{
+                    self.view.rightAnchor.constraint(
+                        equalTo: p.view.leftAnchor,
+                        constant: self.view.layoutMargins.right).isActive = true
+                    return
+                }
+                self.view.rightAnchor.constraint(
+                    equalTo: self.parentBridge.viewMap[FaithdroidGetVidById(value)]!.view!.leftAnchor,
+                    constant: self.view.layoutMargins.right).isActive = true
+            }
+        case "CenterX":
+            afterAddedFuncs[attr]={(p:FView)->Void in
+                self.view.centerXAnchor.constraint(equalTo: p.view.centerXAnchor).isActive = true
+            }
+        case "CenterY":
+            afterAddedFuncs[attr]={(p:FView)->Void in
+                self.view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor).isActive = true
+            }
+        case "WidthPercent":
+            afterAddedFuncs[attr]={(p:FView)->Void in
+                self.view.widthAnchor.constraint(equalTo: p.view.widthAnchor, multiplier: CGFloat.init(Float(value)!)).isActive = true
+            }
+        case "HeightPercent":
+            afterAddedFuncs[attr]={(p:FView)->Void in
+                self.view.heightAnchor.constraint(equalTo: p.view.heightAnchor, multiplier: CGFloat.init(Float(value)!)).isActive = true
+            }
         default:
-            break
+            return false
         }
-        return false
+        return true
     }
     func setAttr(attr:String,value:String)  {
         

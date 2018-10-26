@@ -32,6 +32,12 @@ class UIBridge: NSObject, FaithdroidUIControllerProtocol {
         switch viewName {
         case "Button":
             v = FButton().create(c:self)
+        case "LinearLayout":
+            v = FLinearLayout().create(c: self)
+        case "FrameLayout":
+            v = FFrameLayout().create(c: self)
+        case "ConstraintLayout":
+            v = FConstraintLayout().create(self)
         default:
             break
         }
