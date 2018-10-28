@@ -5,6 +5,8 @@
 
 # [Donate捐赠](https://jywjl.github.io/donate.html)
 
+! 正在添加iOS支持，敬请期待 !
+
 - [中文文档](https://github.com/gofaith/faithdroid/wiki/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
 - [Wiki](https://github.com/gofaith/faithdroid/wiki)
 
