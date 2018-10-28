@@ -246,6 +246,10 @@ public class FView {
                 afterConstraintFuncs.put(attr, new ConstraintInterface() {
                     @Override
                     public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("1")) {
+                            lp.width = -1;//matchParent
+                            return;
+                        }
                         lp.width = 0;
                         lp.matchConstraintPercentWidth = Float.parseFloat(value);
                     }
@@ -255,6 +259,10 @@ public class FView {
                 afterConstraintFuncs.put(attr, new ConstraintInterface() {
                     @Override
                     public void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp) {
+                        if (value.equals("1")) {
+                            lp.height = -1;//matchParent
+                            return;
+                        }
                         lp.height = 0;
                         lp.matchConstraintPercentHeight = Float.parseFloat(value);
                     }

@@ -42,6 +42,10 @@ public class FConstraintLayout extends FView implements AttrSettable,AttrGettabl
                     for (Map.Entry<String, ConstraintInterface> entry : f.afterConstraintFuncs.entrySet()) {
                         entry.getValue().addConstraint(this,lp);
                     }
+                    lp.leftMargin = f.margin[0];
+                    lp.topMargin = f.margin[1];
+                    lp.rightMargin = f.margin[2];
+                    lp.bottomMargin = f.margin[3];
                     v.addView(parentController.viewmap.get(vids[i]).view,lp);
                 }
                 break;
