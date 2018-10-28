@@ -1,5 +1,5 @@
 # 全新的Go语言Android GUI框架
-# New Android GUI lib for GO 
+New Android GUI lib for GO 
 
 ![logo](https://avatars2.githubusercontent.com/u/38978951?s=200&v=4)
 
