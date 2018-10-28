@@ -1,7 +1,7 @@
 package faithdroid
 
 type FClipboard struct {
-	FBaseView
+	FBase
 }
 
 func Clipboard(a IActivity) *FClipboard {

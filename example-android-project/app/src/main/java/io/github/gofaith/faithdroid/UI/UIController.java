@@ -288,7 +288,9 @@ public class UIController implements faithdroid.UIController{
         v.className =vName;
         v.vID=vID;
         viewmap.put(vID, v);
-        v.view.setId(ViewCompat.generateViewId());
+        if (v.view!=null){
+            v.view.setId(ViewCompat.generateViewId());
+        }
     }
 
     private void newActivity(String activityConfig) {
