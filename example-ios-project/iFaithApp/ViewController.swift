@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         let rWidth = Int(self.view.frame.width)
         let rHeight = Int(self.view.frame.height) - navHeight
         rootView.frame = CGRect(x: 0, y: navHeight, width: rWidth, height: rHeight)
-        rootView.backgroundColor = UIColor.yellow
+        rootView.backgroundColor = UIColor.white
         self.view.addSubview(rootView)
         return rootView
     }
