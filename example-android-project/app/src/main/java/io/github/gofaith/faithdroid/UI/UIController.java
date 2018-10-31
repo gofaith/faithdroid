@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -432,6 +433,10 @@ public class UIController implements faithdroid.UIController{
                     e.printStackTrace();
                     return "[]";
                 }
+            case "UniqueID":
+                String android_id = Settings.Secure.getString(activity.getContentResolver(),
+                        Settings.Secure.ANDROID_ID);
+                return android_id;
         }
         return null;
     }

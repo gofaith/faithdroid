@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f119847-3239-4ea5-9589-d834192e7539" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bottomnav.go" beforeDir="false" afterPath="$PROJECT_DIR$/bottomnav.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/button.go" beforeDir="false" afterPath="$PROJECT_DIR$/button.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkbox.go" beforeDir="false" afterPath="$PROJECT_DIR$/checkbox.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constraintlayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/constraintlayout.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edittext.go" beforeDir="false" afterPath="$PROJECT_DIR$/edittext.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-android-project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example-android-project/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fab.go" beforeDir="false" afterPath="$PROJECT_DIR$/fab.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framelayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/framelayout.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hscrollview.go" beforeDir="false" afterPath="$PROJECT_DIR$/hscrollview.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageview.go" beforeDir="false" afterPath="$PROJECT_DIR$/imageview.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linearlayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/linearlayout.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/listview.go" beforeDir="false" afterPath="$PROJECT_DIR$/listview.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/radiobutton.go" beforeDir="false" afterPath="$PROJECT_DIR$/radiobutton.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/radiogroup.go" beforeDir="false" afterPath="$PROJECT_DIR$/radiogroup.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/space.go" beforeDir="false" afterPath="$PROJECT_DIR$/space.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spinner.go" beforeDir="false" afterPath="$PROJECT_DIR$/spinner.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/switch.go" beforeDir="false" afterPath="$PROJECT_DIR$/switch.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tablayout.go" beforeDir="false" afterPath="$PROJECT_DIR$/tablayout.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/textview.go" beforeDir="false" afterPath="$PROJECT_DIR$/textview.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/toolbar.go" beforeDir="false" afterPath="$PROJECT_DIR$/toolbar.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/viewpager.go" beforeDir="false" afterPath="$PROJECT_DIR$/viewpager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vscrollview.go" beforeDir="false" afterPath="$PROJECT_DIR$/vscrollview.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webview.go" beforeDir="false" afterPath="$PROJECT_DIR$/webview.go" afterDir="false" />
-    </list>
+    <list default="true" id="6f119847-3239-4ea5-9589-d834192e7539" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,14 +12,14 @@
     <session id="-1153036295">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="6" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -77,7 +52,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/radiogroup.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
+            <state relative-caret-position="4074">
               <caret line="291" column="61" selection-start-line="291" selection-start-column="61" selection-end-line="291" selection-end-column="61" />
             </state>
           </provider>
@@ -86,7 +61,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/space.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
+            <state relative-caret-position="3962">
               <caret line="283" column="4" selection-start-line="283" selection-start-column="4" selection-end-line="283" selection-end-column="4" />
             </state>
           </provider>
@@ -95,7 +70,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spinner.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
+            <state relative-caret-position="3962">
               <caret line="283" column="57" selection-start-line="283" selection-start-column="57" selection-end-line="283" selection-end-column="57" />
             </state>
           </provider>
@@ -104,7 +79,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/switch.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
+            <state relative-caret-position="3948">
               <caret line="282" selection-start-line="282" selection-end-line="282" />
             </state>
           </provider>
@@ -113,7 +88,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tablayout.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
+            <state relative-caret-position="4074">
               <caret line="291" column="59" selection-start-line="291" selection-start-column="59" selection-end-line="291" selection-end-column="59" />
             </state>
           </provider>
@@ -122,7 +97,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/textview.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
+            <state relative-caret-position="4088">
               <caret line="292" column="58" selection-start-line="292" selection-start-column="58" selection-end-line="292" selection-end-column="58" />
             </state>
           </provider>
@@ -131,7 +106,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/toolbar.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
+            <state relative-caret-position="3836">
               <caret line="274" column="57" selection-start-line="274" selection-start-column="57" selection-end-line="274" selection-end-column="57" />
             </state>
           </provider>
@@ -140,7 +115,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/viewpager.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
+            <state relative-caret-position="4088">
               <caret line="294" column="59" selection-start-line="294" selection-start-column="59" selection-end-line="294" selection-end-column="59" />
             </state>
           </provider>
@@ -149,7 +124,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vscrollview.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
+            <state relative-caret-position="4088">
               <caret line="292" column="63" selection-start-line="292" selection-start-column="63" selection-end-line="292" selection-end-column="63" />
             </state>
           </provider>
@@ -273,6 +248,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -284,14 +260,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="ui&#9;FILE&#9;file:///home/asd/go/src/github.com/gofaith/faithdroid/ui.go" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../faithtop" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
@@ -308,9 +283,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="0" width="1926" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20117396" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20330843" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -542,63 +516,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/radiogroup.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
+        <state relative-caret-position="4074">
           <caret line="291" column="61" selection-start-line="291" selection-start-column="61" selection-end-line="291" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/space.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
+        <state relative-caret-position="3962">
           <caret line="283" column="4" selection-start-line="283" selection-start-column="4" selection-end-line="283" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spinner.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
+        <state relative-caret-position="3962">
           <caret line="283" column="57" selection-start-line="283" selection-start-column="57" selection-end-line="283" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/switch.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
+        <state relative-caret-position="3948">
           <caret line="282" selection-start-line="282" selection-end-line="282" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tablayout.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
+        <state relative-caret-position="4074">
           <caret line="291" column="59" selection-start-line="291" selection-start-column="59" selection-end-line="291" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/textview.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
+        <state relative-caret-position="4088">
           <caret line="292" column="58" selection-start-line="292" selection-start-column="58" selection-end-line="292" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/toolbar.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
+        <state relative-caret-position="3836">
           <caret line="274" column="57" selection-start-line="274" selection-start-column="57" selection-end-line="274" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/viewpager.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
+        <state relative-caret-position="4088">
           <caret line="294" column="59" selection-start-line="294" selection-start-column="59" selection-end-line="294" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vscrollview.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
+        <state relative-caret-position="4088">
           <caret line="292" column="63" selection-start-line="292" selection-start-column="63" selection-end-line="292" selection-end-column="63" />
         </state>
       </provider>

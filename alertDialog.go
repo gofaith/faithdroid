@@ -18,7 +18,7 @@ func (v *FAlertDialog) Title(s string) *FAlertDialog {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)
 	return v
 }
-func (v *FAlertDialog) View(iv IView) *FAlertDialog {
+func (v *FAlertDialog) Append(iv IView) *FAlertDialog {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "View", iv.GetViewId())
 	return v
 }
