@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/StevenZack/tools/fileToolkit"
 
@@ -45,9 +47,46 @@ func main() {
 	case "build_arm*":
 		c = exec.Command("gomobile", "bind", "--target=android/arm,android/arm64", "-o", "example-android-project/faithdroid/faithdroid.aar", curPath)
 	case "new":
-		c = exec.Command("copy", "-r", fileToolkit.Getrpath(gopath)+"github.com/gofaith/faithdroid", ".")
+		e=os.Mkdir("faithdroid", 0755)
+		if e !=nil {
+			fmt.Println(`os.Mkdir ./faithdroid/ error :`,e)
+			return
+		}
+		fs, e := listDir(fileToolkit.Getrpath(gopath) + "github.com/gofaith/faithdroid/")
+		if e != nil {
+			fmt.Println(`ls error :`, e)
+			return
+		}
+		for _, v := range fs {
+			c = exec.Command("cp", "-r", fileToolkit.Getrpath(gopath)+"github.com/gofaith/faithdroid/"+v, "faithdroid")
+			c.Stdin = os.Stdin
+			c.Stdout = os.Stdout
+			c.Stderr = os.Stderr
+			e = c.Run()
+			if e != nil {
+				fmt.Println(`command.Run error :`, e)
+				continue
+			}
+		}
+		return
 	case "update":
-		c = exec.Command("copy", "-r", fileToolkit.Getrpath(gopath)+"github.com/gofaith/faithdroid/*", ".")
+		fs, e := listDir(fileToolkit.Getrpath(gopath) + "github.com/gofaith/faithdroid/")
+		if e != nil {
+			fmt.Println(`ls error :`, e)
+			return
+		}
+		for _, v := range fs {
+			c = exec.Command("cp", "-r", fileToolkit.Getrpath(gopath)+"github.com/gofaith/faithdroid/"+v, ".")
+			c.Stdin = os.Stdin
+			c.Stdout = os.Stdout
+			c.Stderr = os.Stderr
+			e = c.Run()
+			if e != nil {
+				fmt.Println(`command.Run error :`, e)
+				continue
+			}
+		}
+		return
 	}
 	c.Stdin = os.Stdin
 	c.Stdout = os.Stdout
@@ -57,4 +96,15 @@ func main() {
 		fmt.Println(`command.Run() error :`, e)
 		return
 	}
+}
+func listDir(dir string) ([]string, error) {
+	c := exec.Command("ls", dir)
+	buf := bytes.NewBufferString("")
+	c.Stdout = buf
+	e := c.Run()
+	if e != nil {
+		return nil, e
+	}
+	ss := strings.Split(buf.String(), "\n")
+	return ss[:len(ss)-2], nil
 }
