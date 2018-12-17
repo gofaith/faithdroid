@@ -159,9 +159,12 @@ func OpenFileChooser(a IActivity, selectType string, allowMultiple bool, callbac
 		fnId,
 	}))
 }
-func backPressed(a IActivity) {
+func BackPressed(a IActivity) {
 	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "BackPressed", "")
 }
-func getUniqueID(a IActivity) string {
+func GetUniqueID(a IActivity) string {
 	return GlobalVars.UIs[a.GetMyActivity().UI].ViewGetAttr("Activity", "UniqueID")
+}
+func GetPackageName(a IActivity)string {
+	return GlobalVars.UIs[a.GetMyActivity().UI].GetPkg()
 }
