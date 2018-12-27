@@ -16,6 +16,7 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
     private RecyclerView v;
     private MyAdapter adapter;
     public String fnOnGetView,fnOnBindData,fnOnGetCount;
+    public String onItemClick,onItemLongClick;
     public FListView(UIController uiController, RecyclerView.LayoutManager lm) {
         parentController =uiController;
         v = new RecyclerView(parentController.activity);
@@ -55,11 +56,35 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
             case "NotifyDataSetChanged":
                 v.getAdapter().notifyDataSetChanged();
                 break;
+            case "OnItemClick":
+                onItemClick=value;
+                break;
+            case "OnItemLongClick":
+                onItemLongClick=value;
+                break;
         }
         return ;
     }
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         private FListView parentListView;
+        private OnItemClickListener mItemClickListener=new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view) {
+                if (parentListView.onItemClick==null||parentListView.onItemClick.equals(""))
+                    return;
+                int pos=parentListView.v.getChildAdapterPosition(view);
+                Faithdroid.triggerEventHandler(parentListView.onItemClick,String.valueOf(pos));
+            }
+
+            @Override
+            public void onItemLongClick(View view) {
+                if (parentListView.onItemLongClick==null||parentListView.onItemLongClick.equals(""))
+                    return;
+                int pos=parentListView.v.getChildAdapterPosition(view);
+                Faithdroid.triggerEventHandler(parentListView.onItemLongClick,String.valueOf(pos));
+            }
+        };
+
         public class ViewHolder extends RecyclerView.ViewHolder {
             public FView fView;
             public String str;
@@ -83,7 +108,21 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
                 JSONObject object = (JSONObject) (new JSONTokener(viewGot).nextValue());
                 FView v = parentListView.parentController.viewmap.get(object.getString("VID"));
                 v.view.setLayoutParams(FFrameLayout.parseLP(v));
-                return new ViewHolder(v,viewGot);
+                MyAdapter.ViewHolder vh = new ViewHolder(v, viewGot);
+                vh.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mItemClickListener.onItemClick(v);
+                    }
+                });
+                vh.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        mItemClickListener.onItemLongClick(v);
+                        return true;
+                    }
+                });
+                return vh;
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -116,5 +155,8 @@ public class FListView extends FView implements AttrGettable,AttrSettable{
             return 0;
         }
     }
-
+    public static interface OnItemClickListener {
+        void onItemClick(View view);
+        void onItemLongClick(View view);
+    }
 }

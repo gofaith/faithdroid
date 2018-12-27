@@ -132,16 +132,6 @@ func (v *FTabLayout) CachedBackground(s string) *FTabLayout {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FTabLayout) onClick(f func()) *FTabLayout {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
-
 func (v *FTabLayout) Visible() *FTabLayout {
 	v.FBaseView.Visible()
 	return v
@@ -228,12 +218,7 @@ func (v *FTabLayout) OnTouch(f func(TouchEvent)) *FTabLayout {
 	return v
 }
 func (v *FTabLayout) OnClick(f func()) *FTabLayout {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FTabLayout) Clickable(b bool) *FTabLayout {
@@ -293,6 +278,7 @@ func (v *FTabLayout) HeightPercent(num float64) *FTabLayout {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // ------------------------------------------------------------
 
 type FTab struct {
@@ -315,5 +301,13 @@ func (v *FTabLayout) Tabs(ts ...*FTab) *FTabLayout {
 	for _, t := range ts {
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddTab", JsonObject(t))
 	}
+	return v
+}
+func (v *FTabLayout) TabTextColors(normal, selected string) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TabTextColors", JsonArray([]string{normal, selected}))
+	return v
+}
+func (v *FTabLayout) TabIndicatorColor(color string) *FTabLayout {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TabIndicatorColor", color)
 	return v
 }

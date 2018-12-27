@@ -11,6 +11,7 @@ type UIController interface {
 }
 type FBaseView struct {
 	FBase
+	srcCachedBackground,srcCachedForeground string
 }
 type FBase struct {
 	VID, ClassName string
@@ -30,10 +31,13 @@ func (v *FBaseView) Background(s string) {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
 		go DownloadNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/tmp/", func(f string) {
 			fnID := NewToken()
-			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+			fn := func(string) string {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Background", "file://"+f)
 				return ""
 			}
+			GlobalVars.EventHandlersMapLock.Lock()
+			GlobalVars.EventHandlersMap[fnID] = fn
+			GlobalVars.EventHandlersMapLock.Unlock()
 			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return
@@ -43,11 +47,18 @@ func (v *FBaseView) Background(s string) {
 func (v *FBaseView) CachedBackground(s string) {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
 		go CacheNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/cacheDir/", func(f string) {
+			if v.srcCachedBackground=="file://"+f{
+				return
+			}
 			fnID := NewToken()
-			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+			fn := func(string) string {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Background", "file://"+f)
+				v.srcCachedBackground = "file://" + f
 				return ""
 			}
+			GlobalVars.EventHandlersMapLock.Lock()
+			GlobalVars.EventHandlersMap[fnID] = fn
+			GlobalVars.EventHandlersMapLock.Unlock()
 			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return
@@ -58,10 +69,13 @@ func (v *FBaseView) Foreground(s string) {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
 		go DownloadNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/tmp/", func(f string) {
 			fnID := NewToken()
-			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+			fn:= func(string) string {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Foreground", "file://"+f)
 				return ""
 			}
+			GlobalVars.EventHandlersMapLock.Lock()
+			GlobalVars.EventHandlersMap[fnID] =fn
+			GlobalVars.EventHandlersMapLock.Unlock()
 			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return
@@ -71,11 +85,18 @@ func (v *FBaseView) Foreground(s string) {
 func (v *FBaseView) CachedForeground(s string) {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
 		go CacheNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/cacheDir/", func(f string) {
+			if v.srcCachedForeground=="file://"+f{
+				return
+			}
 			fnID := NewToken()
-			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+			fn:=func(string) string {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Foreground", "file://"+f)
+				v.srcCachedForeground="file://"+f
 				return ""
 			}
+			GlobalVars.EventHandlersMapLock.Lock()	
+			GlobalVars.EventHandlersMap[fnID] = fn
+			GlobalVars.EventHandlersMapLock.Unlock()
 			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return
@@ -120,6 +141,17 @@ func (v *FBaseView) LayoutWeight(f int) {
 }
 func (v *FBaseView) Clickable(b bool) {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Clickable", SPrintf(b))
+}
+func (f *FBaseView) OnClick(ff func()) {
+	fnID := NewToken()
+	fn := func(string) string {
+		ff()
+		return ""
+	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnID] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
+	GlobalVars.UIs[f.UI].ViewSetAttr(f.VID, "OnClick", fnID)
 }
 
 //constraint

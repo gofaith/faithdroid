@@ -133,16 +133,6 @@ func (v *FTextView) CachedBackground(s string) *FTextView {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FTextView) onClick(f func()) *FTextView {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
-
 func (v *FTextView) Visible() *FTextView {
 	v.FBaseView.Visible()
 	return v
@@ -229,12 +219,7 @@ func (v *FTextView) OnTouch(f func(TouchEvent)) *FTextView {
 	return v
 }
 func (v *FTextView) OnClick(f func()) *FTextView {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FTextView) Clickable(b bool) *FTextView {

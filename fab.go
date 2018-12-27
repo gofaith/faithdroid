@@ -282,11 +282,6 @@ func (v *FFab) Icon(s string) *FFab {
 	return v
 }
 func (v *FFab) OnClick(f func()) *FFab {
-	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnId)
+	v.FBaseView.OnClick(f)
 	return v
 }

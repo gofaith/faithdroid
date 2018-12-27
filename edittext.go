@@ -219,12 +219,7 @@ func (v *FEditText) OnTouch(f func(TouchEvent)) *FEditText {
 	return v
 }
 func (v *FEditText) OnClick(f func()) *FEditText {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FEditText) Clickable(b bool) *FEditText {
@@ -300,7 +295,7 @@ func (v *FEditText) TextSize(dpsize int) *FEditText {
 func (v *FEditText) GetText() string {
 	return GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "Text")
 }
-func (v *FEditText) InputTypeText() *FEditText {
+func (v *FEditText) InputTypeSingleLineText() *FEditText {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "InputType", "Text")
 	return v
 }

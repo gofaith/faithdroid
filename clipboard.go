@@ -15,10 +15,13 @@ func Clipboard(a IActivity) *FClipboard {
 }
 func (v *FClipboard) OnChange(f func()) *FClipboard {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+	fn:=func(string) string {
 		f()
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnChange", fnId)
 	return v
 }

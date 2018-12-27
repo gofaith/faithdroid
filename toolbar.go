@@ -211,12 +211,7 @@ func (v *FToolbar) OnTouch(f func(TouchEvent)) *FToolbar {
 	return v
 }
 func (v *FToolbar) OnClick(f func()) *FToolbar {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FToolbar) Clickable(b bool) *FToolbar {
@@ -276,13 +271,28 @@ func (v *FToolbar) HeightPercent(num float64) *FToolbar {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // ----------------------------------------------------------
 func (v *FToolbar) Title(s string) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Title", s)
 	return v
 }
-func (v *FToolbar) Subtitle(s string) *FToolbar {
+func (f *FToolbar) GetTitle() string {
+	return GlobalVars.UIs[f.UI].ViewGetAttr(f.VID, "Title")
+}
+func (v *FToolbar) TitleColor(color string) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "TitleColor", color)
+	return v
+}
+func (v *FToolbar) SubTitle(s string) *FToolbar {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SubTitle", s)
+	return v
+}
+func (f *FToolbar) GetSubTitle() string {
+	return GlobalVars.UIs[f.UI].ViewGetAttr(f.VID, "SubTitle")
+}
+func (v *FToolbar) SubTitleColor(color string) *FToolbar {
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "SubTitleColor", color)
 	return v
 }
 func (v *FToolbar) Menus(mis ...interface{}) *FToolbar {
@@ -300,10 +310,13 @@ func (v *FToolbar) NavigationIcon(i string) *FToolbar {
 }
 func (v *FToolbar) OnNavigationIconClick(f func()) *FToolbar {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+	fn:=func(string) string {
 		f()
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NavigationOnClick", fnId)
 	return v
 }

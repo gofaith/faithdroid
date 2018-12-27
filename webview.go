@@ -15,6 +15,9 @@ func WebView(a IActivity) *FWebView {
 }
 func WebViewItem(a IActivity, uri string) *FWebView {
 	w := WebView(a)
+	if len(uri) > 0 && uri[:1] == "/" {
+		uri = "file://" + uri
+	}
 	return w.Focusable(false).BackgroundColor(Colors.Transparent).Size(-1, -1).loadUri(uri)
 }
 func (vh *ViewHolder) GetWebViewByItemId(id string) *FWebView {
@@ -222,12 +225,7 @@ func (v *FWebView) OnTouch(f func(TouchEvent)) *FWebView {
 	return v
 }
 func (v *FWebView) OnClick(f func()) *FWebView {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FWebView) Clickable(b bool) *FWebView {
@@ -287,6 +285,7 @@ func (v *FWebView) HeightPercent(num float64) *FWebView {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // --------------------------------------------------------
 
 func (v *FWebView) loadUri(s string) *FWebView {
@@ -428,9 +427,12 @@ func (v *FWebView) HandleUrl(m map[string]func(string) bool) *FWebView {
 	ms := make(map[string]string)
 	for k, h := range m {
 		fnId := NewToken()
-		GlobalVars.EventHandlersMap[fnId] = func(url string) string {
+		fn:=func(url string) string {
 			return SPrintf(h(url))
 		}
+		GlobalVars.EventHandlersMapLock.Lock()
+		GlobalVars.EventHandlersMap[fnId] = fn
+		GlobalVars.EventHandlersMapLock.Unlock()
 		ms[k] = fnId
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "HandleUrl", JsonObject(ms))
@@ -438,10 +440,13 @@ func (v *FWebView) HandleUrl(m map[string]func(string) bool) *FWebView {
 }
 func (v *FWebView) OnDownload(f func(string)) *FWebView {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(url string) string {
+	fn:=func(url string) string {
 		f(url)
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "DownloadListener", fnId)
 	return v
 }

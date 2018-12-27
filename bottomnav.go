@@ -132,15 +132,6 @@ func (v *FBottomNav) CachedBackground(s string) *FBottomNav {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FBottomNav) onClick(f func()) *FBottomNav {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
 
 func (v *FBottomNav) Visible() *FBottomNav {
 	v.FBaseView.Visible()
@@ -228,12 +219,7 @@ func (v *FBottomNav) OnTouch(f func(TouchEvent)) *FBottomNav {
 	return v
 }
 func (v *FBottomNav) OnClick(f func()) *FBottomNav {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FBottomNav) Clickable(b bool) *FBottomNav {

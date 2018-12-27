@@ -133,15 +133,6 @@ func (v *FLinearLayout) CachedBackground(s string) *FLinearLayout {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FLinearLayout) onClick(f func()) *FLinearLayout {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
 
 func (v *FLinearLayout) Visible() *FLinearLayout {
 	v.FBaseView.Visible()
@@ -229,12 +220,7 @@ func (v *FLinearLayout) OnTouch(f func(TouchEvent)) *FLinearLayout {
 	return v
 }
 func (v *FLinearLayout) OnClick(f func()) *FLinearLayout {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FLinearLayout) Clickable(b bool) *FLinearLayout {
@@ -294,10 +280,14 @@ func (v *FLinearLayout) HeightPercent(num float64) *FLinearLayout {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // --------------------------------------------------------
 func (v *FLinearLayout) Append(vs ...IView) *FLinearLayout {
 	v.Children = append(v.Children, vs...)
 	for _, i := range vs {
+		if i == nil {
+			continue
+		}
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())
 	}
 	if v.showAfter {

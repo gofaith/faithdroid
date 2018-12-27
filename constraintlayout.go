@@ -137,15 +137,6 @@ func (v *FConstraintLayout) CachedBackground(s string) *FConstraintLayout {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FConstraintLayout) onClick(f func()) *FConstraintLayout {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
 
 func (v *FConstraintLayout) Visible() *FConstraintLayout {
 	v.FBaseView.Visible()
@@ -233,12 +224,7 @@ func (v *FConstraintLayout) OnTouch(f func(TouchEvent)) *FConstraintLayout {
 	return v
 }
 func (v *FConstraintLayout) OnClick(f func()) *FConstraintLayout {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FConstraintLayout) Clickable(b bool) *FConstraintLayout {
@@ -298,10 +284,14 @@ func (v *FConstraintLayout) HeightPercent(num float64) *FConstraintLayout {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // --------------------------------------------------------
 func (v *FConstraintLayout) Append(vs ...IView) *FConstraintLayout {
 	var vids []string
 	for _, i := range vs {
+		if i == nil {
+			continue
+		}
 		vids = append(vids, i.GetViewId())
 	}
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Append", strings.Join(vids, ","))

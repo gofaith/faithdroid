@@ -135,15 +135,6 @@ func (v *FViewPager) CachedBackground(s string) *FViewPager {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FViewPager) onClick(f func()) *FViewPager {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
 
 func (v *FViewPager) Visible() *FViewPager {
 	v.FBaseView.Visible()
@@ -231,12 +222,7 @@ func (v *FViewPager) OnTouch(f func(TouchEvent)) *FViewPager {
 	return v
 }
 func (v *FViewPager) OnClick(f func()) *FViewPager {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FViewPager) Clickable(b bool) *FViewPager {
@@ -319,7 +305,7 @@ func (v *FViewPager) Pages(ps ...*FPage) *FViewPager {
 }
 func (v *FViewPager) OnGetPage(getView func(pos int) IView, getCount func() int) *FViewPager {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
+	fn:=func(s string) string {
 		i, e := a2i(s)
 		if e != nil {
 			print("OnCreateView():", e.Error())
@@ -327,10 +313,14 @@ func (v *FViewPager) OnGetPage(getView func(pos int) IView, getCount func() int)
 		}
 		return getView(i).GetViewId()
 	}
-	fnId2 := NewToken()
-	GlobalVars.EventHandlersMap[fnId2] = func(string) string {
+	fn2:=func(string) string {
 		return SPrintf(getCount())
 	}
+	fnId2 := NewToken()
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMap[fnId2] = fn2
+	GlobalVars.EventHandlersMapLock.Unlock()
 
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnCreateView", fnId)
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId2)
@@ -352,7 +342,7 @@ func (v *FViewPager) CurrentItem(i int, soomth bool) *FViewPager {
 }
 func (v *FViewPager) OnPageSelected(f func(i int)) *FViewPager {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
+	fn:=func(s string) string {
 		i, e := a2i(s)
 		if e != nil {
 			fmt.Println("OnPageSelected() a2i error:", e)
@@ -361,6 +351,9 @@ func (v *FViewPager) OnPageSelected(f func(i int)) *FViewPager {
 		f(i)
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnPageSelected", fnId)
 	return v
 }

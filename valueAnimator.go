@@ -27,10 +27,13 @@ func (v *FValueAnimator) Duration(ms int64) *FValueAnimator {
 }
 func (v *FValueAnimator) OnValueChanged(f func(string)) *FValueAnimator {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
+	fn:=func(s string) string {
 		f(s)
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "ValueChangedListener", fnId)
 	return v
 }

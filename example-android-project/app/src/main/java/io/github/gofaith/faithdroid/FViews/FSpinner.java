@@ -38,6 +38,8 @@ public class FSpinner extends FView implements AttrGettable,AttrSettable {
             // ------------------------------------------
             case "Enabled":
                 return String.valueOf(v.isEnabled());
+            case "SelectedIndex":
+                return String.valueOf(v.getSelectedItemPosition());
         }
         return "";
     }

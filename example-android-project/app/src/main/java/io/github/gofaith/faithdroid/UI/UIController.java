@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -55,6 +57,7 @@ import io.github.gofaith.faithdroid.FViews.FLinearLayout;
 import io.github.gofaith.faithdroid.FViews.FListView;
 import io.github.gofaith.faithdroid.FViews.FPermission;
 import io.github.gofaith.faithdroid.FViews.FPopupMenu;
+import io.github.gofaith.faithdroid.FViews.FProgressBar;
 import io.github.gofaith.faithdroid.FViews.FRadioButton;
 import io.github.gofaith.faithdroid.FViews.FRadioGroup;
 import io.github.gofaith.faithdroid.FViews.FService;
@@ -91,6 +94,9 @@ public class UIController implements faithdroid.UIController{
     public List<Runnable> onDestroyEvent = new ArrayList<>();
     public Map<String, Drawable> drawableMap = new HashMap<>();
     private int FILE_SELECT_CODE=7125;
+
+    public boolean notFinishFlag;
+    public String onBackgPressedFn;
 
     public UIController(AppCompatActivity a, FrameLayout main_ctn,faithdroid.Activity factivity) {
         this.activity=a;
@@ -164,48 +170,38 @@ public class UIController implements faithdroid.UIController{
                 newActivity(vID);
                 return;
             case "LinearLayout":
-                FLinearLayout fLinearLayout = new FLinearLayout(this);
-                v=fLinearLayout;
+                v= new FLinearLayout(this);
                 break;
             case "FrameLayout":
-                FFrameLayout fFrameLayout = new FFrameLayout(this);
-                v=fFrameLayout;
+                v= new FFrameLayout(this);
                 break;
             case "TextView":
-                FTextView textView = new FTextView(this);
-                v=textView;
+                v= new FTextView(this);
                 break;
             case "Button":
-                FButton button = new FButton(this);
-                v=button;
+                v= new FButton(this);
                 break;
             case "EditText":
-                FEditText editText = new FEditText(this);
-                v=editText;
+                v= new FEditText(this);
                 break;
             case "VListView":
                 LinearLayoutManager llm = new LinearLayoutManager(activity);
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
-                FListView listView = new FListView(this, llm);
-                v=listView;
+                v= new FListView(this, llm);
                 break;
             case "HListView":
                 LinearLayoutManager hllm = new LinearLayoutManager(activity);
                 hllm.setOrientation(LinearLayoutManager.HORIZONTAL);
-                FListView hlistView = new FListView(this, hllm);
-                v=hlistView;
+                v= new FListView(this, hllm);
                 break;
             case "Toolbar":
-                FToolbar fToolbar = new FToolbar(this);
-                v=fToolbar;
+                v= new FToolbar(this);
                 break;
             case "TabLayout":
-                FTabLayout fTabLayout = new FTabLayout(this);
-                v=fTabLayout;
+                v= new FTabLayout(this);
                 break;
             case "ViewPager":
-                FViewPager fViewPager = new FViewPager(this);
-                v=fViewPager;
+                v= new FViewPager(this);
                 break;
             case "PopupMenu":
                 try {
@@ -219,71 +215,58 @@ public class UIController implements faithdroid.UIController{
                 }
                 return;
             case "Snackbar":
-                FSnackbar fSnackbar = new FSnackbar(this, rootView);
-                v=fSnackbar;
+                v= new FSnackbar(this, rootView);
                 break;
             case "AlertDialog":
-                FAlertDialog fAlertDialog = new FAlertDialog(this);
-                v=fAlertDialog;
+                v= new FAlertDialog(this);
                 break;
             case "Fab":
-                FFab fFab = new FFab(this);
-                v=fFab;
+                v= new FFab(this);
                 break;
             case "Space":
-                FSpace space = new FSpace(this);
-                v=space;
+                v= new FSpace(this);
                 break;
             case "ImageView":
-                FImageView imageView = new FImageView(this);
-                v=imageView;
+                v= new FImageView(this);
                 break;
             case "WebView":
-                FWebView webView = new FWebView(this);
-                v=webView;
+                v= new FWebView(this);
                 break;
             case "Switch":
-                FSwitch fSwitch = new FSwitch(this);
-                v=fSwitch;
+                v= new FSwitch(this);
                 break;
             case "ValueAnimator":
-                FValueAnimator valueAnimator = new FValueAnimator(this);
-                v=valueAnimator;
+                v= new FValueAnimator(this);
                 break;
             case "Spinner":
-                FSpinner spinner = new FSpinner(this);
-                v = spinner;
+                v = new FSpinner(this);
                 break;
             case "VScrollView":
-                FVScrollView fvScrollView = new FVScrollView(this);
-                v = fvScrollView;
+                v = new FVScrollView(this);
                 break;
             case "HScrollView":
-                FHScrollView fhScrollView = new FHScrollView(this);
-                v = fhScrollView;
+                v = new FHScrollView(this);
                 break;
             case "BottomNav":
-                FBottomNav fBottomNav = new FBottomNav(this);
-                v = fBottomNav;
+                v = new FBottomNav(this);
                 break;
             case "Clipboard":
-                FClipboard clipboard = new FClipboard(this);
-                v = clipboard;
+                v = new FClipboard(this);
                 break;
             case "RadioGroup":
-                FRadioGroup fRadioGroup = new FRadioGroup(this);
-                v = fRadioGroup;
+                v = new FRadioGroup(this);
                 break;
             case "RadioButton":
-                FRadioButton fRadioButton = new FRadioButton(this);
-                v = fRadioButton;
+                v=new FRadioButton(this);
                 break;
             case "CheckBox":
-                FCheckBox fCheckBox = new FCheckBox(this);
-                v = fCheckBox;
+                v=new FCheckBox(this);
                 break;
             case "ConstraintLayout":
                 v = new FConstraintLayout(this);
+                break;
+            case "ProgressBar":
+                v = new FProgressBar(this);
                 break;
         }
         v.className =vName;
@@ -485,6 +468,9 @@ public class UIController implements faithdroid.UIController{
                     onActivityResults.put(FILE_SELECT_CODE, new OnActivityResultListener() {
                         @Override
                         public void onActivityResult(Intent data) {
+                            if (data == null) {
+                                return;
+                            }
                             Uri uri = data.getData();
                             JSONArray array1 = new JSONArray();
                             try {
@@ -537,6 +523,38 @@ public class UIController implements faithdroid.UIController{
                 break;
             case "BackPressed":
                 activity.onBackPressed();
+                break;
+            case "StatusBarColor":
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    try {
+                        activity.getWindow().setStatusBarColor(Color.parseColor(value));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            case "NavigationBarColor":
+                try{
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        activity.getWindow().setNavigationBarColor(Color.parseColor(value));
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            case "NotFinishFlag":
+                notFinishFlag = value.equals("true");
+                break;
+            case "FinishAllActivity":
+                Intent i = new Intent("uibro");
+                i.putExtra("action", "quit");
+                LocalBroadcastManager.getInstance(activity).sendBroadcast(i);
+                break;
+            case "KillAll":
+                CoreService.killAll();
+                break;
+            case "OnBackPressed":
+                onBackgPressedFn = value;
                 break;
         }
     }

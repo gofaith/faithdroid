@@ -13,7 +13,7 @@ func CheckSelfPermission(a IActivity, permission string) bool {
 }
 func RequestPermissions(a IActivity, perms []string, onResult func([]bool)) {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
+	fn:=func(s string) string {
 		if onResult != nil {
 			var bs []bool
 			UnJson(s, &bs)
@@ -21,6 +21,9 @@ func RequestPermissions(a IActivity, perms []string, onResult func([]bool)) {
 		}
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Permission", "RequestPermissions", fnId+":"+strings.Join(perms, "#")+":"+NewNumToken())
 }
 

@@ -1,5 +1,7 @@
 package faithdroid
 
+import "strconv"
+
 type FSpinner struct {
 	FBaseView
 }
@@ -220,12 +222,7 @@ func (v *FSpinner) OnTouch(f func(TouchEvent)) *FSpinner {
 	return v
 }
 func (v *FSpinner) OnClick(f func()) *FSpinner {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FSpinner) Clickable(b bool) *FSpinner {
@@ -285,6 +282,7 @@ func (v *FSpinner) HeightPercent(num float64) *FSpinner {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // --------------------------------------------------------
 
 func (v *FSpinner) Enabled(b bool) *FSpinner {
@@ -322,7 +320,7 @@ func (v *FSpinner) ListRemove(i int) *FSpinner {
 
 func (v *FSpinner) OnItemClick(f func(int)) *FSpinner {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
+	fn:=func(s string) string {
 		i, e := a2i(s)
 		if e != nil {
 			return ""
@@ -330,6 +328,17 @@ func (v *FSpinner) OnItemClick(f func(int)) *FSpinner {
 		f(i)
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnItemClick", fnId)
 	return v
+}
+func (v *FSpinner) GetSelectedIndex() int {
+	s := GlobalVars.UIs[v.UI].ViewGetAttr(v.VID, "SelectedIndex")
+	i, e := strconv.ParseInt(s, 10, 64)
+	if e != nil {
+		return 0
+	}
+	return int(i)
 }

@@ -41,12 +41,15 @@ func (c *ActivityConfig) PutExtra(key, value string) *ActivityConfig {
 }
 func StartActivity(a IActivity, createView func(IActivity), conf *ActivityConfig) {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(uId string) string {
+	fn:=func(uId string) string {
 		if createView != nil {
 			createView(GlobalVars.UIs[uId].GetCurrentFActivity())
 		}
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	if conf == nil {
 		conf = NewActivityConfig()
 	}

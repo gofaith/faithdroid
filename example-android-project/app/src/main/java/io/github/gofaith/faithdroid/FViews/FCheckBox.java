@@ -12,6 +12,7 @@ import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FCheckBox extends FView implements AttrGettable, AttrSettable {
     private CheckBox v;
+    String onChange;
 
     public FCheckBox(UIController controller) {
         parentController = controller;
@@ -69,12 +70,18 @@ public class FCheckBox extends FView implements AttrGettable, AttrSettable {
                 }
                 break;
             case "OnCheckedChangeListener":
-                v.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Faithdroid.triggerEventHandler(value, String.valueOf(isChecked));
-                    }
-                });
+                if (onChange==null ){
+                    v.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            Faithdroid.triggerEventHandler(onChange, String.valueOf(isChecked));
+                        }
+                    });
+                }
+                onChange=value;
+                break;
+            case "Checked":
+                v.setChecked(value.equals("true"));
                 break;
         }
     }

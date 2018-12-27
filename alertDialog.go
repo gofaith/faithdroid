@@ -24,20 +24,26 @@ func (v *FAlertDialog) Append(iv IView) *FAlertDialog {
 }
 func (v *FAlertDialog) PositiveButton(text string, onClick func(*FAlertDialog)) *FAlertDialog {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+	fn:=func(string) string {
 		onClick(v)
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "PositiveButton", JsonArray([]string{text, fnId}))
 	return v
 }
 
 func (v *FAlertDialog) NegativeButton(text string, onClick func(*FAlertDialog)) *FAlertDialog {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+	fn:=func(string) string {
 		onClick(v)
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NegativeButton", JsonArray([]string{text, fnId}))
 	return v
 }

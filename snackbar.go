@@ -19,10 +19,13 @@ func (v *FSnackbar) Text(s string) *FSnackbar {
 }
 func (v *FSnackbar) Action(s string, onClick func()) *FSnackbar {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+	fn:=func(string) string {
 		onClick()
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Action", JsonArray([]string{s, fnId}))
 	return v
 }

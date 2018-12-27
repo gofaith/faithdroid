@@ -133,15 +133,6 @@ func (v *FFrameLayout) CachedBackground(s string) *FFrameLayout {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FFrameLayout) onClick(f func()) *FFrameLayout {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
 
 func (v *FFrameLayout) Visible() *FFrameLayout {
 	v.FBaseView.Visible()
@@ -229,12 +220,7 @@ func (v *FFrameLayout) OnTouch(f func(TouchEvent)) *FFrameLayout {
 	return v
 }
 func (v *FFrameLayout) OnClick(f func()) *FFrameLayout {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FFrameLayout) Clickable(b bool) *FFrameLayout {
@@ -298,6 +284,9 @@ func (v *FFrameLayout) HeightPercent(num float64) *FFrameLayout {
 func (v *FFrameLayout) Append(vs ...IView) *FFrameLayout {
 	v.Children = append(v.Children, vs...)
 	for _, i := range vs {
+		if i == nil {
+			continue
+		}
 		GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "AddView", i.GetViewId())
 	}
 	if v.showAfter {

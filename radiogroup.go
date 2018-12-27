@@ -132,15 +132,6 @@ func (v *FRadioGroup) CachedBackground(s string) *FRadioGroup {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FRadioGroup) onClick(f func()) *FRadioGroup {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
 
 func (v *FRadioGroup) Visible() *FRadioGroup {
 	v.FBaseView.Visible()
@@ -228,12 +219,7 @@ func (v *FRadioGroup) OnTouch(f func(TouchEvent)) *FRadioGroup {
 	return v
 }
 func (v *FRadioGroup) OnClick(f func()) *FRadioGroup {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FRadioGroup) Clickable(b bool) *FRadioGroup {
@@ -314,7 +300,7 @@ func (v *FRadioGroup) IsVertical() bool {
 }
 func (v *FRadioGroup) OnCheckedChange(f func(int, *FRadioButton)) *FRadioGroup {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(vid string) string {
+	fn:=func(vid string) string {
 		for k, v := range v.Children {
 			if v.VID == vid {
 				f(k, v)
@@ -323,6 +309,9 @@ func (v *FRadioGroup) OnCheckedChange(f func(int, *FRadioButton)) *FRadioGroup {
 		}
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnCheckedChange", fnId)
 	return v
 }

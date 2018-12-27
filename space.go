@@ -219,12 +219,7 @@ func (v *FSpace) OnTouch(f func(TouchEvent)) *FSpace {
 	return v
 }
 func (v *FSpace) OnClick(f func()) *FSpace {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FSpace) Clickable(b bool) *FSpace {

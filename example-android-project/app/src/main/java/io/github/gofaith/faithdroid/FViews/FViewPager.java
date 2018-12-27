@@ -22,13 +22,15 @@ import java.util.List;
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.UI.AttrGettable;
 import io.github.gofaith.faithdroid.UI.AttrSettable;
+import io.github.gofaith.faithdroid.UI.DemoObjectFragment;
 import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FViewPager extends FView implements AttrSettable, AttrGettable {
     private FaithCollectionPagerAdapter adapter;
     public ViewPager v;
-    List<FPage> pages = new ArrayList<>();
+    public List<FPage> pages = new ArrayList<>();
     public String onCreateView,onGetCount,onPageSelected;
+    public FTabLayout bindFTabLayout;
     public FViewPager(UIController controller) {
         parentController = controller;
         v = new ViewPager(parentController.activity);
@@ -95,6 +97,7 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
                 FView o = parentController.viewmap.get(value);
                 if (o==null)break;
                 FTabLayout fTabLayout=(FTabLayout)o;
+                bindFTabLayout=fTabLayout;
                 fTabLayout.v.setupWithViewPager(v);
                 break;
             case "OnCreateView":
@@ -127,8 +130,8 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
         }
     }
     // ------------------
-    class FPage{
-        String vid;
+   public class FPage{
+        public String vid;
     }
     class FaithCollectionPagerAdapter extends FragmentStatePagerAdapter {
         private final FViewPager fviewPager;
@@ -137,6 +140,7 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
             super(fm);
             this.fviewPager =fViewPager;
         }
+
         @Override
         public Fragment getItem(int i) {
             Fragment fragment = new DemoObjectFragment().setFviewPager(fviewPager);
@@ -158,40 +162,10 @@ public class FViewPager extends FView implements AttrSettable, AttrGettable {
         }
         @Override
         public CharSequence getPageTitle(int position) {
-            return "OBJECT " + (position + 1);
-        }
-    }
-    public static class DemoObjectFragment extends Fragment {
-        public static final String ARG_OBJECT = "object";
-        private FViewPager fviewPager;
-
-        public DemoObjectFragment setFviewPager(FViewPager fviewPager) {
-            this.fviewPager=fviewPager;
-            return this;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            Bundle args = getArguments();
-            int i=args.getInt(ARG_OBJECT);
-            if (fviewPager.onCreateView != null && !fviewPager.onCreateView.equals("")) {
-                Log.d("TAG", "onCreateView: 1");
-                String vid = Faithdroid.triggerEventHandler(fviewPager.onCreateView, String.valueOf(i));
-                if (fviewPager.parentController.viewmap.containsKey(vid)) {
-                    Log.d("TAG", "onCreateView: 2");
-                    FView cview = fviewPager.parentController.viewmap.get(vid);
-                    if (cview != null) {
-                        Log.d("TAG", "onCreateView: 3");
-                        return cview.view;
-                    }
-                }
+            if (bindFTabLayout==null||bindFTabLayout.tabsList.size()<=position){
+                return "Page "+position;
             }
-            if (fviewPager.pages.size() <= i) {
-                return null;
-            }
-            FPage p = fviewPager.pages.get(i);
-            View rootView=fviewPager.parentController.viewmap.get(Faithdroid.triggerEventHandler(p.vid,"")).view;
-            return rootView;
+            return bindFTabLayout.tabsList.get(position);
         }
     }
 }

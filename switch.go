@@ -218,12 +218,7 @@ func (v *FSwitch) OnTouch(f func(TouchEvent)) *FSwitch {
 	return v
 }
 func (v *FSwitch) OnClick(f func()) *FSwitch {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FSwitch) Clickable(b bool) *FSwitch {
@@ -310,7 +305,7 @@ func (v *FSwitch) IsChecked() bool {
 }
 func (v *FSwitch) OnCheckedChangeListener(f func(bool)) *FSwitch {
 	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(s string) string {
+	fn:=func(s string) string {
 		if s == "true" {
 			f(true)
 		} else {
@@ -318,6 +313,9 @@ func (v *FSwitch) OnCheckedChangeListener(f func(bool)) *FSwitch {
 		}
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnID] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnCheckedChangeListener", fnID)
 	return v
 }

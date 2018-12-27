@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,6 +16,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -75,7 +77,7 @@ public class Toolkit {
         }
     }
     public interface OnDrawableReadyListener{
-         void onDrawableReady(Drawable d);
+        void onDrawableReady(Drawable d);
     }
     public static void file2Drawable(final UIController parentUIController, String value, final OnDrawableReadyListener listener) {
         if (value.startsWith("http")) {
@@ -127,6 +129,8 @@ public class Toolkit {
             listener.onDrawableReady( parentUIController.activity.getResources().getDrawable(R.drawable.ripple));
         } else if (value.startsWith("fdrawable://")) {
             listener.onDrawableReady( parentUIController.drawableMap.get(value));
+        }else if(value.equals("RadiusCorner")){
+            listener.onDrawableReady(parentUIController.activity.getResources().getDrawable(R.drawable.radius_corner));
         }
     }
     public static String getPath(Context context, Uri uri) throws URISyntaxException {
@@ -234,7 +238,7 @@ public class Toolkit {
     }
 
     public static void saveDrawable(Drawable drawable, Bitmap.CompressFormat format,String path) {
-        Bitmap bitmap = drawableToBitmap(drawable);
+        Bitmap bitmap = getBitmapFromDrawable(drawable);
         saveBitmap(bitmap, format,path);
     }
     public static Bitmap drawableToBitmap(Drawable drawable) {
@@ -242,11 +246,22 @@ public class Toolkit {
             return null;
         return ((BitmapDrawable)drawable).getBitmap();
     }
+    @NonNull
+    static private Bitmap getBitmapFromDrawable(@NonNull Drawable drawable) {
+        final Bitmap bmp = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bmp);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bmp;
+    }
     public static void saveBitmap(Bitmap bitmap, Bitmap.CompressFormat format, String path) {
         // 创建一个位于SD卡上的文件
         File file = new File(path);
-        FileOutputStream out = null;
         try{
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            FileOutputStream out = null;
             // 打开指定文件输出流
             out = new FileOutputStream(file);
             // 将位图输出到指定文件

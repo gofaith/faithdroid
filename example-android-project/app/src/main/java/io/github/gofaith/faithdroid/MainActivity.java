@@ -1,9 +1,13 @@
 package io.github.gofaith.faithdroid;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,11 +24,12 @@ import io.github.gofaith.faithdroid.UI.UIController;
 
 import static io.github.gofaith.faithdroid.UI.Toolkit.parseMenu;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     private FrameLayout rootview;
     private faithdroid.MainActivity a;
     private String TAG=this.getClass().getName();
     private UIController parentUIController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +38,27 @@ public class MainActivity extends AppCompatActivity {
         a=new faithdroid.MainActivity();
         parentUIController =new UIController(this, rootview,null);
         a.setUIInterface(parentUIController);
-
         handleIntent();
         a.onCreate();
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getStringExtra("action").equals("quit")){
+                    if (parentUIController.notFinishFlag) {
+                        parentUIController.notFinishFlag = false;
+                    }else {
+                        finish();
+                    }
+                }
+            }
+        },new IntentFilter("uibro"));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (parentUIController.onBackgPressedFn==null||Faithdroid.triggerEventHandler(parentUIController.onBackgPressedFn,"").equals("true")){
+            super.onBackPressed();
+        }
     }
 
     private void handleIntent() {

@@ -4,11 +4,15 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import faithdroid.Faithdroid;
 import io.github.gofaith.faithdroid.R;
@@ -19,7 +23,7 @@ import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FTabLayout extends FView implements AttrSettable, AttrGettable {
     public TabLayout v;
-
+    public List<String> tabsList = new ArrayList<>();
     public FTabLayout(UIController controller) {
         parentController =controller;
         v = new TabLayout(parentController.activity);
@@ -69,6 +73,7 @@ public class FTabLayout extends FView implements AttrSettable, AttrGettable {
                     String icon = object.getString("Icon");
                     String text = object.getString("Text");
                     final TabLayout.Tab tab=v.newTab();
+                    tabsList.add(text);
                     tab.setText(text);
                     if (!icon.equals("")) {
                         Toolkit.file2Drawable(parentController, icon, new Toolkit.OnDrawableReadyListener() {

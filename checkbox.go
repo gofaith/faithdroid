@@ -218,12 +218,7 @@ func (v *FCheckBox) OnTouch(f func(TouchEvent)) *FCheckBox {
 	return v
 }
 func (v *FCheckBox) OnClick(f func()) *FCheckBox {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FCheckBox) Clickable(b bool) *FCheckBox {
@@ -283,6 +278,7 @@ func (v *FCheckBox) HeightPercent(num float64) *FCheckBox {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // --------------------------------------------------------
 func (v *FCheckBox) Text(s string) *FCheckBox {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)
@@ -317,7 +313,7 @@ func (v *FCheckBox) IsChecked() bool {
 }
 func (v *FCheckBox) OnCheckedChangeListener(f func(bool)) *FCheckBox {
 	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(s string) string {
+	fn := func(s string) string {
 		if s == "true" {
 			f(true)
 		} else {
@@ -325,6 +321,9 @@ func (v *FCheckBox) OnCheckedChangeListener(f func(bool)) *FCheckBox {
 		}
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnID]=fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnCheckedChangeListener", fnID)
 	return v
 }

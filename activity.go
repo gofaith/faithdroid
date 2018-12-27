@@ -1,9 +1,12 @@
 package faithdroid
 
+import "fmt"
+
 //Activity
 type Activity struct {
-	UI       string
-	MyIntent Intent
+	UI                                                        string
+	MyIntent                                                  Intent
+	OnCreateFn, OnResumeFn, OnPauseFn, OnStartFn, OnDestroyFn func()
 }
 
 func (a Activity) GetContext() string {
@@ -88,15 +91,29 @@ func (a *Activity) SetUIInterface(u UIController) string {
 	return uId
 }
 func (a *Activity) OnCreate() {
-
+	if a.OnCreateFn != nil {
+		a.OnCreateFn()
+	}
 }
 func (a *Activity) OnResume() {
+	if a.OnResumeFn != nil {
+		a.OnResumeFn()
+	}
 }
 func (a *Activity) OnPause() {
+	if a.OnPauseFn != nil {
+		a.OnPauseFn()
+	}
 }
 func (a *Activity) OnStart() {
+	if a.OnStartFn != nil {
+		a.OnStartFn()
+	}
 }
 func (a *Activity) OnDestroy() {
+	if a.OnDestroyFn != nil {
+		a.OnDestroyFn()
+	}
 }
 
 func Finish(a IActivity) {
@@ -107,10 +124,13 @@ func ShowToast(a IActivity, s string) {
 }
 func RunOnUIThread(a IActivity, f func()) {
 	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+	fn := func(string) string {
 		f()
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	GlobalVars.UIs[a.GetMyActivity().UI].RunUIThread(fnId)
 }
 func ScanFile(a IActivity, fpath string) {
@@ -139,32 +159,37 @@ func GetInstalledApps(a IActivity) []App {
 func SaveDrawableToPNGFile(a IActivity, drawableID, distPath string) {
 	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "SaveDrawableToPNGFile", JsonArray([]string{drawableID, distPath}))
 }
-func OpenFileChooser(a IActivity, selectType string, allowMultiple bool, callback func([]string)) {
-	if !CheckSelfPermission(a, Permissions.READ_EXTERNAL_STORAGE) {
-		RequestPermissions(a, []string{Permissions.READ_EXTERNAL_STORAGE}, func(bs []bool) {
-			OpenFileChooser(a, selectType, allowMultiple, callback)
-		})
-		return
-	}
-	fnId := NewToken()
-	GlobalVars.EventHandlersMap[fnId] = func(s string) string {
-		var as []string
-		UnJson(s, &as)
-		callback(as)
-		return ""
-	}
-	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "OpenFileChooser", JsonArray([]string{
-		selectType,
-		SPrintf(allowMultiple),
-		fnId,
-	}))
-}
 func BackPressed(a IActivity) {
 	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "BackPressed", "")
 }
 func GetUniqueID(a IActivity) string {
 	return GlobalVars.UIs[a.GetMyActivity().UI].ViewGetAttr("Activity", "UniqueID")
 }
-func GetPackageName(a IActivity)string {
+func GetPackageName(a IActivity) string {
 	return GlobalVars.UIs[a.GetMyActivity().UI].GetPkg()
+}
+func SetStatusBarColor(a IActivity, color string) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "StatusBarColor", color)
+}
+func SetNavigationBarColor(a IActivity, color string) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "NavigationBarColor", color)
+}
+func SetNotFinishFlag(a IActivity, b bool) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "NotFinishFlag", fmt.Sprint(b))
+}
+func FinishAllActivity(a IActivity) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "FinishAllActivity", "")
+}
+func KillAll(a IActivity) {
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "KillAll", "")
+}
+func SetOnBackPressed(a IActivity, f func() bool) {
+	fnID := NewToken()
+	fn := func(string) string {
+		return fmt.Sprint(f())
+	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnID] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
+	GlobalVars.UIs[a.GetMyActivity().UI].ViewSetAttr("Activity", "OnBackPressed", fnID)
 }

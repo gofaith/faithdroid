@@ -1,9 +1,13 @@
 package io.github.gofaith.faithdroid;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +33,7 @@ public class SingleInstanceActivity extends AppCompatActivity {
     private UIController parentUIController;
     private String TAG=this.getClass().getName();
 
+    public boolean notFinishFlag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,19 @@ public class SingleInstanceActivity extends AppCompatActivity {
 
         a.onCreate();
         Faithdroid.triggerEventHandler(fnId, uId);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getStringExtra("action").equals("quit")){
+                    if (parentUIController.notFinishFlag) {
+                        parentUIController.notFinishFlag = false;
+                    }else {
+                        finish();
+                    }
+                }
+            }
+        },new IntentFilter("uibro"));
     }
     private void handleIntent() {
         Intent intent=getIntent();
@@ -122,4 +140,12 @@ public class SingleInstanceActivity extends AppCompatActivity {
             parentUIController.onActivityResults.get(requestCode).onActivityResult(data);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (parentUIController.onBackgPressedFn==null||Faithdroid.triggerEventHandler(parentUIController.onBackgPressedFn,"").equals("true")){
+            super.onBackPressed();
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package io.github.gofaith.faithdroid.FViews;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,6 +14,7 @@ import io.github.gofaith.faithdroid.UI.UIController;
 
 public class FToolbar extends FView implements AttrSettable,AttrGettable {
     private Toolbar v;
+    private String navigationIconSrc;
     public FToolbar(UIController controller) {
         parentController =controller;
         v = (Toolbar) parentController.activity.getLayoutInflater().inflate(R.layout.my_toolbar, parentController.rootView, false);
@@ -29,6 +31,10 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
         }
         switch (attr){
                 //----------------------------------------------
+            case "Title":
+                return (String) v.getTitle();
+            case "SubTitle":
+                return (String) v.getSubtitle();
         }
         return "";
     }
@@ -43,8 +49,14 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
             case "Title":
                 parentController.activity.getSupportActionBar().setTitle(value);
                 break;
+            case "TitleColor":
+                v.setTitleTextColor(Color.parseColor(value));
+                break;
             case "SubTitle":
                 parentController.activity.getSupportActionBar().setSubtitle(value);
+                break;
+            case "SubTitleColor":
+                v.setSubtitleTextColor(Color.parseColor(value));
                 break;
             case "Menu":
                 parentController.optionMenus=value;
@@ -61,6 +73,9 @@ public class FToolbar extends FView implements AttrSettable,AttrGettable {
                 parentController.activity.getSupportActionBar().setDisplayHomeAsUpEnabled(value.equals("true"));
                 break;
             case "NavigationIcon":
+                if (navigationIconSrc != null && value.equals(navigationIconSrc)) {
+                    break;
+                }
                 Toolkit.file2Drawable(parentController, value, new Toolkit.OnDrawableReadyListener() {
                     @Override
                     public void onDrawableReady(Drawable drawable) {

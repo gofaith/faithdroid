@@ -19,10 +19,13 @@ func MenuItem(title string) *FMenuItem {
 func (m *FMenuItem) OnClick(f func()) *FMenuItem {
 	fnId := NewToken()
 	m.MyOnClick = fnId
-	GlobalVars.EventHandlersMap[fnId] = func(string) string {
+	fn:=func(string) string {
 		f()
 		return ""
 	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
 	return m
 }
 func (m *FMenuItem) Icon(s string) *FMenuItem {

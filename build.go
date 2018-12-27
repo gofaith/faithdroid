@@ -4,9 +4,9 @@ type FBuild struct {
 	FBase
 }
 
-func GetBuild(a *Activity) *FBuild {
+func GetBuild(a IActivity) *FBuild {
 	f := &FBuild{}
-	f.UI = a.UI
+	f.UI = a.GetMyActivity().UI
 	return f
 }
 func (v *FBuild) Model() string {

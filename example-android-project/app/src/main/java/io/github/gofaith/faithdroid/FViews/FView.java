@@ -30,11 +30,12 @@ import io.github.gofaith.faithdroid.UI.UIController;
 public class FView {
     public String className,vID,TAG="FView";
     public View view;
-    protected UIController parentController;
+    public UIController parentController;
     public int[] margin=new int[4];
     public int layoutGravity;
     public float layoutWeight;
     public int[] size = new int[]{-2, -2};
+    private String onclickFn;
     public Map<String, ConstraintInterface> afterConstraintFuncs = new HashMap<>();
     interface ConstraintInterface{
         void addConstraint(FConstraintLayout parent, ConstraintLayout.LayoutParams lp);
@@ -127,12 +128,15 @@ public class FView {
                 setOnTouchListener(value);
                 break;
             case "OnClick":
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Faithdroid.triggerEventHandler(value, "");
-                    }
-                });
+                if (onclickFn==null) {
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Faithdroid.triggerEventHandler(onclickFn, "");
+                        }
+                    });
+                }
+                onclickFn=value;
                 break;
             case "Clickable":
                 view.setClickable(value.equals("true"));
@@ -291,7 +295,6 @@ public class FView {
             p.width= ViewGroup.LayoutParams.WRAP_CONTENT;
         } else if (width == -2) {
             p.width= ViewGroup.LayoutParams.MATCH_PARENT;
-            setLayoutWeight("1");
         }else{
             p.width = (int) dp2pixel(parentController.activity, width);
         }
@@ -299,7 +302,6 @@ public class FView {
             p.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         } else if (height == -2) {
             p.height = ViewGroup.LayoutParams.MATCH_PARENT;
-            setLayoutWeight("1");
         }else{
             p.height = (int) dp2pixel(parentController.activity, height);
         }
@@ -316,7 +318,6 @@ public class FView {
     }
 
     void setBackgroundColor(String value) {
-        Log.d(TAG, "setBackgroundColor: "+value);
         if (value==null)
             return;
         if (value.equals("#0000000")) {
@@ -345,7 +346,6 @@ public class FView {
                 }
             }
         });
-
         if (value.equals("RippleEffect")) {
             view.setClickable(true);
         }

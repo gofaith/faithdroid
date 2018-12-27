@@ -133,15 +133,6 @@ func (v *FVScrollView) CachedBackground(s string) *FVScrollView {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FVScrollView) onClick(f func()) *FVScrollView {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
 
 func (v *FVScrollView) Visible() *FVScrollView {
 	v.FBaseView.Visible()
@@ -229,12 +220,7 @@ func (v *FVScrollView) OnTouch(f func(TouchEvent)) *FVScrollView {
 	return v
 }
 func (v *FVScrollView) OnClick(f func()) *FVScrollView {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FVScrollView) Clickable(b bool) *FVScrollView {

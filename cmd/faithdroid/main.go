@@ -47,28 +47,7 @@ func main() {
 	case "build_arm*":
 		c = exec.Command("gomobile", "bind", "--target=android/arm,android/arm64", "-o", "example-android-project/faithdroid/faithdroid.aar", curPath)
 	case "new":
-		e = os.Mkdir("faithdroid", 0755)
-		if e != nil {
-			fmt.Println(`os.Mkdir ./faithdroid/ error :`, e)
-			return
-		}
-		fs, e := listDir(fileToolkit.Getrpath(gopath) + "github.com/gofaith/faithdroid/")
-		if e != nil {
-			fmt.Println(`ls error :`, e)
-			return
-		}
-		for _, v := range fs {
-			c = exec.Command("cp", "-r", fileToolkit.Getrpath(gopath)+"github.com/gofaith/faithdroid/"+v, "faithdroid")
-			c.Stdin = os.Stdin
-			c.Stdout = os.Stdout
-			c.Stderr = os.Stderr
-			e = c.Run()
-			if e != nil {
-				fmt.Println(`command.Run error :`, e)
-				continue
-			}
-		}
-		return
+		c = exec.Command("cp", "-r", fileToolkit.Getrpath(gopath)+"github.com/gofaith/faithdroid", ".")
 	case "update":
 		fs, e := listDir(fileToolkit.Getrpath(gopath) + "github.com/gofaith/faithdroid/")
 		if e != nil {
@@ -86,9 +65,6 @@ func main() {
 				continue
 			}
 		}
-		return
-	default:
-		fmt.Println("command not found")
 		return
 	}
 	c.Stdin = os.Stdin

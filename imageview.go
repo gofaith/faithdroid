@@ -2,6 +2,7 @@ package faithdroid
 
 type FImageView struct {
 	FBaseView
+	mysrc string
 }
 
 func ImageView(a IActivity) *FImageView {
@@ -238,12 +239,7 @@ func (v *FImageView) OnTouch(f func(TouchEvent)) *FImageView {
 	return v
 }
 func (v *FImageView) OnClick(f func()) *FImageView {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FImageView) Clickable(b bool) *FImageView {
@@ -303,15 +299,20 @@ func (v *FImageView) HeightPercent(num float64) *FImageView {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // --------------------------------------------------------
 func (v *FImageView) Src(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
 		go DownloadNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/tmp/", func(f string) {
 			fnID := NewToken()
-			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+			fn := func(string) string {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", "file://"+f)
+				v.mysrc = "file://" + f
 				return ""
 			}
+			GlobalVars.EventHandlersMapLock.Lock()
+			GlobalVars.EventHandlersMap[fnID] = fn
+			GlobalVars.EventHandlersMapLock.Unlock()
 			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return v
@@ -322,11 +323,18 @@ func (v *FImageView) Src(s string) *FImageView {
 func (v *FImageView) CachedSrc(s string) *FImageView {
 	if len(s) > len("https://") && s[:len("http")] == "http" {
 		go CacheNetFile(s, "/data/data/"+GlobalVars.UIs[v.UI].GetPkg()+"/cacheDir/", func(f string) {
+			if "file://"+f == v.mysrc {
+				return
+			}
 			fnID := NewToken()
-			GlobalVars.EventHandlersMap[fnID] = func(string) string {
+			fn := func(string) string {
 				GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Src", "file://"+f)
+				v.mysrc = "file://" + f
 				return ""
 			}
+			GlobalVars.EventHandlersMapLock.Lock()
+			GlobalVars.EventHandlersMap[fnID] = fn
+			GlobalVars.EventHandlersMapLock.Unlock()
 			GlobalVars.UIs[v.UI].RunUIThread(fnID)
 		})
 		return v

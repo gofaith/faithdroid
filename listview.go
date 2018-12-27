@@ -1,5 +1,10 @@
 package faithdroid
 
+import (
+	"fmt"
+	"strconv"
+)
+
 type FListView struct {
 	FBaseView
 	Vh ViewHolder
@@ -50,15 +55,14 @@ func VListView(a IActivity, getView func(lv *FListView) IView, bindData func(vh 
 	v.Vh.Vlist = make(map[string]string)
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
-	fnId1 := NewToken()
-	GlobalVars.EventHandlersMap[fnId1] = func(string) string {
+	fnId1 := NewToken() 
+	fnId2 := NewToken()
+	fnId3 := NewToken()
+	fn1:=func(string) string {
 		v.Vh.VID = getView(v).GetViewId()
 		return JsonObject(v.Vh)
 	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
-
-	fnId2 := NewToken()
-	GlobalVars.EventHandlersMap[fnId2] = func(str string) string {
+	fn2:=func(str string) string {
 		obd := TypeOnBindDataArgsBundle{}
 		UnJson(str, &obd)
 		vh := ViewHolder{}
@@ -66,12 +70,17 @@ func VListView(a IActivity, getView func(lv *FListView) IView, bindData func(vh 
 		bindData(&vh, obd.Position)
 		return ""
 	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
-
-	fnId3 := NewToken()
-	GlobalVars.EventHandlersMap[fnId3] = func(str string) string {
+	fn3:=func(str string) string {
 		return SPrintf(getCount())
 	}
+	
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId1] =fn1
+	GlobalVars.EventHandlersMap[fnId2] = fn2
+	GlobalVars.EventHandlersMap[fnId3] = fn3
+	GlobalVars.EventHandlersMapLock.Unlock()
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
@@ -83,15 +92,14 @@ func HListView(a IActivity, getView func(lv *FListView) IView, bindData func(vh 
 	v.Vh.Vlist = make(map[string]string)
 	GlobalVars.UIs[v.UI].NewView(v.ClassName, v.VID)
 	GlobalVars.ViewMap[v.VID] = v
-	fnId1 := NewToken()
-	GlobalVars.EventHandlersMap[fnId1] = func(string) string {
+	fnId1 := NewToken() 
+	fnId2 := NewToken()
+	fnId3 := NewToken()
+	fn1:=func(string) string {
 		v.Vh.VID = getView(v).GetViewId()
 		return JsonObject(v.Vh)
 	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
-
-	fnId2 := NewToken()
-	GlobalVars.EventHandlersMap[fnId2] = func(str string) string {
+	fn2:=func(str string) string {
 		obd := TypeOnBindDataArgsBundle{}
 		UnJson(str, &obd)
 		vh := ViewHolder{}
@@ -99,12 +107,17 @@ func HListView(a IActivity, getView func(lv *FListView) IView, bindData func(vh 
 		bindData(&vh, obd.Position)
 		return ""
 	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
-
-	fnId3 := NewToken()
-	GlobalVars.EventHandlersMap[fnId3] = func(str string) string {
+	fn3:=func(str string) string {
 		return SPrintf(getCount())
 	}
+	
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnId1] =fn1
+	GlobalVars.EventHandlersMap[fnId2] = fn2
+	GlobalVars.EventHandlersMap[fnId3] = fn3
+	GlobalVars.EventHandlersMapLock.Unlock()
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetView", fnId1)
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnBindData", fnId2)
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnGetCount", fnId3)
 	return v
 }
@@ -200,15 +213,6 @@ func (v *FListView) CachedBackground(s string) *FListView {
 	v.FBaseView.CachedBackground(s)
 	return v
 }
-func (v *FListView) onClick(f func()) *FListView {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
-	return v
-}
 
 func (v *FListView) Visible() *FListView {
 	v.FBaseView.Visible()
@@ -296,12 +300,7 @@ func (v *FListView) OnTouch(f func(TouchEvent)) *FListView {
 	return v
 }
 func (v *FListView) OnClick(f func()) *FListView {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FListView) Clickable(b bool) *FListView {
@@ -361,8 +360,44 @@ func (v *FListView) HeightPercent(num float64) *FListView {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // --------------------------------------------------------------------
 func (v *FListView) NotifyDataSetChanged() *FListView {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "NotifyDataSetChanged", "")
+	return v
+}
+func (v *FListView) OnItemClick(h func(int)) *FListView {
+	fnID := NewToken()
+	fn:=func(s string) string {
+		pos, e := strconv.ParseInt(s, 10, 64)
+		if e != nil {
+			fmt.Println(`ListView.OnItemClick.parseInt error :`, e)
+			return ""
+		}
+		h(int(pos))
+		return ""
+	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnID] = fn
+	GlobalVars.EventHandlersMapLock.Unlock()
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnItemClick", fnID)
+	return v
+}
+
+func (v *FListView) OnItemLongClick(h func(int)) *FListView {
+	fnID := NewToken()
+	fn:= func(s string) string {
+		pos, e := strconv.ParseInt(s, 10, 64)
+		if e != nil {
+			fmt.Println(`ListView.OnItemLongClick.parseInt error :`, e)
+			return ""
+		}
+		h(int(pos))
+		return ""
+	}
+	GlobalVars.EventHandlersMapLock.Lock()
+	GlobalVars.EventHandlersMap[fnID] =fn
+	GlobalVars.EventHandlersMapLock.Unlock()
+	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnItemLongClick", fnID)
 	return v
 }

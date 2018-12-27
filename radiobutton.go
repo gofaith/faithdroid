@@ -220,12 +220,7 @@ func (v *FRadioButton) OnTouch(f func(TouchEvent)) *FRadioButton {
 	return v
 }
 func (v *FRadioButton) OnClick(f func()) *FRadioButton {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FRadioButton) Clickable(b bool) *FRadioButton {

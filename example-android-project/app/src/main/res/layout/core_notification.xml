@@ -10,12 +10,29 @@
         android:orientation="vertical"
         android:padding="5dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content"/>
+        android:background="#ffffff"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/ntf_title"
+            android:text="Title"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:text="SubTitle"
+            android:id="@+id/ntf_subtitle"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:text="quit"
         android:layout_weight="4"
+        android:background="@drawable/radius_corner"
+        android:textColor="#ffffff"
+        android:layout_margin="6dp"
         android:id="@+id/ntf_quit"
         android:layout_height="wrap_content" />
 </LinearLayout>

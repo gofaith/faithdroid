@@ -219,12 +219,7 @@ func (v *FButton) OnTouch(f func(TouchEvent)) *FButton {
 	return v
 }
 func (v *FButton) OnClick(f func()) *FButton {
-	fnID := NewToken()
-	GlobalVars.EventHandlersMap[fnID] = func(string) string {
-		f()
-		return ""
-	}
-	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "OnClick", fnID)
+	v.FBaseView.OnClick(f)
 	return v
 }
 func (v *FButton) Clickable(b bool) *FButton {
@@ -285,6 +280,7 @@ func (v *FButton) HeightPercent(num float64) *FButton {
 	v.FBaseView.HeightPercent(num)
 	return v
 }
+
 // --------------------------------------------------------
 func (v *FButton) Text(s string) *FButton {
 	GlobalVars.UIs[v.UI].ViewSetAttr(v.VID, "Text", s)
