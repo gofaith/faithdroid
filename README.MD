@@ -32,6 +32,10 @@ func (a *MainActivity) OnCreate() {
 
 ---
 
+## 使用Faithdroid开发的App
+
+[局域网精灵专业版](https://jywjl.github.io)
+
 ## Explore more
 
 - [中文文档](https://github.com/gofaith/faithdroid/wiki/%E7%9B%AE%E5%BD%95)
