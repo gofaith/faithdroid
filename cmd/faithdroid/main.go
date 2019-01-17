@@ -7,6 +7,8 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/StevenZack/openurl"
+
 	"github.com/StevenZack/tools/fileToolkit"
 
 	"github.com/StevenZack/tools/strToolkit"
@@ -46,8 +48,36 @@ func main() {
 		c = exec.Command("gomobile", "bind", "--target=android/arm", "-o", "example-android-project/faithdroid/faithdroid.aar", curPath)
 	case "build_arm*":
 		c = exec.Command("gomobile", "bind", "--target=android/arm,android/arm64", "-o", "example-android-project/faithdroid/faithdroid.aar", curPath)
+	case "build_apk":
+		e = os.Chdir("example-android-project")
+		if e != nil {
+			fmt.Println(`chdir error :`, e)
+			return
+		}
+		build := exec.Command("./gradlew", "assembleDebug")
+		build.Stdin = os.Stdin
+		build.Stderr = os.Stderr
+		build.Stdout = os.Stdout
+		e = build.Run()
+		if e != nil {
+			fmt.Println(`./gradlew error :`, e)
+			return
+		}
+		os.Chdir("..")
+		fmt.Println("OK")
+		openurl.Open("./example-android-project/app/build/outputs/apk/debug")
+		return
 	case "new":
 		c = exec.Command("cp", "-r", fileToolkit.Getrpath(gopath)+"github.com/gofaith/faithdroid", ".")
+		c.Stdin = os.Stdin
+		c.Stdout = os.Stdout
+		c.Stderr = os.Stderr
+		e = c.Run()
+		if e != nil {
+			fmt.Println(`new error :`, e)
+			return
+		}
+		return
 	case "update":
 		fs, e := listDir(fileToolkit.Getrpath(gopath) + "github.com/gofaith/faithdroid/")
 		if e != nil {
