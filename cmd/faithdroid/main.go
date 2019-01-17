@@ -19,12 +19,13 @@ func main() {
 	if len(args) < 1 {
 		fmt.Println("not enough args")
 		fmt.Println("examples:")
-		fmt.Println("1. faithdroid build_386")
+		fmt.Println("1. faithdroid build_386 // build faithdroid module for x86 platform")
 		fmt.Println("2. faithdroid build_arm64")
 		fmt.Println("3. faithdroid build_arm")
 		fmt.Println("4. faithdroid build_arm*")
-		fmt.Println("\n5. faithdroid new")
-		fmt.Println("6. faithdroid update")
+		fmt.Println("\n5. faithdroid new // create new faithdroid project")
+		fmt.Println("6. faithdroid update //")
+		fmt.Println("7. faithdroid build_apk  // build debug apk")
 		return
 	}
 	gopath := fileToolkit.Getrpath(os.Getenv("GOPATH")) + "src"
