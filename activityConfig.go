@@ -1,9 +1,9 @@
 package faithdroid
 
 type ActivityConfig struct {
-	MyLaunchMode string
-	MyFnId       string
-	MyIntent     Intent
+	MyLaunchMode string `json:"myLaunchMode"`
+	MyFnId       string `json:"myFnId"`
+	MyIntent     Intent `json:"myIntent"`
 }
 
 func NewActivityConfig() *ActivityConfig {

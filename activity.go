@@ -32,9 +32,9 @@ type IActivity interface {
 
 // Intent
 type Intent struct {
-	Action string
-	Paths  []string
-	Extras map[string]string
+	Action string            `json:"action"`
+	Paths  []string          `json:"paths"`
+	Extras map[string]string `json:"extras"`
 }
 
 var IntentActions = struct {
