@@ -1,4 +1,2 @@
-/example-android-project/faithdroid
 android/faithdroid
-/example-ios-project/Faithdroid.framework
-main.go
+/ios/Faithdroid.framework
