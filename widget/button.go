@@ -10,11 +10,11 @@ type FButton struct {
 	FBaseView
 }
 
-func Button(a interfaces.IActivity) *FButton {
+func Button(w interfaces.IWindow) *FButton {
 	v := &FButton{}
 	v.Vid = util.NewNumToken()
 	v.ClassName = vars.Button
-	v.UI = a.GetUI()
+	v.UI = w.GetUI()
 	v.UI.New(v.ClassName, v.Vid)
 	vars.SetView(v.Vid, v)
 	return v

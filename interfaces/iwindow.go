@@ -1,9 +1,7 @@
 package interfaces
 
-type IActivity interface {
+type IWindow interface {
 	OnCreate()
-	OnPause()
-	OnResume()
 	OnDestroy()
 	GetUI() UIBridge
 }
