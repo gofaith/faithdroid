@@ -1,0 +1,640 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D5440F322C6151200A34687 /* Vars.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5440F222C6151200A34687 /* Vars.m */; };
+		2DC281E822C5E71400506057 /* FView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC281E722C5E71400506057 /* FView.m */; };
+		2DF076E422C5C1480027E9AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF076E322C5C1480027E9AB /* AppDelegate.m */; };
+		2DF076E722C5C1480027E9AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF076E622C5C1480027E9AB /* ViewController.m */; };
+		2DF076EA22C5C1480027E9AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF076E822C5C1480027E9AB /* Main.storyboard */; };
+		2DF076EC22C5C1490027E9AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF076EB22C5C1490027E9AB /* Assets.xcassets */; };
+		2DF076EF22C5C1490027E9AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF076ED22C5C1490027E9AB /* LaunchScreen.storyboard */; };
+		2DF076F222C5C1490027E9AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF076F122C5C1490027E9AB /* main.m */; };
+		2DF076FC22C5C1490027E9AB /* FaithdroidAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF076FB22C5C1490027E9AB /* FaithdroidAppTests.m */; };
+		2DF0770722C5C1490027E9AB /* FaithdroidAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF0770622C5C1490027E9AB /* FaithdroidAppUITests.m */; };
+		2DF0771522C5C1830027E9AB /* Faithdroid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF0771422C5C1830027E9AB /* Faithdroid.framework */; };
+		2DF0771B22C5C20D0027E9AB /* UIObjectCBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF0771A22C5C20D0027E9AB /* UIObjectCBridge.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2DF076F822C5C1490027E9AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DF076D722C5C1480027E9AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DF076DE22C5C1480027E9AB;
+			remoteInfo = FaithdroidApp;
+		};
+		2DF0770322C5C1490027E9AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DF076D722C5C1480027E9AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DF076DE22C5C1480027E9AB;
+			remoteInfo = FaithdroidApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2D5440F222C6151200A34687 /* Vars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vars.m; sourceTree = "<group>"; };
+		2D5440F422C6192D00A34687 /* FButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FButton.h; sourceTree = "<group>"; };
+		2DC281E722C5E71400506057 /* FView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FView.m; sourceTree = "<group>"; };
+		2DC281EC22C5E9E000506057 /* Vars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vars.h; sourceTree = "<group>"; };
+		2DC281ED22C5EBDB00506057 /* FView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FView.h; sourceTree = "<group>"; };
+		2DC281EE22C5ED4A00506057 /* UIObjectCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIObjectCBridge.h; sourceTree = "<group>"; };
+		2DC281EF22C5EE1E00506057 /* AttrSetGettable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttrSetGettable.h; sourceTree = "<group>"; };
+		2DF076DF22C5C1480027E9AB /* FaithdroidApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaithdroidApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DF076E222C5C1480027E9AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2DF076E322C5C1480027E9AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2DF076E522C5C1480027E9AB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2DF076E622C5C1480027E9AB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2DF076E922C5C1480027E9AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2DF076EB22C5C1490027E9AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2DF076EE22C5C1490027E9AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2DF076F022C5C1490027E9AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DF076F122C5C1490027E9AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2DF076F722C5C1490027E9AB /* FaithdroidAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaithdroidAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DF076FB22C5C1490027E9AB /* FaithdroidAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaithdroidAppTests.m; sourceTree = "<group>"; };
+		2DF076FD22C5C1490027E9AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DF0770222C5C1490027E9AB /* FaithdroidAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaithdroidAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DF0770622C5C1490027E9AB /* FaithdroidAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaithdroidAppUITests.m; sourceTree = "<group>"; };
+		2DF0770822C5C1490027E9AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DF0771422C5C1830027E9AB /* Faithdroid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Faithdroid.framework; sourceTree = "<group>"; };
+		2DF0771A22C5C20D0027E9AB /* UIObjectCBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIObjectCBridge.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2DF076DC22C5C1480027E9AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DF0771522C5C1830027E9AB /* Faithdroid.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DF076F422C5C1490027E9AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DF076FF22C5C1490027E9AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2DC281E422C5E61000506057 /* FViews */ = {
+			isa = PBXGroup;
+			children = (
+				2D5440F422C6192D00A34687 /* FButton.h */,
+			);
+			path = FViews;
+			sourceTree = "<group>";
+		};
+		2DF076D622C5C1480027E9AB = {
+			isa = PBXGroup;
+			children = (
+				2DF076E122C5C1480027E9AB /* FaithdroidApp */,
+				2DF076FA22C5C1490027E9AB /* FaithdroidAppTests */,
+				2DF0770522C5C1490027E9AB /* FaithdroidAppUITests */,
+				2DF076E022C5C1480027E9AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2DF076E022C5C1480027E9AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2DF076DF22C5C1480027E9AB /* FaithdroidApp.app */,
+				2DF076F722C5C1490027E9AB /* FaithdroidAppTests.xctest */,
+				2DF0770222C5C1490027E9AB /* FaithdroidAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2DF076E122C5C1480027E9AB /* FaithdroidApp */ = {
+			isa = PBXGroup;
+			children = (
+				2DC281E422C5E61000506057 /* FViews */,
+				2DF0771622C5C1940027E9AB /* UI */,
+				2DF076E222C5C1480027E9AB /* AppDelegate.h */,
+				2DF076E322C5C1480027E9AB /* AppDelegate.m */,
+				2DF076E522C5C1480027E9AB /* ViewController.h */,
+				2DF076E622C5C1480027E9AB /* ViewController.m */,
+				2DF076E822C5C1480027E9AB /* Main.storyboard */,
+				2DF0771422C5C1830027E9AB /* Faithdroid.framework */,
+				2DF076EB22C5C1490027E9AB /* Assets.xcassets */,
+				2DF076ED22C5C1490027E9AB /* LaunchScreen.storyboard */,
+				2DF076F022C5C1490027E9AB /* Info.plist */,
+				2DF076F122C5C1490027E9AB /* main.m */,
+			);
+			path = FaithdroidApp;
+			sourceTree = "<group>";
+		};
+		2DF076FA22C5C1490027E9AB /* FaithdroidAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				2DF076FB22C5C1490027E9AB /* FaithdroidAppTests.m */,
+				2DF076FD22C5C1490027E9AB /* Info.plist */,
+			);
+			path = FaithdroidAppTests;
+			sourceTree = "<group>";
+		};
+		2DF0770522C5C1490027E9AB /* FaithdroidAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2DF0770622C5C1490027E9AB /* FaithdroidAppUITests.m */,
+				2DF0770822C5C1490027E9AB /* Info.plist */,
+			);
+			path = FaithdroidAppUITests;
+			sourceTree = "<group>";
+		};
+		2DF0771622C5C1940027E9AB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2DC281EE22C5ED4A00506057 /* UIObjectCBridge.h */,
+				2DF0771A22C5C20D0027E9AB /* UIObjectCBridge.m */,
+				2DC281EF22C5EE1E00506057 /* AttrSetGettable.h */,
+				2DC281ED22C5EBDB00506057 /* FView.h */,
+				2DC281E722C5E71400506057 /* FView.m */,
+				2DC281EC22C5E9E000506057 /* Vars.h */,
+				2D5440F222C6151200A34687 /* Vars.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2DF076DE22C5C1480027E9AB /* FaithdroidApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DF0770B22C5C1490027E9AB /* Build configuration list for PBXNativeTarget "FaithdroidApp" */;
+			buildPhases = (
+				2DF076DB22C5C1480027E9AB /* Sources */,
+				2DF076DC22C5C1480027E9AB /* Frameworks */,
+				2DF076DD22C5C1480027E9AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FaithdroidApp;
+			productName = FaithdroidApp;
+			productReference = 2DF076DF22C5C1480027E9AB /* FaithdroidApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2DF076F622C5C1490027E9AB /* FaithdroidAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DF0770E22C5C1490027E9AB /* Build configuration list for PBXNativeTarget "FaithdroidAppTests" */;
+			buildPhases = (
+				2DF076F322C5C1490027E9AB /* Sources */,
+				2DF076F422C5C1490027E9AB /* Frameworks */,
+				2DF076F522C5C1490027E9AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2DF076F922C5C1490027E9AB /* PBXTargetDependency */,
+			);
+			name = FaithdroidAppTests;
+			productName = FaithdroidAppTests;
+			productReference = 2DF076F722C5C1490027E9AB /* FaithdroidAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2DF0770122C5C1490027E9AB /* FaithdroidAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DF0771122C5C1490027E9AB /* Build configuration list for PBXNativeTarget "FaithdroidAppUITests" */;
+			buildPhases = (
+				2DF076FE22C5C1490027E9AB /* Sources */,
+				2DF076FF22C5C1490027E9AB /* Frameworks */,
+				2DF0770022C5C1490027E9AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2DF0770422C5C1490027E9AB /* PBXTargetDependency */,
+			);
+			name = FaithdroidAppUITests;
+			productName = FaithdroidAppUITests;
+			productReference = 2DF0770222C5C1490027E9AB /* FaithdroidAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2DF076D722C5C1480027E9AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "steven zacker";
+				TargetAttributes = {
+					2DF076DE22C5C1480027E9AB = {
+						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
+					};
+					2DF076F622C5C1490027E9AB = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 2DF076DE22C5C1480027E9AB;
+					};
+					2DF0770122C5C1490027E9AB = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 2DF076DE22C5C1480027E9AB;
+					};
+				};
+			};
+			buildConfigurationList = 2DF076DA22C5C1480027E9AB /* Build configuration list for PBXProject "FaithdroidApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2DF076D622C5C1480027E9AB;
+			productRefGroup = 2DF076E022C5C1480027E9AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2DF076DE22C5C1480027E9AB /* FaithdroidApp */,
+				2DF076F622C5C1490027E9AB /* FaithdroidAppTests */,
+				2DF0770122C5C1490027E9AB /* FaithdroidAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2DF076DD22C5C1480027E9AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DF076EF22C5C1490027E9AB /* LaunchScreen.storyboard in Resources */,
+				2DF076EC22C5C1490027E9AB /* Assets.xcassets in Resources */,
+				2DF076EA22C5C1480027E9AB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DF076F522C5C1490027E9AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DF0770022C5C1490027E9AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2DF076DB22C5C1480027E9AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DF076E722C5C1480027E9AB /* ViewController.m in Sources */,
+				2DF0771B22C5C20D0027E9AB /* UIObjectCBridge.m in Sources */,
+				2DC281E822C5E71400506057 /* FView.m in Sources */,
+				2D5440F322C6151200A34687 /* Vars.m in Sources */,
+				2DF076F222C5C1490027E9AB /* main.m in Sources */,
+				2DF076E422C5C1480027E9AB /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DF076F322C5C1490027E9AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DF076FC22C5C1490027E9AB /* FaithdroidAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DF076FE22C5C1490027E9AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DF0770722C5C1490027E9AB /* FaithdroidAppUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2DF076F922C5C1490027E9AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2DF076DE22C5C1480027E9AB /* FaithdroidApp */;
+			targetProxy = 2DF076F822C5C1490027E9AB /* PBXContainerItemProxy */;
+		};
+		2DF0770422C5C1490027E9AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2DF076DE22C5C1480027E9AB /* FaithdroidApp */;
+			targetProxy = 2DF0770322C5C1490027E9AB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2DF076E822C5C1480027E9AB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2DF076E922C5C1480027E9AB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2DF076ED22C5C1490027E9AB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2DF076EE22C5C1490027E9AB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2DF0770922C5C1490027E9AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2DF0770A22C5C1490027E9AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2DF0770C22C5C1490027E9AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TH5U284X6C;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FaithdroidApp",
+				);
+				INFOPLIST_FILE = FaithdroidApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.gofaith.FaithdroidApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2DF0770D22C5C1490027E9AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TH5U284X6C;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FaithdroidApp",
+				);
+				INFOPLIST_FILE = FaithdroidApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.gofaith.FaithdroidApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2DF0770F22C5C1490027E9AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TH5U284X6C;
+				INFOPLIST_FILE = FaithdroidAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.gofaith.FaithdroidAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaithdroidApp.app/FaithdroidApp";
+			};
+			name = Debug;
+		};
+		2DF0771022C5C1490027E9AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TH5U284X6C;
+				INFOPLIST_FILE = FaithdroidAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.gofaith.FaithdroidAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaithdroidApp.app/FaithdroidApp";
+			};
+			name = Release;
+		};
+		2DF0771222C5C1490027E9AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TH5U284X6C;
+				INFOPLIST_FILE = FaithdroidAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.gofaith.FaithdroidAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FaithdroidApp;
+			};
+			name = Debug;
+		};
+		2DF0771322C5C1490027E9AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TH5U284X6C;
+				INFOPLIST_FILE = FaithdroidAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.gofaith.FaithdroidAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FaithdroidApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2DF076DA22C5C1480027E9AB /* Build configuration list for PBXProject "FaithdroidApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DF0770922C5C1490027E9AB /* Debug */,
+				2DF0770A22C5C1490027E9AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DF0770B22C5C1490027E9AB /* Build configuration list for PBXNativeTarget "FaithdroidApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DF0770C22C5C1490027E9AB /* Debug */,
+				2DF0770D22C5C1490027E9AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DF0770E22C5C1490027E9AB /* Build configuration list for PBXNativeTarget "FaithdroidAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DF0770F22C5C1490027E9AB /* Debug */,
+				2DF0771022C5C1490027E9AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DF0771122C5C1490027E9AB /* Build configuration list for PBXNativeTarget "FaithdroidAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DF0771222C5C1490027E9AB /* Debug */,
+				2DF0771322C5C1490027E9AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2DF076D722C5C1480027E9AB /* Project object */;
+}
