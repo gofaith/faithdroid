@@ -5,15 +5,15 @@
 //  Created by steven zacker on 6/28/19.
 //  Copyright © 2019 steven zacker. All rights reserved.
 //
-#import "UIObjectCBridge.h"
-
+#import "ui.h"
 @implementation UIObjectCBridge{
 }
 
-- (instancetype)init
+- (instancetype)initWithParm:(UIViewController*)act
 {
     self = [super init];
     if (self) {
+        activity = act;
         viewmap = [NSMutableDictionary dictionary];
     }
     return self;
@@ -37,6 +37,8 @@
 }
 
 - (void)show:(long)vid {
+    NSString* key = [NSString stringWithFormat:@"%ld",vid];
+    FView* fview = [viewmap objectForKey:key];
     
 }
 

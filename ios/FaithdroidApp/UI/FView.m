@@ -6,8 +6,7 @@
 //  Copyright © 2019 steven zacker. All rights reserved.
 //
 
-#import "FView.h"
-
+#import "ui.h"
 @implementation FView
 @synthesize className;
 @synthesize vid;

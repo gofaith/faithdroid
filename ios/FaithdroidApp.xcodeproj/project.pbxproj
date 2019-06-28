@@ -42,10 +42,6 @@
 		2D5440F222C6151200A34687 /* Vars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vars.m; sourceTree = "<group>"; };
 		2D5440F422C6192D00A34687 /* FButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FButton.h; sourceTree = "<group>"; };
 		2DC281E722C5E71400506057 /* FView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FView.m; sourceTree = "<group>"; };
-		2DC281EC22C5E9E000506057 /* Vars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vars.h; sourceTree = "<group>"; };
-		2DC281ED22C5EBDB00506057 /* FView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FView.h; sourceTree = "<group>"; };
-		2DC281EE22C5ED4A00506057 /* UIObjectCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIObjectCBridge.h; sourceTree = "<group>"; };
-		2DC281EF22C5EE1E00506057 /* AttrSetGettable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttrSetGettable.h; sourceTree = "<group>"; };
 		2DF076DF22C5C1480027E9AB /* FaithdroidApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaithdroidApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF076E222C5C1480027E9AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2DF076E322C5C1480027E9AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +60,7 @@
 		2DF0770822C5C1490027E9AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DF0771422C5C1830027E9AB /* Faithdroid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Faithdroid.framework; sourceTree = "<group>"; };
 		2DF0771A22C5C20D0027E9AB /* UIObjectCBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIObjectCBridge.m; sourceTree = "<group>"; };
+		2DF831C422C663FA00989D6A /* ui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,13 +157,10 @@
 		2DF0771622C5C1940027E9AB /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2DC281EE22C5ED4A00506057 /* UIObjectCBridge.h */,
 				2DF0771A22C5C20D0027E9AB /* UIObjectCBridge.m */,
-				2DC281EF22C5EE1E00506057 /* AttrSetGettable.h */,
-				2DC281ED22C5EBDB00506057 /* FView.h */,
 				2DC281E722C5E71400506057 /* FView.m */,
-				2DC281EC22C5E9E000506057 /* Vars.h */,
 				2D5440F222C6151200A34687 /* Vars.m */,
+				2DF831C422C663FA00989D6A /* ui.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
