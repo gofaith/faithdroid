@@ -10,9 +10,13 @@
 #define UIObjectCBridge_h
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "../Faithdroid.framework/Headers/Faithdroid.h"
 
 @interface UIObjectCBridge : NSObject<FaithdroidUIBridge>{
+@public
+    NSMutableDictionary* viewmap;
+    UIViewController* activity;
 }
 @end
 #endif /* UIObjectCBridge_h */

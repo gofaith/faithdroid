@@ -10,6 +10,15 @@
 @implementation UIObjectCBridge{
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        viewmap = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
 - (NSString * _Nonnull)getAttr:(long)vid attr:(long)attr {
     
     return @"hello";
