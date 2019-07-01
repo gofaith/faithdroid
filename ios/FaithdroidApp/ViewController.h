@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
-
-
+#import "UI/ui.h"
+#import "Faithdroid.framework/Headers/Faithdroid.h"
+@interface ViewController : UIViewController{
+@public
+    UIObjectCBridge* _Nullable ui;
+    FaithdroidMainWindow* _Nullable w;
+}
+@property UIObjectCBridge* _Nullable ui;
+@property FaithdroidMainWindow* _Nullable w;
 @end
 

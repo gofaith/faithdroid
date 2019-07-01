@@ -13,10 +13,15 @@
 @end
 
 @implementation ViewController
-
+@synthesize ui;
+@synthesize w;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the 
+    // Do any additional setup after loading the
+    w = [[FaithdroidMainWindow alloc] init];
+    ui = [[UIObjectCBridge alloc] initWithParm:self];
+    [w setUI:ui];
+    [w onCreate];
 }
 
 

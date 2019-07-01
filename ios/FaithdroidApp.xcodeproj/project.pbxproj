@@ -19,6 +19,7 @@
 		2DF0770722C5C1490027E9AB /* FaithdroidAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF0770622C5C1490027E9AB /* FaithdroidAppUITests.m */; };
 		2DF0771522C5C1830027E9AB /* Faithdroid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF0771422C5C1830027E9AB /* Faithdroid.framework */; };
 		2DF0771B22C5C20D0027E9AB /* UIObjectCBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF0771A22C5C20D0027E9AB /* UIObjectCBridge.m */; };
+		2DF831C622C703BC00989D6A /* FButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF831C522C703BC00989D6A /* FButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +41,6 @@
 
 /* Begin PBXFileReference section */
 		2D5440F222C6151200A34687 /* Vars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vars.m; sourceTree = "<group>"; };
-		2D5440F422C6192D00A34687 /* FButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FButton.h; sourceTree = "<group>"; };
 		2DC281E722C5E71400506057 /* FView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FView.m; sourceTree = "<group>"; };
 		2DF076DF22C5C1480027E9AB /* FaithdroidApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaithdroidApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF076E222C5C1480027E9AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +61,7 @@
 		2DF0771422C5C1830027E9AB /* Faithdroid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Faithdroid.framework; sourceTree = "<group>"; };
 		2DF0771A22C5C20D0027E9AB /* UIObjectCBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIObjectCBridge.m; sourceTree = "<group>"; };
 		2DF831C422C663FA00989D6A /* ui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ui.h; sourceTree = "<group>"; };
+		2DF831C522C703BC00989D6A /* FButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,14 +90,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2DC281E422C5E61000506057 /* FViews */ = {
-			isa = PBXGroup;
-			children = (
-				2D5440F422C6192D00A34687 /* FButton.h */,
-			);
-			path = FViews;
-			sourceTree = "<group>";
-		};
 		2DF076D622C5C1480027E9AB = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +113,6 @@
 		2DF076E122C5C1480027E9AB /* FaithdroidApp */ = {
 			isa = PBXGroup;
 			children = (
-				2DC281E422C5E61000506057 /* FViews */,
 				2DF0771622C5C1940027E9AB /* UI */,
 				2DF076E222C5C1480027E9AB /* AppDelegate.h */,
 				2DF076E322C5C1480027E9AB /* AppDelegate.m */,
@@ -161,6 +153,7 @@
 				2DC281E722C5E71400506057 /* FView.m */,
 				2D5440F222C6151200A34687 /* Vars.m */,
 				2DF831C422C663FA00989D6A /* ui.h */,
+				2DF831C522C703BC00989D6A /* FButton.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -299,6 +292,7 @@
 				2DF076E722C5C1480027E9AB /* ViewController.m in Sources */,
 				2DF0771B22C5C20D0027E9AB /* UIObjectCBridge.m in Sources */,
 				2DC281E822C5E71400506057 /* FView.m in Sources */,
+				2DF831C622C703BC00989D6A /* FButton.m in Sources */,
 				2D5440F322C6151200A34687 /* Vars.m in Sources */,
 				2DF076F222C5C1490027E9AB /* main.m in Sources */,
 				2DF076E422C5C1480027E9AB /* AppDelegate.m in Sources */,
