@@ -3,6 +3,7 @@ package io.github.gofaith.faithdroidapp.UI
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import faithdroid.Faithdroid
 import faithdroid.UIBridge
 import io.github.gofaith.faithdroidapp.FViews.FButton
 
@@ -28,8 +29,10 @@ class UIKotlinBridge(val activity: AppCompatActivity,val rootView: FrameLayout) 
         viewmap.get(vid)?.view?.id = ViewCompat.generateViewId()
     }
 
-    override fun runOnUIThread(p0: Long) {
-
+    override fun runOnUIThread(fnID: Long) {
+        activity.runOnUiThread {
+            Faithdroid.invoke(fnID,"");
+        }
     }
 
 }
