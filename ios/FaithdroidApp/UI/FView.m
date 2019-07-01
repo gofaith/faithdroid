@@ -14,8 +14,8 @@
 @synthesize parentUIBridge;
 @synthesize view;
 
--(void)setAttr:(long)attr value:(NSString *_Nullable)value{
-    
+-(bool)setAttr:(long)attr value:(NSString *_Nullable)value{
+    return false;
 }
 
 -(NSString*_Nullable)getAttr:(long)attr{

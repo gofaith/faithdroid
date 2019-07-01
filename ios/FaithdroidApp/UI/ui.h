@@ -37,7 +37,7 @@
 @property long vid;
 @property UIObjectCBridge* _Nonnull parentUIBridge;
 @property UIView* _Nonnull view;
--(void)setAttr:(long)attr value:(NSString*_Nullable)value;
+-(bool)setAttr:(long)attr value:(NSString*_Nullable)value;
 -(NSString*_Nullable)getAttr:(long)attr;
 @end
 
@@ -52,6 +52,8 @@ NSString* _Nonnull getKey(long vid);
 }
 @property UIButton* _Nonnull v;
 - ( id _Nonnull )initWithParm:(long)myid bridge:(UIObjectCBridge *_Nonnull)bridge;
+-(bool)setAttr:(long)attr value:(NSString *_Nullable)value;
+-(NSString*_Nullable)getAttr:(long)attr;
 @end
 
 #endif /* ui_h */

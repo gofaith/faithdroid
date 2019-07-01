@@ -33,7 +33,6 @@
         case 0:{
             FButton* fbutton = [[FButton alloc] initWithParm:vid bridge:self];
             viewmap[getKey(vid)] = fbutton;
-            NSLog(@"new");
             break;
         }
         case 1 :
@@ -55,9 +54,6 @@
 
 - (void)show:(long)vid {
     FView* fview = viewmap[getKey(vid)];
-    if (fview != nil){
-        NSLog(@"fview");
-    }
     [activity.view addSubview:fview.view];
 }
 

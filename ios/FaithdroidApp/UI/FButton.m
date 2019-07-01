@@ -25,4 +25,20 @@
 }
 
 
+-(bool)setAttr:(long)attr value:(NSString *_Nullable)value{
+    if ([super setAttr:attr value:value]){
+        return true;
+    }
+    switch (attr) {
+    }
+    return true;
+}
+
+-(NSString*_Nullable)getAttr:(long)attr{
+    NSString* str = [super getAttr:attr];
+    if (str!=nil) {
+        return str;
+    }
+    return @"";
+}
 @end
