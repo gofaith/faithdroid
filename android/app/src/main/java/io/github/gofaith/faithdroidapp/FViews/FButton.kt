@@ -3,11 +3,11 @@ package io.github.gofaith.faithdroidapp.FViews
 import androidx.appcompat.widget.AppCompatButton
 import io.github.gofaith.faithdroidapp.UI.FView
 import io.github.gofaith.faithdroidapp.UI.UIKotlinBridge
-import io.github.gofaith.faithdroidapp.UI.Vars
+import io.github.gofaith.faithdroidapp.UI.ClassNames
 
 class FButton : FView {
     val v:AppCompatButton
-    constructor(vid:Long,ui:UIKotlinBridge) : super(Vars.button.ordinal,vid,ui) {
+    constructor(vid:Long,ui:UIKotlinBridge) : super(ClassNames.button.ordinal,vid,ui) {
         v = AppCompatButton(ui.activity)
         view=v
     }

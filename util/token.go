@@ -10,3 +10,4 @@ func NewNumToken() int {
 	a := rand.New(s)
 	return a.Intn(9999999)
 }
+

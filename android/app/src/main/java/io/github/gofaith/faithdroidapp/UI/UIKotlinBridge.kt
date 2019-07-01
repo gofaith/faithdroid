@@ -23,7 +23,7 @@ class UIKotlinBridge(val activity: AppCompatActivity,val rootView: FrameLayout) 
 
     override fun new_(className: Long, vid: Long) {
         when (className.toInt()) {
-            Vars.button.ordinal ->
+            ClassNames.button.ordinal ->
                 viewmap.put(vid,FButton(vid,this))
         }
         viewmap.get(vid)?.view?.id = ViewCompat.generateViewId()
